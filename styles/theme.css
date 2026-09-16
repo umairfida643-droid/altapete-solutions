@@ -830,3 +830,81 @@ html[data-theme="light"] .tech-card-wrapper:hover .tech-logo {
   transform: scale(1.08) !important;
 }
 
+/* =============================================================================
+   CLIENT LOGOS CARDS (DARK: WHITE LOGOS, NO BG; LIGHT: ORIGINAL COLORS)
+   ============================================================================= */
+
+.clients-section {
+  background: var(--bg-surface) !important;
+  border-top: 1px solid var(--border-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* 1. Dark Mode (Default / [data-theme="dark"]) */
+.client-card-wrapper {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 16px 24px !important;
+  width: 200px !important;
+  height: 90px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.client-card-wrapper:hover {
+  transform: translateY(-6px) !important;
+  background: rgba(44, 115, 217, 0.08) !important;
+  border-color: rgba(44, 115, 217, 0.35) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+.client-logo-img {
+  max-height: 48px !important;
+  max-width: 80% !important;
+  object-fit: contain !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.85 !important;
+  transition: all 0.3s ease !important;
+}
+
+.client-card-wrapper:hover .client-logo-img {
+  opacity: 1 !important;
+  transform: scale(1.06) !important;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45)) !important;
+}
+
+/* 2. Light Mode: Authentic Brand Colors & Subtle Soft Box */
+[data-theme="light"] .client-card-wrapper,
+html[data-theme="light"] .client-card-wrapper {
+  background: rgba(44, 115, 217, 0.04) !important;
+  border: 1px solid rgba(44, 115, 217, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .client-card-wrapper:hover,
+html[data-theme="light"] .client-card-wrapper:hover {
+  background: rgba(44, 115, 217, 0.08) !important;
+  border-color: rgba(44, 115, 217, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(44, 115, 217, 0.12) !important;
+}
+
+/* In Light Theme: Logos show in their authentic original colors! */
+[data-theme="light"] .client-logo-img,
+html[data-theme="light"] .client-logo-img {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .client-card-wrapper:hover .client-logo-img,
+html[data-theme="light"] .client-card-wrapper:hover .client-logo-img {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: scale(1.06) !important;
+}
+

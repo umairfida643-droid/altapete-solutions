@@ -95,16 +95,17 @@ export default function HomePage() {
   ];
 
   const clients = [
-    { name: "Ensco", logo: "/assets/imgs/client-logo/ensco.png" },
-    { name: "Ijarah", logo: "/assets/imgs/client-logo/ijarah.png" },
-    { name: "MSA Arabia", logo: "/assets/imgs/client-logo/msaarabia.jpg" },
-    { name: "OCA Global", logo: "/assets/imgs/client-logo/oca global.png" },
-    { name: "Rubber Future", logo: "/assets/imgs/client-logo/Rubber Future.png" },
-    { name: "Shahina", logo: "/assets/imgs/client-logo/shahina.png" },
-    { name: "SIRC", logo: "/assets/imgs/client-logo/SIRC.png" },
-    { name: "Tajmie", logo: "/assets/imgs/client-logo/Tajmie.png" },
-    { name: "Yugen", logo: "/assets/imgs/client-logo/Yugen.jpg" },
-    { name: "Zamil Group", logo: "/assets/imgs/client-logo/Zamil Grop.png" }
+    { name: "Ensco", logo: "/assets/imgs/clients-clean/ensco.png" },
+    { name: "Ijarah", logo: "/assets/imgs/clients-clean/ijarah.png" },
+    { name: "MSA Arabia", logo: "/assets/imgs/clients-clean/msaarabia.png" },
+    { name: "OCA Global", logo: "/assets/imgs/clients-clean/oca-global.png" },
+    { name: "Almutlaq Group", logo: "/assets/imgs/clients-clean/almutlaq.png" },
+    { name: "Rubber Future", logo: "/assets/imgs/clients-clean/rubber-future.png" },
+    { name: "Shahina", logo: "/assets/imgs/clients-clean/shahina.png" },
+    { name: "SIRC", logo: "/assets/imgs/clients-clean/sirc.png" },
+    { name: "Tajmie", logo: "/assets/imgs/clients-clean/tajmie.png" },
+    { name: "Yugen", logo: "/assets/imgs/clients-clean/yugen.png" },
+    { name: "Zamil Group", logo: "/assets/imgs/clients-clean/zamil.png" }
   ];
 
   const pillars = [
@@ -510,19 +511,15 @@ export default function HomePage() {
       {/* ────────────────── 5. CLIENT LOGOS SLIDER ────────────────── */}
       <section 
         className="clients-section py-5 position-relative"
-        style={{
-          background: '#0d0c1d',
-          borderTop: '1px solid rgba(44, 115, 217, 0.15)'
-        }}
       >
         <div className="container text-center mb-40">
           <div className="brand-badge mb-15">
             <Award size={13} /> Enterprise Trust
           </div>
-          <h3 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)' }}>
+          <h3 className="font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)', color: 'var(--text-primary)' }}>
             Trusted By <span className="color-linear">Leading Companies</span>
           </h3>
-          <p className="color-gray-400 mx-auto" style={{ maxWidth: '600px', fontSize: '15px' }}>
+          <p className="mx-auto" style={{ maxWidth: '600px', fontSize: '15px', color: 'var(--text-secondary)' }}>
             Delivering mission-critical ERP, software, and financial advisory services for prominent regional enterprises.
           </p>
         </div>
@@ -532,26 +529,13 @@ export default function HomePage() {
             <div className="slider-track">
               {[...clients, ...clients].map((cl, idx) => (
                 <div 
+                  className="client-card-wrapper"
                   key={idx}
-                  style={{
-                    background: '#ffffff',
-                    border: '1px solid rgba(44, 115, 217, 0.3)',
-                    borderRadius: '16px',
-                    padding: '16px 28px',
-                    width: '190px',
-                    height: '110px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
-                    transition: 'all 0.3s ease'
-                  }}
                 >
                   <img 
                     src={cl.logo} 
                     alt={cl.name} 
-                    style={{ maxHeight: '60px', maxWidth: '100%', objectFit: 'contain' }} 
+                    className="client-logo-img"
                   />
                 </div>
               ))}
