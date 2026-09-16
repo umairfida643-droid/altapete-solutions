@@ -1452,7 +1452,11 @@ html[data-theme="light"] .hero-visual-wrapper {
 /* ── 6. UNIVERSAL INTERNAL PAGES ALIGNMENT & SPACING STANDARDIZATION ── */
 .cover-home1 {
   width: 100% !important;
-  overflow-x: hidden !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: auto !important;
+  max-height: none !important;
   padding: 40px 0 80px 0 !important;
 }
 
@@ -1461,6 +1465,7 @@ html[data-theme="light"] .hero-visual-wrapper {
   padding-left: 20px !important;
   padding-right: 20px !important;
   margin: 0 auto !important;
+  overflow: visible !important;
 }
 
 /* Eliminate asymmetrical left-shift on all internal pages */
@@ -1474,6 +1479,7 @@ html[data-theme="light"] .hero-visual-wrapper {
   flex: 0 0 100% !important;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  overflow: visible !important;
 }
 
 /* Standardize internal page section spacing */
@@ -1481,6 +1487,7 @@ html[data-theme="light"] .hero-visual-wrapper {
   padding: 60px 0 !important;
   border-radius: 20px !important;
   margin-bottom: 40px !important;
+  overflow-y: visible !important;
 }
 
 /* Standardize card hover and prevent jittery cutoffs */
@@ -1489,13 +1496,74 @@ html[data-theme="light"] .hero-visual-wrapper {
 .cover-home1 div[style*="border-radius:20px"],
 .cover-home1 div[style*="border-radius: 20px"] {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+  overflow-y: visible !important;
+  max-height: none !important;
 }
 
-/* Prevent overflow clipping on badges and tooltips */
+/* Prevent overflow clipping on badges, cards, and tooltips */
 .cover-home1 .col-lg-6,
 .cover-home1 .col-lg-4,
-.cover-home1 .col-md-6 {
+.cover-home1 .col-md-6,
+.cover-home1 .col-sm-12,
+.cover-home1 .col-12 {
   overflow: visible !important;
+  overflow-y: visible !important;
+}
+
+/* ── 6B. GLOBAL INNER VERTICAL SCROLLBAR ELIMINATION & NATURAL EXPANSION ── */
+/* Allow ONLY the main browser page window (html/body) to scroll vertically.
+   Never permit cards, panels, or content containers to develop inner vertical scrollbars. */
+
+html {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  height: auto !important;
+}
+
+body {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  height: auto !important;
+}
+
+.app-layout,
+main {
+  overflow: visible !important;
+  overflow-y: visible !important;
+  height: auto !important;
+  min-height: 100% !important;
+}
+
+/* All content containers, cards, and panels must expand naturally */
+.card,
+.service-card,
+.details-panel,
+.stack-visualization,
+.team-card-wrapper,
+.tech-card-wrapper,
+.client-card-wrapper,
+.wwd-team-card,
+.wwd-value-card,
+.wwd-animate,
+.feature-card,
+.info-card,
+.card-style-1,
+.box-border-gradient {
+  overflow-y: visible !important;
+  max-height: none !important;
+  height: auto !important;
+}
+
+/* Globally suppress inner vertical scrollbars on all containers except the root window & mobile drawer */
+*:not(html):not(body):not(.mobile-header-wrapper-inner):not(textarea):not(.table-responsive):not([class*="table-responsive"]) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*:not(html):not(body):not(.mobile-header-wrapper-inner):not(textarea):not(.table-responsive):not([class*="table-responsive"])::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* Light theme text adjustments for internal pages */
