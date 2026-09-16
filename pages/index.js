@@ -320,18 +320,18 @@ export default function HomePage() {
                         </span>
                       </div>
 
-                      <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '12px' }}>
+                      <h3 className="service-card-title" style={{ fontSize: '19px', fontWeight: 700, marginBottom: '12px', color: 'var(--text-primary)' }}>
                         {srv.title}
                       </h3>
 
-                      <p style={{ fontSize: '14px', lineHeight: 1.65, marginBottom: '20px' }}>
+                      <p className="service-card-desc" style={{ fontSize: '14px', lineHeight: 1.65, marginBottom: '20px', color: 'var(--text-secondary)' }}>
                         {srv.desc}
                       </p>
 
                       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 25px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         {srv.points.map((pt, pIdx) => (
                           <li key={pIdx} className="service-bullet-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                            <CheckCircle2 size={14} color="#2c73d9" /> <span>{pt}</span>
+                            <CheckCircle2 size={14} color="#00AEEF" /> <span>{pt}</span>
                           </li>
                         ))}
                       </ul>
@@ -340,7 +340,7 @@ export default function HomePage() {
                     <div>
                       <Link 
                         href={srv.href}
-                        className="btn btn-outline-brand w-100 text-center justify-content-center"
+                        className="btn btn-outline-brand service-card-btn w-100 text-center justify-content-center"
                         style={{ padding: '10px 16px', fontSize: '13.5px' }}
                       >
                         Explore Solution <ChevronRight size={15} />

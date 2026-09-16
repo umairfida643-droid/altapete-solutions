@@ -42,7 +42,12 @@ export default function Header({ onToggleMobileMenu }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 25);
+      const scrollY = window.scrollY;
+      setIsSticky((prev) => {
+        if (!prev && scrollY > 40) return true;
+        if (prev && scrollY < 15) return false;
+        return prev;
+      });
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -220,11 +225,13 @@ export default function Header({ onToggleMobileMenu }) {
       style={{
         backgroundColor: 'var(--header-bg)',
         borderBottom: '1px solid var(--header-border)',
+        boxShadow: isSticky ? '0 8px 24px rgba(0, 0, 0, 0.2)' : 'none',
         backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
         position: 'sticky',
         top: 0,
         zIndex: 999,
-        transition: 'background-color 0.3s ease, border-color 0.3s ease, padding 0.25s ease'
+        transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease'
       }}
     >
       <div className="container" style={{ position: 'relative' }}>
@@ -234,8 +241,7 @@ export default function Header({ onToggleMobileMenu }) {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'space-between', 
-            padding: isSticky ? '10px 0' : '16px 0',
-            transition: 'padding 0.25s ease'
+            padding: '12px 0'
           }}
         >
           {/* Logo */}
