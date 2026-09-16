@@ -279,7 +279,7 @@ export default function Footer() {
               </div>
 
               <div style={{ marginTop: '16px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.2)', fontSize: '11.5px', color: 'var(--brand-accent)', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--brand-accent)', boxShadow: '0 0 8px var(--brand-accent)', display: 'inline-block' }}></span>
                 Enterprise Support Available 24/7
               </div>
             </div>
@@ -482,9 +482,9 @@ export default function Footer() {
             </p>
 
             {submitted ? (
-              <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <CheckCircle2 size={20} color="#22c55e" />
-                <span style={{ color: '#22c55e', fontSize: '13.5px', fontWeight: 600 }}>
+              <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(0, 174, 239, 0.12)', border: '1px solid rgba(0, 174, 239, 0.3)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <CheckCircle2 size={20} color="var(--brand-accent)" />
+                <span style={{ color: 'var(--brand-accent)', fontSize: '13.5px', fontWeight: 600 }}>
                   Thank you! Your message has been sent successfully.
                 </span>
               </div>

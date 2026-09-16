@@ -244,11 +244,11 @@ export default function WhatWeDoPage() {
               </section>
 
               {/* 4. LEGACY STATS */}
-              <section style={{ background: 'linear-gradient(135deg, #1a1b3a 0%, #2d1b69 50%, #1a1b3a 100%)', position: 'relative', overflow: 'hidden', padding: '80px 0', color: 'white', borderRadius: 20 }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'linear-gradient(45deg, rgba(0,255,128,.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(0,255,128,.1) 1px, transparent 1px)', backgroundSize: '20px 20px', opacity: 0.3 }} />
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 20% 80%, rgba(0,255,128,.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(0,191,255,.1) 0%, transparent 50%)' }} />
+              <section style={{ background: 'linear-gradient(135deg, #0A192F 0%, #0c1c38 50%, #0A192F 100%)', position: 'relative', overflow: 'hidden', padding: '80px 0', color: 'white', borderRadius: 20 }}>
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'linear-gradient(45deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px)', backgroundSize: '20px 20px', opacity: 0.3 }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 20% 80%, rgba(0, 174, 239, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(44, 115, 217, 0.15) 0%, transparent 50%)' }} />
                 <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-                  <h2 className="wwd-animate" style={{ fontSize: '3.5rem', fontWeight: 700, textAlign: 'center', marginBottom: '2rem', background: 'linear-gradient(45deg, #00ff80, #00bfff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>20+ Years of Legacy</h2>
+                  <h2 className="wwd-animate" style={{ fontSize: '3.5rem', fontWeight: 700, textAlign: 'center', marginBottom: '2rem', background: 'linear-gradient(45deg, #00AEEF, #00C6FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>20+ Years of Legacy</h2>
                   <p className="wwd-animate" style={{ fontSize: '1.2rem', lineHeight: 1.6, textAlign: 'center', marginBottom: '4rem', color: 'rgba(255,255,255,0.9)', maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
                     Year after year, we&apos;ve pushed the boundaries of convention, going beyond the ordinary to set new benchmarks in the IT industry, driven by our relentless pursuit of excellence, innovation, and agile resilience.
                   </p>
@@ -256,7 +256,7 @@ export default function WhatWeDoPage() {
                     {stats.map((stat, i) => (
                       <div key={i} className="col-lg-3 col-md-6 col-sm-6">
                         <div className="wwd-stat" style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                          <div className="wwd-stat-number" style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '0.5rem', background: 'linear-gradient(45deg, #00ff80, #00bfff)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, transition: 'transform 0.3s ease' }}>{stat.number}</div>
+                          <div className="wwd-stat-number" style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '0.5rem', background: 'linear-gradient(45deg, #00AEEF, #00C6FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, transition: 'transform 0.3s ease' }}>{stat.number}</div>
                           <div style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{stat.label}</div>
                         </div>
                       </div>
@@ -379,7 +379,7 @@ export default function WhatWeDoPage() {
                         {offices.map((office, i) => (
                           <div key={i} style={{ marginBottom: i < offices.length - 1 ? 25 : 0, paddingBottom: i < offices.length - 1 ? 25 : 0, borderBottom: i < offices.length - 1 ? '1px solid rgba(148,163,184,0.1)' : 'none' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                              <div style={{ width: 8, height: 8, background: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)', borderRadius: '50%' }} />
+                              <div style={{ width: 8, height: 8, background: 'linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%)', borderRadius: '50%' }} />
                               <h3 style={{ color: '#ffffff', fontSize: '1.125rem', fontWeight: 600, margin: 0 }}>{office.city}</h3>
                               <span style={{ color: '#94a3b8', fontSize: '0.875rem' }}>• {office.country}</span>
                             </div>

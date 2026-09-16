@@ -25,7 +25,7 @@ const ROW_1_TECH = [
     desc: "Enterprise Resource Planning", 
     logo: "/assets/imgs/tech/odoo.svg", 
     icon: Layers, 
-    badgeColor: "#a855f7" 
+    badgeColor: "#00C6FF" 
   },
   { 
     name: "Oracle", 
@@ -33,7 +33,7 @@ const ROW_1_TECH = [
     desc: "Autonomous Database Solutions", 
     logo: "/assets/imgs/tech/oracle.svg", 
     icon: Database, 
-    badgeColor: "#ef4444" 
+    badgeColor: "#2c73d9" 
   },
   { 
     name: "ZATCA", 
@@ -41,7 +41,7 @@ const ROW_1_TECH = [
     desc: "Phase 2 FATOORA E-Invoicing", 
     logo: "/assets/imgs/tech/zatca.svg", 
     icon: ShieldCheck, 
-    badgeColor: "#10b981" 
+    badgeColor: "#00AEEF" 
   },
   { 
     name: "SAP", 
@@ -57,7 +57,7 @@ const ROW_1_TECH = [
     desc: "Relational Engine & Clusters", 
     logo: "/assets/imgs/tech/postgresql.svg", 
     icon: Server, 
-    badgeColor: "#3b82f6" 
+    badgeColor: "#1e40af" 
   },
   { 
     name: "AWS Cloud", 
@@ -65,7 +65,7 @@ const ROW_1_TECH = [
     desc: "High-Availability Infrastructure", 
     logo: null, 
     icon: Cloud, 
-    badgeColor: "#f59e0b" 
+    badgeColor: "#0088C7" 
   },
   { 
     name: "Microsoft", 
@@ -84,7 +84,7 @@ const ROW_2_TECH = [
     desc: "Core Engineering & Automation", 
     logo: "/assets/imgs/tech/python.svg", 
     icon: Terminal, 
-    badgeColor: "#3b82f6" 
+    badgeColor: "#2c73d9" 
   },
   { 
     name: "Django", 
@@ -92,7 +92,7 @@ const ROW_2_TECH = [
     desc: "Scalable Enterprise Backends", 
     logo: "/assets/imgs/tech/django.svg", 
     icon: Code2, 
-    badgeColor: "#059669" 
+    badgeColor: "#00AEEF" 
   },
   { 
     name: "React & Next.js", 
@@ -100,7 +100,7 @@ const ROW_2_TECH = [
     desc: "Modern High-Speed Web Platforms", 
     logo: null, 
     icon: Globe, 
-    badgeColor: "#00AEEF" 
+    badgeColor: "#00C6FF" 
   },
   { 
     name: "Node.js", 
@@ -108,7 +108,7 @@ const ROW_2_TECH = [
     desc: "Fast Event-Driven Architecture", 
     logo: null, 
     icon: Cpu, 
-    badgeColor: "#10b981" 
+    badgeColor: "#0284c7" 
   },
   { 
     name: "Docker & K8s", 
@@ -116,7 +116,7 @@ const ROW_2_TECH = [
     desc: "Containerized Cloud Deployment", 
     logo: null, 
     icon: Box, 
-    badgeColor: "#2563eb" 
+    badgeColor: "#1e40af" 
   },
   { 
     name: "REST & GraphQL", 
@@ -124,7 +124,7 @@ const ROW_2_TECH = [
     desc: "Secure Real-time Conduits", 
     logo: null, 
     icon: Zap, 
-    badgeColor: "#8b5cf6" 
+    badgeColor: "#0088C7" 
   },
   { 
     name: "Financial AI", 
@@ -132,7 +132,7 @@ const ROW_2_TECH = [
     desc: "Automated Ledger Analytics", 
     logo: null, 
     icon: Calculator, 
-    badgeColor: "#f59e0b" 
+    badgeColor: "#00AEEF" 
   }
 ];
 

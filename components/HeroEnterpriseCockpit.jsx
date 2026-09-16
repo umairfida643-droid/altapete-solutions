@@ -36,7 +36,7 @@ const NODES = [
     status: 'Phase 2 Certified',
     latency: '14ms',
     icon: ShieldCheck,
-    color: '#10b981',
+    color: '#00C6FF',
     x: 430,
     y: 75,
     details: 'Cryptographic stamp, XML generation & live clearance portal'
@@ -49,7 +49,7 @@ const NODES = [
     status: 'Sub-Second Sync',
     latency: '5ms',
     icon: Database,
-    color: '#f59e0b',
+    color: '#2c73d9',
     x: 90,
     y: 265,
     details: 'Zero-data-loss architecture with real-time replication'
@@ -62,7 +62,7 @@ const NODES = [
     status: '100% Audit Ready',
     latency: '11ms',
     icon: Calculator,
-    color: '#8b5cf6',
+    color: '#0088C7',
     x: 430,
     y: 265,
     details: 'Real-time financial modeling, VAT & balance sheet analytics'
@@ -146,15 +146,15 @@ export default function HeroEnterpriseCockpit() {
                 <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.3" />
               </linearGradient>
               <linearGradient id="conduitGrad1" x1="100%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#10b981" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#00C6FF" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.3" />
               </linearGradient>
               <linearGradient id="conduitGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="#2c73d9" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="#00AEEF" stopOpacity="0.3" />
               </linearGradient>
               <linearGradient id="conduitGrad3" x1="100%" y1="100%" x2="0%" y2="0%">
-                <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                <stop offset="0%" stopColor="#0088C7" stopOpacity="0.8" />
                 <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.3" />
               </linearGradient>
 
@@ -208,9 +208,9 @@ export default function HeroEnterpriseCockpit() {
 
             {/* Animated Data Packets (Pulsing Circles Flowing Along Lines) */}
             <circle r="4.5" fill="#00AEEF" className="data-packet-anim packet-0" />
-            <circle r="4.5" fill="#10b981" className="data-packet-anim packet-1" />
-            <circle r="4.5" fill="#f59e0b" className="data-packet-anim packet-2" />
-            <circle r="4.5" fill="#8b5cf6" className="data-packet-anim packet-3" />
+            <circle r="4.5" fill="#00C6FF" className="data-packet-anim packet-1" />
+            <circle r="4.5" fill="#2c73d9" className="data-packet-anim packet-2" />
+            <circle r="4.5" fill="#0088C7" className="data-packet-anim packet-3" />
 
             {/* Center Hub: Altapete Ecosystem Gateway */}
             <g transform="translate(260, 170)">
@@ -222,7 +222,7 @@ export default function HeroEnterpriseCockpit() {
               <g className="hub-orbital-spin">
                 <circle cx="48" cy="0" r="3" fill="#00AEEF" />
                 <circle cx="-48" cy="0" r="3" fill="#2c73d9" />
-                <circle cx="0" cy="48" r="2" fill="#10b981" />
+                <circle cx="0" cy="48" r="2" fill="#00C6FF" />
                 <circle cx="0" cy="-48" r="2" fill="#00AEEF" />
               </g>
 
@@ -341,7 +341,7 @@ export default function HeroEnterpriseCockpit() {
             className={`cockpit-metric-item ${activeIdx === 1 ? 'selected' : ''}`}
             onClick={() => setActiveIdx(1)}
           >
-            <div className="metric-icon" style={{ color: '#10b981' }}>
+            <div className="metric-icon" style={{ color: '#00C6FF' }}>
               <ShieldCheck size={16} />
             </div>
             <div className="metric-info">
@@ -355,7 +355,7 @@ export default function HeroEnterpriseCockpit() {
             className={`cockpit-metric-item ${activeIdx === 2 ? 'selected' : ''}`}
             onClick={() => setActiveIdx(2)}
           >
-            <div className="metric-icon" style={{ color: '#f59e0b' }}>
+            <div className="metric-icon" style={{ color: '#2c73d9' }}>
               <Zap size={16} />
             </div>
             <div className="metric-info">
@@ -369,7 +369,7 @@ export default function HeroEnterpriseCockpit() {
             className={`cockpit-metric-item ${activeIdx === 3 ? 'selected' : ''}`}
             onClick={() => setActiveIdx(3)}
           >
-            <div className="metric-icon" style={{ color: '#8b5cf6' }}>
+            <div className="metric-icon" style={{ color: '#0088C7' }}>
               <Calculator size={16} />
             </div>
             <div className="metric-info">

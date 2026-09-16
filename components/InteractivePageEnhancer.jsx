@@ -309,10 +309,10 @@ export default function InteractivePageEnhancer() {
             dot.style.cursor = 'pointer';
             dot.style.transition = 'all 0.4s ease';
             if (idx <= currentStep) {
-              dot.style.background = 'linear-gradient(135deg, #00b5a8, #059669)';
-              dot.style.border = '3px solid #00b5a8';
+              dot.style.background = 'linear-gradient(135deg, #00AEEF, #2c73d9)';
+              dot.style.border = '3px solid #00AEEF';
               dot.style.transform = idx === currentStep ? 'scale(1.25)' : 'scale(1)';
-              dot.style.boxShadow = idx === currentStep ? '0 0 16px rgba(0, 181, 168, 0.6)' : 'none';
+              dot.style.boxShadow = idx === currentStep ? '0 0 16px rgba(0, 174, 239, 0.6)' : 'none';
               dot.style.color = '#ffffff';
             } else {
               dot.style.background = 'rgba(255, 255, 255, 0.2)';
@@ -330,12 +330,12 @@ export default function InteractivePageEnhancer() {
             innerCard.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
 
             if (idx === currentStep) {
-              innerCard.style.background = '#00b5a822';
+              innerCard.style.background = 'rgba(0, 174, 239, 0.12)';
               innerCard.style.backdropFilter = 'blur(16px)';
-              innerCard.style.border = '3px solid #00b5a8';
+              innerCard.style.border = '3px solid #00AEEF';
               innerCard.style.borderRadius = '20px';
               innerCard.style.transform = 'scale(1.04)';
-              innerCard.style.boxShadow = '0 20px 45px rgba(0, 181, 168, 0.35)';
+              innerCard.style.boxShadow = '0 20px 45px rgba(0, 174, 239, 0.35)';
               innerCard.style.zIndex = '10';
               innerCard.style.animation = 'phaseActive 2s ease-in-out infinite';
             } else {
