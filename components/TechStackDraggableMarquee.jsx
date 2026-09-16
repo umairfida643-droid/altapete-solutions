@@ -149,8 +149,8 @@ function TechCard({ item }) {
             className="tech-card-img" 
           />
         ) : (
-          <div className="tech-card-icon-fallback" style={{ color: item.badgeColor || 'var(--brand-accent)' }}>
-            <Icon size={26} />
+          <div className="tech-card-icon-fallback">
+            <Icon size={28} />
           </div>
         )}
       </div>
@@ -324,42 +324,28 @@ function DraggableMarqueeRow({ items, direction = 'rtl', speed = 0.85 }) {
 
 export default function TechStackDraggableMarquee() {
   return (
-    <div className="container">
-      {/* Framed Vertical Showcase Box */}
-      <div className="tech-showcase-vertical-box position-relative">
-        {/* Ambient Corner Glows */}
-        <div className="tech-box-glow-tl" />
-        <div className="tech-box-glow-br" />
-
-        {/* Top Controls & Status Bar */}
-        <div className="tech-box-header d-flex align-items-center justify-content-between flex-wrap gap-2">
-          <div className="d-flex align-items-center gap-2">
-            <span className="tech-hud-dot" />
-            <span className="tech-hud-label">
-              Enterprise Ecosystem • <span className="tech-hud-highlight">Drag left or right to explore</span>
-            </span>
-          </div>
-          <div className="d-flex align-items-center gap-2">
-            <span className="tech-stream-badge d-inline-flex align-items-center gap-1">
-              <MoveHorizontal size={13} /> 2-Way Flow Loop
-            </span>
-            <span className="tech-count-badge">14+ Integrated Platforms</span>
-          </div>
+    <div className="tech-fullwidth-marquee-wrapper position-relative">
+      {/* Top subtle interaction hint */}
+      <div className="container text-center mb-25">
+        <div className="tech-drag-hint-pill d-inline-flex align-items-center gap-2">
+          <span className="tech-hud-dot" />
+          <span>Drag left or right to explore • Continuous 2-Way Loop</span>
+          <span className="tech-count-badge ms-2">14+ Platforms</span>
         </div>
+      </div>
 
-        {/* Edge Gradient Fades for Smooth Horizon Disappear/Appear */}
-        <div className="tech-edge-fade-left" />
-        <div className="tech-edge-fade-right" />
+      {/* Edge Gradient Fades for Smooth Horizon Disappear/Appear */}
+      <div className="tech-fullwidth-edge-left" />
+      <div className="tech-fullwidth-edge-right" />
 
-        {/* Line 1: Right to Left */}
-        <div className="tech-row-wrapper mb-3">
-          <DraggableMarqueeRow items={ROW_1_TECH} direction="rtl" speed={0.85} />
-        </div>
+      {/* Line 1: Right to Left */}
+      <div className="tech-row-wrapper mb-3">
+        <DraggableMarqueeRow items={ROW_1_TECH} direction="rtl" speed={0.85} />
+      </div>
 
-        {/* Line 2: Left to Right */}
-        <div className="tech-row-wrapper">
-          <DraggableMarqueeRow items={ROW_2_TECH} direction="ltr" speed={0.85} />
-        </div>
+      {/* Line 2: Left to Right */}
+      <div className="tech-row-wrapper">
+        <DraggableMarqueeRow items={ROW_2_TECH} direction="ltr" speed={0.85} />
       </div>
     </div>
   );
