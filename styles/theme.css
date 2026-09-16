@@ -1280,6 +1280,22 @@ html[data-theme="light"] body {
 /* Internal Page Feature Cards in Light Mode */
 [data-theme="light"] .cover-home1 div[style*="border:2px solid #00d4ff40"],
 [data-theme="light"] .cover-home1 div[style*="border: 2px solid #00d4ff40"],
+[data-theme="light"] .cover-home1 div[style*="border:2px solid #4caf50"],
+[data-theme="light"] .cover-home1 div[style*="border: 2px solid #4caf50"],
+[data-theme="light"] .cover-home1 div[style*="border:2px solid #ff9800"],
+[data-theme="light"] .cover-home1 div[style*="border: 2px solid #ff9800"],
+[data-theme="light"] .cover-home1 div[style*="border:2px solid #9c27b0"],
+[data-theme="light"] .cover-home1 div[style*="border: 2px solid #9c27b0"],
+[data-theme="light"] .cover-home1 div[style*="border:2px solid #ff5722"],
+[data-theme="light"] .cover-home1 div[style*="border: 2px solid #ff5722"],
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, rgba(26, 47, 66"],
+[data-theme="light"] .cover-home1 div[style*="background: linear-gradient(135deg, rgba(26, 47, 66"],
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, rgba(15, 30, 45"],
+[data-theme="light"] .cover-home1 div[style*="background: linear-gradient(135deg, rgba(15, 30, 45"],
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(160deg, #0c2136"],
+[data-theme="light"] .cover-home1 div[style*="background: linear-gradient(160deg, #0c2136"],
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, rgba(37, 54, 73"],
+[data-theme="light"] .cover-home1 div[style*="background: linear-gradient(135deg, rgba(37, 54, 73"],
 [data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, #00d4ff10"],
 [data-theme="light"] .cover-home1 div[style*="background:rgba(10, 20, 35"],
 [data-theme="light"] .cover-home1 div[style*="background: rgba(10, 20, 35"],
@@ -1538,7 +1554,6 @@ main {
 .card,
 .service-card,
 .details-panel,
-.stack-visualization,
 .team-card-wrapper,
 .tech-card-wrapper,
 .client-card-wrapper,
@@ -1552,6 +1567,14 @@ main {
   overflow-y: visible !important;
   max-height: none !important;
   height: auto !important;
+}
+
+/* Specific fixed-height visual architecture diagrams that use absolute percentage child nodes */
+.stack-visualization {
+  position: relative !important;
+  min-height: 700px !important;
+  height: 700px !important;
+  overflow: hidden !important;
 }
 
 /* Globally suppress inner vertical scrollbars on all containers except the root window & mobile drawer */
@@ -2658,6 +2681,467 @@ html[data-theme="dark"] .consultation-input {
 [data-theme="light"] .tech-card-desc {
   color: #475569 !important;
 }
+
+/* =============================================================================
+   12. CORPORATE ADVISORY, GOVERNANCE & FAQ ACCORDIONS (PREMIUM DESIGN)
+   ============================================================================= */
+
+/* Card Boxes ("Who We Help" - Foreign Companies, SMEs, Family Businesses, etc.) */
+.card-box {
+  border-radius: 18px;
+  padding: 28px 22px;
+  text-align: center;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+[data-theme="dark"] .card-box {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(44, 115, 217, 0.28);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .card-box:hover {
+  border-color: #00AEEF;
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 174, 239, 0.22);
+}
+
+[data-theme="light"] .card-box {
+  background: #ffffff;
+  border: 1px solid rgba(44, 115, 217, 0.18);
+  box-shadow: 0 10px 25px rgba(40, 36, 96, 0.05);
+}
+
+[data-theme="light"] .card-box:hover {
+  border-color: #2c73d9;
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(44, 115, 217, 0.14);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .card-title {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .card-title {
+  color: #0f172a !important;
+}
+
+.card-text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .card-text {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .card-text {
+  color: #475569 !important;
+}
+
+/* Authority Support Cards (MISA, ZATCA, CMA, GOSI, etc.) */
+.auth-box {
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.35s ease;
+  height: 100%;
+}
+
+[data-theme="dark"] .auth-box {
+  background: rgba(13, 20, 36, 0.7);
+  border: 1px solid rgba(44, 115, 217, 0.22);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .auth-box:hover {
+  border-color: #00AEEF;
+  transform: translateY(-3px);
+}
+
+[data-theme="light"] .auth-box {
+  background: #ffffff;
+  border: 1px solid rgba(40, 36, 96, 0.14);
+  box-shadow: 0 8px 24px rgba(40, 36, 96, 0.05);
+}
+
+[data-theme="light"] .auth-box:hover {
+  border-color: #2c73d9;
+  transform: translateY(-3px);
+}
+
+.auth-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .auth-label {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .auth-label {
+  color: #0f172a !important;
+}
+
+.auth-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .auth-text {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .auth-text {
+  color: #475569 !important;
+}
+
+/* Checklist Items & Governance Framework */
+.chk-row {
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .chk-row {
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(44, 115, 217, 0.22);
+}
+
+[data-theme="dark"] .chk-row:hover {
+  border-color: rgba(0, 174, 239, 0.6);
+  transform: translateX(4px);
+}
+
+[data-theme="light"] .chk-row {
+  background: #ffffff;
+  border: 1px solid rgba(44, 115, 217, 0.16);
+  box-shadow: 0 4px 14px rgba(40, 36, 96, 0.04);
+}
+
+[data-theme="light"] .chk-row:hover {
+  border-color: #2c73d9;
+  transform: translateX(4px);
+}
+
+.chk-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .chk-title {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .chk-title {
+  color: #0f172a !important;
+}
+
+.chk-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .chk-text {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .chk-text {
+  color: #475569 !important;
+}
+
+/* Value Cards ("Local Insight. Structured Advisory.") */
+.val-box {
+  border-radius: 16px;
+  padding: 26px 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+[data-theme="dark"] .val-box {
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(44, 115, 217, 0.25);
+}
+
+[data-theme="light"] .val-box {
+  background: #ffffff;
+  border: 1px solid rgba(44, 115, 217, 0.16);
+  box-shadow: 0 8px 24px rgba(40, 36, 96, 0.05);
+}
+
+.val-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .val-title {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .val-title {
+  color: #0f172a !important;
+}
+
+.val-text {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .val-text {
+  color: #94a3b8 !important;
+}
+
+[data-theme="light"] .val-text {
+  color: #475569 !important;
+}
+
+/* FAQ Accordion Styling (Fixes raw button boxes from screenshot 1) */
+.faq-item {
+  border-radius: 14px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+[data-theme="dark"] .faq-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(44, 115, 217, 0.28);
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .faq-btn:hover {
+  border-color: #00AEEF;
+  background: rgba(20, 32, 58, 0.95);
+}
+
+[data-theme="light"] .faq-btn {
+  background: #ffffff;
+  border: 1px solid rgba(44, 115, 217, 0.2);
+  color: #0f172a !important;
+  box-shadow: 0 4px 14px rgba(40, 36, 96, 0.04);
+}
+
+[data-theme="light"] .faq-btn:hover {
+  border-color: #2c73d9;
+  box-shadow: 0 6px 18px rgba(44, 115, 217, 0.12);
+}
+
+.faq-q {
+  font-size: 0.98rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+[data-theme="dark"] .faq-q { color: #ffffff !important; }
+[data-theme="light"] .faq-q { color: #0f172a !important; }
+
+.faq-sign {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.faq-sign .bar {
+  position: absolute;
+  background: #00AEEF;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+[data-theme="light"] .faq-sign .bar {
+  background: #2c73d9;
+}
+
+.faq-sign .bar-h {
+  width: 14px;
+  height: 2px;
+}
+
+.faq-sign .bar-v {
+  width: 2px;
+  height: 14px;
+}
+
+.faq-btn[aria-expanded="true"] .bar-v {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+
+.faq-panel {
+  padding: 16px 22px;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  border-radius: 0 0 12px 12px;
+  margin-top: -4px;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .faq-panel {
+  background: rgba(8, 14, 28, 0.7);
+  border: 1px solid rgba(44, 115, 217, 0.18);
+  border-top: none;
+  color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .faq-panel {
+  background: #f8fafc;
+  border: 1px solid rgba(44, 115, 217, 0.15);
+  border-top: none;
+  color: #334155 !important;
+}
+
+.faq-wrap[aria-hidden="true"] {
+  display: none;
+}
+
+/* Orbit Satellite Nodes Contrast and Alignment */
+.hero-visual .floating-icon {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  user-select: none;
+}
+
+[data-theme="dark"] .hero-visual .floating-icon {
+  background: rgba(15, 23, 42, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(0, 174, 239, 0.45) !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 174, 239, 0.15) !important;
+}
+
+[data-theme="light"] .hero-visual .floating-icon {
+  background: #ffffff !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(44, 115, 217, 0.28) !important;
+  box-shadow: 0 10px 25px rgba(40, 36, 96, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .hero-visual .floating-icon div[style*="color:#00d4ff"],
+[data-theme="light"] .hero-visual .floating-icon div[style*="color: #00d4ff"] {
+  color: #1e40af !important;
+  font-weight: 700 !important;
+}
+
+.hero-visual .floating-icon:hover {
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  z-index: 20 !important;
+}
+
+[data-theme="dark"] .hero-visual .floating-icon:hover {
+  border-color: #00d4ff !important;
+  box-shadow: 0 0 25px rgba(0, 212, 255, 0.5) !important;
+}
+
+[data-theme="light"] .hero-visual .floating-icon:hover {
+  border-color: #2c73d9 !important;
+  box-shadow: 0 12px 30px rgba(44, 115, 217, 0.25) !important;
+}
+
+/* Light Mode for Stack Visualization */
+[data-theme="light"] .stack-visualization {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1.5px solid rgba(44, 115, 217, 0.25) !important;
+  box-shadow: 0 15px 40px rgba(40, 36, 96, 0.08) !important;
+}
+
+[data-theme="light"] .stack-visualization .layer-item {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(44, 115, 217, 0.22) !important;
+  box-shadow: 0 6px 20px rgba(40, 36, 96, 0.07) !important;
+}
+
+[data-theme="light"] .stack-visualization .layer-item h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .stack-visualization .tech-icons div[style*="background:rgba(10, 20, 35"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.2) !important;
+  box-shadow: 0 4px 12px rgba(40, 36, 96, 0.06) !important;
+}
+
+[data-theme="light"] .stack-visualization .tech-icons div[style*="background:rgba(10, 20, 35"] div[style*="color:#0a0d14"] {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .details-panel {
+  background: #ffffff !important;
+  border: 1.5px solid rgba(44, 115, 217, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(40, 36, 96, 0.06) !important;
+}
+
+[data-theme="light"] .details-panel h4,
+[data-theme="light"] .details-panel h6 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .details-panel div[style*="background:#00AEEF12"],
+[data-theme="light"] .details-panel div[style*="background: #00AEEF12"] {
+  background: #f8fafc !important;
+  border: 1px solid rgba(44, 115, 217, 0.18) !important;
+}
+
+[data-theme="light"] .details-panel div[style*="background:#00AEEF12"] span[style*="color:#FFFFFF"] {
+  color: #0f172a !important;
+}
+
+/* Global Safeguard for Pre-rendered Opacity / Visibility */
+.cover-home1 [style*="opacity:0"]:not(.tech-box-glow-tl):not(.tech-box-glow-br),
+.cover-home1 [style*="opacity: 0"]:not(.tech-box-glow-tl):not(.tech-box-glow-br) {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
 
 
 

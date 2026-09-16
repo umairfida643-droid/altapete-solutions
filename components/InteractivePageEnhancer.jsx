@@ -537,6 +537,33 @@ export default function InteractivePageEnhancer() {
       });
     };
 
+    // =========================================================================
+    // 5. FAQ ACCORDION INTERACTIVITY
+    // =========================================================================
+    const initFaqAccordions = () => {
+      const faqBtns = Array.from(document.querySelectorAll('.faq-btn'));
+      faqBtns.forEach((btn) => {
+        // Set initial state
+        const panelId = btn.getAttribute('aria-controls');
+        const wrap = panelId ? document.getElementById(panelId) : btn.closest('.faq-item')?.querySelector('.faq-wrap');
+        if (wrap) {
+          const isExp = btn.getAttribute('aria-expanded') === 'true';
+          wrap.style.display = isExp ? 'block' : 'none';
+        }
+
+        addListener(btn, 'click', () => {
+          const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+          const nextState = !isExpanded;
+          
+          btn.setAttribute('aria-expanded', String(nextState));
+          if (wrap) {
+            wrap.setAttribute('aria-hidden', String(!nextState));
+            wrap.style.display = nextState ? 'block' : 'none';
+          }
+        });
+      });
+    };
+
     // Run all initializers after a short tick for client-side DOM stabilization
     const mountTimer = setTimeout(() => {
       if (isDisposed) return;
@@ -544,6 +571,7 @@ export default function InteractivePageEnhancer() {
       initProcessTimeline();
       initCustomAppStages();
       initHeroPills();
+      initFaqAccordions();
     }, 150);
 
     return () => {

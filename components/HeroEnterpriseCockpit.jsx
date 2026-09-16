@@ -242,7 +242,20 @@ export default function HeroEnterpriseCockpit() {
           </svg>
 
           {/* HTML Overlay: 4 Interactive Satellite Node Cards */}
-          <div className="cockpit-nodes-layer position-absolute inset-0" style={{ pointerEvents: 'none' }}>
+          <div 
+            className="cockpit-nodes-layer" 
+            style={{ 
+              position: 'absolute', 
+              top: 0, 
+              left: 0, 
+              right: 0, 
+              bottom: 0, 
+              width: '100%', 
+              height: '100%', 
+              pointerEvents: 'none',
+              zIndex: 10
+            }}
+          >
             {NODES.map((node, i) => {
               const Icon = node.icon;
               const isActive = i === activeIdx;
@@ -258,10 +271,10 @@ export default function HeroEnterpriseCockpit() {
                   className={`cockpit-node-card ${isActive ? 'active' : ''}`}
                   style={{
                     position: 'absolute',
-                    top: isTop ? '6%' : 'auto',
-                    bottom: !isTop ? '6%' : 'auto',
-                    left: isLeft ? '4%' : 'auto',
-                    right: !isLeft ? '4%' : 'auto',
+                    top: isTop ? '12px' : 'auto',
+                    bottom: !isTop ? '12px' : 'auto',
+                    left: isLeft ? '14px' : 'auto',
+                    right: !isLeft ? '14px' : 'auto',
                     pointerEvents: 'auto',
                     cursor: 'pointer'
                   }}
