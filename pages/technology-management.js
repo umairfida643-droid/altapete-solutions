@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@/components/Layout';
+import TechnologyManagementView from '@/components/TechnologyManagementView';
 import pagesData from '@/data/pagesData.json';
 
 export default function TechnologyManagementPage() {
@@ -7,10 +8,10 @@ export default function TechnologyManagementPage() {
 
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title={data?.title || "Technology Management & IT Services | Altapete"}
+      description={data?.description || "Accelerate your business with DevOps, Cloud, and Infrastructure solutions."}
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <TechnologyManagementView />
     </Layout>
   );
 }
