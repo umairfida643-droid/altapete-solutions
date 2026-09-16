@@ -536,7 +536,7 @@ export default function HomePage() {
                     </div>
                   ) : (
                     <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }}>
-                      <h4 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>
+                      <h4 className="consultation-form-title" style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px', color: 'var(--text-primary)' }}>
                         Request a Strategy Consultation
                       </h4>
 
