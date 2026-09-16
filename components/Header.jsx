@@ -101,7 +101,7 @@ export default function Header({ onToggleMobileMenu }) {
           }}
         >
           {/* Logo */}
-          <div className="header-logo">
+          <div className="header-logo" style={{ flexShrink: 0 }}>
             <Link href="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <img 
                 alt="Altapete Solutions" 
@@ -116,31 +116,22 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Navigation Links */}
-          <div className="header-nav">
+          <div className="header-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, margin: '0 12px' }}>
             <nav className="nav-main-menu d-none d-xl-block">
-              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '2px', listStyle: 'none', margin: 0, padding: 0 }}>
+              <ul className="main-menu">
                 
                 {/* 1. Solutions Mega Menu Trigger */}
                 <li
                   className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setMegaMenuOpen(true)}
                   onMouseLeave={() => setMegaMenuOpen(false)}
-                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/" 
-                    style={{
-                      color: megaMenuOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
-                      fontWeight: 600,
-                      fontSize: '14.5px',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      transition: 'color 0.2s ease'
-                    }}
+                    className={megaMenuOpen ? 'is-open' : ''}
                   >
-                    Solutions <ChevronDown size={14} style={{ transform: megaMenuOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s ease' }} />
+                    <span>Solutions</span>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: megaMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </Link>
 
                   {/* Mega Menu Flyout */}
@@ -355,22 +346,13 @@ export default function Header({ onToggleMobileMenu }) {
                   className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
-                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/services" 
-                    style={{
-                      color: servicesOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
-                      fontWeight: 500,
-                      fontSize: '14.5px',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      transition: 'color 0.2s ease'
-                    }}
+                    className={servicesOpen ? 'is-open' : ''}
                   >
-                    Services <ChevronDown size={14} style={{ transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s ease' }} />
+                    <span>Services</span>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </Link>
 
                   {servicesOpen && (
@@ -402,22 +384,13 @@ export default function Header({ onToggleMobileMenu }) {
                   className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setProductsOpen(true)}
                   onMouseLeave={() => setProductsOpen(false)}
-                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/products" 
-                    style={{
-                      color: productsOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
-                      fontWeight: 500,
-                      fontSize: '14.5px',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                      transition: 'color 0.2s ease'
-                    }}
+                    className={productsOpen ? 'is-open' : ''}
                   >
-                    Products <ChevronDown size={14} style={{ transform: productsOpen ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s ease' }} />
+                    <span>Products</span>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: productsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </Link>
 
                   {productsOpen && (
@@ -445,24 +418,24 @@ export default function Header({ onToggleMobileMenu }) {
                 </li>
 
                 {/* Direct Links */}
-                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
-                  <Link href="/what-we-do" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
-                    What We Do
+                <li>
+                  <Link href="/what-we-do">
+                    <span>What We Do</span>
                   </Link>
                 </li>
-                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
-                  <Link href="/company-profile" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
-                    Company Profile
+                <li>
+                  <Link href="/company-profile">
+                    <span>Company Profile</span>
                   </Link>
                 </li>
-                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
-                  <Link href="/career" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
-                    Careers
+                <li>
+                  <Link href="/career">
+                    <span>Careers</span>
                   </Link>
                 </li>
-                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
-                  <Link href="/blog" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
-                    Blog
+                <li>
+                  <Link href="/blog">
+                    <span>Blog</span>
                   </Link>
                 </li>
               </ul>
@@ -477,7 +450,7 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Right Area: Theme Toggle & Primary Button */}
-          <div className="header-right d-none d-sm-flex align-items-center gap-3">
+          <div className="header-right d-none d-sm-flex align-items-center gap-3" style={{ flexShrink: 0 }}>
             {/* Theme Toggle Button */}
             <ThemeToggle />
 
