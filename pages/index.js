@@ -514,35 +514,23 @@ export default function HomePage() {
                         >
                           <Icon size={24} />
                         </div>
-                        <span 
-                          style={{
-                            color: '#2c73d9',
-                            fontSize: '11.5px',
-                            fontWeight: 700,
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.8px',
-                            background: 'rgba(40, 36, 96, 0.6)',
-                            padding: '4px 10px',
-                            borderRadius: '20px',
-                            border: '1px solid rgba(44, 115, 217, 0.2)'
-                          }}
-                        >
+                        <span className="service-category-pill">
                           {srv.category}
                         </span>
                       </div>
 
-                      <h3 style={{ color: '#ffffff', fontSize: '19px', fontWeight: 700, marginBottom: '12px' }}>
+                      <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '12px' }}>
                         {srv.title}
                       </h3>
 
-                      <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.65, marginBottom: '20px' }}>
+                      <p style={{ fontSize: '14px', lineHeight: 1.65, marginBottom: '20px' }}>
                         {srv.desc}
                       </p>
 
                       <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 25px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                         {srv.points.map((pt, pIdx) => (
-                          <li key={pIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#cbd5e1', fontSize: '13px' }}>
-                            <CheckCircle2 size={14} color="#2c73d9" /> {pt}
+                          <li key={pIdx} className="service-bullet-item" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+                            <CheckCircle2 size={14} color="#2c73d9" /> <span>{pt}</span>
                           </li>
                         ))}
                       </ul>
@@ -729,9 +717,8 @@ export default function HomePage() {
               {/* Right Column: Clean Glass Form */}
               <div className="col-lg-7">
                 <div 
+                  className="consultation-form-card"
                   style={{
-                    background: 'rgba(19, 17, 42, 0.8)',
-                    border: '1px solid rgba(44, 115, 217, 0.25)',
                     borderRadius: '18px',
                     padding: '30px'
                   }}
@@ -741,14 +728,14 @@ export default function HomePage() {
                       <div style={{ padding: '16px', borderRadius: '50%', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9', display: 'inline-flex', marginBottom: '16px' }}>
                         <CheckCircle2 size={36} />
                       </div>
-                      <h3 style={{ color: '#ffffff', marginBottom: '10px' }}>Inquiry Received!</h3>
-                      <p style={{ color: '#94a3b8', maxWidth: '400px', margin: '0 auto' }}>
+                      <h3 style={{ marginBottom: '10px' }}>Inquiry Received!</h3>
+                      <p style={{ maxWidth: '400px', margin: '0 auto' }}>
                         Thank you for contacting Altapete Solutions. A senior solution consultant will get back to you shortly.
                       </p>
                     </div>
                   ) : (
                     <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }}>
-                      <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>
+                      <h4 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>
                         Request a Strategy Consultation
                       </h4>
 
@@ -756,15 +743,13 @@ export default function HomePage() {
                         <div className="col-md-6">
                           <input 
                             type="text" 
+                            className="consultation-input"
                             placeholder="Full Name *" 
                             required 
                             style={{
                               width: '100%',
-                              background: 'rgba(40, 36, 96, 0.4)',
-                              border: '1px solid rgba(44, 115, 217, 0.3)',
                               borderRadius: '10px',
                               padding: '12px 16px',
-                              color: '#ffffff',
                               fontSize: '14px',
                               outline: 'none'
                             }}
@@ -773,15 +758,13 @@ export default function HomePage() {
                         <div className="col-md-6">
                           <input 
                             type="email" 
+                            className="consultation-input"
                             placeholder="Business Email *" 
                             required 
                             style={{
                               width: '100%',
-                              background: 'rgba(40, 36, 96, 0.4)',
-                              border: '1px solid rgba(44, 115, 217, 0.3)',
                               borderRadius: '10px',
                               padding: '12px 16px',
-                              color: '#ffffff',
                               fontSize: '14px',
                               outline: 'none'
                             }}
@@ -793,15 +776,13 @@ export default function HomePage() {
                         <div className="col-md-6">
                           <input 
                             type="tel" 
+                            className="consultation-input"
                             placeholder="Phone Number *" 
                             required 
                             style={{
                               width: '100%',
-                              background: 'rgba(40, 36, 96, 0.4)',
-                              border: '1px solid rgba(44, 115, 217, 0.3)',
                               borderRadius: '10px',
                               padding: '12px 16px',
-                              color: '#ffffff',
                               fontSize: '14px',
                               outline: 'none'
                             }}
@@ -810,15 +791,13 @@ export default function HomePage() {
                         <div className="col-md-6">
                           <input 
                             type="text" 
+                            className="consultation-input"
                             placeholder="Subject / Service Area *" 
                             required 
                             style={{
                               width: '100%',
-                              background: 'rgba(40, 36, 96, 0.4)',
-                              border: '1px solid rgba(44, 115, 217, 0.3)',
                               borderRadius: '10px',
                               padding: '12px 16px',
-                              color: '#ffffff',
                               fontSize: '14px',
                               outline: 'none'
                             }}
@@ -828,16 +807,14 @@ export default function HomePage() {
 
                       <div className="mb-4">
                         <textarea 
+                          className="consultation-input"
                           placeholder="Tell us about your project or business needs *" 
                           rows={4} 
                           required 
                           style={{
                             width: '100%',
-                            background: 'rgba(40, 36, 96, 0.4)',
-                            border: '1px solid rgba(44, 115, 217, 0.3)',
                             borderRadius: '10px',
                             padding: '12px 16px',
-                            color: '#ffffff',
                             fontSize: '14px',
                             outline: 'none',
                             resize: 'vertical'
