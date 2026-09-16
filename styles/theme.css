@@ -1,0 +1,139 @@
+:root {
+  --color-primary: #282460;
+  --color-primary-rgb: 40, 36, 96;
+  --color-accent: #2c73d9;
+  --color-accent-rgb: 44, 115, 217;
+  --color-accent-hover: #3d86ee;
+  --color-accent-glow: rgba(44, 115, 217, 0.4);
+  
+  --bg-dark: #0b0a17;
+  --bg-dark-secondary: #121029;
+  --bg-card: rgba(40, 36, 96, 0.35);
+  --bg-card-hover: rgba(40, 36, 96, 0.6);
+  
+  --border-subtle: rgba(44, 115, 217, 0.2);
+  --border-accent: rgba(44, 115, 217, 0.5);
+  
+  --gradient-brand: linear-gradient(135deg, #282460 0%, #2c73d9 100%);
+  --gradient-accent: linear-gradient(135deg, #2c73d9 0%, #5ba2f8 100%);
+  --gradient-text: linear-gradient(135deg, #ffffff 30%, #2c73d9 100%);
+}
+
+/* Global Dark Theme Overrides with strict brand colors */
+body {
+  background-color: var(--bg-dark) !important;
+  color: #e2e8f0 !important;
+  font-family: 'Noto Sans', sans-serif !important;
+  overflow-x: hidden;
+}
+
+.bg-gray-900, .bg-gray-850, .bg-gray-800 {
+  background-color: var(--bg-dark-secondary) !important;
+}
+
+/* Linear Buttons with Brand Colors */
+.btn-linear {
+  background: var(--gradient-brand) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(44, 115, 217, 0.25) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+.btn-linear:hover {
+  background: linear-gradient(135deg, #322d7a 0%, #3a82e8 100%) !important;
+  box-shadow: 0 8px 30px rgba(44, 115, 217, 0.45) !important;
+  transform: translateY(-2px) !important;
+  color: #ffffff !important;
+}
+
+.btn-outline-brand {
+  background: rgba(40, 36, 96, 0.3) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.4) !important;
+  padding: 12px 28px !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.btn-outline-brand:hover {
+  background: rgba(44, 115, 217, 0.2) !important;
+  border-color: #2c73d9 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 20px rgba(44, 115, 217, 0.2) !important;
+}
+
+/* Color linear text highlights */
+.color-linear, .highlight-text, .brand-cyan {
+  background: var(--gradient-accent) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Modern Glowing Badge */
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 20px;
+  background: rgba(40, 36, 96, 0.5);
+  border: 1px solid var(--border-accent);
+  border-radius: 50px;
+  color: #2c73d9;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(44, 115, 217, 0.15);
+}
+
+.pulse-dot-brand {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2c73d9;
+  box-shadow: 0 0 10px #2c73d9;
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* Glassmorphic Cards */
+.glass-card {
+  background: rgba(40, 36, 96, 0.35) !important;
+  border: 1px solid rgba(44, 115, 217, 0.22) !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(16px) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.glass-card:hover {
+  background: rgba(40, 36, 96, 0.55) !important;
+  border-color: rgba(44, 115, 217, 0.6) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 40px rgba(44, 115, 217, 0.2) !important;
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.float-anim {
+  animation: floatSlow 5s ease-in-out infinite;
+}

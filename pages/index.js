@@ -1,87 +1,893 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Typewriter from 'typewriter-effect';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import { 
+  Sparkles, 
+  ArrowRight, 
+  Layers, 
+  ShieldCheck, 
+  Cpu, 
+  CheckCircle2, 
+  Users, 
+  Building2, 
+  Handshake, 
+  Server, 
+  Code2, 
+  Calculator, 
+  Briefcase, 
+  Scale, 
+  Award, 
+  Headphones, 
+  MapPin, 
+  Mail, 
+  Phone,
+  Send,
+  ExternalLink,
+  ChevronRight
+} from 'lucide-react';
 
 export default function HomePage() {
-  const homeData = pagesData['/'];
-  const homeRestHtml = pagesData['/home_rest'];
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const stats = [
+    { number: "200+", label: "Projects Delivered & Renewals", icon: CheckCircle2 },
+    { number: "50+", label: "Skilled Resource Pool", icon: Users },
+    { number: "150+", label: "Satisfied Customers", icon: Building2 },
+    { number: "20+", label: "Strategic Partners", icon: Handshake }
+  ];
+
+  const techPartners = [
+    { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/partners/odoo.webp" },
+    { name: "Oracle", tag: "Database", desc: "Business Solutions", logo: "/assets/imgs/external/oracle-6.svg" },
+    { name: "ZATCA", tag: "Compliance", desc: "Phase 2 E-Invoicing", logo: "/assets/imgs/partners/zatca.png" },
+    { name: "SAP", tag: "Enterprise", desc: "Global ERP Platforms", logo: "/assets/imgs/partners/sap.jpeg" },
+    { name: "Django", tag: "Framework", desc: "Enterprise Backends", logo: "/assets/imgs/external/django-logo-negative.png" },
+    { name: "Python", tag: "Language", desc: "Core Engineering", logo: "/assets/imgs/external/python-logo-master-v3-TM.png" },
+    { name: "PostgreSQL", tag: "Database", desc: "Relational Engine", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" }
+  ];
+
+  const coreServices = [
+    {
+      title: "Enterprise Solutions",
+      category: "Digital Transformation",
+      desc: "Comprehensive ERP implementations, SAP migrations, and business process automation customized for your scale.",
+      icon: Building2,
+      href: "/enterprise-solutions",
+      points: ["Full ERP Life Cycle", "Custom Workflow Automation", "Legacy Migration"]
+    },
+    {
+      title: "Technology Management",
+      category: "Cloud & Infrastructure",
+      desc: "End-to-end IT strategy, cloud hosting management, database optimization, and high-availability architecture.",
+      icon: Server,
+      href: "/technology-management",
+      points: ["Cloud Infrastructure", "24/7 Monitoring", "Security Auditing"]
+    },
+    {
+      title: "Custom Application Development",
+      category: "Software Engineering",
+      desc: "Tailored enterprise web applications, mobile platforms, and customer portals built with modern frameworks.",
+      icon: Code2,
+      href: "/custom-app-development",
+      points: ["Scalable Architectures", "Modern UI/UX", "API Integrations"]
+    },
+    {
+      title: "Accounting & Financial Advisory",
+      category: "Advisory Services",
+      desc: "Strategic bookkeeping, IFRS advisory, financial modeling, and CFO-level decision support for sustained growth.",
+      icon: Calculator,
+      href: "/accounting-financial-advisory",
+      points: ["IFRS Compliance", "Financial Modeling", "Corporate Bookkeeping"]
+    },
+    {
+      title: "Corporate Advisory",
+      category: "Advisory Services",
+      desc: "Corporate restructuring, transactional support, valuation, and feasibility analyses for scaling ventures.",
+      icon: Briefcase,
+      href: "/corporate-advisory",
+      points: ["Mergers & Acquisitions", "Business Valuations", "Feasibility Studies"]
+    },
+    {
+      title: "Taxation & ZAKAT Advisory",
+      category: "Tax & Compliance",
+      desc: "Direct & indirect tax management, ZAKAT calculations, VAT filings, and representation before authorities in KSA.",
+      icon: Scale,
+      href: "/taxation-zakat-advisory",
+      points: ["KSA ZAKAT Support", "VAT Advisory", "Audit Representation"]
+    }
+  ];
+
+  const clients = [
+    { name: "Ensco", logo: "/assets/imgs/client-logo/ensco.png" },
+    { name: "Ijarah", logo: "/assets/imgs/client-logo/ijarah.png" },
+    { name: "MSA Arabia", logo: "/assets/imgs/client-logo/msaarabia.jpg" },
+    { name: "OCA Global", logo: "/assets/imgs/client-logo/oca global.png" },
+    { name: "Rubber Future", logo: "/assets/imgs/client-logo/Rubber Future.png" },
+    { name: "Shahina", logo: "/assets/imgs/client-logo/shahina.png" },
+    { name: "SIRC", logo: "/assets/imgs/client-logo/SIRC.png" },
+    { name: "Tajmie", logo: "/assets/imgs/client-logo/Tajmie.png" },
+    { name: "Yugen", logo: "/assets/imgs/client-logo/Yugen.jpg" },
+    { name: "Zamil Group", logo: "/assets/imgs/client-logo/Zamil Grop.png" }
+  ];
+
+  const pillars = [
+    {
+      title: "23+ Years Legacy",
+      desc: "Spanning over two decades of delivering modernization, resilience, and agility to top organizations.",
+      icon: Award
+    },
+    {
+      title: "Certified ERP & SAP Experts",
+      desc: "Accredited functional and technical consultants experienced across regional enterprise deployments.",
+      icon: ShieldCheck
+    },
+    {
+      title: "End-to-End Implementation",
+      desc: "From initial process mapping and custom development to change management and post-launch support.",
+      icon: CheckCircle2
+    },
+    {
+      title: "Guaranteed SLA & Compliance",
+      desc: "Complete alignment with local regulations including ZATCA Phase 2, IFRS, and 24/7 ongoing support.",
+      icon: Headphones
+    }
+  ];
 
   return (
     <Layout
-      title={homeData?.title || "ERP, SAP & Custom Software Solutions | Altapete"}
-      description={homeData?.description || "Altapete provides ERP, SAP, Oracle, custom application development, accounting, and industry-specific software solutions for growing businesses."}
+      title="ERP, SAP & Custom Software Solutions | Altapete Solutions"
+      description="Altapete provides ERP, SAP, Oracle, custom application development, accounting, and industry-specific software solutions for growing businesses."
     >
-      <div className="cover-home1">
+      {/* ────────────────── 1. HERO SECTION ────────────────── */}
+      <section 
+        className="hero-section position-relative"
+        style={{
+          padding: '110px 0 90px',
+          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 115, 217, 0.22), transparent 70%), linear-gradient(180deg, #0b0a17 0%, #0d0c1d 100%)',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Ambient background glows */}
+        <div style={{ position: 'absolute', top: '15%', left: '5%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(40, 36, 96, 0.5) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '30%', right: '5%', width: '450px', height: '450px', background: 'radial-gradient(circle, rgba(44, 115, 217, 0.25) 0%, transparent 70%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
+
+        <div className="container position-relative" style={{ zIndex: 2 }}>
+          <div className="row align-items-center g-5">
+            {/* Left Copy */}
+            <div className="col-lg-6">
+              {/* Eyebrow Badge */}
+              <div className="brand-badge mb-25">
+                <span className="pulse-dot-brand"></span>
+                <span>Next-Gen Enterprise Solutions</span>
+              </div>
+
+              {/* Headline with Live Typewriter */}
+              <h1 
+                className="color-white font-heading mb-20"
+                style={{
+                  fontSize: 'clamp(2.4rem, 4.2vw, 3.8rem)',
+                  fontWeight: 800,
+                  lineHeight: 1.15,
+                  letterSpacing: '-0.5px'
+                }}
+              >
+                Delivering{' '}
+                <span style={{ display: 'inline-block' }}>
+                  <Typewriter
+                    options={{
+                      wrapperClassName: "color-linear font-heading",
+                      strings: [
+                        "Business Consultancy",
+                        "Custom App Development",
+                        "ERP Implementations",
+                        "ZATCA E-Invoicing",
+                        "Financial Advisory",
+                        "Odoo & SAP Systems",
+                        "Cloud Transformation"
+                      ],
+                      autoStart: true,
+                      loop: true,
+                      delay: 50,
+                      deleteSpeed: 30
+                    }}
+                  />
+                </span>{' '}
+                Solutions
+              </h1>
+
+              {/* Subtitle */}
+              <p 
+                className="color-gray-400 mb-35"
+                style={{
+                  fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                  lineHeight: 1.75,
+                  maxWidth: '560px'
+                }}
+              >
+                <strong style={{ color: '#ffffff' }}>Altapete</strong> delivers expert ERP, SAP, Oracle, and bookkeeping solutions to streamline operations, reduce operational costs, and accelerate enterprise growth.
+              </p>
+
+              {/* CTAs */}
+              <div className="d-flex flex-wrap align-items-center gap-3">
+                <Link 
+                  href="/contact-us"
+                  className="btn btn-linear hover-up"
+                  style={{ padding: '15px 34px', fontSize: '15px', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
+                >
+                  GET STARTED <ArrowRight size={18} />
+                </Link>
+                <Link 
+                  href="/what-we-do"
+                  className="btn-outline-brand hover-up"
+                  style={{ padding: '14px 28px', fontSize: '15px' }}
+                >
+                  <Layers size={18} color="#2c73d9" /> Explore Capabilities
+                </Link>
+              </div>
+
+              {/* Trust Indicators */}
+              <div className="mt-40 pt-25 border-top d-flex align-items-center gap-4 flex-wrap" style={{ borderColor: 'rgba(44, 115, 217, 0.2)' }}>
+                <div className="d-flex align-items-center gap-2">
+                  <ShieldCheck size={20} color="#2c73d9" />
+                  <span style={{ color: '#94a3b8', fontSize: '13.5px' }}>ZATCA Phase 2 Certified</span>
+                </div>
+                <div className="d-flex align-items-center gap-2">
+                  <Award size={20} color="#2c73d9" />
+                  <span style={{ color: '#94a3b8', fontSize: '13.5px' }}>23+ Years Track Record</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Visual: High-Tech Enterprise Mockup & Floating Badges */}
+            <div className="col-lg-6 position-relative text-center">
+              <div 
+                className="hero-visual-wrapper position-relative"
+                style={{
+                  maxWidth: '560px',
+                  margin: '0 auto'
+                }}
+              >
+                {/* Ambient glow under image */}
+                <div 
+                  style={{
+                    position: 'absolute',
+                    inset: '10%',
+                    background: 'radial-gradient(circle, rgba(44, 115, 217, 0.35) 0%, rgba(40, 36, 96, 0.4) 60%, transparent 100%)',
+                    filter: 'blur(40px)',
+                    zIndex: 0
+                  }} 
+                />
+
+                {/* Main Visual */}
+                <img 
+                  src="/assets/imgs/page/homepage1/banner.png" 
+                  alt="Altapete Solutions Platform"
+                  className="img-fluid position-relative"
+                  style={{
+                    zIndex: 1,
+                    filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6))',
+                    maxHeight: '440px'
+                  }}
+                />
+
+                {/* Floating KPI Badge 1 (Top Left) */}
+                <div
+                  className="glass-card float-anim"
+                  style={{
+                    position: 'absolute',
+                    top: '10%',
+                    left: '-15px',
+                    padding: '12px 18px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    zIndex: 3,
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.5)'
+                  }}
+                >
+                  <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
+                    <Cpu size={22} />
+                  </div>
+                  <div className="text-start">
+                    <div style={{ color: '#ffffff', fontSize: '13px', fontWeight: 700 }}>Real-time Core</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>99.9% Cloud Uptime</div>
+                  </div>
+                </div>
+
+                {/* Floating KPI Badge 2 (Bottom Right) */}
+                <div
+                  className="glass-card float-anim"
+                  style={{
+                    position: 'absolute',
+                    bottom: '10%',
+                    right: '-15px',
+                    padding: '12px 18px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    zIndex: 3,
+                    animationDelay: '2.5s',
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.5)'
+                  }}
+                >
+                  <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
+                    <ShieldCheck size={22} />
+                  </div>
+                  <div className="text-start">
+                    <div style={{ color: '#ffffff', fontSize: '13px', fontWeight: 700 }}>ZATCA Compliant</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>Phase 2 E-Invoicing</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 2. MILESTONES & STATS SECTION ────────────────── */}
+      <section 
+        className="stats-section py-5"
+        style={{
+          background: 'linear-gradient(180deg, #0d0c1d 0%, #121029 100%)',
+          borderTop: '1px solid rgba(44, 115, 217, 0.15)',
+          borderBottom: '1px solid rgba(44, 115, 217, 0.15)'
+        }}
+      >
         <div className="container">
-          <div className="row">
-            <div className="col-xl-1"></div>
-            <div className="col-xl-10 col-lg-12">
-              <div className="banner apx-hero">
-                <div className="row apx-row">
-                  <div className="col-lg-6 apx-copy">
-                    <h1 className="color-gray-50 apx-title wow animate__animated animate__fadeInUp">
-                      <span className="apx-title-sizer" aria-hidden="true">
-                        <span>Delivering</span>
-                        <span>Business Management Consultancy</span>
-                        <span>solutions</span>
-                      </span>
-                      <span className="apx-title-live">
-                        <span>Delivering </span>
-                        <Typewriter
-                          options={{
-                            wrapperClassName: "typewrite color-linear",
-                            strings: [
-                              "Business Management Consultancy",
-                              "Custom App Development",
-                              "Management Consultancy",
-                              "VAT Consultancy",
-                              "Bookkeeping",
-                              "ERP NEXT",
-                              "Business",
-                              "Odoo"
-                            ],
-                            autoStart: true,
-                            loop: true,
+          <div className="row align-items-center g-4">
+            <div className="col-lg-5">
+              <span className="brand-badge mb-15">
+                <Sparkles size={13} /> Proven Track Record
+              </span>
+              <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.8rem)', lineHeight: 1.25 }}>
+                Transforming Ideas into <span className="color-linear">Intelligent Solutions</span>
+              </h2>
+              <p className="color-gray-400 mb-30" style={{ fontSize: '15.5px', lineHeight: 1.7 }}>
+                Spanning a legacy of 23 years, we have been in the business of providing modernization, resilience, and agility for our clients. Delivering top-notch IT solutions and flexible service models for future-ready enterprises.
+              </p>
+              <Link href="/what-we-do" className="btn btn-linear btn-sm d-inline-flex align-items-center gap-2">
+                LEARN MORE <ArrowRight size={16} />
+              </Link>
+            </div>
+
+            <div className="col-lg-7">
+              <div className="row g-3">
+                {stats.map((st, idx) => {
+                  const Icon = st.icon;
+                  return (
+                    <div className="col-sm-6" key={idx}>
+                      <div 
+                        className="glass-card p-4 text-center"
+                        style={{
+                          height: '100%',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <div 
+                          style={{
+                            padding: '12px',
+                            borderRadius: '14px',
+                            background: 'rgba(44, 115, 217, 0.15)',
+                            color: '#2c73d9',
+                            marginBottom: '14px'
                           }}
-                        />
-                        <span> solutions</span>
-                      </span>
-                    </h1>
-                    <div className="row">
-                      <div className="col-lg-9">
-                        <p className="text-base color-gray-600 apx-lead wow animate__animated animate__fadeInUp">
-                          <strong>Altapete </strong>delivers expert ERP, SAP, Oracle, and bookkeeping solutions to streamline operations, reduce costs, and drive business growth.
-                        </p>
+                        >
+                          <Icon size={28} />
+                        </div>
+                        <div 
+                          className="color-linear font-heading mb-2"
+                          style={{ fontSize: '2.8rem', fontWeight: 800, lineHeight: 1 }}
+                        >
+                          {st.number}
+                        </div>
+                        <div style={{ color: '#cbd5e1', fontSize: '14px', fontWeight: 500 }}>
+                          {st.label}
+                        </div>
                       </div>
                     </div>
-                    <div className="box-subscriber apx-cta wow animate__animated animate__fadeInUp">
-                      <div className="inner-subscriber bg-gray-800">
-                        <Link href="/contact-us" className="btn btn-linear btn-arrow-right">
-                          GET STARTED <i className="fi-rr-arrow-small-right"></i>
-                        </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 3. TECHNOLOGY PARTNERS MARQUEE ────────────────── */}
+      <section 
+        className="partners-section py-5 position-relative"
+        style={{ background: '#0b0a17' }}
+      >
+        <div className="container text-center mb-40">
+          <div className="brand-badge mb-15">
+            <Cpu size={13} /> Technology Stack
+          </div>
+          <h3 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)' }}>
+            Driven by a <span className="color-linear">Powerful</span> Technology Ecosystem
+          </h3>
+          <p className="color-gray-400 mx-auto" style={{ maxWidth: '650px', fontSize: '15px' }}>
+            We leverage industry-leading technologies and tier-1 partnerships to deliver robust, scalable, and innovative enterprise solutions.
+          </p>
+        </div>
+
+        {/* Continuous Marquee Slider */}
+        <div className="marquee-wrapper">
+          <div className="marquee-viewport">
+            <div className="marquee-track">
+              {[...techPartners, ...techPartners].map((tp, idx) => (
+                <div 
+                  className="tech-card-wrapper glass-card"
+                  key={idx}
+                  style={{
+                    width: '260px',
+                    padding: '24px 20px',
+                    flexShrink: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    textAlign: 'center'
+                  }}
+                >
+                  <div 
+                    style={{
+                      width: '100%',
+                      height: '80px',
+                      background: '#ffffff',
+                      borderRadius: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '12px',
+                      marginBottom: '16px'
+                    }}
+                  >
+                    <img 
+                      src={tp.logo} 
+                      alt={tp.name} 
+                      style={{ maxHeight: '50px', maxWidth: '100%', objectFit: 'contain' }} 
+                    />
+                  </div>
+                  <span 
+                    style={{
+                      background: 'rgba(44, 115, 217, 0.15)',
+                      color: '#2c73d9',
+                      border: '1px solid rgba(44, 115, 217, 0.3)',
+                      padding: '3px 10px',
+                      borderRadius: '20px',
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      marginBottom: '10px'
+                    }}
+                  >
+                    {tp.tag}
+                  </span>
+                  <h4 style={{ color: '#ffffff', fontSize: '17px', fontWeight: 700, margin: '0 0 4px' }}>
+                    {tp.name}
+                  </h4>
+                  <p style={{ color: '#94a3b8', fontSize: '13px', margin: 0 }}>
+                    {tp.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 4. COMPREHENSIVE BUSINESS SOLUTIONS ────────────────── */}
+      <section 
+        className="services-section py-5"
+        style={{
+          background: 'linear-gradient(180deg, #0b0a17 0%, #100e26 100%)',
+          borderTop: '1px solid rgba(44, 115, 217, 0.15)'
+        }}
+      >
+        <div className="container">
+          <div className="text-center mb-50">
+            <div className="brand-badge mb-15">
+              <Layers size={13} /> Full Capability Spectrum
+            </div>
+            <h2 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3rem)' }}>
+              Comprehensive <span className="color-linear">Business & Technology</span> Solutions
+            </h2>
+            <p className="color-gray-400 mx-auto" style={{ maxWidth: '680px', fontSize: '15.5px' }}>
+              From end-to-end ERP implementations to corporate financial advisory, our integrated capabilities accelerate your digital roadmap.
+            </p>
+          </div>
+
+          <div className="row g-4">
+            {coreServices.map((srv, idx) => {
+              const Icon = srv.icon;
+              return (
+                <div className="col-lg-4 col-md-6" key={idx}>
+                  <div 
+                    className="glass-card p-4 h-100 d-flex flex-column justify-content-between position-relative"
+                    style={{
+                      border: '1px solid rgba(44, 115, 217, 0.22)',
+                      borderRadius: '18px'
+                    }}
+                  >
+                    <div>
+                      <div className="d-flex align-items-center justify-content-between mb-20">
+                        <div 
+                          style={{
+                            padding: '12px',
+                            borderRadius: '14px',
+                            background: 'rgba(44, 115, 217, 0.15)',
+                            border: '1px solid rgba(44, 115, 217, 0.3)',
+                            color: '#2c73d9'
+                          }}
+                        >
+                          <Icon size={24} />
+                        </div>
+                        <span 
+                          style={{
+                            color: '#2c73d9',
+                            fontSize: '11.5px',
+                            fontWeight: 700,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.8px',
+                            background: 'rgba(40, 36, 96, 0.6)',
+                            padding: '4px 10px',
+                            borderRadius: '20px',
+                            border: '1px solid rgba(44, 115, 217, 0.2)'
+                          }}
+                        >
+                          {srv.category}
+                        </span>
                       </div>
+
+                      <h3 style={{ color: '#ffffff', fontSize: '19px', fontWeight: 700, marginBottom: '12px' }}>
+                        {srv.title}
+                      </h3>
+
+                      <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.65, marginBottom: '20px' }}>
+                        {srv.desc}
+                      </p>
+
+                      <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 25px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {srv.points.map((pt, pIdx) => (
+                          <li key={pIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#cbd5e1', fontSize: '13px' }}>
+                            <CheckCircle2 size={14} color="#2c73d9" /> {pt}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <Link 
+                        href={srv.href}
+                        className="btn btn-outline-brand w-100 text-center justify-content-center"
+                        style={{ padding: '10px 16px', fontSize: '13.5px' }}
+                      >
+                        Explore Solution <ChevronRight size={15} />
+                      </Link>
                     </div>
                   </div>
-                  <div className="col-lg-6 text-center apx-visual">
-                    <div className="banner-img position-relative wow animate__animated animate__fadeIn">
-                      <img src="/assets/imgs/page/homepage1/banner.png" alt="Altapete Solutions" />
-                      <div className="pattern-1"><img src="/assets/imgs/template/pattern-1.svg" alt="Pattern" /></div>
-                      <div className="pattern-2"><img src="/assets/imgs/template/pattern-2.svg" alt="Pattern" /></div>
-                      <div className="pattern-3"><img src="/assets/imgs/template/pattern-3.svg" alt="Pattern" /></div>
-                      <div className="pattern-4"><img src="/assets/imgs/template/pattern-4.svg" alt="Pattern" /></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 5. CLIENT LOGOS SLIDER ────────────────── */}
+      <section 
+        className="clients-section py-5 position-relative"
+        style={{
+          background: '#0d0c1d',
+          borderTop: '1px solid rgba(44, 115, 217, 0.15)'
+        }}
+      >
+        <div className="container text-center mb-40">
+          <div className="brand-badge mb-15">
+            <Award size={13} /> Enterprise Trust
+          </div>
+          <h3 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)' }}>
+            Trusted By <span className="color-linear">Leading Companies</span>
+          </h3>
+          <p className="color-gray-400 mx-auto" style={{ maxWidth: '600px', fontSize: '15px' }}>
+            Delivering mission-critical ERP, software, and financial advisory services for prominent regional enterprises.
+          </p>
+        </div>
+
+        <div className="marquee-wrapper">
+          <div className="slider-viewport">
+            <div className="slider-track">
+              {[...clients, ...clients].map((cl, idx) => (
+                <div 
+                  key={idx}
+                  style={{
+                    background: '#ffffff',
+                    border: '1px solid rgba(44, 115, 217, 0.3)',
+                    borderRadius: '16px',
+                    padding: '16px 28px',
+                    width: '190px',
+                    height: '110px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <img 
+                    src={cl.logo} 
+                    alt={cl.name} 
+                    style={{ maxHeight: '60px', maxWidth: '100%', objectFit: 'contain' }} 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 6. WHY CHOOSE ALTAPETE ────────────────── */}
+      <section 
+        className="pillars-section py-5"
+        style={{
+          background: 'linear-gradient(180deg, #0d0c1d 0%, #12102a 100%)',
+          borderTop: '1px solid rgba(44, 115, 217, 0.15)'
+        }}
+      >
+        <div className="container">
+          <div className="text-center mb-50">
+            <div className="brand-badge mb-15">
+              <Sparkles size={13} /> Strategic Advantage
+            </div>
+            <h2 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2.2rem, 3.5vw, 3rem)' }}>
+              Why Organizations Choose <span className="color-linear">Altapete Solutions</span>
+            </h2>
+            <p className="color-gray-400 mx-auto" style={{ maxWidth: '650px', fontSize: '15.5px' }}>
+              We combine deep vertical technical mastery with rigorous advisory excellence to ensure long-term client success.
+            </p>
+          </div>
+
+          <div className="row g-4">
+            {pillars.map((pil, idx) => {
+              const Icon = pil.icon;
+              return (
+                <div className="col-lg-3 col-md-6" key={idx}>
+                  <div 
+                    className="glass-card p-4 h-100 text-center"
+                    style={{
+                      borderRadius: '18px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        padding: '16px',
+                        borderRadius: '16px',
+                        background: 'rgba(44, 115, 217, 0.15)',
+                        border: '1px solid rgba(44, 115, 217, 0.3)',
+                        color: '#2c73d9',
+                        marginBottom: '20px'
+                      }}
+                    >
+                      <Icon size={30} />
+                    </div>
+                    <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '12px' }}>
+                      {pil.title}
+                    </h4>
+                    <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
+                      {pil.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────── 7. UNIFIED CONSULTATION & CONTACT SECTION ────────────────── */}
+      <section 
+        id="consultation"
+        className="consultation-section py-5 position-relative"
+        style={{
+          background: 'radial-gradient(ellipse 60% 40% at 50% 50%, rgba(44, 115, 217, 0.15), transparent 70%), #0b0a17',
+          borderTop: '1px solid rgba(44, 115, 217, 0.2)'
+        }}
+      >
+        <div className="container">
+          <div 
+            className="glass-card p-4 p-md-5"
+            style={{
+              borderRadius: '24px',
+              border: '1px solid rgba(44, 115, 217, 0.3)',
+              boxShadow: '0 25px 50px rgba(0, 0, 0, 0.6)'
+            }}
+          >
+            <div className="row g-5 align-items-center">
+              {/* Left Column: Office Hubs */}
+              <div className="col-lg-5">
+                <div className="brand-badge mb-15">
+                  <MapPin size={13} /> Get In Touch
+                </div>
+                <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(2rem, 3vw, 2.5rem)', lineHeight: 1.25 }}>
+                  Let’s Build the <span className="color-linear">Right Solution</span> Together
+                </h2>
+                <p className="color-gray-400 mb-30" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                  Whether it’s an ERP rollout, SAP migration, ZATCA e-invoicing integration, or financial advisory — our certified consultants will respond within 24 hours.
+                </p>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Al Khobar, Saudi Arabia</div>
+                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>Office# 09, 4th Floor, King Khalid Street Cross 15</div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Lahore, Pakistan</div>
+                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>159-D Nawab Town, Raiwind Road</div>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
+                      <MapPin size={20} />
+                    </div>
+                    <div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Riyadh, Saudi Arabia</div>
+                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>Building #44, Ibn Katheer Street, King Abdulaziz District</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Remaining sections */}
-              <div dangerouslySetInnerHTML={{ __html: homeRestHtml }} />
+              {/* Right Column: Clean Glass Form */}
+              <div className="col-lg-7">
+                <div 
+                  style={{
+                    background: 'rgba(19, 17, 42, 0.8)',
+                    border: '1px solid rgba(44, 115, 217, 0.25)',
+                    borderRadius: '18px',
+                    padding: '30px'
+                  }}
+                >
+                  {formSubmitted ? (
+                    <div className="text-center py-4">
+                      <div style={{ padding: '16px', borderRadius: '50%', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9', display: 'inline-flex', marginBottom: '16px' }}>
+                        <CheckCircle2 size={36} />
+                      </div>
+                      <h3 style={{ color: '#ffffff', marginBottom: '10px' }}>Inquiry Received!</h3>
+                      <p style={{ color: '#94a3b8', maxWidth: '400px', margin: '0 auto' }}>
+                        Thank you for contacting Altapete Solutions. A senior solution consultant will get back to you shortly.
+                      </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }}>
+                      <h4 style={{ color: '#ffffff', fontSize: '18px', fontWeight: 700, marginBottom: '20px' }}>
+                        Request a Strategy Consultation
+                      </h4>
+
+                      <div className="row g-3 mb-3">
+                        <div className="col-md-6">
+                          <input 
+                            type="text" 
+                            placeholder="Full Name *" 
+                            required 
+                            style={{
+                              width: '100%',
+                              background: 'rgba(40, 36, 96, 0.4)',
+                              border: '1px solid rgba(44, 115, 217, 0.3)',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              color: '#ffffff',
+                              fontSize: '14px',
+                              outline: 'none'
+                            }}
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <input 
+                            type="email" 
+                            placeholder="Business Email *" 
+                            required 
+                            style={{
+                              width: '100%',
+                              background: 'rgba(40, 36, 96, 0.4)',
+                              border: '1px solid rgba(44, 115, 217, 0.3)',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              color: '#ffffff',
+                              fontSize: '14px',
+                              outline: 'none'
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="row g-3 mb-3">
+                        <div className="col-md-6">
+                          <input 
+                            type="tel" 
+                            placeholder="Phone Number *" 
+                            required 
+                            style={{
+                              width: '100%',
+                              background: 'rgba(40, 36, 96, 0.4)',
+                              border: '1px solid rgba(44, 115, 217, 0.3)',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              color: '#ffffff',
+                              fontSize: '14px',
+                              outline: 'none'
+                            }}
+                          />
+                        </div>
+                        <div className="col-md-6">
+                          <input 
+                            type="text" 
+                            placeholder="Subject / Service Area *" 
+                            required 
+                            style={{
+                              width: '100%',
+                              background: 'rgba(40, 36, 96, 0.4)',
+                              border: '1px solid rgba(44, 115, 217, 0.3)',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              color: '#ffffff',
+                              fontSize: '14px',
+                              outline: 'none'
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="mb-4">
+                        <textarea 
+                          placeholder="Tell us about your project or business needs *" 
+                          rows={4} 
+                          required 
+                          style={{
+                            width: '100%',
+                            background: 'rgba(40, 36, 96, 0.4)',
+                            border: '1px solid rgba(44, 115, 217, 0.3)',
+                            borderRadius: '10px',
+                            padding: '12px 16px',
+                            color: '#ffffff',
+                            fontSize: '14px',
+                            outline: 'none',
+                            resize: 'vertical'
+                          }}
+                        />
+                      </div>
+
+                      <button 
+                        type="submit" 
+                        className="btn btn-linear w-100 py-3"
+                        style={{ fontSize: '15px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                      >
+                        Submit Consultation Request <Send size={16} />
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }
