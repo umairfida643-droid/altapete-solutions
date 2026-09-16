@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Typewriter from 'typewriter-effect';
 import Layout from '@/components/Layout';
+import HeroEnterpriseCockpit from '@/components/HeroEnterpriseCockpit';
 import { 
   Sparkles, 
   ArrowRight, 
@@ -142,13 +143,12 @@ export default function HomePage() {
         className="hero-section position-relative"
         style={{
           padding: '110px 0 90px',
-          background: 'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 115, 217, 0.22), transparent 70%), linear-gradient(180deg, #0b0a17 0%, #0d0c1d 100%)',
           overflow: 'hidden'
         }}
       >
         {/* Ambient background glows */}
-        <div style={{ position: 'absolute', top: '15%', left: '5%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(40, 36, 96, 0.5) 0%, transparent 70%)', filter: 'blur(60px)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', top: '30%', right: '5%', width: '450px', height: '450px', background: 'radial-gradient(circle, rgba(44, 115, 217, 0.25) 0%, transparent 70%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
+        <div className="hero-ambient-glow-1" />
+        <div className="hero-ambient-glow-2" />
 
         <div className="container position-relative" style={{ zIndex: 2 }}>
           <div className="row align-items-center g-5">
@@ -239,154 +239,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right Visual: Futuristic Enterprise Console Showcase */}
+            {/* Right Visual: Futuristic Animated Enterprise Cockpit */}
             <div className="col-lg-6 position-relative text-center">
-              <div 
-                className="hero-visual-wrapper position-relative"
-                style={{
-                  maxWidth: '560px',
-                  margin: '0 auto',
-                  borderRadius: '24px',
-                  overflow: 'hidden'
-                }}
-              >
-                {/* Ambient glow backdrop */}
-                <div 
-                  style={{
-                    position: 'absolute',
-                    inset: '-5%',
-                    background: 'radial-gradient(circle at 50% 50%, rgba(44, 115, 217, 0.28) 0%, rgba(40, 36, 96, 0.2) 50%, transparent 75%)',
-                    filter: 'blur(50px)',
-                    zIndex: 0,
-                    pointerEvents: 'none'
-                  }} 
-                />
-
-                {/* Glass Console Viewport Frame */}
-                <div 
-                  className="hero-console-frame"
-                  style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    background: 'rgba(15, 23, 42, 0.85)',
-                    border: '1px solid rgba(44, 115, 217, 0.3)',
-                    borderRadius: '20px',
-                    overflow: 'hidden',
-                    boxShadow: '0 25px 60px rgba(0, 0, 0, 0.55)'
-                  }}
-                >
-                  {/* Console Header Bar */}
-                  <div 
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      padding: '10px 16px',
-                      background: 'rgba(11, 10, 23, 0.9)',
-                      borderBottom: '1px solid rgba(44, 115, 217, 0.2)'
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#ef4444', display: 'inline-block' }}></span>
-                      <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#eab308', display: 'inline-block' }}></span>
-                      <span style={{ width: '9px', height: '9px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
-                    </div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#94a3b8', fontWeight: 600 }}>
-                      <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
-                      <span>Ecosystem Core Active • Phase 2 Verified</span>
-                    </div>
-
-                    <div style={{ fontSize: '11px', color: 'var(--brand-accent)', fontWeight: 700 }}>
-                      APS v2.4
-                    </div>
-                  </div>
-
-                  {/* Main Platform Illustration */}
-                  <div style={{ padding: '16px', position: 'relative' }}>
-                    <img 
-                      src="/assets/imgs/page/homepage1/banner.png" 
-                      alt="Altapete Solutions Enterprise Platform"
-                      className="img-fluid"
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        objectFit: 'contain',
-                        display: 'block',
-                        borderRadius: '12px'
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* 4 Telemetry Metrics (Responsive Grid) */}
-                <div className="row g-2 mt-3 text-start">
-                  {/* Metric 1 */}
-                  <div className="col-6">
-                    <div 
-                      className="glass-card p-2 p-sm-3 d-flex align-items-center gap-2"
-                      style={{ borderRadius: '12px', border: '1px solid var(--border-color)' }}
-                    >
-                      <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                        <Cpu size={18} />
-                      </div>
-                      <div style={{ overflow: 'hidden' }}>
-                        <div className="badge-kpi-title" style={{ fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>Real-time Core</div>
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '10.5px', fontWeight: 600 }}>99.99% Uptime</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metric 2 */}
-                  <div className="col-6">
-                    <div 
-                      className="glass-card p-2 p-sm-3 d-flex align-items-center gap-2"
-                      style={{ borderRadius: '12px', border: '1px solid var(--border-color)' }}
-                    >
-                      <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                        <Server size={18} />
-                      </div>
-                      <div style={{ overflow: 'hidden' }}>
-                        <div className="badge-kpi-title" style={{ fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>Cloud ERP Engine</div>
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '10.5px', fontWeight: 600 }}>Odoo 18 & SAP</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metric 3 */}
-                  <div className="col-6">
-                    <div 
-                      className="glass-card p-2 p-sm-3 d-flex align-items-center gap-2"
-                      style={{ borderRadius: '12px', border: '1px solid var(--border-color)' }}
-                    >
-                      <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                        <Zap size={18} />
-                      </div>
-                      <div style={{ overflow: 'hidden' }}>
-                        <div className="badge-kpi-title" style={{ fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>Sub-Second Sync</div>
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '10.5px', fontWeight: 600 }}>&lt;15ms Latency</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metric 4 */}
-                  <div className="col-6">
-                    <div 
-                      className="glass-card p-2 p-sm-3 d-flex align-items-center gap-2"
-                      style={{ borderRadius: '12px', border: '1px solid var(--border-color)' }}
-                    >
-                      <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                        <ShieldCheck size={18} />
-                      </div>
-                      <div style={{ overflow: 'hidden' }}>
-                        <div className="badge-kpi-title" style={{ fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>ZATCA Certified</div>
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '10.5px', fontWeight: 600 }}>Phase 2 Compliant</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              <HeroEnterpriseCockpit />
             </div>
           </div>
         </div>
