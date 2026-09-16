@@ -2092,6 +2092,7 @@ html[data-theme="dark"] .consultation-input {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   z-index: 10;
+  white-space: nowrap;
 }
 
 [data-theme="dark"] .cockpit-node-card {
@@ -2181,7 +2182,7 @@ html[data-theme="dark"] .consultation-input {
 
 /* Center HUD Box */
 .cockpit-center-hud {
-  margin: -15px auto 6px;
+  margin: 6px auto 4px;
   max-width: 340px;
   padding: 8px 14px;
   border-radius: 12px;
