@@ -32,12 +32,6 @@ import {
 export default function HomePage() {
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const stats = [
-    { number: "200+", label: "Projects Delivered & Renewals", icon: CheckCircle2 },
-    { number: "50+", label: "Skilled Resource Pool", icon: Users },
-    { number: "150+", label: "Satisfied Customers", icon: Building2 },
-    { number: "20+", label: "Strategic Partners", icon: Handshake }
-  ];
 
   const techPartners = [
     { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/partners/odoo.webp", icon: Layers },
@@ -327,77 +321,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ────────────────── 2. MILESTONES & STATS SECTION ────────────────── */}
-      <section 
-        className="stats-section py-5"
-        style={{
-          background: 'linear-gradient(180deg, #0d0c1d 0%, #121029 100%)',
-          borderTop: '1px solid rgba(44, 115, 217, 0.15)',
-          borderBottom: '1px solid rgba(44, 115, 217, 0.15)'
-        }}
-      >
-        <div className="container">
-          <div className="row align-items-center g-4">
-            <div className="col-lg-5">
-              <span className="brand-badge mb-15">
-                <Sparkles size={13} /> Proven Track Record
-              </span>
-              <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.8rem)', lineHeight: 1.25 }}>
-                Transforming Ideas into <span className="color-linear">Intelligent Solutions</span>
-              </h2>
-              <p className="color-gray-400 mb-30" style={{ fontSize: '15.5px', lineHeight: 1.7 }}>
-                Spanning a legacy of 23 years, we have been in the business of providing modernization, resilience, and agility for our clients. Delivering top-notch IT solutions and flexible service models for future-ready enterprises.
-              </p>
-              <Link href="/what-we-do" className="btn btn-linear btn-sm d-inline-flex align-items-center gap-2">
-                LEARN MORE <ArrowRight size={16} />
-              </Link>
-            </div>
-
-            <div className="col-lg-7">
-              <div className="row g-3">
-                {stats.map((st, idx) => {
-                  const Icon = st.icon;
-                  return (
-                    <div className="col-sm-6" key={idx}>
-                      <div 
-                        className="glass-card p-4 text-center"
-                        style={{
-                          height: '100%',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          justifyContent: 'center'
-                        }}
-                      >
-                        <div 
-                          style={{
-                            padding: '12px',
-                            borderRadius: '14px',
-                            background: 'rgba(44, 115, 217, 0.15)',
-                            color: '#2c73d9',
-                            marginBottom: '14px'
-                          }}
-                        >
-                          <Icon size={28} />
-                        </div>
-                        <div 
-                          className="color-linear font-heading mb-2"
-                          style={{ fontSize: '2.8rem', fontWeight: 800, lineHeight: 1 }}
-                        >
-                          {st.number}
-                        </div>
-                        <div style={{ color: '#cbd5e1', fontSize: '14px', fontWeight: 500 }}>
-                          {st.label}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ────────────────── 3. TECHNOLOGY PARTNERS MARQUEE ────────────────── */}
       <section 
