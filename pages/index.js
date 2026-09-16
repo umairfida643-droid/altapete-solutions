@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Typewriter from 'typewriter-effect';
 import Layout from '@/components/Layout';
 import HeroEnterpriseCockpit from '@/components/HeroEnterpriseCockpit';
+import TechStackDraggableMarquee from '@/components/TechStackDraggableMarquee';
 import { 
   Sparkles, 
   ArrowRight, 
@@ -264,76 +265,8 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Continuous Marquee Slider */}
-        <div className="marquee-wrapper">
-          <div className="marquee-viewport">
-            <div className="marquee-track">
-              {[...techPartners, ...techPartners].map((tp, idx) => (
-                <div 
-                  className="tech-card-wrapper glass-card"
-                  key={idx}
-                  style={{
-                    width: '260px',
-                    padding: '24px 20px',
-                    flexShrink: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    textAlign: 'center',
-                    borderRadius: '16px'
-                  }}
-                >
-                  <div 
-                    className="tech-logo-box"
-                    style={{
-                      width: '100%',
-                      height: '76px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '10px 16px',
-                      marginBottom: '16px',
-                      borderRadius: '12px',
-                      transition: 'all 0.25s ease'
-                    }}
-                  >
-                    <img 
-                      src={tp.logo} 
-                      alt={tp.name} 
-                      className="tech-logo-img"
-                      style={{ maxHeight: '46px', maxWidth: '85%', objectFit: 'contain' }} 
-                    />
-                  </div>
-                  <span 
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "6px",
-                      background: "rgba(44, 115, 217, 0.12)",
-                      color: "var(--brand-accent)",
-                      border: "1px solid rgba(44, 115, 217, 0.25)",
-                      padding: "4px 12px",
-                      borderRadius: "20px",
-                      fontSize: "11px",
-                      fontWeight: 700,
-                      textTransform: "uppercase",
-                      marginBottom: "10px"
-                    }}
-                  >
-                    <tp.icon size={12} strokeWidth={2} />
-                    {tp.tag}
-                  </span>
-                  <h4 style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700, margin: '0 0 4px' }}>
-                    {tp.name}
-                  </h4>
-                  <p style={{ color: 'var(--text-secondary)', fontSize: '13px', margin: 0 }}>
-                    {tp.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* Continuous 2-Row Dual-Direction Draggable Marquee Showcase */}
+        <TechStackDraggableMarquee />
       </section>
 
       {/* ────────────────── 4. COMPREHENSIVE BUSINESS SOLUTIONS ────────────────── */}
