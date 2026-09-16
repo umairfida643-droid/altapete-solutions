@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTheme } from '@/context/ThemeContext';
+import ThemeToggle from './ThemeToggle';
 import { 
   Building2, 
   Server, 
@@ -11,10 +13,8 @@ import {
   Users, 
   CreditCard,
   ChevronDown,
-  Layers,
-  ArrowRight,
-  Briefcase,
   Calculator,
+  Briefcase,
   Scale,
   Building,
   Truck,
@@ -22,10 +22,13 @@ import {
   Hospital,
   GraduationCap,
   HardHat,
+  ArrowRight,
+  Layers,
   Sparkles
 } from 'lucide-react';
 
 export default function Header({ onToggleMobileMenu }) {
+  const { theme } = useTheme();
   const [isSticky, setIsSticky] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -33,11 +36,13 @@ export default function Header({ onToggleMobileMenu }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 40);
+      setIsSticky(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const logoSrc = theme === 'light' ? '/assets/imgs/logo-dark.png' : '/assets/imgs/logo.png';
 
   const digitalTransformationServices = [
     { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2, desc: "ERP, SAP & scalable platforms" },
@@ -54,51 +59,80 @@ export default function Header({ onToggleMobileMenu }) {
     { text: "Other Integration (Mada-Jedia-Jisr)", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard, desc: "Payment & HR systems" }
   ];
 
+  const servicesList = [
+    { text: "Accounting & Financial Advisory", href: "/accounting-financial-advisory", icon: Calculator, desc: "Audit, compliance & reporting" },
+    { text: "Corporate Advisory", href: "/corporate-advisory", icon: Briefcase, desc: "Strategic M&A & restructuring" },
+    { text: "Taxation & ZAKAT Advisory", href: "/taxation-zakat-advisory", icon: Scale, desc: "Zakat & VAT compliance" },
+    { text: "Outsourcing & Business Services", href: "/outsourcing-business-services", icon: Building, desc: "Payroll, bookkeeping & HR ops" }
+  ];
+
+  const productsList = [
+    { text: "Rental Solutions", href: "/rental-solutions", icon: Building, desc: "Fleet & property equipment rental" },
+    { text: "Shipping Solutions", href: "/shipping-solutions", icon: Truck, desc: "Logistics & freight forwarding" },
+    { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel, desc: "PMS, booking & guest engine" },
+    { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital, desc: "EMR, clinic & bed operations" },
+    { text: "School Management", href: "/school-management-solutions", icon: GraduationCap, desc: "LMS, admissions & gradebook" },
+    { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat, desc: "Job costing, billing & BOQ" }
+  ];
+
   return (
     <header 
       id="header" 
       className={`header sticky-bar ${isSticky ? 'stick' : ''}`}
       style={{
-        backgroundColor: isSticky ? 'rgba(11, 10, 23, 0.95)' : 'rgba(11, 10, 23, 0.8)',
+        backgroundColor: 'var(--header-bg)',
+        borderBottom: '1px solid var(--header-border)',
         backdropFilter: 'blur(16px)',
-        borderBottom: '1px solid rgba(44, 115, 217, 0.15)',
-        transition: 'all 0.3s ease',
-        zIndex: 999
+        position: 'sticky',
+        top: 0,
+        zIndex: 999,
+        transition: 'background-color 0.3s ease, border-color 0.3s ease'
       }}
     >
       <div className="container">
-        <div className="main-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0' }}>
-          {/* Brand Logo */}
+        <div 
+          className="main-header" 
+          style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'space-between', 
+            padding: isSticky ? '10px 0' : '16px 0',
+            transition: 'padding 0.25s ease'
+          }}
+        >
+          {/* Logo */}
           <div className="header-logo">
             <Link href="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <img 
                 alt="Altapete Solutions" 
-                src="/assets/imgs/logo.png" 
-                className="logo-night" 
-                style={{ maxHeight: '44px', width: 'auto', filter: 'drop-shadow(0 2px 10px rgba(44, 115, 217, 0.2))' }} 
+                src={logoSrc} 
+                style={{ 
+                  maxHeight: '38px', 
+                  width: 'auto',
+                  transition: 'opacity 0.2s ease'
+                }} 
               />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Navigation Links */}
           <div className="header-nav">
             <nav className="nav-main-menu d-none d-xl-block">
-              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '8px', listStyle: 'none', margin: 0, padding: 0 }}>
+              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '6px', listStyle: 'none', margin: 0, padding: 0 }}>
                 
                 {/* 1. Solutions Mega Menu Trigger */}
                 <li
                   className="has-children position-relative"
                   onMouseEnter={() => setMegaMenuOpen(true)}
                   onMouseLeave={() => setMegaMenuOpen(false)}
-                  style={{ padding: '10px 14px' }}
+                  style={{ padding: '8px 12px' }}
                 >
                   <Link 
                     href="/" 
-                    className="active"
                     style={{
-                      color: megaMenuOpen ? '#2c73d9' : '#ffffff',
+                      color: megaMenuOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
                       fontWeight: 600,
-                      fontSize: '15px',
+                      fontSize: '14.5px',
                       textDecoration: 'none',
                       display: 'flex',
                       alignItems: 'center',
@@ -112,33 +146,33 @@ export default function Header({ onToggleMobileMenu }) {
                   {/* Mega Menu Flyout */}
                   {megaMenuOpen && (
                     <div
-                      className="megamenu-dropdown shadow-2xl"
+                      className="megamenu-dropdown"
                       style={{
                         position: 'fixed',
-                        top: '72px',
+                        top: '68px',
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        width: 'min(1180px, 94vw)',
-                        background: 'linear-gradient(145deg, #13112a 0%, #0d0c1d 100%)',
-                        border: '1px solid rgba(44, 115, 217, 0.35)',
-                        borderRadius: '20px',
-                        padding: '32px',
-                        boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 35px rgba(44, 115, 217, 0.2)',
-                        backdropFilter: 'blur(20px)',
-                        zIndex: 1000
+                        width: 'min(1160px, 95vw)',
+                        background: 'var(--bg-surface)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '16px',
+                        padding: '28px',
+                        boxShadow: 'var(--card-shadow-hover)',
+                        zIndex: 1000,
+                        animation: 'fadeIn 0.2s ease'
                       }}
                       onMouseEnter={() => setMegaMenuOpen(true)}
                       onMouseLeave={() => setMegaMenuOpen(false)}
                     >
                       <div className="row g-4">
-                        {/* Column 1: Main Highlight Card */}
+                        {/* Left Column: Summary Card */}
                         <div className="col-lg-4">
                           <div 
                             style={{
-                              background: 'linear-gradient(135deg, rgba(40, 36, 96, 0.7) 0%, rgba(19, 17, 42, 0.9) 100%)',
-                              border: '1px solid rgba(44, 115, 217, 0.3)',
-                              borderRadius: '16px',
-                              padding: '24px',
+                              background: 'var(--bg-card-subtle)',
+                              border: '1px solid var(--border-color)',
+                              borderRadius: '14px',
+                              padding: '22px',
                               height: '100%',
                               display: 'flex',
                               flexDirection: 'column',
@@ -153,164 +187,160 @@ export default function Header({ onToggleMobileMenu }) {
                                   gap: '6px',
                                   padding: '4px 12px',
                                   borderRadius: '20px',
-                                  background: 'rgba(44, 115, 217, 0.15)',
+                                  background: 'rgba(44, 115, 217, 0.12)',
                                   border: '1px solid rgba(44, 115, 217, 0.3)',
-                                  color: '#2c73d9',
-                                  fontSize: '12px',
-                                  fontWeight: 600,
+                                  color: 'var(--brand-accent)',
+                                  fontSize: '11px',
+                                  fontWeight: 700,
                                   textTransform: 'uppercase',
-                                  marginBottom: '16px'
+                                  marginBottom: '14px'
                                 }}
                               >
                                 <Sparkles size={12} /> Enterprise Suite
                               </div>
-                              <h3 style={{ color: '#ffffff', fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>
+                              <h3 style={{ color: 'var(--text-primary)', fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>
                                 Solutions Overview
                               </h3>
-                              <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.6', marginBottom: '20px' }}>
-                                At APS, we deliver transformative digital solutions that empower businesses to scale, adapt, and excel—driving operational efficiency through enterprise platforms, cloud services, and custom-built applications.
+                              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
+                                At APS, we deliver transformative digital solutions that empower businesses to scale, adapt, and excel through enterprise platforms.
                               </p>
                             </div>
-                            <div>
+                            <div className="mt-3">
                               <Link 
-                                href="/contact-us" 
-                                className="btn btn-linear btn-sm d-inline-flex align-items-center gap-2"
-                                style={{ padding: '10px 20px', fontSize: '13px' }}
+                                href="/what-we-do"
+                                className="btn-secondary-brand w-100 text-center justify-content-center"
+                                style={{ padding: '8px 14px', fontSize: '13px' }}
                               >
-                                Consult an Architect <ArrowRight size={14} />
+                                View Capabilities <ArrowRight size={14} />
                               </Link>
                             </div>
                           </div>
                         </div>
 
-                        {/* Column 2: Digital Transformation (With SVG Icons) */}
+                        {/* Middle Column: Digital Transformation (WITH ICONS) */}
                         <div className="col-lg-4">
-                          <div style={{ paddingLeft: '8px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
-                              <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                                <Layers size={18} />
-                              </div>
-                              <h4 style={{ color: '#ffffff', fontSize: '16px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                                Digital Transformation
-                              </h4>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)' }}>
+                              <Layers size={16} />
                             </div>
+                            <h4 style={{ color: 'var(--text-primary)', fontSize: '15px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                              Digital Transformation
+                            </h4>
+                          </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                              {digitalTransformationServices.map((item, idx) => {
-                                const IconComponent = item.icon;
-                                return (
-                                  <Link
-                                    key={idx}
-                                    href={item.href}
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                            {digitalTransformationServices.map((item, idx) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <Link
+                                  key={idx}
+                                  href={item.href}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '12px',
+                                    padding: '10px 12px',
+                                    borderRadius: '10px',
+                                    textDecoration: 'none',
+                                    background: 'var(--bg-card-subtle)',
+                                    border: '1px solid var(--border-color)',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'var(--bg-hover)';
+                                    e.currentTarget.style.borderColor = 'var(--brand-accent)';
+                                    e.currentTarget.style.transform = 'translateX(4px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'var(--bg-card-subtle)';
+                                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                                    e.currentTarget.style.transform = 'translateX(0)';
+                                  }}
+                                >
+                                  <div 
                                     style={{
+                                      padding: '7px',
+                                      borderRadius: '8px',
+                                      background: 'rgba(44, 115, 217, 0.12)',
+                                      color: 'var(--brand-accent)',
                                       display: 'flex',
-                                      alignItems: 'flex-start',
-                                      gap: '14px',
-                                      padding: '12px 14px',
-                                      borderRadius: '12px',
-                                      textDecoration: 'none',
-                                      background: 'rgba(40, 36, 96, 0.2)',
-                                      border: '1px solid rgba(44, 115, 217, 0.15)',
-                                      transition: 'all 0.25s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                      e.currentTarget.style.background = 'rgba(44, 115, 217, 0.18)';
-                                      e.currentTarget.style.borderColor = 'rgba(44, 115, 217, 0.5)';
-                                      e.currentTarget.style.transform = 'translateX(5px)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                      e.currentTarget.style.background = 'rgba(40, 36, 96, 0.2)';
-                                      e.currentTarget.style.borderColor = 'rgba(44, 115, 217, 0.15)';
-                                      e.currentTarget.style.transform = 'translateX(0)';
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      flexShrink: 0
                                     }}
                                   >
-                                    <div 
-                                      style={{
-                                        padding: '8px',
-                                        borderRadius: '10px',
-                                        background: 'rgba(44, 115, 217, 0.15)',
-                                        color: '#2c73d9',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        flexShrink: 0
-                                      }}
-                                    >
-                                      <IconComponent size={18} />
-                                    </div>
-                                    <div>
-                                      <div style={{ color: '#ffffff', fontSize: '14px', fontWeight: 600 }}>{item.text}</div>
-                                      <div style={{ color: '#94a3b8', fontSize: '12px', marginTop: '2px' }}>{item.desc}</div>
-                                    </div>
-                                  </Link>
-                                );
-                              })}
-                            </div>
+                                    <ItemIcon size={16} strokeWidth={1.8} />
+                                  </div>
+                                  <div>
+                                    <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
+                                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>{item.desc}</div>
+                                  </div>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
 
-                        {/* Column 3: Integration (With SVG Icons) */}
+                        {/* Right Column: Integration (WITH ICONS) */}
                         <div className="col-lg-4">
-                          <div style={{ paddingLeft: '8px' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '18px' }}>
-                              <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                                <RefreshCw size={18} />
-                              </div>
-                              <h4 style={{ color: '#ffffff', fontSize: '16px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                                Integration Ecosystem
-                              </h4>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)' }}>
+                              <RefreshCw size={16} />
                             </div>
+                            <h4 style={{ color: 'var(--text-primary)', fontSize: '15px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                              Integration Ecosystem
+                            </h4>
+                          </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '340px', overflowY: 'auto' }}>
-                              {integrationServices.map((item, idx) => {
-                                const IconComponent = item.icon;
-                                return (
-                                  <Link
-                                    key={idx}
-                                    href={item.href}
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '310px', overflowY: 'auto' }}>
+                            {integrationServices.map((item, idx) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <Link
+                                  key={idx}
+                                  href={item.href}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '10px',
+                                    padding: '8px 12px',
+                                    borderRadius: '8px',
+                                    textDecoration: 'none',
+                                    background: 'var(--bg-card-subtle)',
+                                    border: '1px solid var(--border-color)',
+                                    transition: 'all 0.18s ease'
+                                  }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'var(--bg-hover)';
+                                    e.currentTarget.style.borderColor = 'var(--brand-accent)';
+                                    e.currentTarget.style.transform = 'translateX(4px)';
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = 'var(--bg-card-subtle)';
+                                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                                    e.currentTarget.style.transform = 'translateX(0)';
+                                  }}
+                                >
+                                  <div 
                                     style={{
+                                      padding: '5px',
+                                      borderRadius: '6px',
+                                      background: 'rgba(44, 115, 217, 0.12)',
+                                      color: 'var(--brand-accent)',
                                       display: 'flex',
                                       alignItems: 'center',
-                                      gap: '12px',
-                                      padding: '9px 12px',
-                                      borderRadius: '10px',
-                                      textDecoration: 'none',
-                                      background: 'rgba(40, 36, 96, 0.2)',
-                                      border: '1px solid rgba(44, 115, 217, 0.12)',
-                                      transition: 'all 0.25s ease'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                      e.currentTarget.style.background = 'rgba(44, 115, 217, 0.18)';
-                                      e.currentTarget.style.borderColor = 'rgba(44, 115, 217, 0.5)';
-                                      e.currentTarget.style.transform = 'translateX(4px)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                      e.currentTarget.style.background = 'rgba(40, 36, 96, 0.2)';
-                                      e.currentTarget.style.borderColor = 'rgba(44, 115, 217, 0.12)';
-                                      e.currentTarget.style.transform = 'translateX(0)';
+                                      justifyContent: 'center',
+                                      flexShrink: 0
                                     }}
                                   >
-                                    <div 
-                                      style={{
-                                        padding: '6px',
-                                        borderRadius: '8px',
-                                        background: 'rgba(44, 115, 217, 0.15)',
-                                        color: '#2c73d9',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        flexShrink: 0
-                                      }}
-                                    >
-                                      <IconComponent size={16} />
-                                    </div>
-                                    <span style={{ color: '#e2e8f0', fontSize: '13.5px', fontWeight: 500 }}>
-                                      {item.text}
-                                    </span>
-                                  </Link>
-                                );
-                              })}
-                            </div>
+                                    <ItemIcon size={14} strokeWidth={1.8} />
+                                  </div>
+                                  <span style={{ color: 'var(--text-secondary)', fontSize: '13px', fontWeight: 500 }}>
+                                    {item.text}
+                                  </span>
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
 
@@ -319,19 +349,19 @@ export default function Header({ onToggleMobileMenu }) {
                   )}
                 </li>
 
-                {/* 2. Services Dropdown */}
+                {/* 2. Services Dropdown (WITH ICONS) */}
                 <li
                   className="has-children position-relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
-                  style={{ padding: '10px 14px' }}
+                  style={{ padding: '8px 12px' }}
                 >
                   <Link 
                     href="/services" 
                     style={{
-                      color: servicesOpen ? '#2c73d9' : '#cbd5e1',
+                      color: servicesOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
                       fontWeight: 500,
-                      fontSize: '15px',
+                      fontSize: '14.5px',
                       textDecoration: 'none',
                       display: 'flex',
                       alignItems: 'center',
@@ -348,21 +378,17 @@ export default function Header({ onToggleMobileMenu }) {
                         position: 'absolute',
                         top: '100%',
                         left: 0,
-                        width: '320px',
-                        background: 'linear-gradient(145deg, #13112a 0%, #0d0c1d 100%)',
-                        border: '1px solid rgba(44, 115, 217, 0.3)',
-                        borderRadius: '16px',
-                        padding: '16px',
-                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(44, 115, 217, 0.15)',
-                        zIndex: 1000
+                        width: '330px',
+                        background: 'var(--bg-surface)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '14px',
+                        padding: '12px',
+                        boxShadow: 'var(--card-shadow-hover)',
+                        zIndex: 1000,
+                        animation: 'fadeIn 0.2s ease'
                       }}
                     >
-                      {[
-                        { text: "Accounting & Financial Advisory", href: "/accounting-financial-advisory", icon: Calculator },
-                        { text: "Corporate Advisory", href: "/corporate-advisory", icon: Briefcase },
-                        { text: "Taxation & ZAKAT Advisory", href: "/taxation-zakat-advisory", icon: Scale },
-                        { text: "Outsourcing & Business Services", href: "/outsourcing-business-services", icon: Building }
-                      ].map((item, idx) => {
+                      {servicesList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
@@ -372,29 +398,27 @@ export default function Header({ onToggleMobileMenu }) {
                               display: 'flex',
                               alignItems: 'center',
                               gap: '12px',
-                              padding: '10px 12px',
+                              padding: '9px 12px',
                               borderRadius: '10px',
                               textDecoration: 'none',
-                              color: '#e2e8f0',
-                              fontSize: '14px',
-                              fontWeight: 500,
-                              transition: 'all 0.2s ease'
+                              transition: 'all 0.18s ease'
                             }}
                             onMouseEnter={(e) => {
-                              e.currentTarget.style.background = 'rgba(44, 115, 217, 0.18)';
-                              e.currentTarget.style.color = '#2c73d9';
+                              e.currentTarget.style.background = 'var(--bg-hover)';
                               e.currentTarget.style.transform = 'translateX(4px)';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.color = '#e2e8f0';
                               e.currentTarget.style.transform = 'translateX(0)';
                             }}
                           >
-                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                              <ItemIcon size={16} />
+                            <div style={{ padding: '7px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)', flexShrink: 0 }}>
+                              <ItemIcon size={16} strokeWidth={1.8} />
                             </div>
-                            {item.text}
+                            <div>
+                              <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
+                              <div style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{item.desc}</div>
+                            </div>
                           </Link>
                         );
                       })}
@@ -402,19 +426,19 @@ export default function Header({ onToggleMobileMenu }) {
                   )}
                 </li>
 
-                {/* 3. Products Dropdown */}
+                {/* 3. Products Dropdown (WITH ICONS) */}
                 <li
                   className="has-children position-relative"
                   onMouseEnter={() => setProductsOpen(true)}
                   onMouseLeave={() => setProductsOpen(false)}
-                  style={{ padding: '10px 14px' }}
+                  style={{ padding: '8px 12px' }}
                 >
                   <Link 
                     href="/products" 
                     style={{
-                      color: productsOpen ? '#2c73d9' : '#cbd5e1',
+                      color: productsOpen ? 'var(--brand-accent)' : 'var(--text-primary)',
                       fontWeight: 500,
-                      fontSize: '15px',
+                      fontSize: '14.5px',
                       textDecoration: 'none',
                       display: 'flex',
                       alignItems: 'center',
@@ -431,23 +455,17 @@ export default function Header({ onToggleMobileMenu }) {
                         position: 'absolute',
                         top: '100%',
                         left: 0,
-                        width: '320px',
-                        background: 'linear-gradient(145deg, #13112a 0%, #0d0c1d 100%)',
-                        border: '1px solid rgba(44, 115, 217, 0.3)',
-                        borderRadius: '16px',
-                        padding: '16px',
-                        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(44, 115, 217, 0.15)',
-                        zIndex: 1000
+                        width: '330px',
+                        background: 'var(--bg-surface)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '14px',
+                        padding: '12px',
+                        boxShadow: 'var(--card-shadow-hover)',
+                        zIndex: 1000,
+                        animation: 'fadeIn 0.2s ease'
                       }}
                     >
-                      {[
-                        { text: "Rental Solutions", href: "/rental-solutions", icon: Building },
-                        { text: "Shipping Solutions", href: "/shipping-solutions", icon: Truck },
-                        { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel },
-                        { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital },
-                        { text: "School Management", href: "/school-management-solutions", icon: GraduationCap },
-                        { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat }
-                      ].map((item, idx) => {
+                      {productsList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
@@ -457,29 +475,27 @@ export default function Header({ onToggleMobileMenu }) {
                               display: 'flex',
                               alignItems: 'center',
                               gap: '12px',
-                              padding: '10px 12px',
+                              padding: '9px 12px',
                               borderRadius: '10px',
                               textDecoration: 'none',
-                              color: '#e2e8f0',
-                              fontSize: '14px',
-                              fontWeight: 500,
-                              transition: 'all 0.2s ease'
+                              transition: 'all 0.18s ease'
                             }}
                             onMouseEnter={(e) => {
-                              e.currentTarget.style.background = 'rgba(44, 115, 217, 0.18)';
-                              e.currentTarget.style.color = '#2c73d9';
+                              e.currentTarget.style.background = 'var(--bg-hover)';
                               e.currentTarget.style.transform = 'translateX(4px)';
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.color = '#e2e8f0';
                               e.currentTarget.style.transform = 'translateX(0)';
                             }}
                           >
-                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                              <ItemIcon size={16} />
+                            <div style={{ padding: '7px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)', flexShrink: 0 }}>
+                              <ItemIcon size={16} strokeWidth={1.8} />
                             </div>
-                            {item.text}
+                            <div>
+                              <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
+                              <div style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{item.desc}</div>
+                            </div>
                           </Link>
                         );
                       })}
@@ -488,23 +504,23 @@ export default function Header({ onToggleMobileMenu }) {
                 </li>
 
                 {/* Direct Links */}
-                <li style={{ padding: '10px 14px' }}>
-                  <Link href="/what-we-do" style={{ color: '#cbd5e1', fontWeight: 500, fontSize: '15px', textDecoration: 'none' }}>
+                <li style={{ padding: '8px 12px' }}>
+                  <Link href="/what-we-do" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     What We Do
                   </Link>
                 </li>
-                <li style={{ padding: '10px 14px' }}>
-                  <Link href="/company-profile" style={{ color: '#cbd5e1', fontWeight: 500, fontSize: '15px', textDecoration: 'none' }}>
+                <li style={{ padding: '8px 12px' }}>
+                  <Link href="/company-profile" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Company Profile
                   </Link>
                 </li>
-                <li style={{ padding: '10px 14px' }}>
-                  <Link href="/career" style={{ color: '#cbd5e1', fontWeight: 500, fontSize: '15px', textDecoration: 'none' }}>
+                <li style={{ padding: '8px 12px' }}>
+                  <Link href="/career" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Careers
                   </Link>
                 </li>
-                <li style={{ padding: '10px 14px' }}>
-                  <Link href="/blog" style={{ color: '#cbd5e1', fontWeight: 500, fontSize: '15px', textDecoration: 'none' }}>
+                <li style={{ padding: '8px 12px' }}>
+                  <Link href="/blog" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Blog
                   </Link>
                 </li>
@@ -519,12 +535,15 @@ export default function Header({ onToggleMobileMenu }) {
             </div>
           </div>
 
-          {/* Right Action Button */}
-          <div className="header-right d-none d-sm-block">
+          {/* Right Area: Theme Toggle & Primary Button */}
+          <div className="header-right d-none d-sm-flex align-items-center gap-3">
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
+
+            {/* Primary Dark Blue CTA */}
             <Link 
-              href="/contact-us"
-              className="btn btn-linear hover-up hover-shadow"
-              style={{ padding: '12px 26px', fontSize: '14px', textTransform: 'uppercase' }}
+              href="/contact-us" 
+              className="btn-primary-brand"
             >
               Contact Us
             </Link>

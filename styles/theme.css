@@ -1,139 +1,195 @@
+/* =============================================================================
+   ALTAPETE SOLUTIONS BRAND DESIGN SYSTEM
+   Primary Brand Color: #282460 (Deep Royal Navy)
+   Accent Color: #2c73d9 (Bright Electric Blue)
+   ============================================================================= */
+
 :root {
-  --color-primary: #282460;
-  --color-primary-rgb: 40, 36, 96;
-  --color-accent: #2c73d9;
-  --color-accent-rgb: 44, 115, 217;
-  --color-accent-hover: #3d86ee;
-  --color-accent-glow: rgba(44, 115, 217, 0.4);
-  
-  --bg-dark: #0b0a17;
-  --bg-dark-secondary: #121029;
-  --bg-card: rgba(40, 36, 96, 0.35);
-  --bg-card-hover: rgba(40, 36, 96, 0.6);
-  
-  --border-subtle: rgba(44, 115, 217, 0.2);
-  --border-accent: rgba(44, 115, 217, 0.5);
-  
-  --gradient-brand: linear-gradient(135deg, #282460 0%, #2c73d9 100%);
-  --gradient-accent: linear-gradient(135deg, #2c73d9 0%, #5ba2f8 100%);
-  --gradient-text: linear-gradient(135deg, #ffffff 30%, #2c73d9 100%);
+  /* Brand Identity */
+  --brand-primary: #282460;
+  --brand-primary-hover: #1f1b4d;
+  --brand-primary-light: rgba(40, 36, 96, 0.08);
+  --brand-accent: #2c73d9;
+  --brand-accent-hover: #1e5db5;
+  --brand-accent-glow: rgba(44, 115, 217, 0.35);
+
+  /* Light Theme Palette (Default) */
+  --bg-body: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f1f5f9;
+  --bg-hover: rgba(44, 115, 217, 0.08);
+  --border-color: rgba(40, 36, 96, 0.12);
+  --border-color-glow: rgba(44, 115, 217, 0.3);
+
+  /* Typography */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --heading-color: #0f172a;
+
+  /* Header & Navigation */
+  --header-bg: rgba(255, 255, 255, 0.94);
+  --header-border: rgba(40, 36, 96, 0.1);
+  --nav-link-color: #1e293b;
+  --nav-link-hover: #2c73d9;
+  --nav-link-active: #282460;
+
+  /* Global Footer */
+  --footer-bg: #0b0a17;
+  --footer-text: #cbd5e1;
+  --footer-border: rgba(44, 115, 217, 0.18);
+
+  /* Theme Switcher Button */
+  --toggle-bg: #f1f5f9;
+  --toggle-border: rgba(40, 36, 96, 0.15);
+  --toggle-color: #282460;
+
+  /* Shadows */
+  --card-shadow: 0 4px 20px -2px rgba(40, 36, 96, 0.08);
+  --card-shadow-hover: 0 16px 36px -4px rgba(40, 36, 96, 0.16);
 }
 
-/* Global Dark Theme Overrides with strict brand colors */
+[data-theme="dark"] {
+  /* Dark Theme Palette */
+  --bg-body: #080711;
+  --bg-surface: #0f0d1e;
+  --bg-card: #15132b;
+  --bg-card-subtle: rgba(40, 36, 96, 0.35);
+  --bg-hover: rgba(44, 115, 217, 0.16);
+  --border-color: rgba(44, 115, 217, 0.2);
+  --border-color-glow: rgba(44, 115, 217, 0.45);
+
+  /* Typography */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --heading-color: #ffffff;
+
+  /* Header & Navigation */
+  --header-bg: rgba(11, 10, 23, 0.92);
+  --header-border: rgba(44, 115, 217, 0.18);
+  --nav-link-color: #e2e8f0;
+  --nav-link-hover: #2c73d9;
+  --nav-link-active: #2c73d9;
+
+  /* Global Footer */
+  --footer-bg: #070611;
+  --footer-text: #94a3b8;
+  --footer-border: rgba(44, 115, 217, 0.18);
+
+  /* Theme Switcher Button */
+  --toggle-bg: rgba(44, 115, 217, 0.15);
+  --toggle-border: rgba(44, 115, 217, 0.35);
+  --toggle-color: #38bdf8;
+
+  /* Shadows */
+  --card-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
+  --card-shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 115, 217, 0.2);
+}
+
+/* Global Body Styling */
 body {
-  background-color: var(--bg-dark) !important;
-  color: #e2e8f0 !important;
-  font-family: 'Noto Sans', sans-serif !important;
+  background-color: var(--bg-body) !important;
+  color: var(--text-primary) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
 }
 
-.bg-gray-900, .bg-gray-850, .bg-gray-800 {
-  background-color: var(--bg-dark-secondary) !important;
+/* Fix missing uicons character box [] in header navigation */
+.header .main-menu li.has-children > a::after {
+  display: none !important;
+  content: none !important;
 }
 
-/* Linear Buttons with Brand Colors */
-.btn-linear {
-  background: var(--gradient-brand) !important;
+/* Primary Brand Button (#282460) */
+.btn-primary-brand {
+  background-color: var(--brand-primary) !important;
   color: #ffffff !important;
   border: 1px solid rgba(44, 115, 217, 0.4) !important;
-  box-shadow: 0 4px 20px rgba(44, 115, 217, 0.25) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border-radius: 10px !important;
+  padding: 10px 24px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.5px !important;
-}
-
-.btn-linear:hover {
-  background: linear-gradient(135deg, #322d7a 0%, #3a82e8 100%) !important;
-  box-shadow: 0 8px 30px rgba(44, 115, 217, 0.45) !important;
-  transform: translateY(-2px) !important;
-  color: #ffffff !important;
-}
-
-.btn-outline-brand {
-  background: rgba(40, 36, 96, 0.3) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(44, 115, 217, 0.4) !important;
-  padding: 12px 28px !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
   display: inline-flex !important;
   align-items: center !important;
+  justify-content: center !important;
   gap: 8px !important;
-  transition: all 0.3s ease !important;
-  text-decoration: none !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 4px 14px rgba(40, 36, 96, 0.3) !important;
+  cursor: pointer;
 }
 
-.btn-outline-brand:hover {
-  background: rgba(44, 115, 217, 0.2) !important;
-  border-color: #2c73d9 !important;
-  color: #ffffff !important;
+.btn-primary-brand:hover {
+  background-color: var(--brand-primary-hover) !important;
+  border-color: var(--brand-accent) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 4px 20px rgba(44, 115, 217, 0.2) !important;
+  box-shadow: 0 8px 25px rgba(44, 115, 217, 0.35) !important;
+  color: #ffffff !important;
 }
 
-/* Color linear text highlights */
-.color-linear, .highlight-text, .brand-cyan {
-  background: var(--gradient-accent) !important;
+/* Secondary Accent Button */
+.btn-secondary-brand {
+  background: rgba(44, 115, 217, 0.12) !important;
+  color: var(--brand-accent) !important;
+  border: 1px solid rgba(44, 115, 217, 0.3) !important;
+  border-radius: 10px !important;
+  padding: 10px 22px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer;
+}
+
+.btn-secondary-brand:hover {
+  background: var(--brand-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-accent) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(44, 115, 217, 0.3) !important;
+}
+
+/* Standard Themed Cards */
+.standard-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all 0.3s ease !important;
+}
+
+.standard-card:hover {
+  border-color: var(--border-color-glow) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+  transform: translateY(-4px);
+}
+
+/* Brand Gradient Text */
+.color-linear {
+  background: linear-gradient(135deg, #2c73d9 0%, #60a5fa 100%) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
 }
 
-/* Modern Glowing Badge */
+/* Section Subtitle Pill Badge */
 .brand-badge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px 20px;
-  background: rgba(40, 36, 96, 0.5);
-  border: 1px solid var(--border-accent);
-  border-radius: 50px;
-  color: #2c73d9;
-  font-size: 13px;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  background: rgba(44, 115, 217, 0.12);
+  border: 1px solid rgba(44, 115, 217, 0.3);
+  color: var(--brand-accent);
+  font-size: 12.5px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 20px rgba(44, 115, 217, 0.15);
-}
-
-.pulse-dot-brand {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: #2c73d9;
-  box-shadow: 0 0 10px #2c73d9;
-  animation: pulseGlow 2s infinite;
-}
-
-@keyframes pulseGlow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* Glassmorphic Cards */
-.glass-card {
-  background: rgba(40, 36, 96, 0.35) !important;
-  border: 1px solid rgba(44, 115, 217, 0.22) !important;
-  border-radius: 20px !important;
-  backdrop-filter: blur(16px) !important;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.glass-card:hover {
-  background: rgba(40, 36, 96, 0.55) !important;
-  border-color: rgba(44, 115, 217, 0.6) !important;
-  transform: translateY(-6px) !important;
-  box-shadow: 0 20px 40px rgba(44, 115, 217, 0.2) !important;
-}
-
-/* Floating animation */
-@keyframes floatSlow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-.float-anim {
-  animation: floatSlow 5s ease-in-out infinite;
+  letter-spacing: 0.8px;
 }

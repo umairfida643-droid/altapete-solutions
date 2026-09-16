@@ -24,6 +24,8 @@ import {
   Phone,
   Send,
   ExternalLink,
+  Database,
+  Terminal,
   ChevronRight
 } from 'lucide-react';
 
@@ -38,13 +40,13 @@ export default function HomePage() {
   ];
 
   const techPartners = [
-    { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/partners/odoo.webp" },
-    { name: "Oracle", tag: "Database", desc: "Business Solutions", logo: "/assets/imgs/external/oracle-6.svg" },
-    { name: "ZATCA", tag: "Compliance", desc: "Phase 2 E-Invoicing", logo: "/assets/imgs/partners/zatca.png" },
-    { name: "SAP", tag: "Enterprise", desc: "Global ERP Platforms", logo: "/assets/imgs/partners/sap.jpeg" },
-    { name: "Django", tag: "Framework", desc: "Enterprise Backends", logo: "/assets/imgs/external/django-logo-negative.png" },
-    { name: "Python", tag: "Language", desc: "Core Engineering", logo: "/assets/imgs/external/python-logo-master-v3-TM.png" },
-    { name: "PostgreSQL", tag: "Database", desc: "Relational Engine", logo: "https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" }
+    { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/partners/odoo.webp", icon: Layers },
+    { name: "Oracle", tag: "Database", desc: "Business Solutions", logo: "/assets/imgs/external/oracle-6.svg", icon: Database },
+    { name: "ZATCA", tag: "Compliance", desc: "Phase 2 E-Invoicing", logo: "/assets/imgs/partners/zatca.png", icon: ShieldCheck },
+    { name: "SAP", tag: "Enterprise", desc: "Global ERP Platforms", logo: "/assets/imgs/partners/sap.jpeg", icon: Building2 },
+    { name: "Django", tag: "Framework", desc: "Enterprise Backends", logo: "/assets/imgs/external/django-logo-negative.png", icon: Code2 },
+    { name: "Python", tag: "Language", desc: "Core Engineering", logo: "/assets/imgs/external/python-logo-master-v3-TM.png", icon: Terminal },
+    { name: "PostgreSQL", tag: "Database", desc: "Relational Engine", logo: "/assets/imgs/partners/postgresql.svg", icon: Server }
   ];
 
   const coreServices = [
@@ -453,17 +455,21 @@ export default function HomePage() {
                   </div>
                   <span 
                     style={{
-                      background: 'rgba(44, 115, 217, 0.15)',
-                      color: '#2c73d9',
-                      border: '1px solid rgba(44, 115, 217, 0.3)',
-                      padding: '3px 10px',
-                      borderRadius: '20px',
-                      fontSize: '11px',
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      background: "rgba(44, 115, 217, 0.15)",
+                      color: "#2c73d9",
+                      border: "1px solid rgba(44, 115, 217, 0.3)",
+                      padding: "4px 12px",
+                      borderRadius: "20px",
+                      fontSize: "11px",
                       fontWeight: 700,
-                      textTransform: 'uppercase',
-                      marginBottom: '10px'
+                      textTransform: "uppercase",
+                      marginBottom: "10px"
                     }}
                   >
+                    <tp.icon size={12} strokeWidth={2} />
                     {tp.tag}
                   </span>
                   <h4 style={{ color: '#ffffff', fontSize: '17px', fontWeight: 700, margin: '0 0 4px' }}>
