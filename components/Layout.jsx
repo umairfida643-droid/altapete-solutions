@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import MobileDrawer from './MobileDrawer';
 import TechBackground from './TechBackground';
+import InteractivePageEnhancer from './InteractivePageEnhancer';
 
 export default function Layout({ children, title, description }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,6 +20,8 @@ export default function Layout({ children, title, description }) {
 
       {/* Global Subtle Animated Technology Background */}
       <TechBackground />
+      {/* Global Client-side Interactivity Enhancer for Auto-steps, Hero Tabs & Pills */}
+      <InteractivePageEnhancer />
 
       <Header onToggleMobileMenu={() => setMobileMenuOpen(true)} />
       <MobileDrawer isOpen={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />

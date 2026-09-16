@@ -1777,3 +1777,60 @@ html[data-theme="dark"] .consultation-input {
 [data-theme="light"] .blog-content h4 {
   color: #0f172a !important;
 }
+
+/* =============================================================================
+   Sleek Corporate Arabic Typography & Text Sizing
+   ============================================================================= */
+[dir="rtl"],
+:lang(ar),
+.arabic-text {
+  font-family: 'Tajawal', 'Cairo', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: 1.5 !important;
+}
+
+[dir="rtl"] h1, :lang(ar) h1 { font-size: clamp(20px, 3vw, 26px) !important; }
+[dir="rtl"] h2, :lang(ar) h2 { font-size: clamp(18px, 2.5vw, 22px) !important; }
+[dir="rtl"] h3, :lang(ar) h3 { font-size: clamp(15px, 2vw, 18px) !important; }
+[dir="rtl"] p, :lang(ar) p { font-size: 14px !important; line-height: 1.6 !important; }
+
+/* Arabic Badges & Titles */
+.arabic-badge {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+/* =============================================================================
+   Interactive Tabs, Phase Timeline & Indicator Animations
+   ============================================================================= */
+@keyframes heroBarGlow {
+  0%, 100% { opacity: 0.7; box-shadow: 0 0 6px rgba(0, 174, 239, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 14px rgba(0, 174, 239, 0.85); }
+}
+
+@keyframes phaseActive {
+  0%, 100% {
+    transform: scale(1.04);
+    box-shadow: 0 20px 45px rgba(0, 181, 168, 0.35);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 25px 55px rgba(0, 181, 168, 0.5);
+  }
+}
+
+@keyframes progressPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.35); opacity: 1; filter: drop-shadow(0 0 6px #00b5a8); }
+}
+
+@keyframes phasePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 174, 239, 0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 0 20px rgba(0, 174, 239, 0.7); }
+}
+
+.hero-active-bar {
+  animation: heroBarGlow 2.5s ease-in-out infinite;
+}
+
