@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import { 
+  Phone,
+  Mail,
   MapPin, 
   ArrowRight,
+  ExternalLink,
   Building2,
   Server,
   Code2,
@@ -15,20 +18,35 @@ import {
   Hotel,
   Hospital,
   GraduationCap,
-  HardHat
+  HardHat,
+  Send,
+  CheckCircle2,
+  Globe2
 } from 'lucide-react';
 
 export default function Footer() {
   const { theme } = useTheme();
   const logoSrc = theme === 'light' ? '/assets/imgs/logo-dark.png' : '/assets/imgs/logo.png';
+  
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setSubmitted(false);
+      setFormData({ name: '', email: '', message: '' });
+    }, 4500);
+  };
 
   const footerSolutions = [
     { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
     { text: "Technology Management", href: "/technology-management", icon: Server },
-    { text: "Custom Development", href: "/custom-app-development", icon: Code2 },
+    { text: "Custom Application Development", href: "/custom-app-development", icon: Code2 },
     { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
     { text: "Zatca Integration", href: "/zatca-integration", icon: ShieldCheck },
-    { text: "Odoo to Odoo Data", href: "/odoo-to-odoo-data-integration", icon: RefreshCw }
+    { text: "Odoo to Odoo", href: "/odoo-to-odoo-data-integration", icon: RefreshCw }
   ];
 
   const footerProducts = [
@@ -46,45 +64,343 @@ export default function Footer() {
       style={{
         background: 'var(--footer-bg)',
         color: 'var(--footer-text)',
-        borderTop: '1px solid rgba(44, 115, 217, 0.2)',
-        padding: '70px 0 30px',
+        borderTop: '1px solid var(--footer-border)',
+        paddingTop: '60px',
+        paddingBottom: '30px',
         position: 'relative',
         zIndex: 10,
         transition: 'background-color 0.3s ease'
       }}
     >
       <div className="container">
-        <div className="row g-4 mb-50">
-          {/* Column 1: Company Profile & Global Offices */}
+        
+        {/* =====================================================================
+            TIER 1: QUICK CONTACT & GLOBAL PRESENCE CARDS
+            ===================================================================== */}
+        <div className="row g-4 mb-5 pb-2">
+          {/* Card 1: Call Us */}
+          <div className="col-lg-4 col-md-6 col-12">
+            <div 
+              style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '16px',
+                padding: '24px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                boxShadow: 'var(--card-shadow)',
+                transition: 'all 0.3s ease'
+              }}
+              className="footer-contact-card"
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                  <div 
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '10px',
+                      background: 'rgba(44, 115, 217, 0.14)',
+                      border: '1px solid rgba(44, 115, 217, 0.3)',
+                      color: 'var(--brand-accent)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Phone size={19} />
+                  </div>
+                  <h4 style={{ color: 'var(--heading-color)', fontSize: '17px', fontWeight: 700, margin: 0 }}>
+                    Call Us
+                  </h4>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <a 
+                    href="tel:+966551013823"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '8px 10px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 55 101 3823</div>
+                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Saudi Arabia</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+
+                  <a 
+                    href="tel:+966533820454"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '8px 10px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 53 382 0454</div>
+                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Saudi Arabia</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+
+                  <a 
+                    href="tel:+923703536327"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '8px 10px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+92 370 3536327</div>
+                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Pakistan</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2: Message Us */}
+          <div className="col-lg-4 col-md-6 col-12">
+            <div 
+              style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '16px',
+                padding: '24px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                boxShadow: 'var(--card-shadow)',
+                transition: 'all 0.3s ease'
+              }}
+              className="footer-contact-card"
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                  <div 
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      borderRadius: '10px',
+                      background: 'rgba(44, 115, 217, 0.14)',
+                      border: '1px solid rgba(44, 115, 217, 0.3)',
+                      color: 'var(--brand-accent)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Mail size={19} />
+                  </div>
+                  <h4 style={{ color: 'var(--heading-color)', fontSize: '17px', fontWeight: 700, margin: 0 }}>
+                    Message Us
+                  </h4>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <a 
+                    href="mailto:info@altapetesolutions.com"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '12px 14px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>info@altapetesolutions.com</div>
+                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Official Inquiries & Support</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+
+                  <a 
+                    href="https://wa.me/966568029153"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '12px 14px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 56 802 9153</div>
+                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Direct WhatsApp Chat</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+                </div>
+              </div>
+
+              <div style={{ marginTop: '16px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.2)', fontSize: '11.5px', color: 'var(--brand-accent)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22c55e', display: 'inline-block' }}></span>
+                Enterprise Support Available 24/7
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3: Regional Presence */}
+          <div className="col-lg-4 col-md-12 col-12">
+            <div 
+              style={{
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '16px',
+                padding: '24px',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                boxShadow: 'var(--card-shadow)',
+                transition: 'all 0.3s ease'
+              }}
+              className="footer-contact-card"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <div 
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: 'rgba(44, 115, 217, 0.14)',
+                    border: '1px solid rgba(44, 115, 217, 0.3)',
+                    color: 'var(--brand-accent)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}
+                >
+                  <Globe2 size={19} />
+                </div>
+                <h4 style={{ color: 'var(--heading-color)', fontSize: '17px', fontWeight: 700, margin: 0 }}>
+                  Regional Presence
+                </h4>
+              </div>
+
+              <div className="row g-2" style={{ flexGrow: 1 }}>
+                <div className="col-6">
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'var(--bg-card-subtle)', height: '100%' }}>
+                    <div style={{ color: 'var(--heading-color)', fontSize: '13px', fontWeight: 700 }}>Saudi Arabia</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Riyadh, Jeddah, Khobar</div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'var(--bg-card-subtle)', height: '100%' }}>
+                    <div style={{ color: 'var(--heading-color)', fontSize: '13px', fontWeight: 700 }}>UAE</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Dubai, Abu Dhabi</div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'var(--bg-card-subtle)', height: '100%' }}>
+                    <div style={{ color: 'var(--heading-color)', fontSize: '13px', fontWeight: 700 }}>Bahrain</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Manama</div>
+                  </div>
+                </div>
+                <div className="col-6">
+                  <div style={{ padding: '10px', borderRadius: '8px', background: 'var(--bg-card-subtle)', height: '100%' }}>
+                    <div style={{ color: 'var(--heading-color)', fontSize: '13px', fontWeight: 700 }}>Pakistan</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Karachi, Lahore</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div style={{ height: '1px', background: 'var(--border-color)', marginBottom: '50px' }}></div>
+
+        {/* =====================================================================
+            TIER 2: MAIN DIRECTORY & HQ OFFICES (4 COLUMNS)
+            ===================================================================== */}
+        <div className="row g-4 mb-45">
+          {/* Column 1: Company Profile & 3 Registered Offices */}
           <div className="col-lg-4 col-md-12 mb-30">
             <Link href="/" className="d-inline-block mb-20">
               <img 
                 src={logoSrc} 
-                alt="Altapete Solutions" 
+                alt="Altapete Solutions - Aim High Business Solutions" 
                 style={{ maxHeight: '38px', width: 'auto' }} 
               />
             </Link>
-            <p style={{ color: '#94a3b8', fontSize: '14px', lineHeight: '1.7', marginBottom: '25px', maxWidth: '360px' }}>
-              Altapete Solutions (APS) empowers executives with strategic insights, delivering modernization, resilience, and agility for future-ready enterprises.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: '1.7', marginBottom: '25px', maxWidth: '360px' }}>
+              Altapete Solutions (APS) empowers executives with strategic insights, driving efficient decisions and lasting results beyond financial success.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <MapPin size={18} color="#2c73d9" style={{ flexShrink: 0, marginTop: '3px' }} />
-                <span style={{ color: '#cbd5e1', fontSize: '13.5px', lineHeight: '1.5' }}>
-                  <strong style={{ color: '#ffffff' }}>Al Khobar:</strong> Office# 09, 4th Floor, King Khalid Street Cross 15, KSA
+                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <MapPin size={15} color="#2c73d9" />
+                </div>
+                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Al Khobar, KSA:</strong>
+                  Office# 09, 4th Floor, King Khalid Street Cross 15
                 </span>
               </div>
+
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <MapPin size={18} color="#2c73d9" style={{ flexShrink: 0, marginTop: '3px' }} />
-                <span style={{ color: '#cbd5e1', fontSize: '13.5px', lineHeight: '1.5' }}>
-                  <strong style={{ color: '#ffffff' }}>Lahore:</strong> 159-D Nawab Town, Raiwind Road, Lahore, PK
+                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <MapPin size={15} color="#2c73d9" />
+                </div>
+                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Riyadh, KSA:</strong>
+                  Building #44, Ibn Katheer Street, King Abdulaziz District
                 </span>
               </div>
+
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <MapPin size={18} color="#2c73d9" style={{ flexShrink: 0, marginTop: '3px' }} />
-                <span style={{ color: '#cbd5e1', fontSize: '13.5px', lineHeight: '1.5' }}>
-                  <strong style={{ color: '#ffffff' }}>Riyadh:</strong> Building #44, Ibn Katheer Street, King Abdulaziz District, KSA
+                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                  <MapPin size={15} color="#2c73d9" />
+                </div>
+                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Lahore, PK:</strong>
+                  159-D Nawab Town, Lahore, PK
                 </span>
               </div>
             </div>
@@ -92,7 +408,7 @@ export default function Footer() {
 
           {/* Column 2: Solutions (WITH ICONS) */}
           <div className="col-lg-2 col-md-6 col-6 mb-30">
-            <h4 style={{ color: '#ffffff', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
               Solutions
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
@@ -103,7 +419,7 @@ export default function Footer() {
                     <Link 
                       href={item.href} 
                       style={{ 
-                        color: '#94a3b8', 
+                        color: 'var(--text-secondary)', 
                         fontSize: '13.5px', 
                         textDecoration: 'none', 
                         display: 'inline-flex',
@@ -112,7 +428,7 @@ export default function Footer() {
                         transition: 'all 0.2s ease' 
                       }}
                       onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '4px'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.paddingLeft = '0'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.paddingLeft = '0'; }}
                     >
                       <ItemIcon size={14} color="#2c73d9" />
                       <span>{item.text}</span>
@@ -125,7 +441,7 @@ export default function Footer() {
 
           {/* Column 3: Products (WITH ICONS) */}
           <div className="col-lg-2 col-md-6 col-6 mb-30">
-            <h4 style={{ color: '#ffffff', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
               Products
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
@@ -136,7 +452,7 @@ export default function Footer() {
                     <Link 
                       href={item.href} 
                       style={{ 
-                        color: '#94a3b8', 
+                        color: 'var(--text-secondary)', 
                         fontSize: '13.5px', 
                         textDecoration: 'none', 
                         display: 'inline-flex',
@@ -145,7 +461,7 @@ export default function Footer() {
                         transition: 'all 0.2s ease' 
                       }}
                       onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '4px'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.color = '#94a3b8'; e.currentTarget.style.paddingLeft = '0'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.paddingLeft = '0'; }}
                     >
                       <ItemIcon size={14} color="#2c73d9" />
                       <span>{item.text}</span>
@@ -156,62 +472,105 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
+          {/* Column 4: Send a Message / Fast Connect Form */}
           <div className="col-lg-4 col-md-12 mb-30">
-            <h4 style={{ color: '#ffffff', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
-              Stay Updated
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '14px' }}>
+              Send a Message
             </h4>
-            <p style={{ color: '#94a3b8', fontSize: '13.5px', lineHeight: '1.6', marginBottom: '16px' }}>
-              Sign up to receive expert ERP insights, architectural checklists, and industry case studies.
+            <p style={{ color: 'var(--text-muted)', fontSize: '13px', lineHeight: '1.5', marginBottom: '16px' }}>
+              Fill out the form below and our architectural advisory team will get back to you shortly.
             </p>
 
-            <form 
-              onSubmit={(e) => { e.preventDefault(); alert('Thank you for subscribing to Altapete Solutions!'); }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
-            >
-              <input 
-                type="text" 
-                placeholder="Your Name" 
-                required 
-                style={{
-                  background: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  borderRadius: '8px',
-                  padding: '10px 14px',
-                  color: '#ffffff',
-                  fontSize: '13.5px',
-                  outline: 'none'
-                }}
-              />
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                required 
-                style={{
-                  background: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  borderRadius: '8px',
-                  padding: '10px 14px',
-                  color: '#ffffff',
-                  fontSize: '13.5px',
-                  outline: 'none'
-                }}
-              />
-              <button 
-                type="submit" 
-                className="btn-primary-brand"
-                style={{ padding: '11px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+            {submitted ? (
+              <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(34, 197, 94, 0.12)', border: '1px solid rgba(34, 197, 94, 0.3)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <CheckCircle2 size={20} color="#22c55e" />
+                <span style={{ color: '#22c55e', fontSize: '13.5px', fontWeight: 600 }}>
+                  Thank you! Your message has been sent successfully.
+                </span>
+              </div>
+            ) : (
+              <form 
+                onSubmit={handleSubmit}
+                style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
               >
-                Subscribe to Updates <ArrowRight size={15} />
-              </button>
-            </form>
+                <div className="row g-2">
+                  <div className="col-6">
+                    <input 
+                      type="text" 
+                      placeholder="Full Name *" 
+                      required 
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      style={{
+                        background: 'var(--bg-card-subtle)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '8px',
+                        padding: '9px 12px',
+                        color: 'var(--heading-color)',
+                        fontSize: '13px',
+                        outline: 'none',
+                        width: '100%'
+                      }}
+                    />
+                  </div>
+                  <div className="col-6">
+                    <input 
+                      type="email" 
+                      placeholder="Email Address *" 
+                      required 
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      style={{
+                        background: 'var(--bg-card-subtle)',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: '8px',
+                        padding: '9px 12px',
+                        color: 'var(--heading-color)',
+                        fontSize: '13px',
+                        outline: 'none',
+                        width: '100%'
+                      }}
+                    />
+                  </div>
+                </div>
+
+                <textarea 
+                  placeholder="Your Message *"
+                  rows={2}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  style={{
+                    background: 'var(--bg-card-subtle)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '8px',
+                    padding: '9px 12px',
+                    color: 'var(--heading-color)',
+                    fontSize: '13px',
+                    outline: 'none',
+                    resize: 'none',
+                    width: '100%'
+                  }}
+                />
+
+                <button 
+                  type="submit" 
+                  className="btn-primary-brand"
+                  style={{ padding: '10px 18px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '13px' }}
+                >
+                  SEND MESSAGE <Send size={13} />
+                </button>
+              </form>
+            )}
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* =====================================================================
+            BOTTOM LEGAL BAR
+            ===================================================================== */}
         <div 
           style={{
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+            borderTop: '1px solid var(--border-color)',
             paddingTop: '25px',
             display: 'flex',
             alignItems: 'center',
@@ -220,15 +579,17 @@ export default function Footer() {
             gap: '16px'
           }}
         >
-          <div style={{ color: '#64748b', fontSize: '13px' }}>
-            © {new Date().getFullYear()} Altapete Solutions (APS). All rights reserved.
+          <div style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+            © {new Date().getFullYear()} Altapete Solutions. Aim High Business Solutions. All rights reserved.
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <Link href="/privacy-policy" style={{ color: '#64748b', fontSize: '13px', textDecoration: 'none' }}>Privacy Policy</Link>
-            <Link href="/terms" style={{ color: '#64748b', fontSize: '13px', textDecoration: 'none' }}>Terms of Service</Link>
-            <Link href="/sitemap" style={{ color: '#64748b', fontSize: '13px', textDecoration: 'none' }}>Sitemap</Link>
+            <Link href="/privacy-policy" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Privacy Policy</Link>
+            <Link href="/terms" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Terms of Service</Link>
+            <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Company Profile</Link>
+            <Link href="/sitemap" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Sitemap</Link>
           </div>
         </div>
+
       </div>
     </footer>
   );

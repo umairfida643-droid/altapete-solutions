@@ -637,3 +637,24 @@ p.section-subtitle {
   max-width: 680px !important;
   margin: 0 auto 40px !important;
 }
+
+/* Footer Contact Cards & Interactive Items */
+.footer-contact-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.footer-contact-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--brand-accent) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+.contact-sub-item {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.contact-sub-item:hover {
+  background: var(--bg-hover) !important;
+  transform: translateX(4px) !important;
+}
+
