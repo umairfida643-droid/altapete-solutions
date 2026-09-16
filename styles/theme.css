@@ -310,3 +310,308 @@ body {
   margin-top: 2px !important;
   line-height: 1.2 !important;
 }
+
+
+/* =============================================================================
+   TEAM SECTION & EXECUTIVE CARDS - POLISHED VISIBILITY, SPACING & ALIGNMENT
+   ============================================================================= */
+
+.team-section-container {
+  padding: 80px 0 !important;
+  position: relative !important;
+}
+
+/* Section Header Typography & Contrast */
+.section-header {
+  text-align: center !important;
+  margin-bottom: 56px !important;
+}
+
+.section-header .badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 6px 18px !important;
+  border-radius: 30px !important;
+  background: rgba(44, 115, 217, 0.12) !important;
+  border: 1px solid rgba(44, 115, 217, 0.3) !important;
+  color: var(--brand-accent) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 18px !important;
+}
+
+.section-header .pulse-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background-color: var(--brand-accent) !important;
+  box-shadow: 0 0 10px var(--brand-accent) !important;
+  display: inline-block !important;
+  animation: pulseDot 2s infinite ease-in-out !important;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
+}
+
+.section-header .section-title,
+h2.section-title {
+  color: var(--heading-color) !important;
+  font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin-bottom: 18px !important;
+  text-align: center !important;
+  letter-spacing: -0.5px !important;
+}
+
+.section-header .section-title .brand-cyan,
+.section-title .brand-cyan,
+.brand-cyan {
+  background: linear-gradient(135deg, #2c73d9 0%, #60a5fa 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--brand-accent) !important;
+  font-weight: 700 !important;
+}
+
+.section-header .section-subtitle,
+p.section-subtitle {
+  color: var(--text-secondary) !important;
+  font-size: 16px !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  line-height: 1.65 !important;
+  text-align: center !important;
+}
+
+/* Team Grid and Cards */
+.team-card {
+  display: flex !important;
+}
+
+.team-card-wrapper {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.team-card-wrapper:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--brand-accent) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+/* Uniform Standardized Image Frame */
+.team-card-wrapper .image-wrapper {
+  width: 100% !important;
+  height: 280px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  background: linear-gradient(135deg, rgba(40, 36, 96, 0.3) 0%, rgba(44, 115, 217, 0.12) 100%) !important;
+  margin-bottom: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.team-card-wrapper .team-image {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: block !important;
+  image-rendering: -webkit-optimize-contrast !important;
+}
+
+.team-card-wrapper:hover .team-image {
+  transform: scale(1.06) !important;
+}
+
+.team-card-wrapper .image-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 65%, rgba(8, 7, 17, 0.45) 100%) !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* Card Content Details */
+.team-card-wrapper .card-content {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-grow: 1 !important;
+}
+
+/* Role Tag Pill */
+.team-card-wrapper .role-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 5px 12px !important;
+  border-radius: 20px !important;
+  background: rgba(44, 115, 217, 0.12) !important;
+  border: 1px solid rgba(44, 115, 217, 0.3) !important;
+  color: var(--brand-accent) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  margin-bottom: 12px !important;
+  width: fit-content !important;
+}
+
+/* Member Name & LinkedIn Link */
+.team-card-wrapper .member-name {
+  color: var(--heading-color) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin-bottom: 6px !important;
+}
+
+.team-card-wrapper .member-name a {
+  color: var(--heading-color) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+
+.team-card-wrapper .member-name a:hover {
+  color: var(--brand-accent) !important;
+}
+
+.team-card-wrapper .linkedin-icon {
+  width: 18px !important;
+  height: 18px !important;
+  color: var(--brand-accent) !important;
+  opacity: 0.85 !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
+  flex-shrink: 0 !important;
+}
+
+.team-card-wrapper .member-name a:hover .linkedin-icon {
+  transform: scale(1.15) !important;
+  opacity: 1 !important;
+}
+
+/* Member Position */
+.team-card-wrapper .member-position {
+  color: var(--brand-accent) !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  margin-bottom: 14px !important;
+  line-height: 1.4 !important;
+}
+
+/* Member Bio */
+.team-card-wrapper .member-bio {
+  color: var(--text-secondary) !important;
+  font-size: 13px !important;
+  line-height: 1.65 !important;
+  margin-bottom: 0 !important;
+  flex-grow: 1 !important;
+}
+
+/* Legacy Section & Stats Contrast */
+.legacy-section {
+  padding: 80px 0 !important;
+}
+
+.legacy-section .section-title {
+  color: var(--heading-color) !important;
+  font-size: clamp(2.2rem, 4vw, 3rem) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+}
+
+.legacy-section .section-subtitle {
+  color: var(--text-secondary) !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  max-width: 780px !important;
+  margin: 0 auto 48px !important;
+  line-height: 1.65 !important;
+}
+
+.stat-item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 18px !important;
+  padding: 30px 20px !important;
+  text-align: center !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all 0.3s ease !important;
+  height: 100% !important;
+}
+
+.stat-item:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--border-color-glow) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+.stat-number {
+  font-size: clamp(2.5rem, 3.5vw, 3.2rem) !important;
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #2c73d9 0%, #60a5fa 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--brand-accent) !important;
+  margin-bottom: 8px !important;
+  line-height: 1.1 !important;
+}
+
+.stat-label {
+  color: var(--text-secondary) !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+}
+
+/* Clients Section Heading Polish */
+.clients-section {
+  padding: 80px 0 !important;
+}
+
+.clients-section .section-title {
+  color: var(--heading-color) !important;
+  font-size: clamp(2.2rem, 4vw, 3rem) !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  margin-bottom: 14px !important;
+}
+
+.clients-section .section-subtitle {
+  color: var(--text-secondary) !important;
+  font-size: 16px !important;
+  text-align: center !important;
+  max-width: 680px !important;
+  margin: 0 auto 40px !important;
+}
