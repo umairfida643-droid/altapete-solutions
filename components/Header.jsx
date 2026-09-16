@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
 import { 
@@ -24,55 +25,192 @@ import {
   HardHat,
   ArrowRight,
   Layers,
-  Sparkles
+  Sparkles,
+  Menu,
+  CheckCircle2,
+  ExternalLink
 } from 'lucide-react';
 
 export default function Header({ onToggleMobileMenu }) {
   const { theme } = useTheme();
+  const router = useRouter();
   const [isSticky, setIsSticky] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
+  
+  // Navigation active flyout states
+  const [activeMenu, setActiveMenu] = useState(null); // 'solutions' | 'services' | 'products' | null
+  const closeTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 30);
+      setIsSticky(window.scrollY > 25);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close menus on route change
+  useEffect(() => {
+    setActiveMenu(null);
+  }, [router.asPath]);
+
+  const handleMenuEnter = (menuType) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setActiveMenu(menuType);
+  };
+
+  const handleMenuLeave = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 180); // 180ms graceful leave timeout
+  };
+
+  const handleKeyDown = (e, menuType) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setActiveMenu(activeMenu === menuType ? null : menuType);
+    } else if (e.key === 'Escape') {
+      setActiveMenu(null);
+    }
+  };
 
   const logoSrc = theme === 'light' ? '/assets/imgs/logo-dark.png' : '/assets/imgs/logo.png';
 
   const digitalTransformationServices = [
-    { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2, desc: "ERP, SAP & scalable platforms" },
-    { text: "Technology Management Services", href: "/technology-management", icon: Server, desc: "Cloud & infrastructure advisory" },
-    { text: "Custom Application Development", href: "/custom-app-development", icon: Code2, desc: "Tailored software & portals" }
+    { 
+      text: "Enterprise Solutions", 
+      href: "/enterprise-solutions", 
+      icon: Building2, 
+      desc: "Scalable ERP, SAP & unified multi-company architectures" 
+    },
+    { 
+      text: "Technology Management Services", 
+      href: "/technology-management", 
+      icon: Server, 
+      desc: "Cloud infrastructure, DevOps, 24/7 DBA & cyber security" 
+    },
+    { 
+      text: "Custom Application Development", 
+      href: "/custom-app-development", 
+      icon: Code2, 
+      desc: "Bespoke SaaS platforms, client portals & mobile systems" 
+    }
   ];
 
   const integrationServices = [
-    { text: "Zatca Integration", href: "/zatca-integration", icon: ShieldCheck, desc: "Phase 2 compliant e-invoicing" },
-    { text: "Odoo to Odoo", href: "/odoo-to-odoo-data-integration", icon: RefreshCw, desc: "Multi-instance data sync" },
-    { text: "Salla Integration", href: "/salla-integration", icon: ShoppingBag, desc: "E-commerce ERP sync" },
-    { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart, desc: "Automated orders & inventory" },
-    { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users, desc: "Government portal link" },
-    { text: "Other Integration (Mada-Jedia-Jisr)", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard, desc: "Payment & HR systems" }
+    { 
+      text: "ZATCA Integration", 
+      href: "/zatca-integration", 
+      icon: ShieldCheck, 
+      tag: "Phase 2", 
+      desc: "Certified compliant e-invoicing API integration" 
+    },
+    { 
+      text: "Odoo to Odoo Integration", 
+      href: "/odoo-to-odoo-data-integration", 
+      icon: RefreshCw, 
+      tag: "Sync Engine", 
+      desc: "Real-time cross-database automated data sync" 
+    },
+    { 
+      text: "Salla Integration", 
+      href: "/salla-integration", 
+      icon: ShoppingBag, 
+      tag: "E-Commerce", 
+      desc: "Automated orders, inventory & billing ERP pipeline" 
+    },
+    { 
+      text: "Shopify Integration", 
+      href: "/shopify-integration", 
+      icon: ShoppingCart, 
+      tag: "Omnichannel", 
+      desc: "Seamless multi-store ERP reconciliation" 
+    },
+    { 
+      text: "HR Muqeem Integration", 
+      href: "/hr-muqeem", 
+      icon: Users, 
+      tag: "Gov Portal", 
+      desc: "Automated residency, visa & Saudi labor workflows" 
+    },
+    { 
+      text: "Mada, Jedia & Jisr Integration", 
+      href: "/mada-jedia-hr-jisr-integration", 
+      icon: CreditCard, 
+      tag: "Fintech/HR", 
+      desc: "Payment POS terminals & payroll gateway sync" 
+    }
   ];
 
   const servicesList = [
-    { text: "Accounting & Financial Advisory", href: "/accounting-financial-advisory", icon: Calculator, desc: "Audit, compliance & reporting" },
-    { text: "Corporate Advisory", href: "/corporate-advisory", icon: Briefcase, desc: "Strategic M&A & restructuring" },
-    { text: "Taxation & ZAKAT Advisory", href: "/taxation-zakat-advisory", icon: Scale, desc: "Zakat & VAT compliance" },
-    { text: "Outsourcing & Business Services", href: "/outsourcing-business-services", icon: Building, desc: "Payroll, bookkeeping & HR ops" }
+    { 
+      text: "Accounting & Financial Advisory", 
+      href: "/accounting-financial-advisory", 
+      icon: Calculator, 
+      desc: "Audit, compliance, valuation & strategic financial reporting" 
+    },
+    { 
+      text: "Corporate Advisory", 
+      href: "/corporate-advisory", 
+      icon: Briefcase, 
+      desc: "Strategic M&A, restructuring & executive business planning" 
+    },
+    { 
+      text: "Taxation & ZAKAT Advisory", 
+      href: "/taxation-zakat-advisory", 
+      icon: Scale, 
+      desc: "Zakat, Corporate Tax & VAT optimization & filing" 
+    },
+    { 
+      text: "Outsourcing & Business Services", 
+      href: "/outsourcing-business-services", 
+      icon: Building, 
+      desc: "Payroll outsourcing, bookkeeping & operational HR" 
+    }
   ];
 
   const productsList = [
-    { text: "Rental Solutions", href: "/rental-solutions", icon: Building, desc: "Fleet & property equipment rental" },
-    { text: "Shipping Solutions", href: "/shipping-solutions", icon: Truck, desc: "Logistics & freight forwarding" },
-    { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel, desc: "PMS, booking & guest engine" },
-    { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital, desc: "EMR, clinic & bed operations" },
-    { text: "School Management", href: "/school-management-solutions", icon: GraduationCap, desc: "LMS, admissions & gradebook" },
-    { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat, desc: "Job costing, billing & BOQ" }
+    { 
+      text: "Rental Solutions", 
+      href: "/rental-solutions", 
+      icon: Building, 
+      desc: "Fleet, machinery & equipment rental lifecycle management" 
+    },
+    { 
+      text: "Shipping Solutions", 
+      href: "/shipping-solutions", 
+      icon: Truck, 
+      desc: "Freight forwarding, dispatch tracking & logistics billing" 
+    },
+    { 
+      text: "Hotel Management", 
+      href: "/hotel-management-solutions", 
+      icon: Hotel, 
+      desc: "PMS, room booking engine, housekeeping & guest folio" 
+    },
+    { 
+      text: "Hospital Management", 
+      href: "/hospital-management-solutions", 
+      icon: Hospital, 
+      desc: "EMR, clinic scheduling, pharmacy & bed management" 
+    },
+    { 
+      text: "School Management", 
+      href: "/school-management-solutions", 
+      icon: GraduationCap, 
+      desc: "LMS, admissions, fee management & academic gradebook" 
+    },
+    { 
+      text: "Construction Management", 
+      href: "/construction-management-solutions", 
+      icon: HardHat, 
+      desc: "Job costing, project billing, subcontractor & BOQ tracking" 
+    }
   ];
 
   return (
@@ -86,10 +224,10 @@ export default function Header({ onToggleMobileMenu }) {
         position: 'sticky',
         top: 0,
         zIndex: 999,
-        transition: 'background-color 0.3s ease, border-color 0.3s ease'
+        transition: 'background-color 0.3s ease, border-color 0.3s ease, padding 0.25s ease'
       }}
     >
-      <div className="container">
+      <div className="container" style={{ position: 'relative' }}>
         <div 
           className="main-header" 
           style={{ 
@@ -107,7 +245,7 @@ export default function Header({ onToggleMobileMenu }) {
                 alt="Altapete Solutions" 
                 src={logoSrc} 
                 style={{ 
-                  height: '40px', 
+                  height: '38px', 
                   width: 'auto',
                   maxWidth: '220px',
                   objectFit: 'contain',
@@ -118,352 +256,322 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Navigation Links */}
-          <div className="header-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, margin: '0 12px' }}>
+          <div className="header-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, margin: '0 16px' }}>
             <nav className="nav-main-menu d-none d-xl-block">
-              <ul className="main-menu">
+              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '4px', margin: 0, padding: 0, listStyle: 'none' }}>
                 
                 {/* 1. Solutions Mega Menu Trigger */}
                 <li
-                  className="nav-dropdown-item position-relative"
-                  onMouseEnter={() => setMegaMenuOpen(true)}
-                  onMouseLeave={() => setMegaMenuOpen(false)}
+                  className="nav-item-dropdown"
+                  onMouseEnter={() => handleMenuEnter('solutions')}
+                  onMouseLeave={handleMenuLeave}
                 >
-                  <Link 
-                    href="/" 
-                    className={megaMenuOpen ? 'is-open' : ''}
+                  <button 
+                    type="button"
+                    onClick={() => setActiveMenu(activeMenu === 'solutions' ? null : 'solutions')}
+                    onKeyDown={(e) => handleKeyDown(e, 'solutions')}
+                    aria-expanded={activeMenu === 'solutions'}
+                    aria-haspopup="true"
+                    className={`nav-link-btn ${activeMenu === 'solutions' ? 'is-active' : ''}`}
                   >
                     <span>Solutions</span>
-                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: megaMenuOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
-                  </Link>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'solutions' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  </button>
 
                   {/* Mega Menu Flyout */}
-                  {megaMenuOpen && (
-                    <div
-                      className="megamenu-dropdown"
-                      style={{
-                        position: 'fixed',
-                        top: '68px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: 'min(1180px, 96vw)',
-                        background: 'var(--bg-surface)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '20px',
-                        padding: '28px',
-                        boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(44, 115, 217, 0.2)',
-                        zIndex: 1000,
-                        animation: 'fadeIn 0.2s ease',
-                        overflow: 'hidden'
-                      }}
-                      onMouseEnter={() => setMegaMenuOpen(true)}
-                      onMouseLeave={() => setMegaMenuOpen(false)}
-                    >
-                      <div className="row g-4">
-                        {/* Left Column: Summary Card */}
-                        <div className="col-lg-4">
-                          <div 
-                            style={{
-                              background: 'var(--bg-card-subtle)',
-                              border: '1px solid var(--border-color)',
-                              borderRadius: '14px',
-                              padding: '22px',
-                              height: '100%',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              justifyContent: 'space-between'
-                            }}
-                          >
-                            <div>
-                              <div 
-                                style={{
-                                  display: 'inline-flex',
-                                  alignItems: 'center',
-                                  gap: '6px',
-                                  padding: '4px 12px',
-                                  borderRadius: '20px',
-                                  background: 'rgba(44, 115, 217, 0.12)',
-                                  border: '1px solid rgba(44, 115, 217, 0.3)',
-                                  color: 'var(--brand-accent)',
-                                  fontSize: '11px',
-                                  fontWeight: 700,
-                                  textTransform: 'uppercase',
-                                  marginBottom: '16px'
-                                }}
-                              >
-                                <Sparkles size={12} /> ENTERPRISE SUITE
+                  <div
+                    className={`megamenu-panel ${activeMenu === 'solutions' ? 'is-open' : ''}`}
+                    onMouseEnter={() => handleMenuEnter('solutions')}
+                    onMouseLeave={handleMenuLeave}
+                    role="region"
+                    aria-label="Solutions Navigation"
+                  >
+                    <div className="row g-4">
+                      
+                      {/* Column 1: Featured Overview & Architecture Support */}
+                      <div className="col-lg-4">
+                        <div className="megamenu-overview-card h-100 d-flex flex-column justify-content-between">
+                          <div>
+                            <div className="megamenu-chip mb-3">
+                              <Sparkles size={13} /> ENTERPRISE SOLUTIONS HUB
+                            </div>
+                            <h3 className="megamenu-heading mb-2">
+                              Next-Gen Technology Architecture
+                            </h3>
+                            <p className="megamenu-lead mb-4">
+                              Empowering businesses across Saudi Arabia, UAE, and Pakistan with robust ERP implementations, seamless API integrations, and cloud architectures designed for operational resilience.
+                            </p>
+
+                            <div className="megamenu-key-points">
+                              <div className="d-flex align-items-center gap-2 mb-2">
+                                <CheckCircle2 size={15} color="var(--brand-accent)" />
+                                <span>ZATCA Phase 2 E-Invoicing Compliant</span>
                               </div>
-                              <h3 style={{ color: 'var(--text-primary)', fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
-                                Solutions Overview
-                              </h3>
-                              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.65', margin: 0 }}>
-                                At APS, we deliver transformative digital solutions that empower businesses to scale, adapt, and excel—driving operational efficiency through enterprise platforms, cloud services, and custom-built applications.
-                              </p>
+                              <div className="d-flex align-items-center gap-2 mb-2">
+                                <CheckCircle2 size={15} color="var(--brand-accent)" />
+                                <span>Certified Odoo & SAP Functional Experts</span>
+                              </div>
+                              <div className="d-flex align-items-center gap-2">
+                                <CheckCircle2 size={15} color="var(--brand-accent)" />
+                                <span>Sub-second Multi-Database Synchronization</span>
+                              </div>
                             </div>
-                            <div className="mt-4">
-                              <Link 
-                                href="/contact-us"
-                                className="btn-primary-brand"
-                                style={{ padding: '9px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-                              >
-                                Consult an Architect <ArrowRight size={14} />
-                              </Link>
-                            </div>
+                          </div>
+
+                          <div className="pt-4 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                            <Link 
+                              href="/contact-us"
+                              className="btn-primary-brand w-100 text-center"
+                              style={{ padding: '10px 18px', fontSize: '13.5px' }}
+                            >
+                              Consult an Enterprise Architect <ArrowRight size={14} />
+                            </Link>
                           </div>
                         </div>
-
-                        {/* Middle Column: Digital Transformation (WITH ICONS) */}
-                        <div className="col-lg-4">
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)' }}>
-                              <Layers size={16} />
-                            </div>
-                            <h4 style={{ color: 'var(--text-primary)', fontSize: '15px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                              Digital Transformation
-                            </h4>
-                          </div>
-
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                            {digitalTransformationServices.map((item, idx) => {
-                              const ItemIcon = item.icon;
-                              return (
-                                <Link
-                                  key={idx}
-                                  href={item.href}
-                                  style={{
-                                    display: 'flex',
-                                    alignItems: 'flex-start',
-                                    gap: '12px',
-                                    padding: '10px 12px',
-                                    borderRadius: '10px',
-                                    textDecoration: 'none',
-                                    background: 'var(--bg-card-subtle)',
-                                    border: '1px solid var(--border-color)',
-                                    transition: 'all 0.2s ease'
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'var(--bg-hover)';
-                                    e.currentTarget.style.borderColor = 'var(--brand-accent)';
-                                    e.currentTarget.style.transform = 'translateX(4px)';
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'var(--bg-card-subtle)';
-                                    e.currentTarget.style.borderColor = 'var(--border-color)';
-                                    e.currentTarget.style.transform = 'translateX(0)';
-                                  }}
-                                >
-                                  <div 
-                                    style={{
-                                      padding: '7px',
-                                      borderRadius: '8px',
-                                      background: 'rgba(44, 115, 217, 0.12)',
-                                      color: 'var(--brand-accent)',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      justifyContent: 'center',
-                                      flexShrink: 0
-                                    }}
-                                  >
-                                    <ItemIcon size={16} strokeWidth={1.8} />
-                                  </div>
-                                  <div>
-                                    <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
-                                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>{item.desc}</div>
-                                  </div>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        {/* Right Column: Integration (WITH ICONS) */}
-                        <div className="col-lg-4">
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-                            <div style={{ padding: '6px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)' }}>
-                              <RefreshCw size={16} />
-                            </div>
-                            <h4 style={{ color: 'var(--text-primary)', fontSize: '15px', fontWeight: 700, margin: 0, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                              Integration Ecosystem
-                            </h4>
-                          </div>
-
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
-                            {integrationServices.map((item, idx) => {
-                              const ItemIcon = item.icon;
-                              return (
-                                <Link
-                                  key={idx}
-                                  href={item.href}
-                                  style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '10px',
-                                    padding: '8px 12px',
-                                    borderRadius: '8px',
-                                    textDecoration: 'none',
-                                    background: 'var(--bg-card-subtle)',
-                                    border: '1px solid var(--border-color)',
-                                    transition: 'all 0.18s ease'
-                                  }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'var(--bg-hover)';
-                                    e.currentTarget.style.borderColor = 'var(--brand-accent)';
-                                    e.currentTarget.style.transform = 'translateX(4px)';
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'var(--bg-card-subtle)';
-                                    e.currentTarget.style.borderColor = 'var(--border-color)';
-                                    e.currentTarget.style.transform = 'translateX(0)';
-                                  }}
-                                >
-                                  <div 
-                                    style={{
-                                      padding: '5px',
-                                      borderRadius: '6px',
-                                      background: 'rgba(44, 115, 217, 0.12)',
-                                      color: 'var(--brand-accent)',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      justifyContent: 'center',
-                                      flexShrink: 0
-                                    }}
-                                  >
-                                    <ItemIcon size={14} strokeWidth={1.8} />
-                                  </div>
-                                  <span style={{ color: 'var(--text-secondary)', fontSize: '13px', fontWeight: 500 }}>
-                                    {item.text}
-                                  </span>
-                                </Link>
-                              );
-                            })}
-                          </div>
-                        </div>
-
                       </div>
+
+                      {/* Column 2: Digital Transformation */}
+                      <div className="col-lg-4">
+                        <div className="megamenu-column-header mb-3">
+                          <div className="megamenu-header-icon">
+                            <Layers size={16} />
+                          </div>
+                          <h4>Digital Transformation</h4>
+                        </div>
+
+                        <div className="d-flex flex-column gap-2">
+                          {digitalTransformationServices.map((item, idx) => {
+                            const ItemIcon = item.icon;
+                            return (
+                              <Link
+                                key={idx}
+                                href={item.href}
+                                className="megamenu-item-card"
+                              >
+                                <div className="megamenu-item-icon">
+                                  <ItemIcon size={18} strokeWidth={1.8} />
+                                </div>
+                                <div className="megamenu-item-content">
+                                  <div className="megamenu-item-title">{item.text}</div>
+                                  <div className="megamenu-item-desc">{item.desc}</div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+
+                        <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                          <Link 
+                            href="/services" 
+                            className="megamenu-viewall-link"
+                          >
+                            Explore All Services & Advisory <ArrowRight size={13} />
+                          </Link>
+                        </div>
+                      </div>
+
+                      {/* Column 3: Integration Ecosystem */}
+                      <div className="col-lg-4">
+                        <div className="megamenu-column-header mb-3">
+                          <div className="megamenu-header-icon">
+                            <RefreshCw size={16} />
+                          </div>
+                          <h4>Integration Ecosystem</h4>
+                        </div>
+
+                        <div className="d-flex flex-column gap-2">
+                          {integrationServices.map((item, idx) => {
+                            const ItemIcon = item.icon;
+                            return (
+                              <Link
+                                key={idx}
+                                href={item.href}
+                                className="megamenu-item-card"
+                              >
+                                <div className="megamenu-item-icon">
+                                  <ItemIcon size={17} strokeWidth={1.8} />
+                                </div>
+                                <div className="megamenu-item-content">
+                                  <div className="d-flex align-items-center justify-content-between gap-1">
+                                    <span className="megamenu-item-title">{item.text}</span>
+                                    <span className="megamenu-badge-tag">{item.tag}</span>
+                                  </div>
+                                  <div className="megamenu-item-desc">{item.desc}</div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                        </div>
+                      </div>
+
                     </div>
-                  )}
+                  </div>
                 </li>
 
-                {/* 2. Services Dropdown (WITH ICONS) */}
+                {/* 2. Services Dropdown */}
                 <li
-                  className="nav-dropdown-item position-relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
+                  className="nav-item-dropdown"
+                  onMouseEnter={() => handleMenuEnter('services')}
+                  onMouseLeave={handleMenuLeave}
                 >
-                  <Link 
-                    href="/services" 
-                    className={servicesOpen ? 'is-open' : ''}
+                  <button 
+                    type="button"
+                    onClick={() => setActiveMenu(activeMenu === 'services' ? null : 'services')}
+                    onKeyDown={(e) => handleKeyDown(e, 'services')}
+                    aria-expanded={activeMenu === 'services'}
+                    aria-haspopup="true"
+                    className={`nav-link-btn ${activeMenu === 'services' ? 'is-active' : ''}`}
                   >
                     <span>Services</span>
-                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
-                  </Link>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'services' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  </button>
 
-                  {servicesOpen && (
-                    <div className="custom-dropdown-menu">
+                  <div 
+                    className={`dropdown-panel ${activeMenu === 'services' ? 'is-open' : ''}`}
+                    onMouseEnter={() => handleMenuEnter('services')}
+                    onMouseLeave={handleMenuLeave}
+                  >
+                    <div className="dropdown-panel-inner">
                       {servicesList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
                             key={idx}
                             href={item.href}
-                            className="custom-dropdown-item"
+                            className="dropdown-item-row"
                           >
-                            <div className="custom-dropdown-icon">
-                              <ItemIcon size={17} strokeWidth={1.9} />
+                            <div className="dropdown-icon-box">
+                              <ItemIcon size={18} strokeWidth={1.9} />
                             </div>
-                            <div className="custom-dropdown-text">
-                              <span className="custom-dropdown-title">{item.text}</span>
-                              <span className="custom-dropdown-desc">{item.desc}</span>
+                            <div className="dropdown-text-box">
+                              <span className="dropdown-item-heading">{item.text}</span>
+                              <span className="dropdown-item-sub">{item.desc}</span>
                             </div>
                           </Link>
                         );
                       })}
                     </div>
-                  )}
+                  </div>
                 </li>
 
-                {/* 3. Products Dropdown (WITH ICONS) */}
+                {/* 3. Products Dropdown */}
                 <li
-                  className="nav-dropdown-item position-relative"
-                  onMouseEnter={() => setProductsOpen(true)}
-                  onMouseLeave={() => setProductsOpen(false)}
+                  className="nav-item-dropdown"
+                  onMouseEnter={() => handleMenuEnter('products')}
+                  onMouseLeave={handleMenuLeave}
                 >
-                  <Link 
-                    href="/products" 
-                    className={productsOpen ? 'is-open' : ''}
+                  <button 
+                    type="button"
+                    onClick={() => setActiveMenu(activeMenu === 'products' ? null : 'products')}
+                    onKeyDown={(e) => handleKeyDown(e, 'products')}
+                    aria-expanded={activeMenu === 'products'}
+                    aria-haspopup="true"
+                    className={`nav-link-btn ${activeMenu === 'products' ? 'is-active' : ''}`}
                   >
                     <span>Products</span>
-                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: productsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }} />
-                  </Link>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'products' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  </button>
 
-                  {productsOpen && (
-                    <div className="custom-dropdown-menu">
+                  <div 
+                    className={`dropdown-panel ${activeMenu === 'products' ? 'is-open' : ''}`}
+                    onMouseEnter={() => handleMenuEnter('products')}
+                    onMouseLeave={handleMenuLeave}
+                  >
+                    <div className="dropdown-panel-inner">
                       {productsList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
                             key={idx}
                             href={item.href}
-                            className="custom-dropdown-item"
+                            className="dropdown-item-row"
                           >
-                            <div className="custom-dropdown-icon">
-                              <ItemIcon size={17} strokeWidth={1.9} />
+                            <div className="dropdown-icon-box">
+                              <ItemIcon size={18} strokeWidth={1.9} />
                             </div>
-                            <div className="custom-dropdown-text">
-                              <span className="custom-dropdown-title">{item.text}</span>
-                              <span className="custom-dropdown-desc">{item.desc}</span>
+                            <div className="dropdown-text-box">
+                              <span className="dropdown-item-heading">{item.text}</span>
+                              <span className="dropdown-item-sub">{item.desc}</span>
                             </div>
                           </Link>
                         );
                       })}
                     </div>
-                  )}
+                  </div>
                 </li>
 
-                {/* Direct Links */}
+                {/* 4. What We Do */}
                 <li>
-                  <Link href="/what-we-do">
-                    <span>What We Do</span>
+                  <Link 
+                    href="/what-we-do"
+                    className={`nav-link-btn ${router.pathname === '/what-we-do' ? 'is-active' : ''}`}
+                  >
+                    What We Do
                   </Link>
                 </li>
+
+                {/* 5. Blog */}
                 <li>
-                  <Link href="/company-profile">
-                    <span>Company Profile</span>
+                  <Link 
+                    href="/blog"
+                    className={`nav-link-btn ${router.pathname.startsWith('/blog') ? 'is-active' : ''}`}
+                  >
+                    Blog
                   </Link>
                 </li>
+
+                {/* 6. Company Profile */}
                 <li>
-                  <Link href="/career">
-                    <span>Careers</span>
+                  <Link 
+                    href="/company-profile"
+                    className={`nav-link-btn ${router.pathname === '/company-profile' ? 'is-active' : ''}`}
+                  >
+                    Company Profile
                   </Link>
                 </li>
-                <li>
-                  <Link href="/blog">
-                    <span>Blog</span>
-                  </Link>
-                </li>
+
               </ul>
             </nav>
-
-            {/* Mobile Hamburger Trigger */}
-            <div className="burger-icon burger-icon-white d-xl-none" onClick={onToggleMobileMenu} style={{ cursor: 'pointer' }}>
-              <span className="burger-icon-top"></span>
-              <span className="burger-icon-mid"></span>
-              <span className="burger-icon-bottom"></span>
-            </div>
           </div>
 
-          {/* Right Area: Theme Toggle & Primary Button */}
-          <div className="header-right d-flex align-items-center gap-2 gap-sm-3" style={{ flexShrink: 0 }}>
-            {/* Theme Toggle Button right next to CTA */}
+          {/* Right Header Controls: Theme Toggle & Contact Us CTA */}
+          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+            {/* Dark / Light Theme Toggle */}
             <ThemeToggle />
 
-            {/* Primary Dark Blue CTA */}
-            <Link 
-              href="/contact-us" 
-              className="btn-primary-brand d-none d-sm-inline-flex"
+            {/* Desktop Contact CTA */}
+            <div className="d-none d-sm-block">
+              <Link 
+                href="/contact-us"
+                className="btn-primary-brand"
+                style={{ padding: '9px 20px', fontSize: '13.5px' }}
+              >
+                Contact Us
+              </Link>
+            </div>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              className="d-xl-none hamburger-btn"
+              onClick={onToggleMobileMenu}
+              aria-label="Toggle Mobile Navigation Menu"
+              style={{
+                background: 'var(--bg-card-subtle)',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-primary)',
+                borderRadius: '8px',
+                padding: '8px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s ease'
+              }}
             >
-              Contact Us
-            </Link>
+              <Menu size={20} />
+            </button>
           </div>
+
         </div>
       </div>
     </header>

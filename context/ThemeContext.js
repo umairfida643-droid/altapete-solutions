@@ -10,16 +10,10 @@ export function ThemeProvider({ children }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('altapete_theme');
-    if (saved === 'dark' || saved === 'light') {
-      setTheme(saved);
-      document.documentElement.setAttribute('data-theme', saved);
-    } else {
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const initial = prefersDark ? 'dark' : 'light';
-      setTheme(initial);
-      document.documentElement.setAttribute('data-theme', initial);
-    }
+    // Read the pre-initialized attribute from HTML element (set by blocking inline script in _document.js)
+    const activeTheme = document.documentElement.getAttribute('data-theme') || localStorage.getItem('altapete_theme') || 'light';
+    setTheme(activeTheme);
+    document.documentElement.setAttribute('data-theme', activeTheme);
     setMounted(true);
   }, []);
 
