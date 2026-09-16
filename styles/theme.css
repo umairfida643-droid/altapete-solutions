@@ -193,3 +193,120 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.8px;
 }
+
+/* =============================================================================
+   CUSTOM DROPDOWN MENUS (SERVICES & PRODUCTS) WITH PREMIUM SVG ICONS
+   ============================================================================= */
+
+/* Completely disable legacy missing uicons character box [] */
+.header .main-menu li.has-children > a::after,
+.header .main-menu li.has-children > a:after,
+.header .main-menu li.has-children:hover > a::after,
+.header .main-menu li.has-children:hover > a:after {
+  display: none !important;
+  content: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide legacy scraped unstyled dropdowns that lack icons */
+.header .main-menu li ul,
+.header .main-menu li:hover > ul {
+  display: none !important;
+}
+
+/* New Premium Dropdown Container */
+.custom-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 320px;
+  background: var(--bg-surface) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 14px !important;
+  padding: 10px !important;
+  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(44, 115, 217, 0.15) !important;
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  animation: dropdownFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Individual Dropdown Item */
+.custom-dropdown-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  border-radius: 10px !important;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  background: transparent !important;
+}
+
+.custom-dropdown-item:hover {
+  background: var(--bg-hover) !important;
+  transform: translateX(4px) !important;
+}
+
+/* Icon Container with Accent Glow */
+.custom-dropdown-icon {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  background: rgba(44, 115, 217, 0.12) !important;
+  color: var(--brand-accent) !important;
+  border: 1px solid rgba(44, 115, 217, 0.25) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-dropdown-item:hover .custom-dropdown-icon {
+  background: var(--brand-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-accent) !important;
+  box-shadow: 0 4px 14px rgba(44, 115, 217, 0.4) !important;
+}
+
+/* Title & Description */
+.custom-dropdown-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-dropdown-title {
+  color: var(--text-primary) !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  transition: color 0.2s ease !important;
+}
+
+.custom-dropdown-item:hover .custom-dropdown-title {
+  color: var(--brand-accent) !important;
+}
+
+.custom-dropdown-desc {
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  margin-top: 2px !important;
+  line-height: 1.2 !important;
+}

@@ -373,51 +373,21 @@ export default function Header({ onToggleMobileMenu }) {
                   </Link>
 
                   {servicesOpen && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        width: '330px',
-                        background: 'var(--bg-surface)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '14px',
-                        padding: '12px',
-                        boxShadow: 'var(--card-shadow-hover)',
-                        zIndex: 1000,
-                        animation: 'fadeIn 0.2s ease'
-                      }}
-                    >
+                    <div className="custom-dropdown-menu">
                       {servicesList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
                             key={idx}
                             href={item.href}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '12px',
-                              padding: '9px 12px',
-                              borderRadius: '10px',
-                              textDecoration: 'none',
-                              transition: 'all 0.18s ease'
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.background = 'var(--bg-hover)';
-                              e.currentTarget.style.transform = 'translateX(4px)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.transform = 'translateX(0)';
-                            }}
+                            className="custom-dropdown-item"
                           >
-                            <div style={{ padding: '7px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                              <ItemIcon size={16} strokeWidth={1.8} />
+                            <div className="custom-dropdown-icon">
+                              <ItemIcon size={17} strokeWidth={1.9} />
                             </div>
-                            <div>
-                              <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
-                              <div style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{item.desc}</div>
+                            <div className="custom-dropdown-text">
+                              <span className="custom-dropdown-title">{item.text}</span>
+                              <span className="custom-dropdown-desc">{item.desc}</span>
                             </div>
                           </Link>
                         );
@@ -450,51 +420,21 @@ export default function Header({ onToggleMobileMenu }) {
                   </Link>
 
                   {productsOpen && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '100%',
-                        left: 0,
-                        width: '330px',
-                        background: 'var(--bg-surface)',
-                        border: '1px solid var(--border-color)',
-                        borderRadius: '14px',
-                        padding: '12px',
-                        boxShadow: 'var(--card-shadow-hover)',
-                        zIndex: 1000,
-                        animation: 'fadeIn 0.2s ease'
-                      }}
-                    >
+                    <div className="custom-dropdown-menu">
                       {productsList.map((item, idx) => {
                         const ItemIcon = item.icon;
                         return (
                           <Link
                             key={idx}
                             href={item.href}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '12px',
-                              padding: '9px 12px',
-                              borderRadius: '10px',
-                              textDecoration: 'none',
-                              transition: 'all 0.18s ease'
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.background = 'var(--bg-hover)';
-                              e.currentTarget.style.transform = 'translateX(4px)';
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.background = 'transparent';
-                              e.currentTarget.style.transform = 'translateX(0)';
-                            }}
+                            className="custom-dropdown-item"
                           >
-                            <div style={{ padding: '7px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.12)', color: 'var(--brand-accent)', flexShrink: 0 }}>
-                              <ItemIcon size={16} strokeWidth={1.8} />
+                            <div className="custom-dropdown-icon">
+                              <ItemIcon size={17} strokeWidth={1.9} />
                             </div>
-                            <div>
-                              <div style={{ color: 'var(--text-primary)', fontSize: '13.5px', fontWeight: 600 }}>{item.text}</div>
-                              <div style={{ color: 'var(--text-muted)', fontSize: '11px' }}>{item.desc}</div>
+                            <div className="custom-dropdown-text">
+                              <span className="custom-dropdown-title">{item.text}</span>
+                              <span className="custom-dropdown-desc">{item.desc}</span>
                             </div>
                           </Link>
                         );
