@@ -118,14 +118,14 @@ export default function Header({ onToggleMobileMenu }) {
           {/* Navigation Links */}
           <div className="header-nav">
             <nav className="nav-main-menu d-none d-xl-block">
-              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '6px', listStyle: 'none', margin: 0, padding: 0 }}>
+              <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '2px', listStyle: 'none', margin: 0, padding: 0 }}>
                 
                 {/* 1. Solutions Mega Menu Trigger */}
                 <li
-                  className="has-children position-relative"
+                  className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setMegaMenuOpen(true)}
                   onMouseLeave={() => setMegaMenuOpen(false)}
-                  style={{ padding: '8px 12px' }}
+                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/" 
@@ -152,14 +152,15 @@ export default function Header({ onToggleMobileMenu }) {
                         top: '68px',
                         left: '50%',
                         transform: 'translateX(-50%)',
-                        width: 'min(1160px, 95vw)',
+                        width: 'min(1180px, 96vw)',
                         background: 'var(--bg-surface)',
                         border: '1px solid var(--border-color)',
-                        borderRadius: '16px',
+                        borderRadius: '20px',
                         padding: '28px',
-                        boxShadow: 'var(--card-shadow-hover)',
+                        boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.6), 0 0 30px rgba(44, 115, 217, 0.2)',
                         zIndex: 1000,
-                        animation: 'fadeIn 0.2s ease'
+                        animation: 'fadeIn 0.2s ease',
+                        overflow: 'hidden'
                       }}
                       onMouseEnter={() => setMegaMenuOpen(true)}
                       onMouseLeave={() => setMegaMenuOpen(false)}
@@ -193,25 +194,25 @@ export default function Header({ onToggleMobileMenu }) {
                                   fontSize: '11px',
                                   fontWeight: 700,
                                   textTransform: 'uppercase',
-                                  marginBottom: '14px'
+                                  marginBottom: '16px'
                                 }}
                               >
-                                <Sparkles size={12} /> Enterprise Suite
+                                <Sparkles size={12} /> ENTERPRISE SUITE
                               </div>
-                              <h3 style={{ color: 'var(--text-primary)', fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>
+                              <h3 style={{ color: 'var(--text-primary)', fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
                                 Solutions Overview
                               </h3>
-                              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.6', margin: 0 }}>
-                                At APS, we deliver transformative digital solutions that empower businesses to scale, adapt, and excel through enterprise platforms.
+                              <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.65', margin: 0 }}>
+                                At APS, we deliver transformative digital solutions that empower businesses to scale, adapt, and excel—driving operational efficiency through enterprise platforms, cloud services, and custom-built applications.
                               </p>
                             </div>
-                            <div className="mt-3">
+                            <div className="mt-4">
                               <Link 
-                                href="/what-we-do"
-                                className="btn-secondary-brand w-100 text-center justify-content-center"
-                                style={{ padding: '8px 14px', fontSize: '13px' }}
+                                href="/contact-us"
+                                className="btn-primary-brand"
+                                style={{ padding: '9px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
                               >
-                                View Capabilities <ArrowRight size={14} />
+                                Consult an Architect <ArrowRight size={14} />
                               </Link>
                             </div>
                           </div>
@@ -292,7 +293,7 @@ export default function Header({ onToggleMobileMenu }) {
                             </h4>
                           </div>
 
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '310px', overflowY: 'auto' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
                             {integrationServices.map((item, idx) => {
                               const ItemIcon = item.icon;
                               return (
@@ -351,10 +352,10 @@ export default function Header({ onToggleMobileMenu }) {
 
                 {/* 2. Services Dropdown (WITH ICONS) */}
                 <li
-                  className="has-children position-relative"
+                  className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
-                  style={{ padding: '8px 12px' }}
+                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/services" 
@@ -398,10 +399,10 @@ export default function Header({ onToggleMobileMenu }) {
 
                 {/* 3. Products Dropdown (WITH ICONS) */}
                 <li
-                  className="has-children position-relative"
+                  className="nav-dropdown-item position-relative"
                   onMouseEnter={() => setProductsOpen(true)}
                   onMouseLeave={() => setProductsOpen(false)}
-                  style={{ padding: '8px 12px' }}
+                  style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}
                 >
                   <Link 
                     href="/products" 
@@ -444,22 +445,22 @@ export default function Header({ onToggleMobileMenu }) {
                 </li>
 
                 {/* Direct Links */}
-                <li style={{ padding: '8px 12px' }}>
+                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
                   <Link href="/what-we-do" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     What We Do
                   </Link>
                 </li>
-                <li style={{ padding: '8px 12px' }}>
+                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
                   <Link href="/company-profile" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Company Profile
                   </Link>
                 </li>
-                <li style={{ padding: '8px 12px' }}>
+                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
                   <Link href="/career" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Careers
                   </Link>
                 </li>
-                <li style={{ padding: '8px 12px' }}>
+                <li style={{ padding: '6px 10px', whiteSpace: 'nowrap' }}>
                   <Link href="/blog" style={{ color: 'var(--text-primary)', fontWeight: 500, fontSize: '14.5px', textDecoration: 'none' }}>
                     Blog
                   </Link>

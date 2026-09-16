@@ -198,11 +198,13 @@ body {
    CUSTOM DROPDOWN MENUS (SERVICES & PRODUCTS) WITH PREMIUM SVG ICONS
    ============================================================================= */
 
-/* Completely disable legacy missing uicons character box [] */
+/* Completely disable legacy missing uicons character box [] on all menu links */
 .header .main-menu li.has-children > a::after,
 .header .main-menu li.has-children > a:after,
 .header .main-menu li.has-children:hover > a::after,
-.header .main-menu li.has-children:hover > a:after {
+.header .main-menu li.has-children:hover > a:after,
+.header .main-menu li > a::after,
+.header .main-menu li > a:after {
   display: none !important;
   content: none !important;
   visibility: hidden !important;
@@ -211,10 +213,30 @@ body {
   height: 0 !important;
 }
 
+/* Ensure no nav links ever wrap onto two lines */
+.header .main-menu li a,
+.header .main-menu li span {
+  white-space: nowrap !important;
+}
+
 /* Hide legacy scraped unstyled dropdowns that lack icons */
 .header .main-menu li ul,
 .header .main-menu li:hover > ul {
   display: none !important;
+}
+
+/* Suppress all native scrollbars inside megamenu */
+.megamenu-dropdown,
+.megamenu-dropdown * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.megamenu-dropdown::-webkit-scrollbar,
+.megamenu-dropdown *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 /* New Premium Dropdown Container */
