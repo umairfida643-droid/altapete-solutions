@@ -107,8 +107,10 @@ export default function Header({ onToggleMobileMenu }) {
                 alt="Altapete Solutions" 
                 src={logoSrc} 
                 style={{ 
-                  maxHeight: '38px', 
+                  height: '40px', 
                   width: 'auto',
+                  maxWidth: '220px',
+                  objectFit: 'contain',
                   transition: 'opacity 0.2s ease'
                 }} 
               />
@@ -450,14 +452,14 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Right Area: Theme Toggle & Primary Button */}
-          <div className="header-right d-none d-sm-flex align-items-center gap-3" style={{ flexShrink: 0 }}>
-            {/* Theme Toggle Button */}
+          <div className="header-right d-flex align-items-center gap-2 gap-sm-3" style={{ flexShrink: 0 }}>
+            {/* Theme Toggle Button right next to CTA */}
             <ThemeToggle />
 
             {/* Primary Dark Blue CTA */}
             <Link 
               href="/contact-us" 
-              className="btn-primary-brand"
+              className="btn-primary-brand d-none d-sm-inline-flex"
             >
               Contact Us
             </Link>

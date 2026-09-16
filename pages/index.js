@@ -26,7 +26,8 @@ import {
   ExternalLink,
   Database,
   Terminal,
-  ChevronRight
+  ChevronRight,
+  Zap
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -153,15 +154,17 @@ export default function HomePage() {
           <div className="row align-items-center g-5">
             {/* Left Copy */}
             <div className="col-lg-6">
-              {/* Eyebrow Badge */}
-              <div className="brand-badge mb-25">
+              {/* Futuristic Eyebrow Badge */}
+              <div className="brand-badge mb-25 d-inline-flex align-items-center gap-2" style={{ backdropFilter: 'blur(10px)' }}>
                 <span className="pulse-dot-brand"></span>
-                <span>Next-Gen Enterprise Solutions</span>
+                <span style={{ letterSpacing: '0.6px', fontWeight: 700 }}>Next-Gen Enterprise Ecosystem</span>
+                <span style={{ opacity: 0.35 }}>•</span>
+                <span style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase' }}>Cloud & AI Ready</span>
               </div>
 
               {/* Headline with Live Typewriter */}
               <h1 
-                className="color-white font-heading mb-20"
+                className="font-heading mb-20 hero-headline"
                 style={{
                   fontSize: 'clamp(2.4rem, 4.2vw, 3.8rem)',
                   fontWeight: 800,
@@ -195,14 +198,14 @@ export default function HomePage() {
 
               {/* Subtitle */}
               <p 
-                className="color-gray-400 mb-35"
+                className="hero-subtitle mb-35"
                 style={{
-                  fontSize: 'clamp(1rem, 1.3vw, 1.15rem)',
+                  fontSize: 'clamp(1.02rem, 1.3vw, 1.15rem)',
                   lineHeight: 1.75,
                   maxWidth: '560px'
                 }}
               >
-                <strong style={{ color: '#ffffff' }}>Altapete</strong> delivers expert ERP, SAP, Oracle, and bookkeeping solutions to streamline operations, reduce operational costs, and accelerate enterprise growth.
+                <strong className="brand-highlight">Altapete</strong> delivers expert ERP, SAP, Oracle, and bookkeeping solutions to streamline operations, reduce operational costs, and accelerate enterprise growth.
               </p>
 
               {/* CTAs */}
@@ -224,19 +227,19 @@ export default function HomePage() {
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-40 pt-25 border-top d-flex align-items-center gap-4 flex-wrap" style={{ borderColor: 'rgba(44, 115, 217, 0.2)' }}>
+              <div className="mt-40 pt-25 border-top d-flex align-items-center gap-4 flex-wrap hero-trust-bar" style={{ borderColor: 'var(--border-color)' }}>
                 <div className="d-flex align-items-center gap-2">
                   <ShieldCheck size={20} color="#2c73d9" />
-                  <span style={{ color: '#94a3b8', fontSize: '13.5px' }}>ZATCA Phase 2 Certified</span>
+                  <span className="hero-trust-text" style={{ fontSize: '13.5px', fontWeight: 600 }}>ZATCA Phase 2 Certified</span>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <Award size={20} color="#2c73d9" />
-                  <span style={{ color: '#94a3b8', fontSize: '13.5px' }}>23+ Years Track Record</span>
+                  <span className="hero-trust-text" style={{ fontSize: '13.5px', fontWeight: 600 }}>23+ Years Track Record</span>
                 </div>
               </div>
             </div>
 
-            {/* Right Visual: High-Tech Enterprise Mockup & Floating Badges */}
+            {/* Right Visual: Futuristic Enterprise Ecosystem Showcase */}
             <div className="col-lg-6 position-relative text-center">
               <div 
                 className="hero-visual-wrapper position-relative"
@@ -245,13 +248,13 @@ export default function HomePage() {
                   margin: '0 auto'
                 }}
               >
-                {/* Ambient glow under image */}
+                {/* Cyber ambient glow backdrop */}
                 <div 
                   style={{
                     position: 'absolute',
-                    inset: '10%',
-                    background: 'radial-gradient(circle, rgba(44, 115, 217, 0.35) 0%, rgba(40, 36, 96, 0.4) 60%, transparent 100%)',
-                    filter: 'blur(40px)',
+                    inset: '-5%',
+                    background: 'radial-gradient(circle at 50% 50%, rgba(44, 115, 217, 0.3) 0%, rgba(40, 36, 96, 0.25) 50%, transparent 75%)',
+                    filter: 'blur(50px)',
                     zIndex: 0
                   }} 
                 />
@@ -263,57 +266,111 @@ export default function HomePage() {
                   className="img-fluid position-relative"
                   style={{
                     zIndex: 1,
-                    filter: 'drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6))',
+                    filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.55))',
                     maxHeight: '440px'
                   }}
                 />
 
-                {/* Floating KPI Badge 1 (Top Left) */}
+                {/* Floating KPI Badge 1 (Top Left): Real-time Core */}
                 <div
                   className="glass-card float-anim"
                   style={{
                     position: 'absolute',
-                    top: '10%',
-                    left: '-15px',
-                    padding: '12px 18px',
+                    top: '6%',
+                    left: '-20px',
+                    padding: '11px 16px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '12px',
+                    gap: '11px',
                     zIndex: 3,
-                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.5)'
+                    borderRadius: '14px',
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
                   }}
                 >
                   <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
-                    <Cpu size={22} />
+                    <Cpu size={20} />
                   </div>
                   <div className="text-start">
-                    <div style={{ color: '#ffffff', fontSize: '13px', fontWeight: 700 }}>Real-time Core</div>
-                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>99.9% Cloud Uptime</div>
+                    <div className="badge-kpi-title" style={{ fontSize: '12.5px', fontWeight: 700 }}>Real-time Core</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>99.99% Cloud Uptime</div>
                   </div>
                 </div>
 
-                {/* Floating KPI Badge 2 (Bottom Right) */}
+                {/* Floating KPI Badge 2 (Top Right): Multi-Cloud ERP */}
                 <div
                   className="glass-card float-anim"
                   style={{
                     position: 'absolute',
-                    bottom: '10%',
-                    right: '-15px',
-                    padding: '12px 18px',
+                    top: '12%',
+                    right: '-20px',
+                    padding: '11px 16px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '12px',
+                    gap: '11px',
                     zIndex: 3,
-                    animationDelay: '2.5s',
-                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.5)'
+                    borderRadius: '14px',
+                    animationDelay: '1.2s',
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
                   }}
                 >
                   <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
-                    <ShieldCheck size={22} />
+                    <Server size={20} />
                   </div>
                   <div className="text-start">
-                    <div style={{ color: '#ffffff', fontSize: '13px', fontWeight: 700 }}>ZATCA Compliant</div>
-                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>Phase 2 E-Invoicing</div>
+                    <div className="badge-kpi-title" style={{ fontSize: '12.5px', fontWeight: 700 }}>Cloud ERP Engine</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>Odoo 18 & SAP</div>
+                  </div>
+                </div>
+
+                {/* Floating KPI Badge 3 (Bottom Left): Ultra-Fast Sync */}
+                <div
+                  className="glass-card float-anim"
+                  style={{
+                    position: 'absolute',
+                    bottom: '12%',
+                    left: '-20px',
+                    padding: '11px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '11px',
+                    zIndex: 3,
+                    borderRadius: '14px',
+                    animationDelay: '1.8s',
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
+                  }}
+                >
+                  <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
+                    <Zap size={20} />
+                  </div>
+                  <div className="text-start">
+                    <div className="badge-kpi-title" style={{ fontSize: '12.5px', fontWeight: 700 }}>Sub-Second Sync</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>&lt;15ms Latency</div>
+                  </div>
+                </div>
+
+                {/* Floating KPI Badge 4 (Bottom Right): ZATCA Phase 2 */}
+                <div
+                  className="glass-card float-anim"
+                  style={{
+                    position: 'absolute',
+                    bottom: '6%',
+                    right: '-20px',
+                    padding: '11px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '11px',
+                    zIndex: 3,
+                    borderRadius: '14px',
+                    animationDelay: '2.5s',
+                    boxShadow: '0 15px 30px rgba(0, 0, 0, 0.4)'
+                  }}
+                >
+                  <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9' }}>
+                    <ShieldCheck size={20} />
+                  </div>
+                  <div className="text-start">
+                    <div className="badge-kpi-title" style={{ fontSize: '12.5px', fontWeight: 700 }}>ZATCA Compliant</div>
+                    <div style={{ color: '#2c73d9', fontSize: '11px', fontWeight: 600 }}>Phase 2 Certified</div>
                   </div>
                 </div>
               </div>

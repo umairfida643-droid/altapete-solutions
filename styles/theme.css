@@ -908,3 +908,317 @@ html[data-theme="light"] .client-card-wrapper:hover .client-logo-img {
   transform: scale(1.06) !important;
 }
 
+
+
+/* =============================================================================
+   UNIVERSAL THEME VISIBILITY & CONTRAST ENGINE
+   Fixes light/dark visibility, text contrast, and animation stabilization
+   ============================================================================= */
+
+/* ── 1. DARK THEME BASE ── */
+[data-theme="dark"] body,
+html[data-theme="dark"] body {
+  background-color: #080711 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] .hero-section {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 115, 217, 0.22), transparent 70%), linear-gradient(180deg, #080711 0%, #0d0c1d 100%) !important;
+}
+
+[data-theme="dark"] .services-section {
+  background: linear-gradient(180deg, #080711 0%, #100e26 100%) !important;
+}
+
+[data-theme="dark"] .pillars-section {
+  background: linear-gradient(180deg, #0d0c1d 0%, #12102a 100%) !important;
+}
+
+[data-theme="dark"] .consultation-section {
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(44, 115, 217, 0.15), transparent 70%), #080711 !important;
+}
+
+[data-theme="dark"] .glass-card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(44, 115, 217, 0.22) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── 2. LIGHT THEME FULL OVERHAUL ── */
+[data-theme="light"] body,
+html[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hero-section {
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(44, 115, 217, 0.12), transparent 70%), linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+}
+
+[data-theme="light"] .services-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #edf2f7 100%) !important;
+  border-top-color: rgba(44, 115, 217, 0.12) !important;
+}
+
+[data-theme="light"] .pillars-section {
+  background: linear-gradient(180deg, #edf2f7 0%, #f8fafc 100%) !important;
+  border-top-color: rgba(44, 115, 217, 0.12) !important;
+}
+
+[data-theme="light"] .consultation-section {
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(44, 115, 217, 0.08), transparent 70%), #f8fafc !important;
+  border-top-color: rgba(44, 115, 217, 0.12) !important;
+}
+
+/* Light Mode Typography Overrides - 100% High Contrast */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6,
+[data-theme="light"] .color-white,
+[data-theme="light"] .font-heading,
+[data-theme="light"] [style*="color: #ffffff"],
+[data-theme="light"] [style*="color:#ffffff"],
+[data-theme="light"] [style*="color: white"],
+[data-theme="light"] [style*="color:white"] {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] p,
+[data-theme="light"] .color-gray-400,
+[data-theme="light"] .color-gray-500,
+[data-theme="light"] .color-gray-600,
+[data-theme="light"] [style*="color: #b0bec5"],
+[data-theme="light"] [style*="color:#b0bec5"],
+[data-theme="light"] [style*="color: #94a3b8"],
+[data-theme="light"] [style*="color:#94a3b8"],
+[data-theme="light"] [style*="color: #a0a9b8"],
+[data-theme="light"] [style*="color:#a0a9b8"],
+[data-theme="light"] [style*="color: rgba(255, 255, 255"],
+[data-theme="light"] [style*="color:rgba(255, 255, 255"] {
+  color: #334155 !important;
+}
+
+/* Light Mode Card Styling */
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(44, 115, 217, 0.18) !important;
+  box-shadow: 0 10px 30px rgba(40, 36, 96, 0.06), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .glass-card h3,
+[data-theme="light"] .glass-card h4 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .glass-card p {
+  color: #475569 !important;
+}
+
+/* Light Mode Input Fields */
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(40, 36, 96, 0.2) !important;
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* ── 3. INTERNAL PAGES THEME ADAPTABILITY (.cover-home1) ── */
+[data-theme="light"] .cover-home1 section[style*="background:#0a1929"],
+[data-theme="light"] .cover-home1 section[style*="background: #0a1929"],
+[data-theme="light"] .cover-home1 section[style*="background:#0b0a17"],
+[data-theme="light"] .cover-home1 section[style*="background: #0b0a17"] {
+  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+}
+
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, rgba(10, 25, 41, 0.95)"] {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.92) 0%, rgba(44, 115, 217, 0.1) 100%) !important;
+}
+
+/* Internal Page Feature Cards in Light Mode */
+[data-theme="light"] .cover-home1 div[style*="border:2px solid #00d4ff40"],
+[data-theme="light"] .cover-home1 div[style*="border: 2px solid #00d4ff40"],
+[data-theme="light"] .cover-home1 div[style*="background:linear-gradient(135deg, #00d4ff10"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.18) !important;
+  box-shadow: 0 8px 24px rgba(40, 36, 96, 0.06) !important;
+}
+
+[data-theme="light"] .cover-home1 h4[style*="color:#00d4ff"],
+[data-theme="light"] .cover-home1 h4[style*="color: #00d4ff"] {
+  color: #282460 !important;
+}
+
+[data-theme="light"] .cover-home1 span[style*="color:#00d4ff"],
+[data-theme="light"] .cover-home1 span[style*="color: #00d4ff"] {
+  color: #2c73d9 !important;
+}
+
+[data-theme="light"] .cover-home1 div[style*="color:#b0bec5"],
+[data-theme="light"] .cover-home1 li[style*="color:#b0bec5"],
+[data-theme="light"] .cover-home1 p[style*="color:#b0bec5"] {
+  color: #334155 !important;
+}
+
+/* ── 4. ANIMATION STABILIZATION & UNIFICATION ── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Smooth unified card transitions with no jerky jumps or cutoffs */
+.cover-home1 div[style*="transition:all 0.3s ease"],
+.cover-home1 div[style*="transition: all 0.3s ease"],
+.glass-card,
+.client-card-wrapper {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.cover-home1 div[style*="transition:all 0.3s ease"]:hover,
+.cover-home1 div[style*="transition: all 0.3s ease"]:hover {
+  transform: translateY(-5px) !important;
+}
+
+
+/* ── 5. FUTURISTIC HERO STYLING & CONTRAST TOKENS ── */
+[data-theme="dark"] .hero-headline,
+html[data-theme="dark"] .hero-headline {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .hero-subtitle,
+html[data-theme="dark"] .hero-subtitle {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .brand-highlight,
+html[data-theme="dark"] .brand-highlight {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .hero-trust-text,
+html[data-theme="dark"] .hero-trust-text {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .badge-kpi-title,
+html[data-theme="dark"] .badge-kpi-title {
+  color: #ffffff !important;
+}
+
+/* Light Mode Overrides for Hero Section */
+[data-theme="light"] .hero-headline,
+html[data-theme="light"] .hero-headline {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hero-subtitle,
+html[data-theme="light"] .hero-subtitle {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .brand-highlight,
+html[data-theme="light"] .brand-highlight {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hero-trust-text,
+html[data-theme="light"] .hero-trust-text {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .badge-kpi-title,
+html[data-theme="light"] .badge-kpi-title {
+  color: #0f172a !important;
+}
+
+
+/* ── 6. UNIVERSAL INTERNAL PAGES ALIGNMENT & SPACING STANDARDIZATION ── */
+.cover-home1 {
+  width: 100% !important;
+  overflow-x: hidden !important;
+  padding: 40px 0 80px 0 !important;
+}
+
+.cover-home1 > .container {
+  max-width: 1280px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  margin: 0 auto !important;
+}
+
+/* Eliminate asymmetrical left-shift on all internal pages */
+.cover-home1 > .container > .row > .col-xl-1 {
+  display: none !important;
+}
+
+.cover-home1 > .container > .row > .col-xl-10 {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Standardize internal page section spacing */
+.cover-home1 section {
+  padding: 60px 0 !important;
+  border-radius: 20px !important;
+  margin-bottom: 40px !important;
+}
+
+/* Standardize card hover and prevent jittery cutoffs */
+.cover-home1 div[style*="border-radius:16px"],
+.cover-home1 div[style*="border-radius: 16px"],
+.cover-home1 div[style*="border-radius:20px"],
+.cover-home1 div[style*="border-radius: 20px"] {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Prevent overflow clipping on badges and tooltips */
+.cover-home1 .col-lg-6,
+.cover-home1 .col-lg-4,
+.cover-home1 .col-md-6 {
+  overflow: visible !important;
+}
+
+/* Light Theme overrides for all internal service/product cards */
+[data-theme="light"] .cover-home1 div[style*="background:rgba(255, 255, 255, 0.05)"],
+[data-theme="light"] .cover-home1 div[style*="background: rgba(255, 255, 255, 0.05)"],
+[data-theme="light"] .cover-home1 div[style*="background:rgba(15, 15, 15, 0.8)"],
+[data-theme="light"] .cover-home1 div[style*="background: rgba(15, 15, 15, 0.8)"],
+[data-theme="light"] .cover-home1 div[style*="background:rgba(15, 23, 42, 0.6)"],
+[data-theme="light"] .cover-home1 div[style*="background: rgba(15, 23, 42, 0.6)"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.18) !important;
+  box-shadow: 0 8px 25px rgba(40, 36, 96, 0.06) !important;
+}
+
+/* Light theme text adjustments for internal pages */
+[data-theme="light"] .cover-home1 strong,
+[data-theme="light"] .cover-home1 b {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .cover-home1 .text-base,
+[data-theme="light"] .cover-home1 .color-gray-600 {
+  color: #334155 !important;
+}
