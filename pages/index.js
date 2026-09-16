@@ -34,13 +34,13 @@ export default function HomePage() {
 
 
   const techPartners = [
-    { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/partners/odoo.webp", icon: Layers },
-    { name: "Oracle", tag: "Database", desc: "Business Solutions", logo: "/assets/imgs/external/oracle-6.svg", icon: Database },
-    { name: "ZATCA", tag: "Compliance", desc: "Phase 2 E-Invoicing", logo: "/assets/imgs/partners/zatca.png", icon: ShieldCheck },
-    { name: "SAP", tag: "Enterprise", desc: "Global ERP Platforms", logo: "/assets/imgs/partners/sap.jpeg", icon: Building2 },
-    { name: "Django", tag: "Framework", desc: "Enterprise Backends", logo: "/assets/imgs/external/django-logo-negative.png", icon: Code2 },
-    { name: "Python", tag: "Language", desc: "Core Engineering", logo: "/assets/imgs/external/python-logo-master-v3-TM.png", icon: Terminal },
-    { name: "PostgreSQL", tag: "Database", desc: "Relational Engine", logo: "/assets/imgs/partners/postgresql.svg", icon: Server }
+    { name: "Odoo", tag: "ERP", desc: "ERP Solutions", logo: "/assets/imgs/tech/odoo.svg", icon: Layers },
+    { name: "Oracle", tag: "Database", desc: "Business Solutions", logo: "/assets/imgs/tech/oracle.svg", icon: Database },
+    { name: "ZATCA", tag: "Compliance", desc: "Phase 2 E-Invoicing", logo: "/assets/imgs/tech/zatca.svg", icon: ShieldCheck },
+    { name: "SAP", tag: "Enterprise", desc: "Global ERP Platforms", logo: "/assets/imgs/tech/sap.svg", icon: Building2 },
+    { name: "Django", tag: "Framework", desc: "Enterprise Backends", logo: "/assets/imgs/tech/django.svg", icon: Code2 },
+    { name: "Python", tag: "Language", desc: "Core Engineering", logo: "/assets/imgs/tech/python.svg", icon: Terminal },
+    { name: "PostgreSQL", tag: "Database", desc: "Relational Engine", logo: "/assets/imgs/tech/postgresql.svg", icon: Server }
   ];
 
   const coreServices = [
@@ -325,16 +325,15 @@ export default function HomePage() {
       {/* ────────────────── 3. TECHNOLOGY PARTNERS MARQUEE ────────────────── */}
       <section 
         className="partners-section py-5 position-relative"
-        style={{ background: '#0b0a17' }}
       >
         <div className="container text-center mb-40">
           <div className="brand-badge mb-15">
             <Cpu size={13} /> Technology Stack
           </div>
-          <h3 className="color-white font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)' }}>
+          <h3 className="font-heading mb-15" style={{ fontSize: 'clamp(2rem, 3.2vw, 2.6rem)', color: 'var(--text-primary)' }}>
             Driven by a <span className="color-linear">Powerful</span> Technology Ecosystem
           </h3>
-          <p className="color-gray-400 mx-auto" style={{ maxWidth: '650px', fontSize: '15px' }}>
+          <p className="mx-auto" style={{ maxWidth: '650px', fontSize: '15px', color: 'var(--text-secondary)' }}>
             We leverage industry-leading technologies and tier-1 partnerships to deliver robust, scalable, and innovative enterprise solutions.
           </p>
         </div>
@@ -354,26 +353,29 @@ export default function HomePage() {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    textAlign: 'center'
+                    textAlign: 'center',
+                    borderRadius: '16px'
                   }}
                 >
                   <div 
+                    className="tech-logo-box"
                     style={{
                       width: '100%',
-                      height: '80px',
-                      background: '#ffffff',
-                      borderRadius: '12px',
+                      height: '76px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      padding: '12px',
-                      marginBottom: '16px'
+                      padding: '10px 16px',
+                      marginBottom: '16px',
+                      borderRadius: '12px',
+                      transition: 'all 0.25s ease'
                     }}
                   >
                     <img 
                       src={tp.logo} 
                       alt={tp.name} 
-                      style={{ maxHeight: '50px', maxWidth: '100%', objectFit: 'contain' }} 
+                      className="tech-logo-img"
+                      style={{ maxHeight: '46px', maxWidth: '85%', objectFit: 'contain' }} 
                     />
                   </div>
                   <span 
@@ -381,9 +383,9 @@ export default function HomePage() {
                       display: "inline-flex",
                       alignItems: "center",
                       gap: "6px",
-                      background: "rgba(44, 115, 217, 0.15)",
-                      color: "#2c73d9",
-                      border: "1px solid rgba(44, 115, 217, 0.3)",
+                      background: "rgba(44, 115, 217, 0.12)",
+                      color: "var(--brand-accent)",
+                      border: "1px solid rgba(44, 115, 217, 0.25)",
                       padding: "4px 12px",
                       borderRadius: "20px",
                       fontSize: "11px",
@@ -395,10 +397,10 @@ export default function HomePage() {
                     <tp.icon size={12} strokeWidth={2} />
                     {tp.tag}
                   </span>
-                  <h4 style={{ color: '#ffffff', fontSize: '17px', fontWeight: 700, margin: '0 0 4px' }}>
+                  <h4 style={{ color: 'var(--text-primary)', fontSize: '17px', fontWeight: 700, margin: '0 0 4px' }}>
                     {tp.name}
                   </h4>
-                  <p style={{ color: '#94a3b8', fontSize: '13px', margin: 0 }}>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '13px', margin: 0 }}>
                     {tp.desc}
                   </p>
                 </div>

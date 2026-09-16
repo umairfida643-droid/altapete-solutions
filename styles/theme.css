@@ -739,3 +739,94 @@ p.section-subtitle {
   transform: translateX(4px) !important;
 }
 
+/* =============================================================================
+   TECHNOLOGY STACK / PARTNERS CARDS (DARK: WHITE LOGOS, NO BG; LIGHT: ORIGINAL COLORS)
+   ============================================================================= */
+
+.partners-section {
+  background: var(--bg-body) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* 1. Dark Mode (Default theme or [data-theme="dark"]) */
+.tech-card-wrapper {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  box-shadow: var(--card-shadow) !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tech-card-wrapper:hover {
+  transform: translateY(-8px) !important;
+  border-color: var(--brand-accent) !important;
+  box-shadow: var(--card-shadow-hover) !important;
+}
+
+/* Logo container: NO solid white background in dark mode! */
+.tech-logo-box,
+.tech-card-wrapper .tech-logo-box,
+.tech-card-wrapper .logo-wrapper {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+  transition: all 0.3s ease !important;
+}
+
+.tech-card-wrapper:hover .tech-logo-box,
+.tech-card-wrapper:hover .logo-wrapper {
+  background: rgba(44, 115, 217, 0.08) !important;
+  border-color: rgba(44, 115, 217, 0.3) !important;
+}
+
+/* In Dark Theme: Logos are rendered in crisp, pure WHITE with subtle glow on hover */
+.tech-logo-img,
+.tech-card-wrapper .tech-logo-img,
+.tech-card-wrapper .tech-logo {
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.9 !important;
+  transition: all 0.3s ease !important;
+}
+
+.tech-card-wrapper:hover .tech-logo-img,
+.tech-card-wrapper:hover .tech-logo {
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.45)) !important;
+}
+
+/* 2. Light Theme: Authentic Brand Colors & Subtle Soft Box */
+[data-theme="light"] .tech-logo-box,
+html[data-theme="light"] .tech-logo-box,
+[data-theme="light"] .tech-card-wrapper .logo-wrapper,
+html[data-theme="light"] .tech-card-wrapper .logo-wrapper {
+  background: rgba(44, 115, 217, 0.04) !important;
+  border: 1px solid rgba(44, 115, 217, 0.12) !important;
+  box-shadow: none !important;
+}
+
+[data-theme="light"] .tech-card-wrapper:hover .tech-logo-box,
+html[data-theme="light"] .tech-card-wrapper:hover .tech-logo-box,
+[data-theme="light"] .tech-card-wrapper:hover .logo-wrapper,
+html[data-theme="light"] .tech-card-wrapper:hover .logo-wrapper {
+  background: rgba(44, 115, 217, 0.09) !important;
+  border-color: rgba(44, 115, 217, 0.3) !important;
+}
+
+/* In Light Theme: Logos show 100% in their authentic original colors! */
+[data-theme="light"] .tech-logo-img,
+html[data-theme="light"] .tech-logo-img,
+[data-theme="light"] .tech-card-wrapper .tech-logo,
+html[data-theme="light"] .tech-card-wrapper .tech-logo {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .tech-card-wrapper:hover .tech-logo-img,
+html[data-theme="light"] .tech-card-wrapper:hover .tech-logo-img,
+[data-theme="light"] .tech-card-wrapper:hover .tech-logo,
+html[data-theme="light"] .tech-card-wrapper:hover .tech-logo {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: scale(1.08) !important;
+}
+
