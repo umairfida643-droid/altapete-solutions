@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@/components/Layout';
+import EnterpriseSolutionsView from '@/components/EnterpriseSolutionsView';
 import pagesData from '@/data/pagesData.json';
 
 export default function EnterpriseSolutionsPage() {
@@ -7,10 +8,10 @@ export default function EnterpriseSolutionsPage() {
 
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title={data?.title || "Enterprise Solutions & Digital Transformation Services | Altapete"}
+      description={data?.description || "Transform your enterprise with comprehensive digital solutions."}
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <EnterpriseSolutionsView />
     </Layout>
   );
 }
