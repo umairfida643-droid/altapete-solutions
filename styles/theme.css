@@ -3878,9 +3878,55 @@ html[data-theme="light"] div[style*="color:#E8F4FC"] p[style*="color:#5A7D9A"] {
 
 /* Ensure CTA buttons with vibrant gradient backgrounds have crisp white readable text */
 a[style*="linear-gradient"],
-button[style*="linear-gradient"] {
+button[style*="linear-gradient"],
+.cta-primary-btn {
   color: #ffffff !important;
 }
+
+.cta-primary-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  border-radius: 50px !important;
+  padding: 16px 44px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
+
+[data-theme="dark"] .cta-primary-btn,
+.dark-theme .cta-primary-btn {
+  background: linear-gradient(135deg, #00AEEF 0%, #0088C7 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 32px rgba(0, 174, 239, 0.4) !important;
+}
+
+[data-theme="dark"] .cta-primary-btn:hover,
+.dark-theme .cta-primary-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 42px rgba(0, 174, 239, 0.6) !important;
+  color: #ffffff !important;
+}
+
+:root:not([data-theme="dark"]) .cta-primary-btn,
+[data-theme="light"] .cta-primary-btn,
+.light-theme .cta-primary-btn {
+  background: linear-gradient(135deg, #2c73d9 0%, #1d4ed8 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(44, 115, 217, 0.35) !important;
+}
+
+:root:not([data-theme="dark"]) .cta-primary-btn:hover,
+[data-theme="light"] .cta-primary-btn:hover,
+.light-theme .cta-primary-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 36px rgba(44, 115, 217, 0.5) !important;
+  color: #ffffff !important;
+}
+
 
 
 

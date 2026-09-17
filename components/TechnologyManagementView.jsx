@@ -414,8 +414,34 @@ export default function TechnologyManagementView() {
               Let&apos;s discuss how our comprehensive IT services can optimize your infrastructure and accelerate your business growth.
             </p>
             <div className="cta-btn-wrapper">
-              <Link href="/contact-us" className="cta-primary-btn">
-                Schedule Free Consultation
+              <Link 
+                href="/contact-us" 
+                className="cta-primary-btn"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '10px',
+                  borderRadius: '50px',
+                  padding: '16px 44px',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  background: isDark 
+                    ? 'linear-gradient(135deg, #00AEEF 0%, #0088C7 100%)' 
+                    : 'linear-gradient(135deg, #2c73d9 0%, #1d4ed8 100%)',
+                  boxShadow: isDark 
+                    ? '0 12px 32px rgba(0, 174, 239, 0.4)' 
+                    : '0 12px 28px rgba(44, 115, 217, 0.35)',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <span>Schedule Free Consultation</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
               </Link>
             </div>
           </div>
@@ -1165,23 +1191,43 @@ export default function TechnologyManagementView() {
           justify-content: center;
         }
 
-        .cta-primary-btn {
-          display: inline-block;
-          background: linear-gradient(135deg, #00AEEF, #0088C7);
-          color: #06111E !important;
-          border-radius: 50px;
-          padding: 15px 44px;
-          font-size: 16px;
-          font-weight: 700;
+        :global(.cta-primary-btn) {
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 10px !important;
+          border-radius: 50px !important;
+          padding: 16px 44px !important;
+          font-size: 16px !important;
+          font-weight: 700 !important;
           text-decoration: none !important;
-          box-shadow: 0 12px 32px rgba(0, 174, 239, 0.35);
-          transition: all 0.3s ease;
+          color: #ffffff !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          cursor: pointer !important;
         }
 
-        .cta-primary-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 16px 40px rgba(0, 174, 239, 0.5);
-          color: #000000 !important;
+        :global(.dark-theme .cta-primary-btn) {
+          background: linear-gradient(135deg, #00AEEF 0%, #0088C7 100%) !important;
+          color: #ffffff !important;
+          box-shadow: 0 12px 32px rgba(0, 174, 239, 0.4) !important;
+        }
+
+        :global(.dark-theme .cta-primary-btn:hover) {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 16px 42px rgba(0, 174, 239, 0.6) !important;
+          color: #ffffff !important;
+        }
+
+        :global(.light-theme .cta-primary-btn) {
+          background: linear-gradient(135deg, #2c73d9 0%, #1d4ed8 100%) !important;
+          color: #ffffff !important;
+          box-shadow: 0 12px 28px rgba(44, 115, 217, 0.35) !important;
+        }
+
+        :global(.light-theme .cta-primary-btn:hover) {
+          transform: translateY(-2px) !important;
+          box-shadow: 0 16px 36px rgba(44, 115, 217, 0.5) !important;
+          color: #ffffff !important;
         }
 
         /* --- RESPONSIVE BREAKPOINTS --- */
