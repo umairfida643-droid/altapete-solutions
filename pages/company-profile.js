@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import CompanyProfileView from '@/components/CompanyProfileView';
 
 export default function CompanyProfilePage() {
-  const data = pagesData['/company-profile'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Company Profile — Altapete Solutions"
+      description="Download Altapete's official service profiles covering accounting, ERP, tax advisory, IFRS, digital marketing, and more."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <CompanyProfileView />
     </Layout>
   );
 }
