@@ -839,12 +839,9 @@ export default function SallaIntegrationPage() {
 
                   {/* Right Column: Active Phase Detail Card */}
                   <div className="col-lg-7">
-                    <div style={{
-                      background: '#ffffff',
-                      border: '2px solid rgba(44, 115, 217, 0.25)',
+                    <div className="salla-phase-detail-card" style={{
                       borderRadius: '24px',
                       padding: '40px',
-                      boxShadow: '0 20px 50px rgba(40, 36, 96, 0.08)',
                       position: 'relative'
                     }}>
                       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -1312,6 +1309,42 @@ export default function SallaIntegrationPage() {
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        [data-theme="dark"] .salla-phase-detail-card {
+          background: #0d1830 !important;
+          border: 1.5px solid rgba(0, 174, 239, 0.35) !important;
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+        }
+        [data-theme="dark"] .salla-phase-detail-card h3 {
+          color: #ffffff !important;
+        }
+        [data-theme="dark"] .salla-phase-detail-card p {
+          color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .salla-phase-detail-card span {
+          color: #cbd5e1 !important;
+        }
+
+        [data-theme="light"] .salla-phase-detail-card,
+        :root:not([data-theme="dark"]) .salla-phase-detail-card {
+          background: #ffffff !important;
+          border: 1.5px solid #cbd5e1 !important;
+          box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06) !important;
+        }
+        [data-theme="light"] .salla-phase-detail-card h3,
+        :root:not([data-theme="dark"]) .salla-phase-detail-card h3 {
+          color: #0f172a !important;
+        }
+        [data-theme="light"] .salla-phase-detail-card p,
+        :root:not([data-theme="dark"]) .salla-phase-detail-card p {
+          color: #334155 !important;
+        }
+        [data-theme="light"] .salla-phase-detail-card span,
+        :root:not([data-theme="dark"]) .salla-phase-detail-card span {
+          color: #1e293b !important;
+        }
+      `}</style>
     </Layout>
   );
 }

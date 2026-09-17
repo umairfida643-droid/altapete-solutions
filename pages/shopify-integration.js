@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import ShopifyIntegrationView from '@/components/ShopifyIntegrationView';
 
 export default function ShopifyIntegrationPage() {
-  const data = pagesData['/shopify-integration'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Shopify Integration Solutions | Altapete Solutions"
+      description="Scalable, enterprise-grade Shopify and Shopify Plus integration solutions, custom apps, ERP connectivity, and performance optimization."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <ShopifyIntegrationView />
     </Layout>
   );
 }

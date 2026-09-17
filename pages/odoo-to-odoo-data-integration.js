@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import OdooToOdooView from '@/components/OdooToOdooView';
 
 export default function OdooToOdooDataIntegrationPage() {
-  const data = pagesData['/odoo-to-odoo-data-integration'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Odoo to Odoo Data Integration | Altapete Solutions"
+      description="Seamless real-time Odoo to Odoo data integration, multi-company consolidation, and automated synchronization services."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <OdooToOdooView />
     </Layout>
   );
 }

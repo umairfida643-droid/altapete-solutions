@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import ZatcaIntegrationView from '@/components/ZatcaIntegrationView';
 
 export default function ZatcaIntegrationPage() {
-  const data = pagesData['/zatca-integration'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="ZATCA Phase 2 E-Invoicing Integration Solutions | Altapete"
+      description="Achieve 100% full ZATCA Phase 2 e-invoicing compliance with Altapete's certified integration solutions for ERPs, POS, and custom platforms across Saudi Arabia."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <ZatcaIntegrationView />
     </Layout>
   );
 }
