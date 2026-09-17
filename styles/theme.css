@@ -4894,8 +4894,8 @@ header.stick {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: clamp(540px, 62vh, 660px) !important;
-  padding: 85px 0 65px !important;
+  min-height: clamp(380px, 44vh, 460px) !important;
+  padding: 55px 0 45px !important;
   width: 100% !important;
 }
 
@@ -4924,18 +4924,32 @@ header.stick {
   width: 100% !important;
 }
 
+.product-detail-view .sol-stats-wrapper {
+  position: relative !important;
+  z-index: 2 !important;
+  padding: 20px 0 10px !important;
+  width: 100% !important;
+}
+
+.product-detail-view img {
+  max-width: 100% !important;
+  height: auto;
+}
+
 /* 3. Equal Typography Scale Across All 6 Product Pages */
 .product-detail-view h1 {
-  font-size: clamp(34px, 5vw, 56px) !important;
+  font-size: clamp(30px, 4.2vw, 48px) !important;
   font-weight: 800 !important;
-  line-height: 1.15 !important;
+  line-height: 1.18 !important;
   letter-spacing: -0.5px !important;
+  margin-bottom: 16px !important;
 }
 
 .product-detail-view section:first-of-type p {
-  font-size: clamp(16px, 1.8vw, 18px) !important;
-  line-height: 1.7 !important;
-  max-width: 760px !important;
+  font-size: clamp(15px, 1.5vw, 17px) !important;
+  line-height: 1.6 !important;
+  max-width: 740px !important;
+  margin: 0 auto 26px !important;
 }
 
 .product-detail-view h2 {
@@ -5008,9 +5022,12 @@ html[data-theme="light"] .product-detail-view li,
   color: #334155 !important;
 }
 
-/* Light Theme Stat Boxes in Hero */
+/* Light Theme Stat Boxes in Hero / Stats Wrapper */
+[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 > div,
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
+html[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 > div,
 html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
+:root:not([data-theme="dark"]) .product-detail-view .sol-stats-wrapper .col-md-4 > div,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 > div {
   background: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(10px) !important;
@@ -5018,15 +5035,21 @@ html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > 
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06) !important;
 }
 
+[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 h2,
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2,
+html[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 h2,
 html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2,
+:root:not([data-theme="dark"]) .product-detail-view .sol-stats-wrapper .col-md-4 h2,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 h2 {
   color: #2c73d9 !important;
   text-shadow: none !important;
 }
 
+[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 p,
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
+html[data-theme="light"] .product-detail-view .sol-stats-wrapper .col-md-4 p,
 html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
+:root:not([data-theme="dark"]) .product-detail-view .sol-stats-wrapper .col-md-4 p,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 p {
   color: #475569 !important;
   font-weight: 600 !important;
@@ -5105,4 +5128,14 @@ html[data-theme="dark"] .product-detail-view p {
 html[data-theme="dark"] .product-detail-view li {
   color: #cbd5e1 !important;
 }
+
+[data-theme="dark"] .product-detail-view .sol-stats-wrapper .col-md-4 > div,
+html[data-theme="dark"] .product-detail-view .sol-stats-wrapper .col-md-4 > div {
+  background: rgba(15, 23, 42, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 212, 255, 0.25) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
 
