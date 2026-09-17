@@ -1465,31 +1465,108 @@ html[data-theme="light"] .hero-visual-wrapper {
 }
 
 
-/* ── 6. UNIVERSAL INTERNAL PAGES ALIGNMENT & SPACING STANDARDIZATION ── */
-.cover-home1 {
-  width: 100% !important;
-  overflow: visible !important;
-  overflow-x: visible !important;
-  overflow-y: visible !important;
-  height: auto !important;
-  max-height: none !important;
-  padding: 40px 0 80px 0 !important;
-}
+/* ── 6. GLOBAL WEBSITE SPACING & UNIFIED CONTAINER WIDTH SYSTEM ── */
+/*
+   Ensures consistent width (1280px max-width) and uniform vertical rhythm
+   across the Homepage, Internal Pages, Scraped Pages, Header, and Footer.
+*/
 
-.cover-home1 > .container {
+/* 6A. GLOBAL UNIFIED CONTAINER WIDTH (ALL PAGES IDENTICAL) */
+.container,
+.app-layout .container,
+.cover-home1 > .container,
+.cover-home1 .container,
+.wwd-page-wrapper .container,
+.tech-view-wrapper .container,
+.enterprise-solutions-wrapper .container,
+.cad-wrapper .container,
+.zatca-view-wrapper .container,
+.odoo-view-wrapper .container,
+header .container,
+footer .container {
+  width: 100% !important;
   max-width: 1280px !important;
   padding-left: 20px !important;
   padding-right: 20px !important;
-  margin: 0 auto !important;
-  overflow: visible !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
 }
 
-/* Eliminate asymmetrical left-shift on all internal pages */
-.cover-home1 > .container > .row > .col-xl-1 {
+@media (min-width: 1400px) {
+  .container,
+  .app-layout .container,
+  .cover-home1 > .container,
+  .cover-home1 .container,
+  .wwd-page-wrapper .container,
+  .tech-view-wrapper .container,
+  .enterprise-solutions-wrapper .container,
+  .cad-wrapper .container,
+  .zatca-view-wrapper .container,
+  .odoo-view-wrapper .container,
+  header .container,
+  footer .container {
+    max-width: 1280px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container,
+  .app-layout .container,
+  .cover-home1 > .container,
+  .cover-home1 .container,
+  .wwd-page-wrapper .container,
+  .tech-view-wrapper .container,
+  .enterprise-solutions-wrapper .container,
+  .cad-wrapper .container,
+  .zatca-view-wrapper .container,
+  .odoo-view-wrapper .container,
+  header .container,
+  footer .container {
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container,
+  .app-layout .container,
+  .cover-home1 > .container,
+  .cover-home1 .container,
+  .wwd-page-wrapper .container,
+  .tech-view-wrapper .container,
+  .enterprise-solutions-wrapper .container,
+  .cad-wrapper .container,
+  .zatca-view-wrapper .container,
+  .odoo-view-wrapper .container,
+  header .container,
+  footer .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Flatten nested containers so they take 100% width and don't double padding */
+.container .container,
+.cover-home1 .container .container,
+.col-xl-10 .container,
+section .container .container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Eliminate asymmetrical left-shift on legacy 10-column / 1-column pages */
+.cover-home1 > .container > .row > .col-xl-1,
+.cover-home1 .row > .col-xl-1 {
   display: none !important;
 }
 
-.cover-home1 > .container > .row > .col-xl-10 {
+.cover-home1 > .container > .row > .col-xl-10,
+.cover-home1 .row > .col-xl-10 {
   width: 100% !important;
   max-width: 100% !important;
   flex: 0 0 100% !important;
@@ -1498,12 +1575,233 @@ html[data-theme="light"] .hero-visual-wrapper {
   overflow: visible !important;
 }
 
-/* Standardize internal page section spacing */
-.cover-home1 section {
-  padding: 60px 0 !important;
-  border-radius: 20px !important;
-  margin-bottom: 40px !important;
+/* 6B. UNIFIED PAGE WRAPPERS (ZERO OUT SURROUNDING GAP INFLATION) */
+.cover-home1,
+.wwd-page-wrapper,
+.tech-view-wrapper,
+.enterprise-solutions-wrapper,
+.cad-wrapper,
+.zatca-view-wrapper,
+.odoo-view-wrapper {
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  overflow-x: visible !important;
   overflow-y: visible !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* 6C. GLOBAL SECTION VERTICAL SPACING HIERARCHY */
+/* Zero out rogue vertical margins between sections to stop double-margin gaps */
+section,
+.cover-home1 section,
+.app-layout section,
+main section {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  overflow-y: visible !important;
+}
+
+/* 1. HERO SECTIONS (Page header banner) */
+.hero-section,
+.tech-hero-section,
+.cad-hero-section,
+.wwd-hero-section,
+.odoo-hero-section,
+.zatca-hero-section,
+.cover-home1 section:first-of-type,
+.cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
+section.apx-hero,
+section.hero-banner,
+section[class*="hero"] {
+  padding-top: 70px !important;
+  padding-bottom: 50px !important;
+}
+
+/* 2. GENERAL CONTENT & SOLUTION SECTIONS */
+.cover-home1 section,
+.services-section,
+.pillars-section,
+.wwd-capabilities-section,
+.wwd-methodology-section,
+.wwd-values-section,
+.wwd-team-section,
+.wwd-stats-section,
+.cad-stack-section,
+.cad-methodology-section,
+.zatca-solutions-section,
+.zatca-benefits-section,
+.odoo-solutions-section,
+section[id*="solution"],
+section[id*="service"],
+section[id*="process"],
+section[id*="industry"],
+section[id*="industries"],
+section[id*="architecture"],
+section[class*="services"] {
+  padding-top: 55px !important;
+  padding-bottom: 55px !important;
+}
+
+/* 3. MARQUEE & LOGO SLIDER SECTIONS */
+.partners-section,
+.clients-section,
+.wwd-clients-section,
+.odoo-clients-section,
+.zatca-clients-section,
+.cover-home1 section:has(.marquee-wrapper),
+.cover-home1 section:has(.slider-viewport),
+.cover-home1 section:has(.slider-track),
+.cover-home1 section:has(.marquee-track),
+section:has(.marquee-wrapper),
+section:has(.slider-viewport),
+section:has(.slider-track) {
+  padding-top: 40px !important;
+  padding-bottom: 50px !important;
+}
+
+/* 4. BOTTOM CTA & CONTACT SECTIONS (Prior to Footer) */
+.cover-home1 section:last-of-type,
+.cover-home1 > .container > .row > .col-xl-10 > section:last-of-type,
+.consultation-section,
+.wwd-contact-section,
+.cad-cta-section,
+.odoo-cta-section,
+.zatca-cta-section,
+section[id*="contact"],
+section[class*="cta"],
+section[class*="consultation"] {
+  padding-top: 35px !important;
+  padding-bottom: 70px !important;
+}
+
+/* Mobile & Tablet Section Spacing Scale */
+@media (max-width: 768px) {
+  .hero-section,
+  .tech-hero-section,
+  .cad-hero-section,
+  .wwd-hero-section,
+  .odoo-hero-section,
+  .zatca-hero-section,
+  .cover-home1 section:first-of-type,
+  .cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
+  section.apx-hero,
+  section.hero-banner,
+  section[class*="hero"] {
+    padding-top: 40px !important;
+    padding-bottom: 30px !important;
+  }
+
+  .cover-home1 section,
+  .services-section,
+  .pillars-section,
+  .wwd-capabilities-section,
+  .wwd-methodology-section,
+  .wwd-values-section,
+  .wwd-team-section,
+  .wwd-stats-section,
+  .cad-stack-section,
+  .cad-methodology-section,
+  .zatca-solutions-section,
+  .zatca-benefits-section,
+  .odoo-solutions-section,
+  section[id*="solution"],
+  section[id*="service"],
+  section[id*="process"],
+  section[id*="industry"],
+  section[id*="industries"],
+  section[id*="architecture"],
+  section[class*="services"] {
+    padding-top: 38px !important;
+    padding-bottom: 38px !important;
+  }
+
+  .partners-section,
+  .clients-section,
+  .wwd-clients-section,
+  .odoo-clients-section,
+  .zatca-clients-section,
+  .cover-home1 section:has(.marquee-wrapper),
+  .cover-home1 section:has(.slider-viewport),
+  .cover-home1 section:has(.slider-track),
+  .cover-home1 section:has(.marquee-track),
+  section:has(.marquee-wrapper),
+  section:has(.slider-viewport),
+  section:has(.slider-track) {
+    padding-top: 25px !important;
+    padding-bottom: 35px !important;
+  }
+
+  .cover-home1 section:last-of-type,
+  .cover-home1 > .container > .row > .col-xl-10 > section:last-of-type,
+  .consultation-section,
+  .wwd-contact-section,
+  .cad-cta-section,
+  .odoo-cta-section,
+  .zatca-cta-section,
+  section[id*="contact"],
+  section[class*="cta"],
+  section[class*="consultation"] {
+    padding-top: 25px !important;
+    padding-bottom: 45px !important;
+  }
+}
+
+/* 6D. SECTION INTRO HEADERS & TYPOGRAPHY SPACING */
+.section-header,
+.head-sidebar,
+.section-title-wrap,
+.wwd-animate > .text-center,
+.container > .text-center.mb-40,
+.container > .text-center.mb-50,
+section > .container > .text-center {
+  margin-bottom: 40px !important;
+}
+
+@media (max-width: 768px) {
+  .section-header,
+  .head-sidebar,
+  .section-title-wrap,
+  .wwd-animate > .text-center,
+  .container > .text-center.mb-40,
+  .container > .text-center.mb-50,
+  section > .container > .text-center {
+    margin-bottom: 24px !important;
+  }
+}
+
+.brand-badge,
+.eyebrow-badge,
+.badge-pill,
+.wwd-badge-pill,
+.zatca-eyebrow-pill,
+.odoo-eyebrow-pill,
+.badge {
+  margin-bottom: 14px !important;
+}
+
+section h2,
+section h3.font-heading,
+.section-title,
+.hero-title,
+.wwd-hero-title {
+  margin-bottom: 14px !important;
+  line-height: 1.22 !important;
+}
+
+.section-subtitle,
+.hero-subtitle,
+.hero-description,
+.section-description,
+p.mx-auto[style*="max-width"],
+.color-gray-400.mx-auto {
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+  line-height: 1.65 !important;
 }
 
 /* Standardize card hover and prevent jittery cutoffs */
