@@ -4891,9 +4891,10 @@ header.stick {
   position: relative !important;
   overflow: hidden !important;
   display: flex !important;
+  flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: clamp(520px, 60vh, 620px) !important;
+  min-height: clamp(540px, 62vh, 660px) !important;
   padding: 85px 0 65px !important;
   width: 100% !important;
 }
@@ -4912,7 +4913,15 @@ header.stick {
   background-position: center !important;
   background-repeat: no-repeat !important;
   pointer-events: none !important;
+  z-index: 1 !important;
   transition: opacity 0.3s ease !important;
+}
+
+.product-detail-view .sol-hero-section > .container,
+.product-detail-view section:first-of-type > .container {
+  position: relative !important;
+  z-index: 2 !important;
+  width: 100% !important;
 }
 
 /* 3. Equal Typography Scale Across All 6 Product Pages */
@@ -4941,7 +4950,7 @@ header.stick {
   line-height: 1.35 !important;
 }
 
-/* 4. LIGHT THEME: Ultra-low image opacity & crystal-clear dark text */
+/* 4. LIGHT THEME: Image visible as background with crisp dark text overlay */
 [data-theme="light"] .product-detail-view,
 html[data-theme="light"] .product-detail-view,
 :root:not([data-theme="dark"]) .product-detail-view {
@@ -4954,7 +4963,7 @@ html[data-theme="light"] .product-detail-view .sol-hero-section,
 html[data-theme="light"] .product-detail-view section:first-of-type,
 :root:not([data-theme="dark"]) .product-detail-view .sol-hero-section,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type {
-  background: linear-gradient(180deg, #edf4fc 0%, #ffffff 100%) !important;
+  background: #ffffff !important;
 }
 
 [data-theme="light"] .product-detail-view .sol-hero-bg,
@@ -4963,7 +4972,7 @@ html[data-theme="light"] .product-detail-view .sol-hero-bg,
 html[data-theme="light"] .product-detail-view section:first-of-type > div[style*="background-image"],
 :root:not([data-theme="dark"]) .product-detail-view .sol-hero-bg,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type > div[style*="background-image"] {
-  opacity: 0.08 !important;
+  opacity: 0.18 !important;
   filter: contrast(0.95) !important;
 }
 
@@ -4971,6 +4980,7 @@ html[data-theme="light"] .product-detail-view section:first-of-type > div[style*
 html[data-theme="light"] .product-detail-view h1,
 :root:not([data-theme="dark"]) .product-detail-view h1 {
   color: #0f172a !important;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.85) !important;
 }
 
 [data-theme="light"] .product-detail-view h2,
@@ -4988,7 +4998,8 @@ html[data-theme="light"] .product-detail-view h3,
 [data-theme="light"] .product-detail-view p,
 html[data-theme="light"] .product-detail-view p,
 :root:not([data-theme="dark"]) .product-detail-view p {
-  color: #475569 !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
 }
 
 [data-theme="light"] .product-detail-view li,
@@ -5001,9 +5012,10 @@ html[data-theme="light"] .product-detail-view li,
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
 html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 > div {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06) !important;
 }
 
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2,
@@ -5016,7 +5028,8 @@ html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2
 [data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
 html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 p {
-  color: #64748b !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
 }
 
 /* Light Theme Hero CTA Button */
@@ -5050,26 +5063,26 @@ html[data-theme="light"] .product-detail-view div[style*="border-radius: 20px"] 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* 5. DARK THEME: Controlled 0.15 opacity & vibrant crisp text */
+/* 5. DARK THEME: Image visible as background with vibrant white/cyan text overlay */
 [data-theme="dark"] .product-detail-view .sol-hero-section,
 [data-theme="dark"] .product-detail-view section:first-of-type,
 html[data-theme="dark"] .product-detail-view .sol-hero-section,
 html[data-theme="dark"] .product-detail-view section:first-of-type {
-  background: radial-gradient(circle at 50% 30%, #0d1e38 0%, #050b14 100%) !important;
+  background: #060b14 !important;
 }
 
 [data-theme="dark"] .product-detail-view .sol-hero-bg,
 [data-theme="dark"] .product-detail-view section:first-of-type > div[style*="background-image"],
 html[data-theme="dark"] .product-detail-view .sol-hero-bg,
 html[data-theme="dark"] .product-detail-view section:first-of-type > div[style*="background-image"] {
-  opacity: 0.15 !important;
-  filter: saturate(1.15) !important;
+  opacity: 0.30 !important;
+  filter: brightness(0.7) contrast(1.1) !important;
 }
 
 [data-theme="dark"] .product-detail-view h1,
 html[data-theme="dark"] .product-detail-view h1 {
   color: #ffffff !important;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85) !important;
 }
 
 [data-theme="dark"] .product-detail-view h2,
@@ -5084,7 +5097,8 @@ html[data-theme="dark"] .product-detail-view h3 {
 
 [data-theme="dark"] .product-detail-view p,
 html[data-theme="dark"] .product-detail-view p {
-  color: #b0bec5 !important;
+  color: #cbd5e1 !important;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.8) !important;
 }
 
 [data-theme="dark"] .product-detail-view li,
