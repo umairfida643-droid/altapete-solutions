@@ -4515,3 +4515,166 @@ button[style*="linear-gradient"],
 div[aria-hidden='true'] svg[viewBox='0 0 440 440'] {
   display: none !important;
 }
+
+/* ------------------------------------------------------------------
+   GLOBAL TYPOGRAPHY & SPACING STANDARDIZATION
+   Ensures every page has consistent headings, body text, and spacing
+   ------------------------------------------------------------------ */
+
+/* -- Section Padding: All pages identical -- */
+section,
+.section,
+.py-4,
+.py-5 {
+  padding-top: 72px !important;
+  padding-bottom: 72px !important;
+}
+@media (max-width: 991px) {
+  section, .section, .py-4, .py-5 {
+    padding-top: 52px !important;
+    padding-bottom: 52px !important;
+  }
+}
+@media (max-width: 575px) {
+  section, .section, .py-4, .py-5 {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+}
+
+/* -- Hero sections keep their larger padding -- */
+.hero-section,
+.cp-hero,
+.corp-adv-hero,
+.tax-adv-hero,
+.out-hero-section,
+.hr-hero-section,
+.shopify-hero-section,
+.zatca-hero,
+.salla-hero-section {
+  padding-top: 90px !important;
+  padding-bottom: 80px !important;
+}
+@media (max-width: 991px) {
+  .hero-section, .cp-hero, .corp-adv-hero, .tax-adv-hero,
+  .out-hero-section, .hr-hero-section, .shopify-hero-section,
+  .zatca-hero, .salla-hero-section {
+    padding-top: 64px !important;
+    padding-bottom: 60px !important;
+  }
+}
+
+/* -- Global max-width container -- */
+.container {
+  max-width: 1280px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* -- H1 headings -- */
+h1,
+.h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.5px !important;
+}
+
+/* -- H2 section headings -- */
+h2,
+.h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.8rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.2 !important;
+}
+
+/* -- H3 card/sub-section headings -- */
+h3,
+.h3 {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+
+/* -- H4 card titles -- */
+h4,
+.h4 {
+  font-size: clamp(1.05rem, 2vw, 1.3rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
+
+/* -- Body text -- */
+p {
+  font-size: clamp(0.9rem, 1.1vw, 1rem) !important;
+  line-height: 1.7 !important;
+}
+
+/* -- Section intro subtitles -- */
+.section-subtitle,
+.hero-subtitle,
+.sub-heading {
+  font-size: clamp(1rem, 1.3vw, 1.1rem) !important;
+  line-height: 1.72 !important;
+}
+
+/* -- Eyebrow / badge pills -- */
+.brand-badge,
+.eyebrow,
+.tag-pill {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+}
+
+/* -- Card body text -- */
+.service-card-desc,
+.card-text,
+.card p,
+.glass-card p {
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
+
+/* -- CTA section headings -- */
+.cta-title,
+.cta-section h2,
+.cta-box h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem) !important;
+  font-weight: 800 !important;
+}
+
+/* -- Marquee sections have smaller vertical padding -- */
+.clients-section,
+.partners-section,
+.out-marquee-section,
+.marquee-section {
+  padding-top: 48px !important;
+  padding-bottom: 56px !important;
+}
+
+/* -- Fix nested scroll: no element should scroll inside the page -- */
+.app-layout,
+main,
+.cp-view-wrapper,
+.corp-adv-wrapper,
+.tax-adv-wrapper,
+.outsourcing-view-wrapper,
+.hr-muqeem-wrapper,
+.shopify-wrapper,
+.zatca-wrapper,
+.salla-wrapper,
+.odoo-wrapper {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  min-height: unset !important;
+  height: auto !important;
+}
+
+/* -- Prevent any section from becoming a scroll container -- */
+section {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  height: auto !important;
+}

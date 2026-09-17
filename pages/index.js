@@ -144,7 +144,8 @@ export default function HomePage() {
         className="hero-section position-relative"
         style={{
           padding: '110px 0 90px',
-          overflow: 'hidden'
+          overflowX: 'hidden',
+          overflowY: 'visible'
         }}
       >
         {/* Ambient background glows */}

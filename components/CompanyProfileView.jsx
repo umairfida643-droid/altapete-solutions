@@ -144,7 +144,7 @@ export default function CompanyProfileView() {
   return (
     <div
       className="cp-view-wrapper"
-      style={{ background: bg, minHeight: '100vh' }}
+      style={{ background: bg }}
     >
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
