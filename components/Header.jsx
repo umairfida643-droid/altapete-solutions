@@ -261,8 +261,8 @@ export default function Header({ onToggleMobileMenu }) {
             </Link>
           </div>
 
-          {/* Navigation Links */}
-          <div className="header-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 1, margin: '0 16px' }}>
+          {/* Navigation Links: desktop only */}
+          <div className="header-nav d-none d-xl-flex" style={{ alignItems: 'center', justifyContent: 'center', flex: 1, margin: '0 16px' }}>
             <nav className="nav-main-menu d-none d-xl-block">
               <ul className="main-menu" style={{ display: 'flex', alignItems: 'center', gap: '4px', margin: 0, padding: 0, listStyle: 'none' }}>
                 
@@ -541,7 +541,7 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Right Header Controls: Theme Toggle & Contact Us CTA */}
-          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
+          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
             {/* Dark / Light Theme Toggle */}
             <ThemeToggle />
 
@@ -562,15 +562,18 @@ export default function Header({ onToggleMobileMenu }) {
               onClick={onToggleMobileMenu}
               aria-label="Toggle Mobile Navigation Menu"
               style={{
-                background: 'var(--bg-card-subtle)',
+                background: 'var(--toggle-bg)',
                 border: '1px solid var(--border-color)',
                 color: 'var(--text-primary)',
-                borderRadius: '8px',
-                padding: '8px',
+                borderRadius: '10px',
+                width: '38px',
+                height: '38px',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                flexShrink: 0,
+                padding: 0,
                 transition: 'all 0.2s ease'
               }}
             >
