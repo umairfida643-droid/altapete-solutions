@@ -4922,8 +4922,9 @@ header.stick {
   position: relative !important;
   z-index: 2 !important;
   width: 100% !important;
-  padding-top: 15px !important;
-  padding-bottom: 15px !important;
+  max-width: 1200px !important;
+  padding: 15px 20px !important;
+  box-sizing: border-box !important;
 }
 
 .product-detail-view .sol-stats-wrapper {
@@ -4940,11 +4941,20 @@ header.stick {
 
 /* 3. Equal Typography Scale Across All 6 Product Pages */
 .product-detail-view h1 {
-  font-size: clamp(30px, 4.2vw, 48px) !important;
+  font-size: clamp(26px, 3.8vw, 46px) !important;
   font-weight: 800 !important;
-  line-height: 1.18 !important;
+  line-height: 1.2 !important;
   letter-spacing: -0.5px !important;
   margin-bottom: 16px !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+}
+
+.product-detail-view h1 span {
+  -webkit-box-decoration-break: clone !important;
+  box-decoration-break: clone !important;
+  display: inline !important;
 }
 
 .product-detail-view section:first-of-type p {
@@ -4964,6 +4974,40 @@ header.stick {
   font-size: clamp(18px, 2.2vw, 24px) !important;
   font-weight: 700 !important;
   line-height: 1.35 !important;
+}
+
+@media (max-width: 768px) {
+  .product-detail-view .sol-hero-section,
+  .product-detail-view section:first-of-type {
+    min-height: auto !important;
+    padding: 50px 0 35px !important;
+  }
+  .product-detail-view .sol-hero-section > .container,
+  .product-detail-view section:first-of-type > .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .product-detail-view h1 {
+    font-size: clamp(22px, 5.8vw, 30px) !important;
+    line-height: 1.25 !important;
+    letter-spacing: normal !important;
+  }
+  .product-detail-view h1 br {
+    display: none !important;
+  }
+  .product-detail-view section:first-of-type p {
+    font-size: 14.5px !important;
+    line-height: 1.55 !important;
+    padding: 0 4px !important;
+    margin-bottom: 24px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-detail-view h1 {
+    font-size: clamp(20px, 6.2vw, 24px) !important;
+    line-height: 1.3 !important;
+  }
 }
 
 /* 4. LIGHT THEME: Image visible as background with crisp dark text overlay */
@@ -5139,5 +5183,371 @@ html[data-theme="dark"] .product-detail-view .sol-stats-wrapper .col-md-4 > div 
   border-radius: 16px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
 }
+
+/* ─── PROFESSIONAL BENEFITS SECTION (Dark & Light Themes) ─── */
+.sol-benefits-section {
+  padding: 60px 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+[data-theme="light"] .sol-benefits-section,
+html[data-theme="light"] .sol-benefits-section,
+:root:not([data-theme="dark"]) .sol-benefits-section {
+  background: #f8fafc !important;
+}
+
+[data-theme="dark"] .sol-benefits-section,
+html[data-theme="dark"] .sol-benefits-section {
+  background: #080f1e !important;
+}
+
+.sol-benefits-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 16px !important;
+  margin-bottom: 20px !important;
+  transition: transform 0.25s ease !important;
+}
+
+.sol-benefits-item:hover {
+  transform: translateX(4px) !important;
+}
+
+.sol-benefit-icon-badge {
+  flex-shrink: 0 !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #00AEEF 0%, #0066cc 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(0, 174, 239, 0.35) !important;
+  margin-top: 2px !important;
+}
+
+.sol-benefit-content {
+  flex: 1 !important;
+}
+
+.sol-benefit-title {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  margin: 0 0 4px 0 !important;
+  transition: color 0.2s ease !important;
+}
+
+.sol-benefit-desc {
+  font-size: 14.5px !important;
+  line-height: 1.6 !important;
+  margin: 0 !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Light Mode Benefits Text */
+[data-theme="light"] .sol-benefit-title,
+html[data-theme="light"] .sol-benefit-title,
+:root:not([data-theme="dark"]) .sol-benefit-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .sol-benefit-desc,
+html[data-theme="light"] .sol-benefit-desc,
+:root:not([data-theme="dark"]) .sol-benefit-desc {
+  color: #475569 !important;
+  font-weight: 450 !important;
+}
+
+/* Dark Mode Benefits Text */
+[data-theme="dark"] .sol-benefit-title,
+html[data-theme="dark"] .sol-benefit-title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .sol-benefit-desc,
+html[data-theme="dark"] .sol-benefit-desc {
+  color: #94a3b8 !important;
+}
+
+/* Benefits Image Frame */
+.sol-benefit-image-frame {
+  width: 100% !important;
+  max-width: 520px !important;
+  height: 420px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+[data-theme="light"] .sol-benefit-image-frame,
+html[data-theme="light"] .sol-benefit-image-frame,
+:root:not([data-theme="dark"]) .sol-benefit-image-frame {
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="dark"] .sol-benefit-image-frame,
+html[data-theme="dark"] .sol-benefit-image-frame {
+  border: 1px solid rgba(0, 212, 255, 0.25) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+.sol-benefit-image-frame img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* ─── PROFESSIONAL INTEGRATION ECOSYSTEM SECTION ─── */
+.sol-eco-section {
+  padding: 60px 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.sol-eco-card {
+  display: flex !important;
+  align-items: center !important;
+  border-radius: 18px !important;
+  margin-bottom: 24px !important;
+  padding: 24px 32px !important;
+  transition: all 0.3s ease !important;
+}
+
+@media (max-width: 768px) {
+  .sol-eco-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    padding: 20px !important;
+    gap: 18px !important;
+  }
+}
+
+.sol-eco-header {
+  min-width: 250px !important;
+  max-width: 280px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding-right: 28px !important;
+}
+
+@media (max-width: 768px) {
+  .sol-eco-header {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 14px !important;
+  }
+}
+
+.sol-eco-badge {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+.sol-eco-title {
+  font-size: 19px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+}
+
+.sol-eco-items {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 32px !important;
+  padding-left: 28px !important;
+  flex-wrap: wrap !important;
+}
+
+@media (max-width: 768px) {
+  .sol-eco-items {
+    padding-left: 0 !important;
+    gap: 20px !important;
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+}
+
+.sol-eco-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: transform 0.25s ease !important;
+  min-width: 75px !important;
+}
+
+.sol-eco-item:hover {
+  transform: translateY(-4px) !important;
+}
+
+.sol-eco-icon-wrap {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.sol-eco-label {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  transition: color 0.2s ease !important;
+}
+
+/* Light Theme Styling for Eco Cards */
+[data-theme="light"] .sol-eco-card,
+html[data-theme="light"] .sol-eco-card,
+:root:not([data-theme="dark"]) .sol-eco-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .sol-eco-header,
+html[data-theme="light"] .sol-eco-header,
+:root:not([data-theme="dark"]) .sol-eco-header {
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+@media (max-width: 768px) {
+  [data-theme="light"] .sol-eco-header,
+  html[data-theme="light"] .sol-eco-header,
+  :root:not([data-theme="dark"]) .sol-eco-header {
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+}
+
+[data-theme="light"] .sol-eco-title,
+html[data-theme="light"] .sol-eco-title,
+:root:not([data-theme="dark"]) .sol-eco-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .sol-eco-icon-wrap,
+html[data-theme="light"] .sol-eco-icon-wrap,
+:root:not([data-theme="dark"]) .sol-eco-icon-wrap {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+[data-theme="light"] .sol-eco-item:hover .sol-eco-icon-wrap,
+html[data-theme="light"] .sol-eco-item:hover .sol-eco-icon-wrap,
+:root:not([data-theme="dark"]) .sol-eco-item:hover .sol-eco-icon-wrap {
+  border-color: #00AEEF !important;
+  box-shadow: 0 6px 20px rgba(0, 174, 239, 0.25) !important;
+}
+
+[data-theme="light"] .sol-eco-label,
+html[data-theme="light"] .sol-eco-label,
+:root:not([data-theme="dark"]) .sol-eco-label {
+  color: #1e293b !important;
+  font-weight: 600 !important;
+}
+
+/* Dark Theme Styling for Eco Cards */
+[data-theme="dark"] .sol-eco-card,
+html[data-theme="dark"] .sol-eco-card {
+  background: rgba(15, 23, 42, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(0, 212, 255, 0.2) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .sol-eco-header,
+html[data-theme="dark"] .sol-eco-header {
+  border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+@media (max-width: 768px) {
+  [data-theme="dark"] .sol-eco-header,
+  html[data-theme="dark"] .sol-eco-header {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+[data-theme="dark"] .sol-eco-title,
+html[data-theme="dark"] .sol-eco-title {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .sol-eco-icon-wrap,
+html[data-theme="dark"] .sol-eco-icon-wrap {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .sol-eco-item:hover .sol-eco-icon-wrap,
+html[data-theme="dark"] .sol-eco-item:hover .sol-eco-icon-wrap {
+  border-color: #00d4ff !important;
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.3) !important;
+}
+
+[data-theme="dark"] .sol-eco-label,
+html[data-theme="dark"] .sol-eco-label {
+  color: #cbd5e1 !important;
+}
+
+/* ─── GLOBAL LIGHT THEME TEXT SAFEGUARDS FOR INLINE SPANS ─── */
+[data-theme="light"] .product-detail-view span[style*="color:#ffffff"],
+[data-theme="light"] .product-detail-view span[style*="color: #ffffff"],
+[data-theme="light"] .product-detail-view span[style*="color:#fff"],
+[data-theme="light"] .product-detail-view span[style*="color: #fff"],
+html[data-theme="light"] .product-detail-view span[style*="color:#ffffff"],
+html[data-theme="light"] .product-detail-view span[style*="color: #ffffff"],
+:root:not([data-theme="dark"]) .product-detail-view span[style*="color:#ffffff"],
+:root:not([data-theme="dark"]) .product-detail-view span[style*="color: #ffffff"] {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .product-detail-view span[style*="color:#b0bec5"],
+[data-theme="light"] .product-detail-view span[style*="color: #b0bec5"],
+html[data-theme="light"] .product-detail-view span[style*="color:#b0bec5"],
+html[data-theme="light"] .product-detail-view span[style*="color: #b0bec5"],
+:root:not([data-theme="dark"]) .product-detail-view span[style*="color:#b0bec5"],
+:root:not([data-theme="dark"]) .product-detail-view span[style*="color: #b0bec5"] {
+  color: #475569 !important;
+}
+
+@media (max-width: 991px) {
+  .sol-benefits-section .row > div {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    padding: 0 15px !important;
+  }
+  .sol-benefits-section .col-lg-6:first-child {
+    margin-bottom: 40px !important;
+  }
+  .sol-benefit-image-frame {
+    max-width: 100% !important;
+    height: 320px !important;
+  }
+}
+
+
 
 
