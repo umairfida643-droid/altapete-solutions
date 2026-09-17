@@ -4922,6 +4922,8 @@ header.stick {
   position: relative !important;
   z-index: 2 !important;
   width: 100% !important;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
 }
 
 .product-detail-view .sol-stats-wrapper {
