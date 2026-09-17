@@ -472,10 +472,10 @@ export default function HomePage() {
             }}
           >
             <div className="row g-5 align-items-center">
-              {/* Left Column: Office Hubs */}
+              {/* Left Column: Strategic Partnership & Consultation Highlights */}
               <div className="col-lg-5">
                 <div className="brand-badge mb-15">
-                  <MapPin size={13} /> Get In Touch
+                  <Sparkles size={13} /> Get In Touch
                 </div>
                 <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(2rem, 3vw, 2.5rem)', lineHeight: 1.25 }}>
                   Let’s Build the <span className="color-linear">Right Solution</span> Together
@@ -484,34 +484,34 @@ export default function HomePage() {
                   Whether it’s an ERP rollout, SAP migration, ZATCA e-invoicing integration, or financial advisory — our certified consultants will respond within 24 hours.
                 </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                      <MapPin size={20} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
+                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Zap size={19} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Al Khobar, Saudi Arabia</div>
-                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>Office# 09, 4th Floor, King Khalid Street Cross 15</div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">24-Hour Response Guarantee</div>
+                      <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>Direct connection with certified senior enterprise consultants</div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                      <MapPin size={20} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
+                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <ShieldCheck size={19} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Lahore, Pakistan</div>
-                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>159-D Nawab Town, Raiwind Road</div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Confidential Architecture Review</div>
+                      <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>NDA-backed assessment for your technology and compliance needs</div>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                    <div style={{ padding: '8px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.15)', color: '#2c73d9' }}>
-                      <MapPin size={20} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
+                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <CheckCircle2 size={19} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '15px' }}>Riyadh, Saudi Arabia</div>
-                      <div style={{ color: '#94a3b8', fontSize: '13.5px' }}>Building #44, Ibn Katheer Street, King Abdulaziz District</div>
+                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Tailored Implementation Blueprint</div>
+                      <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>Milestone-driven roadmap with transparent scope and ROI</div>
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@ import Footer from './Footer';
 import MobileDrawer from './MobileDrawer';
 import TechBackground from './TechBackground';
 import InteractivePageEnhancer from './InteractivePageEnhancer';
+import FloatingWidgets from './FloatingWidgets';
 
 export default function Layout({ children, title, description }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,6 +32,9 @@ export default function Layout({ children, title, description }) {
       </main>
 
       <Footer />
+
+      {/* Global WhatsApp (Bottom-Left) & Go To Top (Bottom-Right) Widgets */}
+      <FloatingWidgets />
     </div>
   );
 }
