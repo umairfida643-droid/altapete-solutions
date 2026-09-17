@@ -1482,6 +1482,8 @@ html[data-theme="light"] .hero-visual-wrapper {
 .cad-wrapper .container,
 .zatca-view-wrapper .container,
 .odoo-view-wrapper .container,
+.corp-adv-wrapper .container,
+.tax-adv-wrapper .container,
 header .container,
 footer .container {
   width: 100% !important;
@@ -1504,6 +1506,8 @@ footer .container {
   .cad-wrapper .container,
   .zatca-view-wrapper .container,
   .odoo-view-wrapper .container,
+  .corp-adv-wrapper .container,
+  .tax-adv-wrapper .container,
   header .container,
   footer .container {
     max-width: 1280px !important;
@@ -1521,6 +1525,8 @@ footer .container {
   .cad-wrapper .container,
   .zatca-view-wrapper .container,
   .odoo-view-wrapper .container,
+  .corp-adv-wrapper .container,
+  .tax-adv-wrapper .container,
   header .container,
   footer .container {
     max-width: 100% !important;
@@ -1540,6 +1546,8 @@ footer .container {
   .cad-wrapper .container,
   .zatca-view-wrapper .container,
   .odoo-view-wrapper .container,
+  .corp-adv-wrapper .container,
+  .tax-adv-wrapper .container,
   header .container,
   footer .container {
     padding-left: 16px !important;
@@ -1582,7 +1590,9 @@ section .container .container {
 .enterprise-solutions-wrapper,
 .cad-wrapper,
 .zatca-view-wrapper,
-.odoo-view-wrapper {
+.odoo-view-wrapper,
+.corp-adv-wrapper,
+.tax-adv-wrapper {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -1611,6 +1621,8 @@ main section {
 .wwd-hero-section,
 .odoo-hero-section,
 .zatca-hero-section,
+.corp-hero-section,
+.tax-hero-section,
 .cover-home1 section:first-of-type,
 .cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
 section.apx-hero,
@@ -1634,6 +1646,19 @@ section[class*="hero"] {
 .zatca-solutions-section,
 .zatca-benefits-section,
 .odoo-solutions-section,
+.corp-services-section,
+.corp-clients-who-section,
+.corp-authorities-section,
+.corp-process-section,
+.corp-checklist-section,
+.corp-why-section,
+.corp-faq-section,
+.tax-services-section,
+.tax-profiles-section,
+.tax-process-section,
+.tax-checklist-section,
+.tax-why-section,
+.tax-faq-section,
 section[id*="solution"],
 section[id*="service"],
 section[id*="process"],
@@ -1651,6 +1676,8 @@ section[class*="services"] {
 .wwd-clients-section,
 .odoo-clients-section,
 .zatca-clients-section,
+.corp-marquee-section,
+.tax-marquee-section,
 .cover-home1 section:has(.marquee-wrapper),
 .cover-home1 section:has(.slider-viewport),
 .cover-home1 section:has(.slider-track),
@@ -1670,6 +1697,8 @@ section:has(.slider-track) {
 .cad-cta-section,
 .odoo-cta-section,
 .zatca-cta-section,
+.corp-cta-section,
+.tax-cta-section,
 section[id*="contact"],
 section[class*="cta"],
 section[class*="consultation"] {
@@ -1685,6 +1714,8 @@ section[class*="consultation"] {
   .wwd-hero-section,
   .odoo-hero-section,
   .zatca-hero-section,
+  .corp-hero-section,
+  .tax-hero-section,
   .cover-home1 section:first-of-type,
   .cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
   section.apx-hero,
@@ -1707,6 +1738,19 @@ section[class*="consultation"] {
   .zatca-solutions-section,
   .zatca-benefits-section,
   .odoo-solutions-section,
+  .corp-services-section,
+  .corp-clients-who-section,
+  .corp-authorities-section,
+  .corp-process-section,
+  .corp-checklist-section,
+  .corp-why-section,
+  .corp-faq-section,
+  .tax-services-section,
+  .tax-profiles-section,
+  .tax-process-section,
+  .tax-checklist-section,
+  .tax-why-section,
+  .tax-faq-section,
   section[id*="solution"],
   section[id*="service"],
   section[id*="process"],
@@ -1723,6 +1767,8 @@ section[class*="consultation"] {
   .wwd-clients-section,
   .odoo-clients-section,
   .zatca-clients-section,
+  .corp-marquee-section,
+  .tax-marquee-section,
   .cover-home1 section:has(.marquee-wrapper),
   .cover-home1 section:has(.slider-viewport),
   .cover-home1 section:has(.slider-track),
@@ -1741,6 +1787,8 @@ section[class*="consultation"] {
   .cad-cta-section,
   .odoo-cta-section,
   .zatca-cta-section,
+  .corp-cta-section,
+  .tax-cta-section,
   section[id*="contact"],
   section[class*="cta"],
   section[class*="consultation"] {

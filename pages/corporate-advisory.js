@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import CorporateAdvisoryView from '@/components/CorporateAdvisoryView';
 
 export default function CorporateAdvisoryPage() {
-  const data = pagesData['/corporate-advisory'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Corporate Advisory, Governance & Compliance Services Saudi Arabia | Altapete Solutions"
+      description="Expert corporate advisory, entity formation, board governance, MISA licensing, and statutory compliance services across Riyadh, Al Khobar, and Saudi Arabia."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <CorporateAdvisoryView />
     </Layout>
   );
 }

@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import TaxationZakatView from '@/components/TaxationZakatView';
 
 export default function TaxationZakatAdvisoryPage() {
-  const data = pagesData['/taxation-zakat-advisory'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Taxation & ZATCA Advisory Services Saudi Arabia | Altapete Solutions"
+      description="Comprehensive Zakat computation, Corporate Income Tax, 15% VAT reconciliations, Withholding Tax, Transfer Pricing, and FATOORA Phase 2 E-Invoicing advisory in Saudi Arabia."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <TaxationZakatView />
     </Layout>
   );
 }
