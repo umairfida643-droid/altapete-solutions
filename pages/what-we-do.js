@@ -1,43 +1,189 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import Layout from '@/components/Layout';
 import {
-  Settings, BarChart3, Briefcase, TrendingUp, Search,
-  DollarSign, ClipboardList, Target, Scale, Eye, Crosshair,
-  Handshake, Users, KeyRound, ClipboardCheck,
-  MapPin, Mail, Phone, ArrowUpRight
+  Layers, Code2, Database, ShieldCheck, Zap,
+  TrendingUp, Users, CheckCircle2, ArrowRight,
+  Sparkles, Compass, Target, Handshake,
+  Award, Cpu, Server, FileCheck, Phone,
+  Mail, MapPin, ExternalLink, ChevronRight, Globe
 } from 'lucide-react';
 
-const floatingCards = [
-  { icon: BarChart3, label: 'Analytics', delay: '3s', top: '10%', left: '20%' },
-  { icon: Briefcase, label: 'Business', delay: '3.5s', top: '15%', right: '15%' },
-  { icon: TrendingUp, label: 'Growth', delay: '4s', top: '35%', right: '10%' },
-  { icon: Search, label: 'Audit', delay: '4.5s', bottom: '25%', right: '20%' },
-  { icon: DollarSign, label: 'Finance', delay: '5s', bottom: '15%', left: '15%' },
-  { icon: ClipboardList, label: 'Reports', delay: '5.5s', bottom: '35%', left: '10%' },
-  { icon: Target, label: 'Strategy', delay: '6s', top: '40%', left: '5%' },
-  { icon: Scale, label: 'Compliance', delay: '6.5s', top: '60%', right: '5%' },
+// Central Orb Floating Capabilities
+const orbitNodes = [
+  { id: 'erp', title: 'ERP & Odoo', icon: Database, angle: 0, x: 78, y: 22, desc: 'Certified Odoo & Enterprise Workflows' },
+  { id: 'cloud', title: 'Cloud Apps', icon: Code2, angle: 60, x: 86, y: 64, desc: 'Next.js, React & Microservices' },
+  { id: 'zatca', title: 'ZATCA Phase 2', icon: FileCheck, angle: 120, x: 50, y: 90, desc: '100% Compliant E-Invoicing' },
+  { id: 'devops', title: 'Cloud & DevOps', icon: Server, angle: 180, x: 14, y: 64, desc: 'AWS, Docker, K8s Architecture' },
+  { id: 'advisory', title: 'IT Advisory', icon: TrendingUp, angle: 240, x: 22, y: 22, desc: 'Fractional CTO & Strategic Governance' },
+  { id: 'fintech', title: 'Fintech & HR', icon: Cpu, angle: 300, x: 50, y: 8, desc: 'Muqeem, MADA & Gateway Connectors' },
+];
+
+const capabilities = [
+  {
+    id: 'erp',
+    badge: 'Flagship Core',
+    icon: Database,
+    title: 'Enterprise ERP & Odoo Engineering',
+    tagline: 'End-to-end ERP implementation, localized Saudi compliance & multi-company architectures.',
+    description: 'We design, deploy, and customize high-performance ERP systems powered by Odoo, Oracle, and enterprise architectures. From financial ledgers to complex supply chains, we ensure your operations run seamlessly with zero downtime.',
+    features: [
+      'Odoo V16 & V17 Certified Deployment',
+      'Multi-Company & Cross-Border Accounting',
+      'Custom ERP Module Development & API Bridges',
+      'Seamless Data Migration from Legacy Systems'
+    ],
+    metrics: { stat: '99.9%', label: 'Uptime & Data Integrity' },
+    link: '/odoo-to-odoo-data-integration',
+    ctaText: 'Explore ERP Solutions'
+  },
+  {
+    id: 'custom-apps',
+    badge: 'Engineering',
+    icon: Code2,
+    title: 'Custom Application & Cloud Engineering',
+    tagline: 'Bespoke web and mobile platforms built with high-velocity modern tech stacks.',
+    description: 'When off-the-shelf software falls short, we engineer tailored enterprise software solutions. We leverage Next.js, React, Node.js, Python, PostgreSQL, and scalable microservices to deliver secure, lightning-fast digital products.',
+    features: [
+      'Full-Stack Web & Mobile Architecture',
+      'High-Throughput RESTful & GraphQL APIs',
+      'Cloud-Native Microservices & Serverless',
+      'Enterprise Role-Based Access & Security Auditing'
+    ],
+    metrics: { stat: '10x', label: 'Faster Time-to-Market' },
+    link: '/custom-app-development',
+    ctaText: 'Explore Custom Dev'
+  },
+  {
+    id: 'compliance',
+    badge: 'Regulatory Excellence',
+    icon: ShieldCheck,
+    title: 'ZATCA & Government Gateway Integrations',
+    tagline: 'Certified Phase 2 e-invoicing clearance, reporting & Saudi portal integrations.',
+    description: 'Our proprietary compliance bridges integrate directly with ZATCA (FATOORA), Muqeem, Qiwa, MADA, and local banking networks. Guarantee 100% legal compliance with cryptographic tamper-proofing and real-time validation.',
+    features: [
+      'ZATCA Phase 2 Clearance & Reporting API',
+      'Cryptographic XML Signing & QR Hash Generation',
+      'Muqeem & Qiwa HR Automated Sync',
+      'MADA, Visa & Corporate Banking Connectors'
+    ],
+    metrics: { stat: '100%', label: 'ZATCA Compliance Rate' },
+    link: '/zatca-integration',
+    ctaText: 'Explore ZATCA Integration'
+  },
+  {
+    id: 'advisory',
+    badge: 'Strategic Advisory',
+    icon: TrendingUp,
+    title: 'Technology Management & Corporate Advisory',
+    tagline: 'Senior IT leadership, fractional CTO, and SOCPA-certified financial advisory.',
+    description: 'Bridge the gap between business strategy and technological execution. Our seasoned advisory board guides C-suite leaders through digital transformation roadmaps, cloud cost optimization, and SOCPA/ICAP corporate governance.',
+    features: [
+      'Fractional CTO & IT Governance Advisory',
+      'SOCPA & ICAP Financial Advisory',
+      'Cloud Infrastructure & Security Audits',
+      '24/7 Managed DBA & Enterprise SLAs'
+    ],
+    metrics: { stat: '13+', label: 'Years Advisory Heritage' },
+    link: '/technology-management',
+    ctaText: 'Explore Advisory'
+  }
+];
+
+const methodologySteps = [
+  {
+    num: '01',
+    title: 'Strategic Architecture & Discovery',
+    desc: 'We perform in-depth analysis of your operational workflows, data pipelines, and compliance mandates to formulate a rock-solid technical blueprint.'
+  },
+  {
+    num: '02',
+    title: 'Agile Engineering & Prototyping',
+    desc: 'Our senior engineers develop in rapid iterative sprints with bi-weekly demonstrations, continuous code reviews, and stringent security benchmarks.'
+  },
+  {
+    num: '03',
+    title: 'Rigorous Sandbox & QA Validation',
+    desc: 'End-to-end automated testing, load stress simulations, and certified sandbox validations (including official ZATCA compliance checks) prior to launch.'
+  },
+  {
+    num: '04',
+    title: 'Zero-Downtime Launch & 24/7 SLA',
+    desc: 'Precision deployment orchestration, comprehensive team training, and proactive 24/7 technical monitoring with dedicated SLA support.'
+  }
 ];
 
 const values = [
-  { icon: Handshake, title: 'Integrity', desc: 'Building trust through honest and ethical business practices' },
-  { icon: Users, title: 'Teamwork', desc: 'Collaborating effectively to achieve common goals' },
-  { icon: KeyRound, title: 'Ownership', desc: 'Taking responsibility for our actions and outcomes' },
-  { icon: ClipboardCheck, title: 'Accountability', desc: 'Being answerable for our commitments and results' },
+  {
+    icon: Handshake,
+    title: 'Integrity First',
+    desc: 'Uncompromising transparency and ethical principles guiding every architectural recommendation and business relationship.'
+  },
+  {
+    icon: Zap,
+    title: 'Engineering Rigor',
+    desc: 'Zero shortcuts in code quality, security architecture, and system scalability to build software that lasts for decades.'
+  },
+  {
+    icon: Target,
+    title: 'Client Ownership',
+    desc: 'We treat your mission-critical challenges as our own, taking end-to-end accountability for every project outcome.'
+  },
+  {
+    icon: Award,
+    title: 'Measured Impact',
+    desc: 'Every technical solution is engineered to generate tangible, measurable ROI, operational speed, and cost efficiency.'
+  }
 ];
 
 const stats = [
-  { number: '150+', label: 'Projects Delivered & Renewals' },
-  { number: '100+', label: 'Satisfied Customers' },
-  { number: '5+', label: 'Strategic Partners' },
-  { number: '50+', label: 'Skilled Resource Pool' },
+  { number: '150+', label: 'Enterprise Projects Delivered' },
+  { number: '100+', label: 'Satisfied Corporate Clients' },
+  { number: '13+', label: 'Years Innovation Heritage' },
+  { number: '50+', label: 'Senior Technical Specialists' }
 ];
 
 const teamMembers = [
-  { name: 'Ahad Maaz', role: 'Head of Business Solutions', position: 'Head of Business Solutions', bio: 'Head of Business Solutions @ Altapete Solutions (Aim high business solutions Odoo Certified V-16-V17-| Devops| SaaS | Cloud | Expert. Oracle eAM certified and SCM Consultant', image: '/assets/imgs/team/ahad-maaz.jpg', linkedin: 'https://www.linkedin.com/in/ahad-maaz-a8578533/' },
-  { name: 'Shahzad Qamar', role: 'Director', position: 'Director Middle East', bio: 'Associate Member of SOCPA, FCA (ICAP), FPFA (PIPFA).', image: '/assets/imgs/team/shahzad-qamar.jpg', linkedin: 'https://www.linkedin.com/in/shahzad-qamar-8a647379/' },
-  { name: 'Muhammad Kamal', role: 'CTO', position: 'CTO (Chief Technology Officer)', bio: 'CTO @ Altapete Solutions | ERP, Accounting Advisory ZATCA Integration Expert | Odoo/Oracle', image: '/assets/imgs/team/muhammad-kamal.jpg', linkedin: 'https://www.linkedin.com/in/muhammad-kamal-990525190/' },
-  { name: 'Hasnat Shahid Bukhari', role: 'COO', position: 'COO (Chief Operating Officer)', bio: 'Business Analyst | Odoo Functional Consultant | CA Finalist | MBA | MS | MSc Acc & Fin | Team Lead', image: '/assets/imgs/team/hasnat-shahid-bukhari.jpg', linkedin: 'https://www.linkedin.com/in/hasnat-shahid-bukhari-%F0%9F%87%B5%F0%9F%87%B0-bb9b1b251/' },
-  { name: 'Waqar Afridi', role: 'DBA', position: 'Senior DBA', bio: 'IT and Security Administrator', image: '/assets/imgs/team/waqar-afridi.jpg', linkedin: 'https://www.linkedin.com/in/waqar-afridi-49409815/' },
+  {
+    name: 'Ahad Maaz',
+    role: 'Head of Business Solutions',
+    position: 'Executive Leadership',
+    bio: 'Odoo Certified V16/V17 Expert | DevOps, SaaS & Cloud Architect | Oracle eAM Certified & SCM Consultant.',
+    image: '/assets/imgs/team/ahad-maaz.jpg',
+    linkedin: 'https://www.linkedin.com/in/ahad-maaz-a8578533/'
+  },
+  {
+    name: 'Shahzad Qamar',
+    role: 'Director Middle East',
+    position: 'Regional Strategy',
+    bio: 'Associate Member of SOCPA, FCA (ICAP), FPFA (PIPFA) | 20+ Years in Corporate Financial Governance.',
+    image: '/assets/imgs/team/shahzad-qamar.jpg',
+    linkedin: 'https://www.linkedin.com/in/shahzad-qamar-8a647379/'
+  },
+  {
+    name: 'Muhammad Kamal',
+    role: 'Chief Technology Officer',
+    position: 'CTO & Tech Lead',
+    bio: 'Enterprise ERP Specialist | ZATCA Integration Pioneer | Cloud Native & Oracle/Odoo Architecture.',
+    image: '/assets/imgs/team/muhammad-kamal.jpg',
+    linkedin: 'https://www.linkedin.com/in/muhammad-kamal-990525190/'
+  },
+  {
+    name: 'Hasnat Shahid Bukhari',
+    role: 'Chief Operating Officer',
+    position: 'COO & Operations',
+    bio: 'Senior Business Analyst | Odoo Functional Lead | CA Finalist | MBA & MS Accounting & Finance.',
+    image: '/assets/imgs/team/hasnat-shahid-bukhari.jpg',
+    linkedin: 'https://www.linkedin.com/in/hasnat-shahid-bukhari-%F0%9F%87%B5%F0%9F%87%B0-bb9b1b251/'
+  },
+  {
+    name: 'Waqar Afridi',
+    role: 'Senior Database Administrator',
+    position: 'DBA & Infrastructure',
+    bio: 'Mission-Critical Database Architect | IT Security Administrator | High-Availability Replication Expert.',
+    image: '/assets/imgs/team/waqar-afridi.jpg',
+    linkedin: 'https://www.linkedin.com/in/waqar-afridi-49409815/'
+  }
 ];
 
 const clientLogos = [
@@ -51,351 +197,1612 @@ const clientLogos = [
   { src: '/assets/imgs/clients-clean/sirc.png', alt: 'SIRC' },
   { src: '/assets/imgs/clients-clean/tajmie.png', alt: 'Tajmie' },
   { src: '/assets/imgs/clients-clean/yugen.png', alt: 'Yugen' },
-  { src: '/assets/imgs/clients-clean/zamil.png', alt: 'Zamil' },
+  { src: '/assets/imgs/clients-clean/zamil.png', alt: 'Zamil' }
 ];
 
 const offices = [
   { city: 'Al Khobar', country: 'Saudi Arabia', address: '7982 King Fahd Road, Al Khobar' },
-  { city: 'Riyadh', country: 'Saudi Arabia', address: 'Riyadh Office' },
-  { city: 'Lahore', country: 'Pakistan', address: '28-A Sector XX, DHA Phase 3, Lahore' },
+  { city: 'Riyadh', country: 'Saudi Arabia', address: 'Riyadh Business Center' },
+  { city: 'Lahore', country: 'Pakistan', address: '28-A Sector XX, Phase 3 DHA, Lahore' }
 ];
 
 export default function WhatWeDoPage() {
-  const observerRef = useRef(null);
+  const [activeTab, setActiveTab] = useState('erp');
+  const [hoveredNode, setHoveredNode] = useState(null);
 
-  useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('wwd-visible');
-            observerRef.current?.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    document.querySelectorAll('.wwd-animate').forEach((el) => observerRef.current?.observe(el));
-    return () => observerRef.current?.disconnect();
-  }, []);
+  const selectedCapability = capabilities.find(c => c.id === activeTab) || capabilities[0];
 
   return (
     <Layout
-      title="About Us | Discover Our Trusted Business Solutions Team"
-      description="Learn about Alta Pete Solutions, our expertise, mission, values, and commitment to delivering smart business solutions that help organizations grow."
+      title="What We Do | Enterprise Digital Solutions & Capabilities | Alta Pete"
+      description="Discover Alta Pete Solutions: Certified Odoo implementations, custom cloud software engineering, ZATCA Phase 2 integrations, and executive corporate advisory."
     >
-      <style jsx global>{`
-        .wwd-animate { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .wwd-animate.wwd-visible { opacity: 1; transform: translateY(0); }
-        @keyframes wwdFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
-        @keyframes wwdSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes wwdPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        @keyframes wwdFadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes wwdMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .wwd-team-card { opacity: 0; animation: wwdFadeInUp 0.6s ease-out forwards; }
-        .wwd-team-card:nth-child(1) { animation-delay: 0.1s; }
-        .wwd-team-card:nth-child(2) { animation-delay: 0.2s; }
-        .wwd-team-card:nth-child(3) { animation-delay: 0.3s; }
-        .wwd-team-card:nth-child(4) { animation-delay: 0.4s; }
-        .wwd-team-card:nth-child(5) { animation-delay: 0.5s; }
-        .wwd-stat:hover .wwd-stat-number { transform: scale(1.05); }
-        @media (max-width: 768px) {
-          .wwd-hero-visual { height: 400px !important; }
-          .wwd-floating-card { width: 60px !important; height: 60px !important; }
-          .wwd-values-grid { flex-direction: column !important; align-items: center !important; }
-          .wwd-value-card { width: 100% !important; max-width: 300px !important; }
-          .wwd-contact-col-border { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 26px; padding-top: 26px; }
+      <div className="wwd-page-wrapper">
+        <div className="container-fluid px-lg-5 px-3">
+
+          {/* =========================================================
+              1. HERO SECTION: WELL-ALIGNED HIGH-TECH HUB
+             ========================================================= */}
+          <section className="wwd-hero-section">
+            <div className="row align-items-center g-5">
+              
+              {/* Left Column: Hero Text */}
+              <div className="col-lg-6">
+                <div className="wwd-hero-content">
+                  <div className="wwd-badge-pill">
+                    <span className="wwd-pulse-dot" />
+                    <span>ENGINEERING ENTERPRISE EXCELLENCE</span>
+                  </div>
+
+                  <h1 className="wwd-hero-title">
+                    Transforming Operations Through <span className="wwd-gradient-text">Intelligent Technology</span>
+                  </h1>
+
+                  <p className="wwd-hero-subtitle">
+                    With a <strong>13-year proven heritage</strong> across Saudi Arabia and the GCC, <strong>Alta Pete Solutions</strong> empowers enterprises with certified ERP ecosystems, custom cloud platforms, and mission-critical regulatory integrations.
+                  </p>
+
+                  <div className="wwd-hero-actions">
+                    <a href="#capabilities" className="wwd-primary-btn">
+                      <span>Explore Capabilities</span>
+                      <ArrowRight size={18} />
+                    </a>
+                    <Link href="/contact-us" className="wwd-secondary-btn">
+                      <span>Schedule Consultation</span>
+                    </Link>
+                  </div>
+
+                  {/* Trust Highlights */}
+                  <div className="wwd-trust-row">
+                    <div className="wwd-trust-item">
+                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <span>Odoo Certified Partner</span>
+                    </div>
+                    <div className="wwd-trust-item">
+                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <span>ZATCA Phase 2 Certified</span>
+                    </div>
+                    <div className="wwd-trust-item">
+                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <span>SOCPA & ICAP Qualified</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Mathematical Radial Orbit Hub */}
+              <div className="col-lg-6">
+                <div className="wwd-orbit-container">
+                  {/* Concentric Background Grid Rings */}
+                  <div className="wwd-orbit-ring ring-outer" />
+                  <div className="wwd-orbit-ring ring-middle" />
+                  <div className="wwd-orbit-ring ring-inner" />
+
+                  {/* SVG Geometric Conduits Connecting to Center */}
+                  <svg className="wwd-orbit-lines" viewBox="0 0 500 500">
+                    <defs>
+                      <linearGradient id="orbitLineGrad" x1="50%" y1="50%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#00AEEF" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.1" />
+                      </linearGradient>
+                    </defs>
+                    {/* Laser conduits to 6 exact coordinates */}
+                    <line x1="250" y1="250" x2="390" y2="110" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="250" y1="250" x2="430" y2="320" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="250" y1="250" x2="250" y2="450" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="250" y1="250" x2="70" y2="320" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="250" y1="250" x2="110" y2="110" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                    <line x1="250" y1="250" x2="250" y2="40" stroke="url(#orbitLineGrad)" strokeWidth="1.5" strokeDasharray="4 4" />
+                  </svg>
+
+                  {/* Central Enterprise Core Orb */}
+                  <div className="wwd-central-orb">
+                    <div className="orb-inner-glow" />
+                    <div className="orb-content">
+                      <Sparkles size={36} color="#ffffff" />
+                      <span className="orb-title">ALTAPETE</span>
+                      <span className="orb-sub">CORE HUB</span>
+                    </div>
+                  </div>
+
+                  {/* 6 Geometrically Anchored Satellite Nodes */}
+                  {orbitNodes.map((node) => {
+                    const Icon = node.icon;
+                    const isHovered = hoveredNode === node.id;
+                    return (
+                      <div
+                        key={node.id}
+                        className={`wwd-satellite-node node-${node.id} ${isHovered ? 'active' : ''}`}
+                        style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                        onMouseEnter={() => setHoveredNode(node.id)}
+                        onMouseLeave={() => setHoveredNode(null)}
+                      >
+                        <div className="node-icon-box">
+                          <Icon size={20} className="node-icon" />
+                        </div>
+                        <div className="node-label-box">
+                          <div className="node-label-title">{node.title}</div>
+                          <div className="node-label-desc">{node.desc}</div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* =========================================================
+              2. QUANTIFIED IMPACT / TRACK RECORD COUNTERS
+             ========================================================= */}
+          <section className="wwd-stats-section">
+            <div className="row g-4 justify-content-center">
+              {stats.map((item, idx) => (
+                <div key={idx} className="col-lg-3 col-sm-6">
+                  <div className="wwd-stat-card">
+                    <div className="wwd-stat-number">{item.number}</div>
+                    <div className="wwd-stat-label">{item.label}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* =========================================================
+              3. CAPABILITIES MATRIX: WHAT WE ACTUALLY DO
+             ========================================================= */}
+          <section id="capabilities" className="wwd-capabilities-section">
+            <div className="text-center mb-5">
+              <div className="wwd-section-tag">COMPREHENSIVE EXPERTISE</div>
+              <h2 className="wwd-section-title">
+                What We Do: <span className="wwd-gradient-text">Enterprise Capabilities</span>
+              </h2>
+              <p className="wwd-section-desc">
+                From scalable cloud architecture to mission-critical Saudi compliance, our integrated service pillars solve complex enterprise challenges with engineering precision.
+              </p>
+            </div>
+
+            {/* Interactive Tab Switcher */}
+            <div className="wwd-tab-container">
+              <div className="wwd-tabs-nav">
+                {capabilities.map((cap) => {
+                  const Icon = cap.icon;
+                  const isActive = activeTab === cap.id;
+                  return (
+                    <button
+                      key={cap.id}
+                      type="button"
+                      className={`wwd-tab-btn ${isActive ? 'active' : ''}`}
+                      onClick={() => setActiveTab(cap.id)}
+                    >
+                      <Icon size={20} className="tab-icon" />
+                      <span className="tab-text">{cap.title.split('&')[0].trim()}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Active Capability Showcase Card */}
+            <div className="wwd-capability-card">
+              <div className="row align-items-center g-5">
+                <div className="col-lg-7">
+                  <div className="cap-badge">{selectedCapability.badge}</div>
+                  <h3 className="cap-title">{selectedCapability.title}</h3>
+                  <p className="cap-tagline">{selectedCapability.tagline}</p>
+                  <p className="cap-description">{selectedCapability.description}</p>
+
+                  <div className="cap-features-grid">
+                    {selectedCapability.features.map((feat, i) => (
+                      <div key={i} className="cap-feature-item">
+                        <CheckCircle2 size={18} className="feat-icon" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="cap-cta-row">
+                    <Link href={selectedCapability.link} className="cap-cta-btn">
+                      <span>{selectedCapability.ctaText}</span>
+                      <ChevronRight size={18} />
+                    </Link>
+                  </div>
+                </div>
+
+                <div className="col-lg-5">
+                  <div className="cap-metric-box">
+                    <div className="metric-glow" />
+                    <div className="metric-stat">{selectedCapability.metrics.stat}</div>
+                    <div className="metric-label">{selectedCapability.metrics.label}</div>
+                    <div className="metric-divider" />
+                    <div className="metric-trust-note">
+                      Enterprise-Grade SLA Backed by Certified Architects
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* =========================================================
+              4. HOW WE WORK: 4-STAGE METHODOLOGY
+             ========================================================= */}
+          <section className="wwd-methodology-section">
+            <div className="text-center mb-5">
+              <div className="wwd-section-tag">EXECUTION ROADMAP</div>
+              <h2 className="wwd-section-title">
+                How We Deliver <span className="wwd-gradient-text">Predictable Success</span>
+              </h2>
+              <p className="wwd-section-desc">
+                Our battle-tested 4-stage delivery methodology guarantees strict adherence to timelines, budgets, and enterprise security standards.
+              </p>
+            </div>
+
+            <div className="row g-4">
+              {methodologySteps.map((step, idx) => (
+                <div key={idx} className="col-lg-3 col-md-6">
+                  <div className="wwd-step-card">
+                    <div className="step-number">{step.num}</div>
+                    <h4 className="step-title">{step.title}</h4>
+                    <p className="step-desc">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* =========================================================
+              5. VISION, MISSION & VALUES
+             ========================================================= */}
+          <section className="wwd-values-section">
+            <div className="row g-4 mb-5">
+              {/* Vision Card */}
+              <div className="col-lg-6">
+                <div className="wwd-vm-card">
+                  <div className="vm-icon-box">
+                    <Compass size={28} color="#00AEEF" />
+                  </div>
+                  <h3 className="vm-title">Our Vision</h3>
+                  <p className="vm-text">
+                    To be the foremost strategic digital transformation partner across Saudi Arabia and the GCC, recognized for engineering world-class enterprise software, agile ERP solutions, and uncompromised regulatory reliability.
+                  </p>
+                </div>
+              </div>
+
+              {/* Mission Card */}
+              <div className="col-lg-6">
+                <div className="wwd-vm-card">
+                  <div className="vm-icon-box">
+                    <Target size={28} color="#2c73d9" />
+                  </div>
+                  <h3 className="vm-title">Our Mission</h3>
+                  <p className="vm-text">
+                    To empower forward-thinking organizations by delivering tailored digital architectures, transparent collaboration, and high-impact technology solutions that simplify enterprise complexity and accelerate long-term growth.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Core Values 4-Column Grid */}
+            <div className="text-center mb-4">
+              <div className="wwd-section-tag">OUR CORE PRINCIPLES</div>
+              <h3 className="wwd-section-title">Values That Drive Every Line of Code</h3>
+            </div>
+
+            <div className="row g-4">
+              {values.map((val, idx) => {
+                const Icon = val.icon;
+                return (
+                  <div key={idx} className="col-lg-3 col-md-6">
+                    <div className="wwd-value-card">
+                      <div className="val-icon-box">
+                        <Icon size={24} className="val-icon" />
+                      </div>
+                      <h4 className="val-title">{val.title}</h4>
+                      <p className="val-desc">{val.desc}</p>
+                      <span className="val-idx">0{idx + 1}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* =========================================================
+              6. EXECUTIVE LEADERSHIP & TEAM
+             ========================================================= */}
+          <section className="wwd-team-section">
+            <div className="text-center mb-5">
+              <div className="wwd-section-tag">LEADERSHIP & EXPERTS</div>
+              <h2 className="wwd-section-title">
+                Meet the <span className="wwd-gradient-text">Minds Behind Altapete</span>
+              </h2>
+              <p className="wwd-section-desc">
+                Decades of combined technical and advisory experience across enterprise ERP, accounting compliance, cloud architecture, and database operations.
+              </p>
+            </div>
+
+            {/* Centered 5-Member Balanced Grid */}
+            <div className="wwd-team-grid">
+              {teamMembers.map((member, idx) => (
+                <div key={idx} className="wwd-team-card">
+                  <div className="team-img-wrapper">
+                    <img src={member.image} alt={member.name} className="team-img" />
+                    <div className="team-img-overlay" />
+                    <div className="team-badge">{member.position}</div>
+                  </div>
+                  <div className="team-details">
+                    <div className="team-role-tag">{member.role}</div>
+                    <h3 className="team-name">
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                        {member.name}
+                        <ExternalLink size={14} className="ms-1" />
+                      </a>
+                    </h3>
+                    <p className="team-bio">{member.bio}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* =========================================================
+              7. TRUSTED CLIENTS MARQUEE
+             ========================================================= */}
+          <section className="wwd-clients-section">
+            <div className="text-center mb-4">
+              <div className="wwd-section-tag">GLOBAL CREDIBILITY</div>
+              <h3 className="wwd-section-title">Trusted by Leading Organizations</h3>
+            </div>
+
+            <div className="wwd-marquee-wrapper">
+              <div className="wwd-marquee-track">
+                {[...clientLogos, ...clientLogos].map((client, idx) => (
+                  <div key={idx} className="client-card-wrapper">
+                    <img
+                      src={client.src}
+                      alt={client.alt}
+                      className="client-logo-img"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* =========================================================
+              8. GLOBAL FOOTPRINT & OFFICES
+             ========================================================= */}
+          <section className="wwd-contact-section">
+            <div className="row g-5">
+              
+              {/* Left Column: Direct Inquiries */}
+              <div className="col-lg-7">
+                <div className="wwd-inquiry-box">
+                  <div className="wwd-section-tag">LET&apos;S COLLABORATE</div>
+                  <h2 className="wwd-inquiry-title">Ready to Transform Your Enterprise?</h2>
+                  <p className="wwd-inquiry-desc">
+                    Connect directly with our senior technology team to evaluate your ERP roadmap, discuss custom software engineering, or review ZATCA Phase 2 compliance requirements.
+                  </p>
+
+                  <div className="row g-4 mt-2">
+                    <div className="col-sm-6">
+                      <div className="contact-touch-card">
+                        <Phone size={22} className="touch-icon" />
+                        <div>
+                          <div className="touch-label">Call Our Advisors</div>
+                          <a href="tel:+966551013823" className="touch-value">+966 55 101 3823 (KSA)</a>
+                          <a href="tel:+923703536327" className="touch-value">+92 370 3536327 (PK)</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="col-sm-6">
+                      <div className="contact-touch-card">
+                        <Mail size={22} className="touch-icon" />
+                        <div>
+                          <div className="touch-label">Direct Correspondence</div>
+                          <a href="mailto:info@altapetesolutions.com" className="touch-value">info@altapetesolutions.com</a>
+                          <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" className="touch-value">WhatsApp Support</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-2">
+                    <Link href="/contact-us" className="wwd-primary-btn">
+                      <span>Schedule an Executive Briefing</span>
+                      <ArrowRight size={18} />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Global Office Locations */}
+              <div className="col-lg-5">
+                <div className="wwd-offices-box">
+                  <div className="d-flex align-items-center gap-2 mb-4">
+                    <Globe size={22} color="#00AEEF" />
+                    <h3 className="offices-title">Global Presence</h3>
+                  </div>
+
+                  <div className="offices-list">
+                    {offices.map((office, idx) => (
+                      <div key={idx} className="office-item">
+                        <div className="office-pin-dot" />
+                        <div>
+                          <div className="office-city">
+                            {office.city}, <span className="office-country">{office.country}</span>
+                          </div>
+                          <div className="office-address">{office.address}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      {/* =========================================================
+          COMPONENT-SCOPED & DUAL-THEME GLOBAL STYLES
+         ========================================================= */}
+      <style jsx>{`
+        .wwd-page-wrapper {
+          padding-top: 40px;
+          padding-bottom: 90px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* ---------------- Section Typography & Tags ---------------- */
+        .wwd-section-tag {
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          color: #00AEEF;
+          padding: 6px 16px;
+          border-radius: 50px;
+          background: rgba(0, 174, 239, 0.1);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+          margin-bottom: 14px;
+        }
+
+        .wwd-section-title {
+          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-weight: 800;
+          letter-spacing: -0.5px;
+          margin-bottom: 16px;
+          line-height: 1.2;
+        }
+
+        .wwd-section-desc {
+          font-size: 16px;
+          max-width: 720px;
+          margin: 0 auto;
+          line-height: 1.6;
+        }
+
+        .wwd-gradient-text {
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        /* ---------------- 1. Hero Section ---------------- */
+        .wwd-hero-section {
+          padding: 40px 0 70px;
+          position: relative;
+        }
+
+        .wwd-badge-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 18px;
+          border-radius: 50px;
+          background: rgba(0, 174, 239, 0.1);
+          border: 1px solid rgba(0, 174, 239, 0.3);
+          color: #00AEEF;
+          font-size: 12.5px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          margin-bottom: 24px;
+        }
+
+        .wwd-pulse-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background: #00AEEF;
+          box-shadow: 0 0 10px #00AEEF;
+          animation: pulseAnim 2s infinite;
+        }
+
+        @keyframes pulseAnim {
+          0%, 100% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.4); opacity: 0.6; }
+        }
+
+        .wwd-hero-title {
+          font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+          font-weight: 800;
+          line-height: 1.18;
+          letter-spacing: -0.8px;
+          margin-bottom: 20px;
+        }
+
+        .wwd-hero-subtitle {
+          font-size: 16.5px;
+          line-height: 1.65;
+          margin-bottom: 32px;
+          max-width: 580px;
+        }
+
+        .wwd-hero-actions {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+          margin-bottom: 36px;
+        }
+
+        .wwd-primary-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 30px;
+          border-radius: 50px;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          color: #ffffff !important;
+          font-weight: 700;
+          font-size: 15px;
+          text-decoration: none;
+          box-shadow: 0 10px 25px rgba(0, 174, 239, 0.35);
+          transition: all 0.3s ease;
+        }
+
+        .wwd-primary-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 15px 35px rgba(0, 174, 239, 0.5);
+          color: #ffffff !important;
+        }
+
+        .wwd-secondary-btn {
+          display: inline-flex;
+          align-items: center;
+          padding: 14px 28px;
+          border-radius: 50px;
+          border: 1.5px solid rgba(0, 174, 239, 0.4);
+          font-weight: 600;
+          font-size: 15px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .wwd-secondary-btn:hover {
+          background: rgba(0, 174, 239, 0.1);
+          transform: translateY(-2px);
+        }
+
+        .wwd-trust-row {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          flex-wrap: wrap;
+          padding-top: 20px;
+          border-top: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .wwd-trust-item {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 13.5px;
+          font-weight: 600;
+        }
+
+        .wwd-trust-icon {
+          color: #00AEEF;
+        }
+
+        /* ---------------- Hero Mathematical Radial Orbit ---------------- */
+        .wwd-orbit-container {
+          position: relative;
+          width: 100%;
+          max-width: 520px;
+          height: 480px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .wwd-orbit-ring {
+          position: absolute;
+          border-radius: 50%;
+          border: 1px dashed rgba(0, 174, 239, 0.2);
+          pointer-events: none;
+        }
+
+        .ring-outer {
+          width: 440px;
+          height: 440px;
+          animation: spinClockwise 60s linear infinite;
+        }
+
+        .ring-middle {
+          width: 310px;
+          height: 310px;
+          animation: spinCounter 45s linear infinite;
+        }
+
+        .ring-inner {
+          width: 180px;
+          height: 180px;
+          border: 1px solid rgba(0, 174, 239, 0.25);
+        }
+
+        @keyframes spinClockwise {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinCounter {
+          from { transform: rotate(360deg); }
+          to { transform: rotate(0deg); }
+        }
+
+        .wwd-orbit-lines {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          pointer-events: none;
+        }
+
+        /* Central Orb */
+        .wwd-central-orb {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 50px rgba(0, 174, 239, 0.5);
+          z-index: 5;
+          text-align: center;
+        }
+
+        .orb-inner-glow {
+          position: absolute;
+          inset: -4px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #00AEEF, transparent, #2c73d9);
+          filter: blur(8px);
+          opacity: 0.6;
+        }
+
+        .orb-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .orb-title {
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 1.5px;
+          color: #ffffff;
+          margin-top: 4px;
+        }
+
+        .orb-sub {
+          font-size: 9px;
+          font-weight: 600;
+          color: rgba(255, 255, 255, 0.85);
+          letter-spacing: 0.5px;
+        }
+
+        /* Orbit Satellite Nodes */
+        .wwd-satellite-node {
+          position: absolute;
+          transform: translate(-50%, -50%);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 8px 14px;
+          border-radius: 50px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          z-index: 6;
+          white-space: nowrap;
+        }
+
+        .wwd-satellite-node:hover,
+        .wwd-satellite-node.active {
+          transform: translate(-50%, -50%) scale(1.08);
+          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.3);
+        }
+
+        .node-icon-box {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: rgba(0, 174, 239, 0.15);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #00AEEF;
+        }
+
+        .node-label-title {
+          font-size: 12.5px;
+          font-weight: 700;
+          line-height: 1.2;
+        }
+
+        .node-label-desc {
+          font-size: 10px;
+          line-height: 1;
+        }
+
+        /* ---------------- 2. Stats Section ---------------- */
+        .wwd-stats-section {
+          padding: 20px 0 60px;
+        }
+
+        .wwd-stat-card {
+          padding: 30px 20px;
+          border-radius: 20px;
+          text-align: center;
+          transition: all 0.3s ease;
+        }
+
+        .wwd-stat-card:hover {
+          transform: translateY(-4px);
+        }
+
+        .wwd-stat-number {
+          font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+          font-weight: 800;
+          line-height: 1;
+          margin-bottom: 8px;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .wwd-stat-label {
+          font-size: 13.5px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        /* ---------------- 3. Capabilities Section ---------------- */
+        .wwd-capabilities-section {
+          padding: 60px 0;
+        }
+
+        .wwd-tab-container {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 36px;
+        }
+
+        .wwd-tabs-nav {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          padding: 6px;
+          border-radius: 50px;
+        }
+
+        .wwd-tab-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px 24px;
+          border-radius: 50px;
+          border: none;
+          font-size: 14px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          background: transparent;
+        }
+
+        .wwd-tab-btn.active {
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          color: #ffffff !important;
+          box-shadow: 0 8px 20px rgba(0, 174, 239, 0.35);
+        }
+
+        .wwd-capability-card {
+          padding: 50px;
+          border-radius: 24px;
+          transition: all 0.3s ease;
+        }
+
+        .cap-badge {
+          display: inline-block;
+          font-size: 11.5px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          color: #00AEEF;
+          padding: 5px 14px;
+          border-radius: 50px;
+          background: rgba(0, 174, 239, 0.1);
+          margin-bottom: 16px;
+        }
+
+        .cap-title {
+          font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+          font-weight: 800;
+          margin-bottom: 12px;
+          line-height: 1.25;
+        }
+
+        .cap-tagline {
+          font-size: 15.5px;
+          font-weight: 600;
+          color: #00AEEF;
+          margin-bottom: 16px;
+        }
+
+        .cap-description {
+          font-size: 15px;
+          line-height: 1.65;
+          margin-bottom: 28px;
+        }
+
+        .cap-features-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+          margin-bottom: 32px;
+        }
+
+        .cap-feature-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .feat-icon {
+          color: #00AEEF;
+          flex-shrink: 0;
+        }
+
+        .cap-cta-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 12px 26px;
+          border-radius: 50px;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          color: #ffffff !important;
+          font-weight: 700;
+          font-size: 14.5px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 20px rgba(0, 174, 239, 0.3);
+        }
+
+        .cap-cta-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 28px rgba(0, 174, 239, 0.45);
+        }
+
+        .cap-metric-box {
+          position: relative;
+          padding: 40px 30px;
+          border-radius: 20px;
+          text-align: center;
+          overflow: hidden;
+        }
+
+        .metric-stat {
+          font-size: clamp(3rem, 4vw, 4.5rem);
+          font-weight: 900;
+          line-height: 1;
+          margin-bottom: 8px;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .metric-label {
+          font-size: 15px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 20px;
+        }
+
+        .metric-divider {
+          height: 1px;
+          width: 80px;
+          margin: 0 auto 16px;
+          background: rgba(0, 174, 239, 0.3);
+        }
+
+        .metric-trust-note {
+          font-size: 12.5px;
+          line-height: 1.5;
+        }
+
+        /* ---------------- 4. Methodology Section ---------------- */
+        .wwd-methodology-section {
+          padding: 60px 0;
+        }
+
+        .wwd-step-card {
+          padding: 34px 24px;
+          border-radius: 20px;
+          height: 100%;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+
+        .wwd-step-card:hover {
+          transform: translateY(-6px);
+        }
+
+        .step-number {
+          font-size: 2.2rem;
+          font-weight: 900;
+          color: #00AEEF;
+          opacity: 0.6;
+          margin-bottom: 16px;
+          line-height: 1;
+        }
+
+        .step-title {
+          font-size: 17px;
+          font-weight: 700;
+          margin-bottom: 12px;
+          line-height: 1.35;
+        }
+
+        .step-desc {
+          font-size: 14px;
+          line-height: 1.6;
+          margin-bottom: 0;
+        }
+
+        /* ---------------- 5. Vision, Mission & Values ---------------- */
+        .wwd-values-section {
+          padding: 60px 0;
+        }
+
+        .wwd-vm-card {
+          padding: 40px;
+          border-radius: 20px;
+          height: 100%;
+          transition: all 0.3s ease;
+        }
+
+        .vm-icon-box {
+          width: 54px;
+          height: 54px;
+          border-radius: 14px;
+          background: rgba(0, 174, 239, 0.1);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+
+        .vm-title {
+          font-size: 22px;
+          font-weight: 800;
+          margin-bottom: 14px;
+        }
+
+        .vm-text {
+          font-size: 15px;
+          line-height: 1.7;
+          margin-bottom: 0;
+        }
+
+        .wwd-value-card {
+          padding: 30px 22px;
+          border-radius: 20px;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .wwd-value-card:hover {
+          transform: translateY(-4px);
+        }
+
+        .val-icon-box {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          background: rgba(0, 174, 239, 0.12);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #00AEEF;
+          margin-bottom: 18px;
+        }
+
+        .val-title {
+          font-size: 16.5px;
+          font-weight: 700;
+          margin-bottom: 10px;
+        }
+
+        .val-desc {
+          font-size: 13.5px;
+          line-height: 1.55;
+          margin-bottom: 0;
+        }
+
+        .val-idx {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          font-size: 16px;
+          font-weight: 800;
+          opacity: 0.25;
+        }
+
+        /* ---------------- 6. Executive Team Section ---------------- */
+        .wwd-team-section {
+          padding: 60px 0;
+        }
+
+        .wwd-team-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 24px;
+        }
+
+        .wwd-team-card {
+          flex: 0 0 calc(20% - 20px);
+          min-width: 220px;
+          max-width: 270px;
+          border-radius: 20px;
+          overflow: hidden;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wwd-team-card:hover {
+          transform: translateY(-8px);
+        }
+
+        .team-img-wrapper {
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+
+        .team-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+
+        .wwd-team-card:hover .team-img {
+          transform: scale(1.06);
+        }
+
+        .team-img-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+        }
+
+        .team-badge {
+          position: absolute;
+          bottom: 12px;
+          left: 14px;
+          padding: 4px 10px;
+          border-radius: 50px;
+          background: rgba(0, 174, 239, 0.9);
+          color: #ffffff;
+          font-size: 10.5px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+
+        .team-details {
+          padding: 18px 16px;
+        }
+
+        .team-role-tag {
+          font-size: 11px;
+          font-weight: 700;
+          color: #00AEEF;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 4px;
+        }
+
+        .team-name {
+          font-size: 16px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+
+        .team-name a {
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .team-bio {
+          font-size: 12px;
+          line-height: 1.5;
+          margin-bottom: 0;
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        /* ---------------- 7. Clients Marquee ---------------- */
+        .wwd-clients-section {
+          padding: 40px 0;
+          overflow: hidden;
+        }
+
+        .wwd-marquee-wrapper {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+        }
+
+        .wwd-marquee-track {
+          display: flex;
+          gap: 24px;
+          width: max-content;
+          animation: marqueeScroll 35s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        .wwd-marquee-wrapper:hover .wwd-marquee-track {
+          animation-play-state: paused;
+        }
+
+        /* ---------------- 8. Contact & Global Offices ---------------- */
+        .wwd-contact-section {
+          padding: 60px 0 20px;
+        }
+
+        .wwd-inquiry-box {
+          padding: 44px 36px;
+          border-radius: 24px;
+        }
+
+        .wwd-inquiry-title {
+          font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+          font-weight: 800;
+          margin-bottom: 14px;
+          line-height: 1.25;
+        }
+
+        .wwd-inquiry-desc {
+          font-size: 15px;
+          line-height: 1.65;
+          margin-bottom: 24px;
+        }
+
+        .contact-touch-card {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding: 16px;
+          border-radius: 16px;
+        }
+
+        .touch-icon {
+          color: #00AEEF;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .touch-label {
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          margin-bottom: 4px;
+        }
+
+        .touch-value {
+          display: block;
+          font-size: 13.5px;
+          font-weight: 600;
+          text-decoration: none;
+          margin-bottom: 2px;
+        }
+
+        .touch-value:hover {
+          color: #00AEEF;
+        }
+
+        .wwd-offices-box {
+          padding: 40px 32px;
+          border-radius: 24px;
+          height: 100%;
+        }
+
+        .offices-title {
+          font-size: 20px;
+          font-weight: 800;
+          margin-bottom: 0;
+        }
+
+        .offices-list {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .office-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          padding-bottom: 18px;
+          border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .office-item:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
+
+        .office-pin-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: #00AEEF;
+          margin-top: 6px;
+          flex-shrink: 0;
+          box-shadow: 0 0 10px #00AEEF;
+        }
+
+        .office-city {
+          font-size: 15px;
+          font-weight: 700;
+          margin-bottom: 3px;
+        }
+
+        .office-country {
+          font-weight: 500;
+        }
+
+        .office-address {
+          font-size: 13px;
+          line-height: 1.45;
+        }
+
+        /* ---------------- Responsive Tweaks ---------------- */
+        @media (max-width: 991px) {
+          .wwd-orbit-container {
+            max-width: 100%;
+            height: 420px;
+          }
+          .cap-features-grid {
+            grid-template-columns: 1fr;
+          }
+          .wwd-team-card {
+            flex: 0 0 calc(33.333% - 16px);
+          }
+        }
+
+        @media (max-width: 767px) {
+          .wwd-orbit-container {
+            height: 380px;
+          }
+          .ring-outer { width: 340px; height: 340px; }
+          .ring-middle { width: 250px; height: 250px; }
+          .ring-inner { width: 150px; height: 150px; }
+          .node-label-desc { display: none; }
+          .wwd-team-card {
+            flex: 0 0 calc(50% - 12px);
+          }
+          .wwd-capability-card {
+            padding: 30px 20px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .wwd-team-card {
+            flex: 0 0 100%;
+            max-width: 320px;
+          }
         }
       `}</style>
 
-      <div className="cover-home1">
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-1" />
-            <div className="col-xl-10 col-lg-12">
+      {/* =========================================================
+          GLOBAL DUAL-THEME CONTRAST RULES
+         ========================================================= */}
+      <style jsx global>{`
+        /* ---------------- DARK THEME RULES ---------------- */
+        [data-theme="dark"] .wwd-page-wrapper {
+          background-color: #060c18;
+          color: #e2e8f0;
+        }
 
-              {/* 1. HERO */}
-              <section style={{ display: 'flex', alignItems: 'center', position: 'relative', overflow: 'hidden' }}>
-                <div style={{ position: 'relative', zIndex: 2 }} className="container">
-                  <div className="row align-items-center">
-                    <div className="col-lg-6">
-                      <div className="head-sidebar wow animate__animated animate__fadeIn">
-                        <h5 style={{ marginBottom: 0 }} className="line-bottom">Empowering Growth Through Innovation</h5>
-                      </div>
-                      <h1 style={{ color: '#E6F0FF', fontSize: 40, fontWeight: 700 }} className="mt-20 mb-20 wow animate__animated animate__fadeInUp">
-                        Shaping the Future{' '}
-                      </h1>
-                      <div className="row">
-                        <div className="col-lg-10">
-                          <p className="text-base color-gray-600 wow animate__animated animate__fadeInUp">
-                            With a 13-year legacy, <strong>Altapete</strong> embodies agility, innovation, and transformation—empowering global businesses with cutting-edge IT solutions that drive sustainability and future readiness.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-6 text-center">
-                      <div className="wwd-hero-visual position-relative" style={{ height: 600, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <div style={{ position: 'absolute', width: 120, height: 120, background: 'linear-gradient(135deg, #00d4ff, #0066cc)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 50px rgba(0, 212, 255, 0.5)', zIndex: 10 }}>
-                          <Settings size={48} color="white" />
-                        </div>
-                        {floatingCards.map((card, i) => { const Icon = card.icon; return (
-                          <div key={i} className="wwd-floating-card" style={{ position: 'absolute', top: card.top, left: card.left, right: card.right, bottom: card.bottom, width: 80, height: 80, background: 'rgba(0, 212, 255, 0.1)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 212, 255, 0.3)', borderRadius: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', animation: `wwdFloat ${card.delay} ease-in-out infinite`, cursor: 'pointer', transition: 'all 0.3s ease' }}>
-                            <Icon size={24} color="#00d4ff" style={{ marginBottom: 4 }} />
-                            <div style={{ fontSize: '0.7rem', color: '#00d4ff', fontWeight: 500 }}>{card.label}</div>
-                          </div>
-                        ); })}
-                        <svg style={{ position: 'absolute', width: '100%', height: '100%', zIndex: 1 }}>
-                          <defs><linearGradient id="wwdLineGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="rgba(0, 212, 255, 0)" /><stop offset="50%" stopColor="rgba(0, 212, 255, 0.6)" /><stop offset="100%" stopColor="rgba(0, 212, 255, 0)" /></linearGradient></defs>
-                          {[{ x2: '70%', y2: '50%', d: 2 }, { x2: '50%', y2: '85%', d: 2.3 }, { x2: '10%', y2: '85%', d: 2.6 }, { x2: '10%', y2: '50%', d: 2.9 }, { x2: '10%', y2: '15%', d: 3.2 }, { x2: '50%', y2: '15%', d: 3.5 }].map((l, i) => (
-                            <line key={i} x1="50%" y1="50%" x2={l.x2} y2={l.y2} stroke="url(#wwdLineGrad)" strokeWidth="2" style={{ animation: `wwdPulse ${l.d}s ease-in-out infinite` }} />
-                          ))}
-                        </svg>
-                        <div style={{ position: 'absolute', width: 300, height: 300, border: '1px solid rgba(0, 212, 255, 0.2)', borderRadius: '50%', animation: 'wwdSpin 20s linear infinite' }} />
-                        <div style={{ position: 'absolute', width: 400, height: 400, border: '1px solid rgba(0, 212, 255, 0.1)', borderRadius: '50%', animation: 'wwdSpin 30s linear infinite reverse' }} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-hero-title,
+        [data-theme="dark"] .wwd-section-title,
+        [data-theme="dark"] .cap-title,
+        [data-theme="dark"] .step-title,
+        [data-theme="dark"] .vm-title,
+        [data-theme="dark"] .val-title,
+        [data-theme="dark"] .team-name a,
+        [data-theme="dark"] .wwd-inquiry-title,
+        [data-theme="dark"] .offices-title,
+        [data-theme="dark"] .office-city {
+          color: #ffffff !important;
+        }
 
-              {/* 2. VISION & MISSION */}
-              <section style={{ position: 'relative', overflow: 'hidden' }}>
-                <div className="container">
-                  <div className="row mb-5">
-                    <div className="col-12 text-center">
-                      <h2 className="wwd-animate" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 300, color: '#ffffff', lineHeight: 1.3, marginBottom: '2rem' }}>
-                        <span style={{ fontWeight: 600, background: 'linear-gradient(135deg, #00d4ff, #0066cc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Driving Business Excellence</span>
-                      </h2>
-                      <p className="wwd-animate" style={{ fontSize: '1.2rem', color: '#a0a9b8', lineHeight: 1.6, maxWidth: 900, margin: '0 auto', paddingBottom: '1rem' }}>
-                        We deliver smart, scalable solutions that enhance performance, improve efficiency, and support sustainable growth across diverse global industries.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row g-4">
-                    <div className="col-lg-6">
-                      <div className="wwd-animate" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 212, 255, 0.3)', borderRadius: 20, padding: 40, height: '100%', position: 'relative', overflow: 'hidden' }}>
-                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, transparent 70%)', borderRadius: 20, zIndex: 1 }} />
-                        <div style={{ position: 'relative', zIndex: 2 }}>
-                          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}>
-                            <div style={{ width: 60, height: 60, background: 'linear-gradient(135deg, #00d4ff, #0066cc)', borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-                              <Eye size={30} color="white" />
-                            </div>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>Our Vision</h3>
-                          </div>
-                          <p style={{ fontSize: '1.1rem', color: '#a0a9b8', lineHeight: 1.7, margin: 0 }}>
-                            We envision a future where businesses of all sizes thrive through intelligent technology, seamless integration, and innovative solutions—enabling them to lead in their industries with agility, sustainability, and a commitment to continuous improvement.
-                          </p>
-                        </div>
-                        <div style={{ position: 'absolute', top: 20, right: 20, width: 100, height: 100, background: 'rgba(0, 212, 255, 0.1)', borderRadius: '50%', filter: 'blur(30px)', zIndex: 1 }} />
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="wwd-animate" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(0, 212, 255, 0.3)', borderRadius: 20, padding: 40, height: '100%', position: 'relative', overflow: 'hidden' }}>
-                        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(135deg, transparent 30%, rgba(0, 102, 204, 0.1) 100%)', borderRadius: 20, zIndex: 1 }} />
-                        <div style={{ position: 'relative', zIndex: 2 }}>
-                          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24 }}>
-                            <div style={{ width: 60, height: 60, background: 'linear-gradient(135deg, #0066cc, #00d4ff)', borderRadius: 15, display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 20 }}>
-                              <Crosshair size={30} color="white" />
-                            </div>
-                            <h3 style={{ fontSize: '2rem', fontWeight: 600, color: '#ffffff', margin: 0 }}>Our Mission</h3>
-                          </div>
-                          <p style={{ fontSize: '1.1rem', color: '#a0a9b8', lineHeight: 1.7, margin: 0 }}>
-                            Our mission is to empower organizations by delivering tailored digital solutions, expert advisory services, and transformative technologies that simplify complexity, enhance operational efficiency, and foster long-term growth through trust, collaboration, and measurable impact.
-                          </p>
-                        </div>
-                        <div style={{ position: 'absolute', bottom: 20, left: 20, width: 80, height: 80, background: 'rgba(0, 102, 204, 0.1)', borderRadius: '50%', filter: 'blur(25px)', zIndex: 1 }} />
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{ marginTop: 80, display: 'flex', justifyContent: 'center' }}>
-                    <div className="wwd-animate" style={{ width: 200, height: 2, background: 'linear-gradient(90deg, transparent, #00d4ff, transparent)' }} />
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-hero-subtitle,
+        [data-theme="dark"] .wwd-section-desc,
+        [data-theme="dark"] .cap-description,
+        [data-theme="dark"] .step-desc,
+        [data-theme="dark"] .vm-text,
+        [data-theme="dark"] .val-desc,
+        [data-theme="dark"] .team-bio,
+        [data-theme="dark"] .wwd-inquiry-desc,
+        [data-theme="dark"] .office-address {
+          color: #94a3b8 !important;
+        }
 
-              {/* 3. VALUES */}
-              <section style={{ padding: '30px 0', position: 'relative', overflow: 'hidden' }}>
-                <div className="container">
-                  <div className="row mb-5"><div className="col-12 text-center">
-                    <h2 className="wwd-animate" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 300, color: '#ffffff', marginBottom: '3rem' }}>
-                      Our{' '}<span style={{ fontWeight: 600, background: 'linear-gradient(135deg, #00d4ff, #0066cc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Values</span>
-                    </h2>
-                  </div></div>
-                  <div className="row justify-content-center"><div className="col-12">
-                    <div className="wwd-values-grid" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem' }}>
-                      {values.map((val, i) => { const Icon = val.icon; return (
-                        <div key={i} className="wwd-animate wwd-value-card" style={{ width: 220, minHeight: 280, background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '2px solid rgba(0, 212, 255, 0.3)', borderRadius: 20, padding: '30px 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', position: 'relative', overflow: 'hidden', marginBottom: 20, transitionDelay: `${i * 0.15}s` }}>
-                          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, transparent 70%)', borderRadius: '20px 20px 0 0', zIndex: 1 }} />
-                          <div style={{ width: 80, height: 80, background: 'linear-gradient(135deg, #00d4ff, #0066cc)', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, position: 'relative', zIndex: 2, boxShadow: '0 10px 30px rgba(0, 212, 255, 0.3)' }}>
-                            <Icon size={36} color="white" />
-                          </div>
-                          <h3 style={{ fontSize: '1.4rem', fontWeight: 600, color: '#ffffff', marginBottom: 15, position: 'relative', zIndex: 2 }}>{val.title}</h3>
-                          <p style={{ fontSize: '0.95rem', color: '#a0a9b8', lineHeight: 1.5, margin: 0, position: 'relative', zIndex: 2 }}>{val.desc}</p>
-                          <div style={{ position: 'absolute', top: 15, right: 15, width: 30, height: 30, background: 'rgba(0, 212, 255, 0.2)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', color: '#00d4ff', fontWeight: 600, zIndex: 2 }}>{i + 1}</div>
-                          <div style={{ position: 'absolute', bottom: -20, right: -20, width: 60, height: 60, background: 'rgba(0, 212, 255, 0.1)', borderRadius: '50%', filter: 'blur(20px)', zIndex: 1 }} />
-                        </div>
-                      ); })}
-                    </div>
-                  </div></div>
-                  <div style={{ marginTop: 60, display: 'flex', justifyContent: 'center' }}>
-                    <div className="wwd-animate" style={{ width: 300, height: 2, background: 'linear-gradient(90deg, transparent, #00d4ff, #0066cc, transparent)' }} />
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-trust-item,
+        [data-theme="dark"] .cap-feature-item,
+        [data-theme="dark"] .touch-value {
+          color: #cbd5e1 !important;
+        }
 
-              {/* 4. LEGACY STATS */}
-              <section style={{ background: 'linear-gradient(135deg, #0A192F 0%, #0c1c38 50%, #0A192F 100%)', position: 'relative', overflow: 'hidden', padding: '80px 0', color: 'white', borderRadius: 20 }}>
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundImage: 'linear-gradient(45deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px), linear-gradient(-45deg, rgba(0, 174, 239, 0.1) 1px, transparent 1px)', backgroundSize: '20px 20px', opacity: 0.3 }} />
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(circle at 20% 80%, rgba(0, 174, 239, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(44, 115, 217, 0.15) 0%, transparent 50%)' }} />
-                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-                  <h2 className="wwd-animate" style={{ fontSize: '3.5rem', fontWeight: 700, textAlign: 'center', marginBottom: '2rem', background: 'linear-gradient(45deg, #00AEEF, #00C6FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>20+ Years of Legacy</h2>
-                  <p className="wwd-animate" style={{ fontSize: '1.2rem', lineHeight: 1.6, textAlign: 'center', marginBottom: '4rem', color: 'rgba(255,255,255,0.9)', maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
-                    Year after year, we&apos;ve pushed the boundaries of convention, going beyond the ordinary to set new benchmarks in the IT industry, driven by our relentless pursuit of excellence, innovation, and agile resilience.
-                  </p>
-                  <div className="row g-4">
-                    {stats.map((stat, i) => (
-                      <div key={i} className="col-lg-3 col-md-6 col-sm-6">
-                        <div className="wwd-stat" style={{ textAlign: 'center', padding: '2rem 1rem' }}>
-                          <div className="wwd-stat-number" style={{ fontSize: '4rem', fontWeight: 800, marginBottom: '0.5rem', background: 'linear-gradient(45deg, #00AEEF, #00C6FF)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, transition: 'transform 0.3s ease' }}>{stat.number}</div>
-                          <div style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.9)', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.5px' }}>{stat.label}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-secondary-btn {
+          color: #ffffff !important;
+          border-color: rgba(0, 174, 239, 0.4);
+          background: rgba(0, 174, 239, 0.05);
+        }
 
-              {/* 5. TEAM */}
-              <section className="py-4">
-                <div className="container position-relative" style={{ zIndex: 10 }}>
-                  <div className="wwd-animate" style={{ textAlign: 'center', marginBottom: 30 }}>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px', borderRadius: 50, backgroundColor: 'rgba(0, 184, 212, 0.1)', border: '1px solid rgba(0, 184, 212, 0.3)', fontSize: 14, fontWeight: 600, color: '#00b8d4', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 24 }}>
-                      <div style={{ width: 8, height: 8, backgroundColor: '#00b8d4', borderRadius: '50%', animation: 'wwdPulse 2s infinite' }} />
-                      Our Team
-                    </div>
-                    <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 700, color: '#fff', marginBottom: 16, lineHeight: 1.2 }}>
-                      Meet the <span style={{ color: '#00b8d4' }}>brilliant minds</span><br />behind Altapete Solutions
-                    </h2>
-                    <p style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)', color: '#94a3b8', maxWidth: 700, margin: '0 auto', lineHeight: 1.6 }}>
-                      Our diverse team of experts brings together decades of experience in technology, design, and innovation to deliver exceptional solutions for our clients.
-                    </p>
-                  </div>
-                  <div className="row g-4">
-                    {teamMembers.map((member, i) => (
-                      <div key={i} className="col-lg-3 col-md-6 wwd-team-card">
-                        <div style={{ backgroundColor: 'rgba(15, 15, 15, 0.8)', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(0, 184, 212, 0.2)', transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)', height: '100%', position: 'relative', backdropFilter: 'blur(10px)' }}
-                          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-12px)'; e.currentTarget.style.border = '1px solid rgba(0, 184, 212, 0.6)'; e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 184, 212, 0.2)'; }}
-                          onMouseLeave={(e) => { e.currentTarget.style.transform = ''; e.currentTarget.style.border = '1px solid rgba(0, 184, 212, 0.2)'; e.currentTarget.style.boxShadow = ''; }}>
-                          <div style={{ position: 'relative', width: '100%', height: 320, overflow: 'hidden', backgroundColor: 'rgba(0, 184, 212, 0.1)' }}>
-                            <img src={member.image} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }} />
-                          </div>
-                          <div style={{ padding: 20 }}>
-                            <div style={{ display: 'inline-block', padding: '6px 16px', borderRadius: 20, backgroundColor: 'rgba(0, 184, 212, 0.15)', border: '1px solid rgba(0, 184, 212, 0.3)', fontSize: 12, fontWeight: 600, color: '#00b8d4', textTransform: 'uppercase', letterSpacing: '0.5px' }}>{member.role}</div>
-                            <h3 style={{ marginTop: 8, marginBottom: 4 }}><a href={member.linkedin} target="_blank" rel="noopener noreferrer" style={{ fontSize: '1rem', fontWeight: 700, color: '#fff', textDecoration: 'none', transition: 'color 0.3s ease' }}>{member.name}</a></h3>
-                            <p style={{ fontSize: '0.9rem', color: '#00b8d4', marginBottom: 5, fontWeight: 'bold' }}>{member.position}</p>
-                            <p style={{ fontSize: '0.9rem', color: '#94a3b8', lineHeight: 1.6, marginBottom: 0, minHeight: 60 }}>{member.bio}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-satellite-node {
+          background: rgba(13, 24, 48, 0.85);
+          border: 1px solid rgba(0, 174, 239, 0.35);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+        [data-theme="dark"] .node-label-title {
+          color: #ffffff;
+        }
+        [data-theme="dark"] .node-label-desc {
+          color: #94a3b8;
+        }
 
-              {/* 6. CLIENTS MARQUEE */}
-              <section style={{ padding: '30px 0', overflow: 'hidden' }}>
-                <div style={{ textAlign: 'center', padding: '0 20px', marginBottom: 60 }}>
-                  <h2 className="wwd-animate" style={{ color: '#fff', fontSize: 42, fontWeight: 700, marginBottom: 16 }}>Trusted by Businesses Across Industries</h2>
-                  <p className="wwd-animate" style={{ color: '#8b9db5', fontSize: 18, maxWidth: 600, margin: '0 auto' }}>We&apos;re proud to partner with leading organizations across various industries</p>
-                </div>
-                <div style={{ position: 'relative', width: '100%', marginBottom: 24, maskImage: 'linear-gradient(90deg, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(90deg, transparent, black 10%, black 90%, transparent)' }}>
-                  <div style={{ display: 'flex', gap: 24, width: 'max-content', animation: 'wwdMarquee 30s linear infinite' }}>
-                    {[...clientLogos, ...clientLogos].map((logo, i) => (
-                      <div key={i} className="client-card-wrapper" style={{ flexShrink: 0, width: 200, height: 90, borderRadius: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '14px 22px' }}>
-                        <img src={logo.src} alt={logo.alt} className="client-logo-img" draggable={false} style={{ maxHeight: 52, maxWidth: 140, width: 'auto', height: 'auto', objectFit: 'contain', pointerEvents: 'none' }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .wwd-stat-card,
+        [data-theme="dark"] .wwd-capability-card,
+        [data-theme="dark"] .wwd-step-card,
+        [data-theme="dark"] .wwd-vm-card,
+        [data-theme="dark"] .wwd-value-card,
+        [data-theme="dark"] .wwd-team-card,
+        [data-theme="dark"] .wwd-inquiry-box,
+        [data-theme="dark"] .wwd-offices-box,
+        [data-theme="dark"] .contact-touch-card {
+          background: rgba(13, 24, 48, 0.65);
+          border: 1px solid rgba(0, 174, 239, 0.2);
+          backdrop-filter: blur(12px);
+        }
 
-              {/* 7. CONTACT CTA */}
-              <section style={{ position: 'relative', padding: '60px 0' }}>
-                <div style={{ position: 'absolute', top: '10%', right: '5%', width: 300, height: 300, background: 'radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(40px)', animation: 'wwdFloat 6s ease-in-out infinite' }} />
-                <div style={{ position: 'absolute', bottom: '15%', left: '10%', width: 250, height: 250, background: 'radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)', borderRadius: '50%', filter: 'blur(40px)', animation: 'wwdFloat 8s ease-in-out infinite reverse' }} />
-                <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
-                  <div className="wwd-animate" style={{ textAlign: 'center', marginBottom: 30 }}>
-                    <div style={{ display: 'inline-block', padding: '8px 20px', background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.3)', borderRadius: 50, marginBottom: 20 }}>
-                      <span style={{ color: '#60a5fa', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1.5px' }}>Get in Touch</span>
-                    </div>
-                    <h2 style={{ color: '#ffffff', fontSize: 'clamp(2.5rem, 6vw, 3.5rem)', fontWeight: 800, marginBottom: 20, lineHeight: 1.2 }}>Let&apos;s Build the Right Solution for Your Business</h2>
-                    <p style={{ color: '#94a3b8', fontSize: 'clamp(1rem, 2.5vw, 1.125rem)', maxWidth: 650, margin: '0 auto', lineHeight: 1.7 }}>We&apos;d love to hear from you. Whether you have a question about our services, need assistance, or just want to say hello.</p>
-                  </div>
-                  <div className="wwd-animate" style={{ background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 20, padding: 40, marginBottom: 30 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 40 }}>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-                          <div style={{ width: 40, height: 40, flexShrink: 0, background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.18)', borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}><Phone size={20} /></div>
-                          <h3 style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>Call Us</h3>
-                        </div>
-                        {[{ num: '+966 55 101 3823', sub: 'Saudi Arabia', href: 'tel:+966551013823' }, { num: '+966 53 382 0454', sub: 'Saudi Arabia', href: 'tel:+966533820454' }, { num: '+92 370 3536327', sub: 'Pakistan', href: 'tel:+923703536327' }].map((ph, i) => (
-                          <a key={i} href={ph.href} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '13px 0', borderBottom: i < 2 ? '1px solid rgba(255,255,255,0.06)' : 'none', textDecoration: 'none', color: '#cbd5e1', transition: 'color 0.25s ease' }}>
-                            <span style={{ fontSize: '0.95rem', fontWeight: 500, lineHeight: 1.4 }}>{ph.num}<span style={{ display: 'block', color: '#64748b', fontSize: '0.8rem', fontWeight: 400, marginTop: 3 }}>{ph.sub}</span></span>
-                            <ArrowUpRight size={16} style={{ opacity: 0.45 }} />
-                          </a>
-                        ))}
-                      </div>
-                      <div className="wwd-contact-col-border" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: 40 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-                          <div style={{ width: 40, height: 40, flexShrink: 0, background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.18)', borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}><Mail size={20} /></div>
-                          <h3 style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>Message Us</h3>
-                        </div>
-                        <a href="mailto:info@altapetesolutions.com" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '13px 0', borderBottom: '1px solid rgba(255,255,255,0.06)', textDecoration: 'none', color: '#cbd5e1' }}>
-                          <span style={{ fontSize: '0.95rem', fontWeight: 500 }}>info@altapetesolutions.com<span style={{ display: 'block', color: '#64748b', fontSize: '0.8rem', marginTop: 3 }}>Email</span></span>
-                          <ArrowUpRight size={16} style={{ opacity: 0.45 }} />
-                        </a>
-                        <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '13px 0', textDecoration: 'none', color: '#cbd5e1' }}>
-                          <span style={{ fontSize: '0.95rem', fontWeight: 500 }}>+966 56 802 9153<span style={{ display: 'block', color: '#64748b', fontSize: '0.8rem', marginTop: 3 }}>WhatsApp</span></span>
-                          <ArrowUpRight size={16} style={{ opacity: 0.45 }} />
-                        </a>
-                      </div>
-                      <div className="wwd-contact-col-border" style={{ borderLeft: '1px solid rgba(255,255,255,0.08)', paddingLeft: 40 }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-                          <div style={{ width: 40, height: 40, flexShrink: 0, background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.18)', borderRadius: 11, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3b82f6' }}><MapPin size={20} /></div>
-                          <h3 style={{ color: '#ffffff', fontSize: '1.05rem', fontWeight: 600, margin: 0 }}>Visit Us</h3>
-                        </div>
-                        {[{ country: 'Saudi Arabia', sub: 'Riyadh, Jeddah' }, { country: 'UAE', sub: 'Dubai, Abu Dhabi' }, { country: 'Bahrain', sub: 'Manama' }, { country: 'Pakistan', sub: 'Karachi, Lahore' }].map((loc, i) => (
-                          <div key={i} style={{ padding: '13px 0', borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none', color: '#cbd5e1' }}>
-                            <span style={{ fontSize: '0.95rem', fontWeight: 500 }}>{loc.country}<span style={{ display: 'block', color: '#64748b', fontSize: '0.8rem', marginTop: 3 }}>{loc.sub}</span></span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="wwd-animate" style={{ background: 'rgba(30, 41, 59, 0.6)', backdropFilter: 'blur(30px)', border: '1px solid rgba(148, 163, 184, 0.2)', borderRadius: 24, padding: 30, boxShadow: '0 25px 50px rgba(0,0,0,0.25)' }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 40 }}>
-                      <div>
-                        <h2 style={{ color: '#ffffff', fontSize: 'clamp(1.75rem, 4vw, 2rem)', fontWeight: 700, marginBottom: 30 }}>Our Offices</h2>
-                        {offices.map((office, i) => (
-                          <div key={i} style={{ marginBottom: i < offices.length - 1 ? 25 : 0, paddingBottom: i < offices.length - 1 ? 25 : 0, borderBottom: i < offices.length - 1 ? '1px solid rgba(148,163,184,0.1)' : 'none' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                              <div style={{ width: 8, height: 8, background: 'linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%)', borderRadius: '50%' }} />
-                              <h3 style={{ color: '#ffffff', fontSize: '1.125rem', fontWeight: 600, margin: 0 }}>{office.city}</h3>
-                              <span style={{ color: '#94a3b8', fontSize: '0.875rem' }}>• {office.country}</span>
-                            </div>
-                            <p style={{ color: '#cbd5e1', fontSize: '0.9rem', margin: 0, paddingLeft: 18 }}>{office.address}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+        [data-theme="dark"] .cap-metric-box {
+          background: rgba(0, 174, 239, 0.08);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+        }
 
-            </div>
-          </div>
-        </div>
-      </div>
+        [data-theme="dark"] .wwd-stat-label,
+        [data-theme="dark"] .metric-label {
+          color: #94a3b8;
+        }
+
+        [data-theme="dark"] .metric-trust-note {
+          color: #cbd5e1;
+        }
+
+        [data-theme="dark"] .wwd-tabs-nav {
+          background: rgba(13, 24, 48, 0.8);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+        }
+
+        [data-theme="dark"] .wwd-tab-btn {
+          color: #94a3b8;
+        }
+        [data-theme="dark"] .wwd-tab-btn:hover {
+          color: #ffffff;
+        }
+
+        [data-theme="dark"] .touch-label,
+        [data-theme="dark"] .office-country {
+          color: #00AEEF;
+        }
+
+        /* ---------------- LIGHT THEME RULES ---------------- */
+        [data-theme="light"] .wwd-page-wrapper,
+        :root:not([data-theme="dark"]) .wwd-page-wrapper {
+          background-color: #f8fafc;
+          color: #334155;
+        }
+
+        [data-theme="light"] .wwd-hero-title,
+        :root:not([data-theme="dark"]) .wwd-hero-title,
+        [data-theme="light"] .wwd-section-title,
+        :root:not([data-theme="dark"]) .wwd-section-title,
+        [data-theme="light"] .cap-title,
+        :root:not([data-theme="dark"]) .cap-title,
+        [data-theme="light"] .step-title,
+        :root:not([data-theme="dark"]) .step-title,
+        [data-theme="light"] .vm-title,
+        :root:not([data-theme="dark"]) .vm-title,
+        [data-theme="light"] .val-title,
+        :root:not([data-theme="dark"]) .val-title,
+        [data-theme="light"] .team-name a,
+        :root:not([data-theme="dark"]) .team-name a,
+        [data-theme="light"] .wwd-inquiry-title,
+        :root:not([data-theme="dark"]) .wwd-inquiry-title,
+        [data-theme="light"] .offices-title,
+        :root:not([data-theme="dark"]) .offices-title,
+        [data-theme="light"] .office-city,
+        :root:not([data-theme="dark"]) .office-city {
+          color: #0f172a !important;
+        }
+
+        [data-theme="light"] .wwd-hero-subtitle,
+        :root:not([data-theme="dark"]) .wwd-hero-subtitle,
+        [data-theme="light"] .wwd-section-desc,
+        :root:not([data-theme="dark"]) .wwd-section-desc,
+        [data-theme="light"] .cap-description,
+        :root:not([data-theme="dark"]) .cap-description,
+        [data-theme="light"] .step-desc,
+        :root:not([data-theme="dark"]) .step-desc,
+        [data-theme="light"] .vm-text,
+        :root:not([data-theme="dark"]) .vm-text,
+        [data-theme="light"] .val-desc,
+        :root:not([data-theme="dark"]) .val-desc,
+        [data-theme="light"] .team-bio,
+        :root:not([data-theme="dark"]) .team-bio,
+        [data-theme="light"] .wwd-inquiry-desc,
+        :root:not([data-theme="dark"]) .wwd-inquiry-desc,
+        [data-theme="light"] .office-address,
+        :root:not([data-theme="dark"]) .office-address {
+          color: #475569 !important;
+        }
+
+        [data-theme="light"] .wwd-trust-item,
+        :root:not([data-theme="dark"]) .wwd-trust-item,
+        [data-theme="light"] .cap-feature-item,
+        :root:not([data-theme="dark"]) .cap-feature-item,
+        [data-theme="light"] .touch-value,
+        :root:not([data-theme="dark"]) .touch-value {
+          color: #1e293b !important;
+        }
+
+        [data-theme="light"] .wwd-secondary-btn,
+        :root:not([data-theme="dark"]) .wwd-secondary-btn {
+          color: #0f172a !important;
+          border-color: #cbd5e1;
+          background: #ffffff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="light"] .wwd-secondary-btn:hover,
+        :root:not([data-theme="dark"]) .wwd-secondary-btn:hover {
+          background: #f1f5f9;
+        }
+
+        [data-theme="light"] .wwd-satellite-node,
+        :root:not([data-theme="dark"]) .wwd-satellite-node {
+          background: #ffffff;
+          border: 1.5px solid #cbd5e1;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        [data-theme="light"] .node-label-title,
+        :root:not([data-theme="dark"]) .node-label-title {
+          color: #0f172a;
+        }
+        [data-theme="light"] .node-label-desc,
+        :root:not([data-theme="dark"]) .node-label-desc {
+          color: #64748b;
+        }
+
+        [data-theme="light"] .wwd-stat-card,
+        :root:not([data-theme="dark"]) .wwd-stat-card,
+        [data-theme="light"] .wwd-capability-card,
+        :root:not([data-theme="dark"]) .wwd-capability-card,
+        [data-theme="light"] .wwd-step-card,
+        :root:not([data-theme="dark"]) .wwd-step-card,
+        [data-theme="light"] .wwd-vm-card,
+        :root:not([data-theme="dark"]) .wwd-vm-card,
+        [data-theme="light"] .wwd-value-card,
+        :root:not([data-theme="dark"]) .wwd-value-card,
+        [data-theme="light"] .wwd-team-card,
+        :root:not([data-theme="dark"]) .wwd-team-card,
+        [data-theme="light"] .wwd-inquiry-box,
+        :root:not([data-theme="dark"]) .wwd-inquiry-box,
+        [data-theme="light"] .wwd-offices-box,
+        :root:not([data-theme="dark"]) .wwd-offices-box,
+        [data-theme="light"] .contact-touch-card,
+        :root:not([data-theme="dark"]) .contact-touch-card {
+          background: #ffffff;
+          border: 1.5px solid #e2e8f0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="light"] .cap-metric-box,
+        :root:not([data-theme="dark"]) .cap-metric-box {
+          background: #f0f9ff;
+          border: 1.5px solid #bae6fd;
+        }
+
+        [data-theme="light"] .wwd-stat-label,
+        :root:not([data-theme="dark"]) .wwd-stat-label,
+        [data-theme="light"] .metric-label,
+        :root:not([data-theme="dark"]) .metric-label {
+          color: #64748b;
+        }
+
+        [data-theme="light"] .metric-trust-note,
+        :root:not([data-theme="dark"]) .metric-trust-note {
+          color: #334155;
+        }
+
+        [data-theme="light"] .wwd-tabs-nav,
+        :root:not([data-theme="dark"]) .wwd-tabs-nav {
+          background: #e2e8f0;
+          border: 1px solid #cbd5e1;
+        }
+
+        [data-theme="light"] .wwd-tab-btn,
+        :root:not([data-theme="dark"]) .wwd-tab-btn {
+          color: #475569;
+        }
+        [data-theme="light"] .wwd-tab-btn:hover,
+        :root:not([data-theme="dark"]) .wwd-tab-btn:hover {
+          color: #0f172a;
+        }
+
+        [data-theme="light"] .touch-label,
+        :root:not([data-theme="dark"]) .touch-label,
+        [data-theme="light"] .office-country,
+        :root:not([data-theme="dark"]) .office-country {
+          color: #0284c7;
+        }
+      `}</style>
     </Layout>
   );
 }
