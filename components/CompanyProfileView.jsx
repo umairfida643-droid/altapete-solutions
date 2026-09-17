@@ -214,13 +214,7 @@ export default function CompanyProfileView() {
           }}>
             Company<br />
             <span style={{ 
-              color: isDark ? '#00AEEF' : '#0077cc',
-              background: isDark 
-                ? 'linear-gradient(135deg, #00AEEF 0%, #00C6FF 100%)' 
-                : 'linear-gradient(135deg, #0077cc 0%, #00AEEF 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'inline-block'
+              color: isDark ? '#00AEEF' : '#0077cc'
             }}>
               Profile Library
             </span>
