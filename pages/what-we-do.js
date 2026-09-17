@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import {
@@ -11,12 +11,12 @@ import {
 
 // Central Orb Floating Capabilities
 const orbitNodes = [
-  { id: 'erp', title: 'ERP & Odoo', icon: Database, angle: 0, x: 78, y: 22, desc: 'Certified Odoo & Enterprise Workflows' },
-  { id: 'cloud', title: 'Cloud Apps', icon: Code2, angle: 60, x: 86, y: 64, desc: 'Next.js, React & Microservices' },
-  { id: 'zatca', title: 'ZATCA Phase 2', icon: FileCheck, angle: 120, x: 50, y: 90, desc: '100% Compliant E-Invoicing' },
-  { id: 'devops', title: 'Cloud & DevOps', icon: Server, angle: 180, x: 14, y: 64, desc: 'AWS, Docker, K8s Architecture' },
-  { id: 'advisory', title: 'IT Advisory', icon: TrendingUp, angle: 240, x: 22, y: 22, desc: 'Fractional CTO & Strategic Governance' },
-  { id: 'fintech', title: 'Fintech & HR', icon: Cpu, angle: 300, x: 50, y: 8, desc: 'Muqeem, MADA & Gateway Connectors' },
+  { id: 'erp', title: 'ERP & Odoo', icon: Database, x: 78, y: 22, desc: 'Certified Odoo & Enterprise Workflows' },
+  { id: 'cloud', title: 'Cloud Apps', icon: Code2, x: 86, y: 64, desc: 'Next.js, React & Microservices' },
+  { id: 'zatca', title: 'ZATCA Phase 2', icon: FileCheck, x: 50, y: 90, desc: '100% Compliant E-Invoicing' },
+  { id: 'devops', title: 'Cloud & DevOps', icon: Server, x: 14, y: 64, desc: 'AWS, Docker, K8s Architecture' },
+  { id: 'advisory', title: 'IT Advisory', icon: TrendingUp, x: 22, y: 22, desc: 'Fractional CTO & Strategic Governance' },
+  { id: 'fintech', title: 'Fintech & HR', icon: Cpu, x: 50, y: 8, desc: 'Muqeem, MADA & Gateway Connectors' },
 ];
 
 const capabilities = [
@@ -218,13 +218,13 @@ export default function WhatWeDoPage() {
       description="Discover Alta Pete Solutions: Certified Odoo implementations, custom cloud software engineering, ZATCA Phase 2 integrations, and executive corporate advisory."
     >
       <div className="wwd-page-wrapper">
-        <div className="container-fluid px-lg-5 px-3">
 
-          {/* =========================================================
-              1. HERO SECTION: WELL-ALIGNED HIGH-TECH HUB
-             ========================================================= */}
-          <section className="wwd-hero-section">
-            <div className="row align-items-center g-5">
+        {/* =========================================================
+            1. HERO SECTION: WELL-ALIGNED HIGH-TECH HUB
+           ========================================================= */}
+        <section className="wwd-hero-section">
+          <div className="container position-relative">
+            <div className="row align-items-center g-4 g-lg-5">
               
               {/* Left Column: Hero Text */}
               <div className="col-lg-6">
@@ -255,15 +255,15 @@ export default function WhatWeDoPage() {
                   {/* Trust Highlights */}
                   <div className="wwd-trust-row">
                     <div className="wwd-trust-item">
-                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <CheckCircle2 size={17} className="wwd-trust-icon" />
                       <span>Odoo Certified Partner</span>
                     </div>
                     <div className="wwd-trust-item">
-                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <CheckCircle2 size={17} className="wwd-trust-icon" />
                       <span>ZATCA Phase 2 Certified</span>
                     </div>
                     <div className="wwd-trust-item">
-                      <CheckCircle2 size={18} className="wwd-trust-icon" />
+                      <CheckCircle2 size={17} className="wwd-trust-icon" />
                       <span>SOCPA & ICAP Qualified</span>
                     </div>
                   </div>
@@ -299,7 +299,7 @@ export default function WhatWeDoPage() {
                   <div className="wwd-central-orb">
                     <div className="orb-inner-glow" />
                     <div className="orb-content">
-                      <Sparkles size={36} color="#ffffff" />
+                      <Sparkles size={32} color="#ffffff" />
                       <span className="orb-title">ALTAPETE</span>
                       <span className="orb-sub">CORE HUB</span>
                     </div>
@@ -318,7 +318,7 @@ export default function WhatWeDoPage() {
                         onMouseLeave={() => setHoveredNode(null)}
                       >
                         <div className="node-icon-box">
-                          <Icon size={20} className="node-icon" />
+                          <Icon size={18} className="node-icon" />
                         </div>
                         <div className="node-label-box">
                           <div className="node-label-title">{node.title}</div>
@@ -331,13 +331,15 @@ export default function WhatWeDoPage() {
               </div>
 
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              2. QUANTIFIED IMPACT / TRACK RECORD COUNTERS
-             ========================================================= */}
-          <section className="wwd-stats-section">
-            <div className="row g-4 justify-content-center">
+        {/* =========================================================
+            2. QUANTIFIED IMPACT / TRACK RECORD COUNTERS
+           ========================================================= */}
+        <section className="wwd-stats-section">
+          <div className="container">
+            <div className="row g-3 g-lg-4 justify-content-center">
               {stats.map((item, idx) => (
                 <div key={idx} className="col-lg-3 col-sm-6">
                   <div className="wwd-stat-card">
@@ -347,13 +349,15 @@ export default function WhatWeDoPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              3. CAPABILITIES MATRIX: WHAT WE ACTUALLY DO
-             ========================================================= */}
-          <section id="capabilities" className="wwd-capabilities-section">
-            <div className="text-center mb-5">
+        {/* =========================================================
+            3. CAPABILITIES MATRIX: WHAT WE ACTUALLY DO
+           ========================================================= */}
+        <section id="capabilities" className="wwd-capabilities-section">
+          <div className="container">
+            <div className="text-center mb-4 pb-2">
               <div className="wwd-section-tag">COMPREHENSIVE EXPERTISE</div>
               <h2 className="wwd-section-title">
                 What We Do: <span className="wwd-gradient-text">Enterprise Capabilities</span>
@@ -376,7 +380,7 @@ export default function WhatWeDoPage() {
                       className={`wwd-tab-btn ${isActive ? 'active' : ''}`}
                       onClick={() => setActiveTab(cap.id)}
                     >
-                      <Icon size={20} className="tab-icon" />
+                      <Icon size={18} className="tab-icon" />
                       <span className="tab-text">{cap.title.split('&')[0].trim()}</span>
                     </button>
                   );
@@ -386,7 +390,7 @@ export default function WhatWeDoPage() {
 
             {/* Active Capability Showcase Card */}
             <div className="wwd-capability-card">
-              <div className="row align-items-center g-5">
+              <div className="row align-items-center g-4 g-lg-5">
                 <div className="col-lg-7">
                   <div className="cap-badge">{selectedCapability.badge}</div>
                   <h3 className="cap-title">{selectedCapability.title}</h3>
@@ -396,7 +400,7 @@ export default function WhatWeDoPage() {
                   <div className="cap-features-grid">
                     {selectedCapability.features.map((feat, i) => (
                       <div key={i} className="cap-feature-item">
-                        <CheckCircle2 size={18} className="feat-icon" />
+                        <CheckCircle2 size={16} className="feat-icon" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -405,7 +409,7 @@ export default function WhatWeDoPage() {
                   <div className="cap-cta-row">
                     <Link href={selectedCapability.link} className="cap-cta-btn">
                       <span>{selectedCapability.ctaText}</span>
-                      <ChevronRight size={18} />
+                      <ChevronRight size={17} />
                     </Link>
                   </div>
                 </div>
@@ -423,13 +427,15 @@ export default function WhatWeDoPage() {
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              4. HOW WE WORK: 4-STAGE METHODOLOGY
-             ========================================================= */}
-          <section className="wwd-methodology-section">
-            <div className="text-center mb-5">
+        {/* =========================================================
+            4. HOW WE WORK: 4-STAGE METHODOLOGY
+           ========================================================= */}
+        <section className="wwd-methodology-section">
+          <div className="container">
+            <div className="text-center mb-4 pb-2">
               <div className="wwd-section-tag">EXECUTION ROADMAP</div>
               <h2 className="wwd-section-title">
                 How We Deliver <span className="wwd-gradient-text">Predictable Success</span>
@@ -450,18 +456,20 @@ export default function WhatWeDoPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              5. VISION, MISSION & VALUES
-             ========================================================= */}
-          <section className="wwd-values-section">
+        {/* =========================================================
+            5. VISION, MISSION & VALUES
+           ========================================================= */}
+        <section className="wwd-values-section">
+          <div className="container">
             <div className="row g-4 mb-5">
               {/* Vision Card */}
               <div className="col-lg-6">
                 <div className="wwd-vm-card">
                   <div className="vm-icon-box">
-                    <Compass size={28} color="#00AEEF" />
+                    <Compass size={26} color="#00AEEF" />
                   </div>
                   <h3 className="vm-title">Our Vision</h3>
                   <p className="vm-text">
@@ -474,7 +482,7 @@ export default function WhatWeDoPage() {
               <div className="col-lg-6">
                 <div className="wwd-vm-card">
                   <div className="vm-icon-box">
-                    <Target size={28} color="#2c73d9" />
+                    <Target size={26} color="#2c73d9" />
                   </div>
                   <h3 className="vm-title">Our Mission</h3>
                   <p className="vm-text">
@@ -485,7 +493,7 @@ export default function WhatWeDoPage() {
             </div>
 
             {/* Core Values 4-Column Grid */}
-            <div className="text-center mb-4">
+            <div className="text-center mb-4 pb-2">
               <div className="wwd-section-tag">OUR CORE PRINCIPLES</div>
               <h3 className="wwd-section-title">Values That Drive Every Line of Code</h3>
             </div>
@@ -497,7 +505,7 @@ export default function WhatWeDoPage() {
                   <div key={idx} className="col-lg-3 col-md-6">
                     <div className="wwd-value-card">
                       <div className="val-icon-box">
-                        <Icon size={24} className="val-icon" />
+                        <Icon size={22} className="val-icon" />
                       </div>
                       <h4 className="val-title">{val.title}</h4>
                       <p className="val-desc">{val.desc}</p>
@@ -507,13 +515,15 @@ export default function WhatWeDoPage() {
                 );
               })}
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              6. EXECUTIVE LEADERSHIP & TEAM
-             ========================================================= */}
-          <section className="wwd-team-section">
-            <div className="text-center mb-5">
+        {/* =========================================================
+            6. EXECUTIVE LEADERSHIP & TEAM
+           ========================================================= */}
+        <section className="wwd-team-section">
+          <div className="container">
+            <div className="text-center mb-4 pb-2">
               <div className="wwd-section-tag">LEADERSHIP & EXPERTS</div>
               <h2 className="wwd-section-title">
                 Meet the <span className="wwd-gradient-text">Minds Behind Altapete</span>
@@ -537,7 +547,7 @@ export default function WhatWeDoPage() {
                     <h3 className="team-name">
                       <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
                         {member.name}
-                        <ExternalLink size={14} className="ms-1" />
+                        <ExternalLink size={13} className="ms-1" />
                       </a>
                     </h3>
                     <p className="team-bio">{member.bio}</p>
@@ -545,38 +555,43 @@ export default function WhatWeDoPage() {
                 </div>
               ))}
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* =========================================================
-              7. TRUSTED CLIENTS MARQUEE
-             ========================================================= */}
-          <section className="wwd-clients-section">
-            <div className="text-center mb-4">
-              <div className="wwd-section-tag">GLOBAL CREDIBILITY</div>
-              <h3 className="wwd-section-title">Trusted by Leading Organizations</h3>
+        {/* =========================================================
+            7. TRUSTED CLIENTS MARQUEE
+           ========================================================= */}
+        <section className="wwd-clients-section">
+          <div className="container text-center mb-4">
+            <div className="wwd-section-tag">GLOBAL CREDIBILITY</div>
+            <h3 className="wwd-section-title">Trusted by Leading Organizations</h3>
+            <p className="wwd-section-desc">
+              Proud partners to forward-thinking enterprises across energy, finance, and industrial sectors.
+            </p>
+          </div>
+
+          <div className="wwd-marquee-wrapper">
+            <div className="wwd-marquee-track">
+              {[...clientLogos, ...clientLogos].map((client, idx) => (
+                <div key={idx} className="client-card-wrapper">
+                  <img
+                    src={client.src}
+                    alt={client.alt}
+                    className="client-logo-img"
+                    draggable={false}
+                  />
+                </div>
+              ))}
             </div>
+          </div>
+        </section>
 
-            <div className="wwd-marquee-wrapper">
-              <div className="wwd-marquee-track">
-                {[...clientLogos, ...clientLogos].map((client, idx) => (
-                  <div key={idx} className="client-card-wrapper">
-                    <img
-                      src={client.src}
-                      alt={client.alt}
-                      className="client-logo-img"
-                      draggable={false}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* =========================================================
-              8. GLOBAL FOOTPRINT & OFFICES
-             ========================================================= */}
-          <section className="wwd-contact-section">
-            <div className="row g-5">
+        {/* =========================================================
+            8. GLOBAL FOOTPRINT & OFFICES
+           ========================================================= */}
+        <section className="wwd-contact-section">
+          <div className="container">
+            <div className="row g-4 g-lg-5">
               
               {/* Left Column: Direct Inquiries */}
               <div className="col-lg-7">
@@ -587,10 +602,10 @@ export default function WhatWeDoPage() {
                     Connect directly with our senior technology team to evaluate your ERP roadmap, discuss custom software engineering, or review ZATCA Phase 2 compliance requirements.
                   </p>
 
-                  <div className="row g-4 mt-2">
+                  <div className="row g-3 g-sm-4 mt-2">
                     <div className="col-sm-6">
                       <div className="contact-touch-card">
-                        <Phone size={22} className="touch-icon" />
+                        <Phone size={20} className="touch-icon" />
                         <div>
                           <div className="touch-label">Call Our Advisors</div>
                           <a href="tel:+966551013823" className="touch-value">+966 55 101 3823 (KSA)</a>
@@ -601,7 +616,7 @@ export default function WhatWeDoPage() {
 
                     <div className="col-sm-6">
                       <div className="contact-touch-card">
-                        <Mail size={22} className="touch-icon" />
+                        <Mail size={20} className="touch-icon" />
                         <div>
                           <div className="touch-label">Direct Correspondence</div>
                           <a href="mailto:info@altapetesolutions.com" className="touch-value">info@altapetesolutions.com</a>
@@ -614,7 +629,7 @@ export default function WhatWeDoPage() {
                   <div className="mt-4 pt-2">
                     <Link href="/contact-us" className="wwd-primary-btn">
                       <span>Schedule an Executive Briefing</span>
-                      <ArrowRight size={18} />
+                      <ArrowRight size={17} />
                     </Link>
                   </div>
                 </div>
@@ -624,7 +639,7 @@ export default function WhatWeDoPage() {
               <div className="col-lg-5">
                 <div className="wwd-offices-box">
                   <div className="d-flex align-items-center gap-2 mb-4">
-                    <Globe size={22} color="#00AEEF" />
+                    <Globe size={20} color="#00AEEF" />
                     <h3 className="offices-title">Global Presence</h3>
                   </div>
 
@@ -645,9 +660,9 @@ export default function WhatWeDoPage() {
               </div>
 
             </div>
-          </section>
+          </div>
+        </section>
 
-        </div>
       </div>
 
       {/* =========================================================
@@ -655,38 +670,37 @@ export default function WhatWeDoPage() {
          ========================================================= */}
       <style jsx>{`
         .wwd-page-wrapper {
-          padding-top: 40px;
-          padding-bottom: 90px;
           position: relative;
           overflow: hidden;
+          width: 100%;
         }
 
         /* ---------------- Section Typography & Tags ---------------- */
         .wwd-section-tag {
           display: inline-block;
-          font-size: 12px;
+          font-size: 11.5px;
           font-weight: 700;
           letter-spacing: 1.5px;
           text-transform: uppercase;
           color: #00AEEF;
-          padding: 6px 16px;
+          padding: 5px 14px;
           border-radius: 50px;
           background: rgba(0, 174, 239, 0.1);
           border: 1px solid rgba(0, 174, 239, 0.25);
-          margin-bottom: 14px;
+          margin-bottom: 12px;
         }
 
         .wwd-section-title {
-          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-size: clamp(1.85rem, 3vw, 2.5rem);
           font-weight: 800;
           letter-spacing: -0.5px;
-          margin-bottom: 16px;
-          line-height: 1.2;
+          margin-bottom: 14px;
+          line-height: 1.22;
         }
 
         .wwd-section-desc {
-          font-size: 16px;
-          max-width: 720px;
+          font-size: 15px;
+          max-width: 680px;
           margin: 0 auto;
           line-height: 1.6;
         }
@@ -699,7 +713,7 @@ export default function WhatWeDoPage() {
 
         /* ---------------- 1. Hero Section ---------------- */
         .wwd-hero-section {
-          padding: 40px 0 70px;
+          padding: 70px 0 60px;
           position: relative;
         }
 
@@ -707,15 +721,15 @@ export default function WhatWeDoPage() {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 8px 18px;
+          padding: 7px 16px;
           border-radius: 50px;
           background: rgba(0, 174, 239, 0.1);
           border: 1px solid rgba(0, 174, 239, 0.3);
           color: #00AEEF;
-          font-size: 12.5px;
+          font-size: 12px;
           font-weight: 700;
-          letter-spacing: 1px;
-          margin-bottom: 24px;
+          letter-spacing: 0.8px;
+          margin-bottom: 20px;
         }
 
         .wwd-pulse-dot {
@@ -733,57 +747,57 @@ export default function WhatWeDoPage() {
         }
 
         .wwd-hero-title {
-          font-size: clamp(2.4rem, 4.2vw, 3.4rem);
+          font-size: clamp(2.2rem, 3.8vw, 3.1rem);
           font-weight: 800;
           line-height: 1.18;
           letter-spacing: -0.8px;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
 
         .wwd-hero-subtitle {
-          font-size: 16.5px;
+          font-size: 15.5px;
           line-height: 1.65;
-          margin-bottom: 32px;
-          max-width: 580px;
+          margin-bottom: 28px;
+          max-width: 540px;
         }
 
         .wwd-hero-actions {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 14px;
           flex-wrap: wrap;
-          margin-bottom: 36px;
+          margin-bottom: 30px;
         }
 
         .wwd-primary-btn {
           display: inline-flex;
           align-items: center;
           gap: 10px;
-          padding: 14px 30px;
+          padding: 13px 28px;
           border-radius: 50px;
           background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
           color: #ffffff !important;
           font-weight: 700;
-          font-size: 15px;
+          font-size: 14.5px;
           text-decoration: none;
-          box-shadow: 0 10px 25px rgba(0, 174, 239, 0.35);
+          box-shadow: 0 10px 24px rgba(0, 174, 239, 0.35);
           transition: all 0.3s ease;
         }
 
         .wwd-primary-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 15px 35px rgba(0, 174, 239, 0.5);
+          box-shadow: 0 14px 32px rgba(0, 174, 239, 0.5);
           color: #ffffff !important;
         }
 
         .wwd-secondary-btn {
           display: inline-flex;
           align-items: center;
-          padding: 14px 28px;
+          padding: 13px 26px;
           border-radius: 50px;
           border: 1.5px solid rgba(0, 174, 239, 0.4);
           font-weight: 600;
-          font-size: 15px;
+          font-size: 14.5px;
           text-decoration: none;
           transition: all 0.3s ease;
         }
@@ -796,17 +810,17 @@ export default function WhatWeDoPage() {
         .wwd-trust-row {
           display: flex;
           align-items: center;
-          gap: 20px;
+          gap: 18px;
           flex-wrap: wrap;
-          padding-top: 20px;
-          border-top: 1px solid rgba(148, 163, 184, 0.2);
+          padding-top: 18px;
+          border-top: 1px solid rgba(148, 163, 184, 0.18);
         }
 
         .wwd-trust-item {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 13.5px;
+          gap: 7px;
+          font-size: 13px;
           font-weight: 600;
         }
 
@@ -818,8 +832,8 @@ export default function WhatWeDoPage() {
         .wwd-orbit-container {
           position: relative;
           width: 100%;
-          max-width: 520px;
-          height: 480px;
+          max-width: 480px;
+          height: 440px;
           margin: 0 auto;
           display: flex;
           align-items: center;
@@ -834,20 +848,20 @@ export default function WhatWeDoPage() {
         }
 
         .ring-outer {
-          width: 440px;
-          height: 440px;
+          width: 400px;
+          height: 400px;
           animation: spinClockwise 60s linear infinite;
         }
 
         .ring-middle {
-          width: 310px;
-          height: 310px;
+          width: 280px;
+          height: 280px;
           animation: spinCounter 45s linear infinite;
         }
 
         .ring-inner {
-          width: 180px;
-          height: 180px;
+          width: 160px;
+          height: 160px;
           border: 1px solid rgba(0, 174, 239, 0.25);
         }
 
@@ -873,14 +887,14 @@ export default function WhatWeDoPage() {
         /* Central Orb */
         .wwd-central-orb {
           position: relative;
-          width: 120px;
-          height: 120px;
+          width: 110px;
+          height: 110px;
           border-radius: 50%;
           background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 0 50px rgba(0, 174, 239, 0.5);
+          box-shadow: 0 0 45px rgba(0, 174, 239, 0.45);
           z-index: 5;
           text-align: center;
         }
@@ -903,15 +917,15 @@ export default function WhatWeDoPage() {
         }
 
         .orb-title {
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 800;
           letter-spacing: 1.5px;
           color: #ffffff;
-          margin-top: 4px;
+          margin-top: 3px;
         }
 
         .orb-sub {
-          font-size: 9px;
+          font-size: 8.5px;
           font-weight: 600;
           color: rgba(255, 255, 255, 0.85);
           letter-spacing: 0.5px;
@@ -923,8 +937,8 @@ export default function WhatWeDoPage() {
           transform: translate(-50%, -50%);
           display: flex;
           align-items: center;
-          gap: 10px;
-          padding: 8px 14px;
+          gap: 9px;
+          padding: 7px 13px;
           border-radius: 50px;
           cursor: pointer;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -939,8 +953,8 @@ export default function WhatWeDoPage() {
         }
 
         .node-icon-box {
-          width: 32px;
-          height: 32px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
           background: rgba(0, 174, 239, 0.15);
           display: flex;
@@ -950,24 +964,24 @@ export default function WhatWeDoPage() {
         }
 
         .node-label-title {
-          font-size: 12.5px;
+          font-size: 12px;
           font-weight: 700;
           line-height: 1.2;
         }
 
         .node-label-desc {
-          font-size: 10px;
+          font-size: 9.5px;
           line-height: 1;
         }
 
         /* ---------------- 2. Stats Section ---------------- */
         .wwd-stats-section {
-          padding: 20px 0 60px;
+          padding: 10px 0 50px;
         }
 
         .wwd-stat-card {
-          padding: 30px 20px;
-          border-radius: 20px;
+          padding: 26px 18px;
+          border-radius: 18px;
           text-align: center;
           transition: all 0.3s ease;
         }
@@ -977,7 +991,7 @@ export default function WhatWeDoPage() {
         }
 
         .wwd-stat-number {
-          font-size: clamp(2.4rem, 3.5vw, 3.2rem);
+          font-size: clamp(2.2rem, 3.2vw, 2.9rem);
           font-weight: 800;
           line-height: 1;
           margin-bottom: 8px;
@@ -987,7 +1001,7 @@ export default function WhatWeDoPage() {
         }
 
         .wwd-stat-label {
-          font-size: 13.5px;
+          font-size: 13px;
           font-weight: 600;
           text-transform: uppercase;
           letter-spacing: 0.5px;
@@ -995,31 +1009,31 @@ export default function WhatWeDoPage() {
 
         /* ---------------- 3. Capabilities Section ---------------- */
         .wwd-capabilities-section {
-          padding: 60px 0;
+          padding: 50px 0;
         }
 
         .wwd-tab-container {
           display: flex;
           justify-content: center;
-          margin-bottom: 36px;
+          margin-bottom: 32px;
         }
 
         .wwd-tabs-nav {
           display: flex;
-          gap: 12px;
+          gap: 10px;
           flex-wrap: wrap;
-          padding: 6px;
+          padding: 5px;
           border-radius: 50px;
         }
 
         .wwd-tab-btn {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          padding: 12px 24px;
+          gap: 9px;
+          padding: 11px 22px;
           border-radius: 50px;
           border: none;
-          font-size: 14px;
+          font-size: 13.5px;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
@@ -1033,56 +1047,56 @@ export default function WhatWeDoPage() {
         }
 
         .wwd-capability-card {
-          padding: 50px;
-          border-radius: 24px;
+          padding: 40px 36px;
+          border-radius: 22px;
           transition: all 0.3s ease;
         }
 
         .cap-badge {
           display: inline-block;
-          font-size: 11.5px;
+          font-size: 11px;
           font-weight: 700;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #00AEEF;
-          padding: 5px 14px;
+          padding: 4px 12px;
           border-radius: 50px;
           background: rgba(0, 174, 239, 0.1);
-          margin-bottom: 16px;
+          margin-bottom: 14px;
         }
 
         .cap-title {
-          font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+          font-size: clamp(1.6rem, 2.3vw, 2rem);
           font-weight: 800;
-          margin-bottom: 12px;
+          margin-bottom: 10px;
           line-height: 1.25;
         }
 
         .cap-tagline {
-          font-size: 15.5px;
+          font-size: 14.5px;
           font-weight: 600;
           color: #00AEEF;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
         }
 
         .cap-description {
-          font-size: 15px;
+          font-size: 14.5px;
           line-height: 1.65;
-          margin-bottom: 28px;
+          margin-bottom: 24px;
         }
 
         .cap-features-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 14px;
-          margin-bottom: 32px;
+          gap: 12px;
+          margin-bottom: 28px;
         }
 
         .cap-feature-item {
           display: flex;
           align-items: center;
-          gap: 10px;
-          font-size: 14px;
+          gap: 9px;
+          font-size: 13.5px;
           font-weight: 500;
         }
 
@@ -1095,12 +1109,12 @@ export default function WhatWeDoPage() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 12px 26px;
+          padding: 11px 24px;
           border-radius: 50px;
           background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
           color: #ffffff !important;
           font-weight: 700;
-          font-size: 14.5px;
+          font-size: 14px;
           text-decoration: none;
           transition: all 0.3s ease;
           box-shadow: 0 8px 20px rgba(0, 174, 239, 0.3);
@@ -1108,19 +1122,19 @@ export default function WhatWeDoPage() {
 
         .cap-cta-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 12px 28px rgba(0, 174, 239, 0.45);
+          box-shadow: 0 12px 26px rgba(0, 174, 239, 0.45);
         }
 
         .cap-metric-box {
           position: relative;
-          padding: 40px 30px;
-          border-radius: 20px;
+          padding: 36px 26px;
+          border-radius: 18px;
           text-align: center;
           overflow: hidden;
         }
 
         .metric-stat {
-          font-size: clamp(3rem, 4vw, 4.5rem);
+          font-size: clamp(2.8rem, 3.8vw, 4rem);
           font-weight: 900;
           line-height: 1;
           margin-bottom: 8px;
@@ -1130,103 +1144,103 @@ export default function WhatWeDoPage() {
         }
 
         .metric-label {
-          font-size: 15px;
+          font-size: 14px;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.5px;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
 
         .metric-divider {
           height: 1px;
-          width: 80px;
-          margin: 0 auto 16px;
+          width: 70px;
+          margin: 0 auto 14px;
           background: rgba(0, 174, 239, 0.3);
         }
 
         .metric-trust-note {
-          font-size: 12.5px;
+          font-size: 12px;
           line-height: 1.5;
         }
 
         /* ---------------- 4. Methodology Section ---------------- */
         .wwd-methodology-section {
-          padding: 60px 0;
+          padding: 50px 0;
         }
 
         .wwd-step-card {
-          padding: 34px 24px;
-          border-radius: 20px;
+          padding: 30px 22px;
+          border-radius: 18px;
           height: 100%;
           position: relative;
           transition: all 0.3s ease;
         }
 
         .wwd-step-card:hover {
-          transform: translateY(-6px);
+          transform: translateY(-5px);
         }
 
         .step-number {
-          font-size: 2.2rem;
+          font-size: 2rem;
           font-weight: 900;
           color: #00AEEF;
           opacity: 0.6;
-          margin-bottom: 16px;
+          margin-bottom: 14px;
           line-height: 1;
         }
 
         .step-title {
-          font-size: 17px;
+          font-size: 16px;
           font-weight: 700;
-          margin-bottom: 12px;
+          margin-bottom: 10px;
           line-height: 1.35;
         }
 
         .step-desc {
-          font-size: 14px;
+          font-size: 13.5px;
           line-height: 1.6;
           margin-bottom: 0;
         }
 
         /* ---------------- 5. Vision, Mission & Values ---------------- */
         .wwd-values-section {
-          padding: 60px 0;
+          padding: 50px 0;
         }
 
         .wwd-vm-card {
-          padding: 40px;
-          border-radius: 20px;
+          padding: 34px 28px;
+          border-radius: 18px;
           height: 100%;
           transition: all 0.3s ease;
         }
 
         .vm-icon-box {
-          width: 54px;
-          height: 54px;
-          border-radius: 14px;
+          width: 50px;
+          height: 50px;
+          border-radius: 13px;
           background: rgba(0, 174, 239, 0.1);
           border: 1px solid rgba(0, 174, 239, 0.25);
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 20px;
+          margin-bottom: 18px;
         }
 
         .vm-title {
-          font-size: 22px;
+          font-size: 20px;
           font-weight: 800;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
         }
 
         .vm-text {
-          font-size: 15px;
-          line-height: 1.7;
+          font-size: 14.5px;
+          line-height: 1.68;
           margin-bottom: 0;
         }
 
         .wwd-value-card {
-          padding: 30px 22px;
-          border-radius: 20px;
+          padding: 26px 20px;
+          border-radius: 18px;
           height: 100%;
           position: relative;
           overflow: hidden;
@@ -1238,67 +1252,67 @@ export default function WhatWeDoPage() {
         }
 
         .val-icon-box {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
+          width: 40px;
+          height: 40px;
+          border-radius: 11px;
           background: rgba(0, 174, 239, 0.12);
           display: flex;
           align-items: center;
           justify-content: center;
           color: #00AEEF;
-          margin-bottom: 18px;
+          margin-bottom: 16px;
         }
 
         .val-title {
-          font-size: 16.5px;
+          font-size: 15.5px;
           font-weight: 700;
-          margin-bottom: 10px;
+          margin-bottom: 8px;
         }
 
         .val-desc {
-          font-size: 13.5px;
+          font-size: 13px;
           line-height: 1.55;
           margin-bottom: 0;
         }
 
         .val-idx {
           position: absolute;
-          top: 20px;
-          right: 20px;
-          font-size: 16px;
+          top: 18px;
+          right: 18px;
+          font-size: 15px;
           font-weight: 800;
           opacity: 0.25;
         }
 
         /* ---------------- 6. Executive Team Section ---------------- */
         .wwd-team-section {
-          padding: 60px 0;
+          padding: 50px 0;
         }
 
         .wwd-team-grid {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
-          gap: 24px;
+          gap: 18px;
         }
 
         .wwd-team-card {
-          flex: 0 0 calc(20% - 20px);
-          min-width: 220px;
-          max-width: 270px;
-          border-radius: 20px;
+          flex: 0 1 220px;
+          max-width: 240px;
+          width: 100%;
+          border-radius: 18px;
           overflow: hidden;
           transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .wwd-team-card:hover {
-          transform: translateY(-8px);
+          transform: translateY(-6px);
         }
 
         .team-img-wrapper {
           position: relative;
           width: 100%;
-          height: 250px;
+          height: 230px;
           overflow: hidden;
         }
 
@@ -1321,24 +1335,24 @@ export default function WhatWeDoPage() {
 
         .team-badge {
           position: absolute;
-          bottom: 12px;
-          left: 14px;
-          padding: 4px 10px;
+          bottom: 10px;
+          left: 12px;
+          padding: 4px 9px;
           border-radius: 50px;
           background: rgba(0, 174, 239, 0.9);
           color: #ffffff;
-          font-size: 10.5px;
+          font-size: 10px;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
         .team-details {
-          padding: 18px 16px;
+          padding: 16px 14px;
         }
 
         .team-role-tag {
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 700;
           color: #00AEEF;
           text-transform: uppercase;
@@ -1347,9 +1361,9 @@ export default function WhatWeDoPage() {
         }
 
         .team-name {
-          font-size: 16px;
+          font-size: 15px;
           font-weight: 700;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
 
         .team-name a {
@@ -1359,7 +1373,7 @@ export default function WhatWeDoPage() {
         }
 
         .team-bio {
-          font-size: 12px;
+          font-size: 11.5px;
           line-height: 1.5;
           margin-bottom: 0;
           display: -webkit-box;
@@ -1384,7 +1398,7 @@ export default function WhatWeDoPage() {
 
         .wwd-marquee-track {
           display: flex;
-          gap: 24px;
+          gap: 20px;
           width: max-content;
           animation: marqueeScroll 35s linear infinite;
         }
@@ -1400,33 +1414,33 @@ export default function WhatWeDoPage() {
 
         /* ---------------- 8. Contact & Global Offices ---------------- */
         .wwd-contact-section {
-          padding: 60px 0 20px;
+          padding: 50px 0 30px;
         }
 
         .wwd-inquiry-box {
-          padding: 44px 36px;
-          border-radius: 24px;
+          padding: 38px 30px;
+          border-radius: 22px;
         }
 
         .wwd-inquiry-title {
-          font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+          font-size: clamp(1.7rem, 2.5vw, 2.2rem);
           font-weight: 800;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
           line-height: 1.25;
         }
 
         .wwd-inquiry-desc {
-          font-size: 15px;
+          font-size: 14.5px;
           line-height: 1.65;
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
 
         .contact-touch-card {
           display: flex;
           align-items: flex-start;
-          gap: 14px;
-          padding: 16px;
-          border-radius: 16px;
+          gap: 12px;
+          padding: 14px;
+          border-radius: 14px;
         }
 
         .touch-icon {
@@ -1436,15 +1450,15 @@ export default function WhatWeDoPage() {
         }
 
         .touch-label {
-          font-size: 12px;
+          font-size: 11.5px;
           font-weight: 700;
           text-transform: uppercase;
-          margin-bottom: 4px;
+          margin-bottom: 3px;
         }
 
         .touch-value {
           display: block;
-          font-size: 13.5px;
+          font-size: 13px;
           font-weight: 600;
           text-decoration: none;
           margin-bottom: 2px;
@@ -1455,13 +1469,13 @@ export default function WhatWeDoPage() {
         }
 
         .wwd-offices-box {
-          padding: 40px 32px;
-          border-radius: 24px;
+          padding: 36px 28px;
+          border-radius: 22px;
           height: 100%;
         }
 
         .offices-title {
-          font-size: 20px;
+          font-size: 19px;
           font-weight: 800;
           margin-bottom: 0;
         }
@@ -1469,14 +1483,14 @@ export default function WhatWeDoPage() {
         .offices-list {
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 18px;
         }
 
         .office-item {
           display: flex;
           align-items: flex-start;
-          gap: 14px;
-          padding-bottom: 18px;
+          gap: 12px;
+          padding-bottom: 16px;
           border-bottom: 1px solid rgba(148, 163, 184, 0.15);
         }
 
@@ -1486,8 +1500,8 @@ export default function WhatWeDoPage() {
         }
 
         .office-pin-dot {
-          width: 10px;
-          height: 10px;
+          width: 9px;
+          height: 9px;
           border-radius: 50%;
           background: #00AEEF;
           margin-top: 6px;
@@ -1496,9 +1510,9 @@ export default function WhatWeDoPage() {
         }
 
         .office-city {
-          font-size: 15px;
+          font-size: 14.5px;
           font-weight: 700;
-          margin-bottom: 3px;
+          margin-bottom: 2px;
         }
 
         .office-country {
@@ -1506,7 +1520,7 @@ export default function WhatWeDoPage() {
         }
 
         .office-address {
-          font-size: 13px;
+          font-size: 12.5px;
           line-height: 1.45;
         }
 
@@ -1514,36 +1528,36 @@ export default function WhatWeDoPage() {
         @media (max-width: 991px) {
           .wwd-orbit-container {
             max-width: 100%;
-            height: 420px;
+            height: 400px;
           }
           .cap-features-grid {
             grid-template-columns: 1fr;
           }
           .wwd-team-card {
-            flex: 0 0 calc(33.333% - 16px);
+            flex: 0 1 calc(33.333% - 14px);
           }
         }
 
         @media (max-width: 767px) {
           .wwd-orbit-container {
-            height: 380px;
+            height: 360px;
           }
-          .ring-outer { width: 340px; height: 340px; }
-          .ring-middle { width: 250px; height: 250px; }
-          .ring-inner { width: 150px; height: 150px; }
+          .ring-outer { width: 320px; height: 320px; }
+          .ring-middle { width: 230px; height: 230px; }
+          .ring-inner { width: 140px; height: 140px; }
           .node-label-desc { display: none; }
           .wwd-team-card {
-            flex: 0 0 calc(50% - 12px);
+            flex: 0 1 calc(50% - 10px);
           }
           .wwd-capability-card {
-            padding: 30px 20px;
+            padding: 26px 18px;
           }
         }
 
         @media (max-width: 480px) {
           .wwd-team-card {
-            flex: 0 0 100%;
-            max-width: 320px;
+            flex: 0 1 100%;
+            max-width: 300px;
           }
         }
       `}</style>
