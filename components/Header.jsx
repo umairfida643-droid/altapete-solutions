@@ -230,7 +230,7 @@ export default function Header({ onToggleMobileMenu }) {
         WebkitBackdropFilter: 'blur(16px)',
         position: 'sticky',
         top: 0,
-        zIndex: 999,
+        zIndex: 1000,
         transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease'
       }}
     >

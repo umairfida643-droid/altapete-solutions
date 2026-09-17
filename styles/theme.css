@@ -134,7 +134,7 @@ body {
   color: var(--text-primary) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Fix missing uicons character box [] in header navigation */
@@ -2089,13 +2089,13 @@ p.mx-auto[style*="max-width"],
    Never permit cards, panels, or content containers to develop inner vertical scrollbars. */
 
 html {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: auto !important;
   height: auto !important;
 }
 
 body {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: visible !important;
   height: auto !important;
 }
@@ -4704,13 +4704,13 @@ p {
 /* Allow ONLY the browser window (html, body) to scroll.
    Inner containers & sections must NEVER be scroll containers (no overflow-x/y mismatch). */
 html {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: auto !important;
   height: auto !important;
 }
 
 body {
-  overflow-x: hidden !important;
+  overflow-x: clip !important;
   overflow-y: visible !important;
   height: auto !important;
   width: 100% !important;
@@ -4744,4 +4744,38 @@ section,
   overflow-y: visible !important;
   height: auto !important;
   max-height: none !important;
+}
+
+/* ── GLOBAL STICKY HEADER ── */
+#header,
+header#header,
+.header,
+.sticky-bar {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  background-color: var(--header-bg) !important;
+  border-bottom: 1px solid var(--header-border) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease !important;
+}
+
+.sticky-bar.stick,
+header.stick {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="dark"] .sticky-bar.stick,
+[data-theme="dark"] header.stick {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(44, 115, 217, 0.2) !important;
+}
+
+[data-theme="light"] .sticky-bar.stick,
+[data-theme="light"] header.stick {
+  box-shadow: 0 4px 20px rgba(40, 36, 96, 0.08), 0 1px 0 rgba(40, 36, 96, 0.06) !important;
 }
