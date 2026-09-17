@@ -143,51 +143,63 @@ export default function CompanyProfileView() {
 
   return (
     <div
-      className="cp-view-wrapper"
+      className={`cp-view-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}
       style={{ background: bg }}
     >
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
         className="cp-hero"
         style={{
-          background: 'linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%)',
+          background: isDark 
+            ? 'linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%)' 
+            : 'linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #ffffff 100%)',
+          borderBottom: isDark ? '1px solid rgba(0,174,239,0.15)' : '1px solid rgba(44,115,217,0.14)',
           padding: '90px 0 80px',
           position: 'relative',
-          overflow: 'hidden',
+          overflow: 'visible',
         }}
       >
-        {/* BG decoration circles */}
-        <div style={{
-          position: 'absolute', top: '-80px', right: '-80px',
-          width: '420px', height: '420px', borderRadius: '50%',
-          background: 'rgba(0,174,239,0.07)',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', bottom: '-60px', left: '-60px',
-          width: '320px', height: '320px', borderRadius: '50%',
-          background: 'rgba(124,58,237,0.06)',
-          pointerEvents: 'none',
-        }} />
+        {/* BG decoration circles safely contained to prevent any nested scroll */}
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
+          <div style={{
+            position: 'absolute', top: '-80px', right: '-80px',
+            width: '420px', height: '420px', borderRadius: '50%',
+            background: isDark ? 'rgba(0,174,239,0.07)' : 'rgba(44,115,217,0.06)',
+          }} />
+          <div style={{
+            position: 'absolute', bottom: '-60px', left: '-60px',
+            width: '320px', height: '320px', borderRadius: '50%',
+            background: isDark ? 'rgba(124,58,237,0.06)' : 'rgba(0,174,239,0.05)',
+          }} />
+        </div>
 
         <div className="container" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
           {/* Breadcrumb */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 28 }}>
-            <Link href="/" style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, textDecoration: 'none', transition: 'color 0.2s' }}>
+            <Link 
+              href="/" 
+              style={{ 
+                color: isDark ? 'rgba(255,255,255,0.6)' : '#64748b', 
+                fontSize: 13, 
+                textDecoration: 'none', 
+                transition: 'color 0.2s' 
+              }}
+            >
               Home
             </Link>
-            <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: 13 }}>/</span>
-            <span style={{ color: 'rgba(255,255,255,0.9)', fontSize: 13, fontWeight: 600 }}>Company Profiles</span>
+            <span style={{ color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(15,23,42,0.3)', fontSize: 13 }}>/</span>
+            <span style={{ color: isDark ? 'rgba(255,255,255,0.95)' : '#0f172a', fontSize: 13, fontWeight: 600 }}>Company Profiles</span>
           </div>
 
           {/* Eyebrow */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'rgba(0,174,239,0.18)', border: '1px solid rgba(0,174,239,0.35)',
+            background: isDark ? 'rgba(0,174,239,0.18)' : 'rgba(44,115,217,0.08)', 
+            border: `1px solid ${isDark ? 'rgba(0,174,239,0.35)' : 'rgba(44,115,217,0.22)'}`,
             borderRadius: 50, padding: '6px 18px', marginBottom: 28,
           }}>
-            <FileText size={14} color="#00AEEF" />
-            <span style={{ color: '#00AEEF', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em' }}>
+            <FileText size={14} color={isDark ? '#00AEEF' : '#0077cc'} />
+            <span style={{ color: isDark ? '#00AEEF' : '#0077cc', fontSize: 12, fontWeight: 700, letterSpacing: '0.1em' }}>
               OFFICIAL COMPANY DOCUMENTS
             </span>
           </div>
@@ -195,18 +207,28 @@ export default function CompanyProfileView() {
           <h1 style={{
             fontSize: 'clamp(32px, 5vw, 58px)',
             fontWeight: 800,
-            color: '#ffffff',
+            color: isDark ? '#ffffff' : '#0f172a',
             lineHeight: 1.15,
             marginBottom: 20,
             maxWidth: 720,
           }}>
             Company<br />
-            <span style={{ color: '#00AEEF' }}>Profile Library</span>
+            <span style={{ 
+              color: isDark ? '#00AEEF' : '#0077cc',
+              background: isDark 
+                ? 'linear-gradient(135deg, #00AEEF 0%, #00C6FF 100%)' 
+                : 'linear-gradient(135deg, #0077cc 0%, #00AEEF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block'
+            }}>
+              Profile Library
+            </span>
           </h1>
 
           <p style={{
             fontSize: 18,
-            color: 'rgba(255,255,255,0.72)',
+            color: isDark ? 'rgba(255,255,255,0.78)' : '#475569',
             maxWidth: 580,
             lineHeight: 1.7,
             marginBottom: 48,
@@ -219,16 +241,18 @@ export default function CompanyProfileView() {
             {STATS.map((s) => (
               <div
                 key={s.label}
+                className="cp-stat-card"
                 style={{
-                  background: statBg,
-                  border: '1px solid rgba(0,174,239,0.2)',
+                  background: isDark ? 'rgba(0,174,239,0.08)' : '#ffffff',
+                  border: `1px solid ${isDark ? 'rgba(0,174,239,0.22)' : 'rgba(44,115,217,0.18)'}`,
+                  boxShadow: isDark ? 'none' : '0 4px 16px rgba(44,115,217,0.08)',
                   borderRadius: 12,
                   padding: '14px 24px',
                   minWidth: 130,
                 }}
               >
-                <div style={{ fontSize: 26, fontWeight: 800, color: '#00AEEF', lineHeight: 1 }}>{s.value}</div>
-                <div className="cp-stat-label" style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 500, marginTop: 4 }}>{s.label}</div>
+                <div className="cp-stat-val" style={{ fontSize: 26, fontWeight: 800, color: isDark ? '#00AEEF' : '#0077cc', lineHeight: 1 }}>{s.value}</div>
+                <div className="cp-stat-label" style={{ fontSize: 12, color: isDark ? 'rgba(255,255,255,0.72)' : '#475569', fontWeight: 500, marginTop: 4 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -538,11 +562,11 @@ export default function CompanyProfileView() {
         .cp-view-wrapper {
           font-family: inherit;
         }
-        .cp-hero {
+        .cp-view-wrapper.dark-theme .cp-hero {
           background: linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%) !important;
         }
-        .cp-stat-label {
-          color: rgba(255, 255, 255, 0.7) !important;
+        .cp-view-wrapper.light-theme .cp-hero {
+          background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #ffffff 100%) !important;
         }
         @media (max-width: 768px) {
           .cp-hero-stats {

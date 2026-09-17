@@ -144,13 +144,14 @@ export default function HomePage() {
         className="hero-section position-relative"
         style={{
           padding: '110px 0 90px',
-          overflowX: 'hidden',
-          overflowY: 'visible'
+          overflow: 'visible'
         }}
       >
-        {/* Ambient background glows */}
-        <div className="hero-ambient-glow-1" />
-        <div className="hero-ambient-glow-2" />
+        {/* Ambient background glows safely clipped inside background layer */}
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
+          <div className="hero-ambient-glow-1" />
+          <div className="hero-ambient-glow-2" />
+        </div>
 
         <div className="container position-relative" style={{ zIndex: 2 }}>
           <div className="row align-items-center g-5">

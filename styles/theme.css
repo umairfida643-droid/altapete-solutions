@@ -4491,19 +4491,65 @@ button[style*="linear-gradient"],
 
 
 
-/* -- Company Profile Hero -- Force dark gradient in all themes */
-.cp-hero {
+/* ── Company Profile Hero Light & Dark Styling ── */
+[data-theme="dark"] .cp-hero,
+.dark-theme .cp-hero {
   background: linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%) !important;
+  border-bottom: 1px solid rgba(0, 174, 239, 0.15) !important;
 }
-.cp-hero h1,
-.cp-hero h2,
-.cp-hero p,
-.cp-hero span,
-.cp-hero a {
-  color: inherit !important;
+[data-theme="light"] .cp-hero,
+.light-theme .cp-hero {
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 50%, #ffffff 100%) !important;
+  border-bottom: 1px solid rgba(44, 115, 217, 0.12) !important;
 }
-.cp-stat-label {
-  color: rgba(255, 255, 255, 0.75) !important;
+
+[data-theme="dark"] .cp-hero h1,
+.dark-theme .cp-hero h1 {
+  color: #ffffff !important;
+}
+[data-theme="light"] .cp-hero h1,
+.light-theme .cp-hero h1 {
+  color: #0f172a !important;
+}
+
+[data-theme="dark"] .cp-hero p,
+.dark-theme .cp-hero p {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+[data-theme="light"] .cp-hero p,
+.light-theme .cp-hero p {
+  color: #475569 !important;
+}
+
+[data-theme="dark"] .cp-hero .cp-stat-card,
+.dark-theme .cp-hero .cp-stat-card {
+  background: rgba(0, 174, 239, 0.08) !important;
+  border: 1px solid rgba(0, 174, 239, 0.22) !important;
+  box-shadow: none !important;
+}
+[data-theme="light"] .cp-hero .cp-stat-card,
+.light-theme .cp-hero .cp-stat-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(44, 115, 217, 0.16) !important;
+  box-shadow: 0 4px 14px rgba(44, 115, 217, 0.08) !important;
+}
+
+[data-theme="dark"] .cp-hero .cp-stat-val,
+.dark-theme .cp-hero .cp-stat-val {
+  color: #00AEEF !important;
+}
+[data-theme="light"] .cp-hero .cp-stat-val,
+.light-theme .cp-hero .cp-stat-val {
+  color: #0077cc !important;
+}
+
+[data-theme="dark"] .cp-hero .cp-stat-label,
+.dark-theme .cp-hero .cp-stat-label {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+[data-theme="light"] .cp-hero .cp-stat-label,
+.light-theme .cp-hero .cp-stat-label {
+  color: #475569 !important;
 }
 
 /* -- Remove spinning orbit circles from all pages globally -- */
@@ -4654,27 +4700,48 @@ p {
   padding-bottom: 56px !important;
 }
 
-/* -- Fix nested scroll: no element should scroll inside the page -- */
-.app-layout,
-main,
-.cp-view-wrapper,
-.corp-adv-wrapper,
-.tax-adv-wrapper,
-.outsourcing-view-wrapper,
-.hr-muqeem-wrapper,
-.shopify-wrapper,
-.zatca-wrapper,
-.salla-wrapper,
-.odoo-wrapper {
+/* ── ELIMINATE ALL NESTED SCROLLBARS GLOBALLY ── */
+/* Allow ONLY the browser window (html, body) to scroll.
+   Inner containers & sections must NEVER be scroll containers (no overflow-x/y mismatch). */
+html {
   overflow-x: hidden !important;
-  overflow-y: visible !important;
-  min-height: unset !important;
+  overflow-y: auto !important;
   height: auto !important;
 }
 
-/* -- Prevent any section from becoming a scroll container -- */
-section {
+body {
   overflow-x: hidden !important;
   overflow-y: visible !important;
   height: auto !important;
+  width: 100% !important;
+}
+
+.app-layout,
+main,
+section,
+.hero-section,
+.cp-hero,
+.cp-view-wrapper,
+.corp-adv-wrapper,
+.corp-hero-section,
+.tax-adv-wrapper,
+.tax-adv-hero,
+.outsourcing-view-wrapper,
+.out-hero-section,
+.hr-muqeem-wrapper,
+.hr-hero-section,
+.shopify-wrapper,
+.shopify-hero-section,
+.zatca-wrapper,
+.zatca-hero,
+.salla-wrapper,
+.salla-hero-section,
+.odoo-wrapper,
+.cover-home1,
+.cover-home1 section {
+  overflow: visible !important;
+  overflow-x: visible !important;
+  overflow-y: visible !important;
+  height: auto !important;
+  max-height: none !important;
 }
