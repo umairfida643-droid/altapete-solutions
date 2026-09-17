@@ -4490,3 +4490,18 @@ button[style*="linear-gradient"],
 
 
 
+
+/* -- Company Profile Hero -- Force dark gradient in all themes */
+.cp-hero {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%) !important;
+}
+.cp-hero h1,
+.cp-hero h2,
+.cp-hero p,
+.cp-hero span,
+.cp-hero a {
+  color: inherit !important;
+}
+.cp-stat-label {
+  color: rgba(255, 255, 255, 0.75) !important;
+}

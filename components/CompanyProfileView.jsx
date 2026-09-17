@@ -148,10 +148,9 @@ export default function CompanyProfileView() {
     >
       {/* ─────────────────────────── HERO ─────────────────────────── */}
       <section
+        className="cp-hero"
         style={{
-          background: isDark
-            ? 'linear-gradient(135deg, #0a0f1e 0%, #0d1b35 50%, #091628 100%)'
-            : 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 50%, #1d4ed8 100%)',
+          background: 'linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%)',
           padding: '90px 0 80px',
           position: 'relative',
           overflow: 'hidden',
@@ -161,13 +160,13 @@ export default function CompanyProfileView() {
         <div style={{
           position: 'absolute', top: '-80px', right: '-80px',
           width: '420px', height: '420px', borderRadius: '50%',
-          background: isDark ? 'rgba(0,174,239,0.06)' : 'rgba(255,255,255,0.08)',
+          background: 'rgba(0,174,239,0.07)',
           pointerEvents: 'none',
         }} />
         <div style={{
           position: 'absolute', bottom: '-60px', left: '-60px',
           width: '320px', height: '320px', borderRadius: '50%',
-          background: isDark ? 'rgba(124,58,237,0.05)' : 'rgba(255,255,255,0.06)',
+          background: 'rgba(124,58,237,0.06)',
           pointerEvents: 'none',
         }} />
 
@@ -229,7 +228,7 @@ export default function CompanyProfileView() {
                 }}
               >
                 <div style={{ fontSize: 26, fontWeight: 800, color: '#00AEEF', lineHeight: 1 }}>{s.value}</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontWeight: 500, marginTop: 4 }}>{s.label}</div>
+                <div className="cp-stat-label" style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: 500, marginTop: 4 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -538,6 +537,12 @@ export default function CompanyProfileView() {
         }
         .cp-view-wrapper {
           font-family: inherit;
+        }
+        .cp-hero {
+          background: linear-gradient(135deg, #0a1628 0%, #0d2248 40%, #1a3a6e 100%) !important;
+        }
+        .cp-stat-label {
+          color: rgba(255, 255, 255, 0.7) !important;
         }
         @media (max-width: 768px) {
           .cp-hero-stats {
