@@ -4885,7 +4885,37 @@ header.stick {
   animation: none !important;
 }
 
-/* 2. Equal Typography Scale Across All 6 Product Pages */
+/* 2. Equal Widescreen Hero Dimensions & Background Image Layer */
+.product-detail-view .sol-hero-section,
+.product-detail-view section:first-of-type {
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: clamp(520px, 60vh, 620px) !important;
+  padding: 85px 0 65px !important;
+  width: 100% !important;
+}
+
+.product-detail-view .sol-hero-bg,
+.product-detail-view section:first-of-type > div[style*="background-image"],
+.product-detail-view section:first-of-type > .sol-hero-bg {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease !important;
+}
+
+/* 3. Equal Typography Scale Across All 6 Product Pages */
 .product-detail-view h1 {
   font-size: clamp(34px, 5vw, 56px) !important;
   font-weight: 800 !important;
@@ -4911,23 +4941,30 @@ header.stick {
   line-height: 1.35 !important;
 }
 
-/* 3. LIGHT THEME HARMONY */
+/* 4. LIGHT THEME: Ultra-low image opacity & crystal-clear dark text */
 [data-theme="light"] .product-detail-view,
 html[data-theme="light"] .product-detail-view,
 :root:not([data-theme="dark"]) .product-detail-view {
   color: #0f172a;
 }
 
+[data-theme="light"] .product-detail-view .sol-hero-section,
 [data-theme="light"] .product-detail-view section:first-of-type,
+html[data-theme="light"] .product-detail-view .sol-hero-section,
 html[data-theme="light"] .product-detail-view section:first-of-type,
+:root:not([data-theme="dark"]) .product-detail-view .sol-hero-section,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type {
-  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%) !important;
+  background: linear-gradient(180deg, #edf4fc 0%, #ffffff 100%) !important;
 }
 
+[data-theme="light"] .product-detail-view .sol-hero-bg,
 [data-theme="light"] .product-detail-view section:first-of-type > div[style*="background-image"],
+html[data-theme="light"] .product-detail-view .sol-hero-bg,
 html[data-theme="light"] .product-detail-view section:first-of-type > div[style*="background-image"],
+:root:not([data-theme="dark"]) .product-detail-view .sol-hero-bg,
 :root:not([data-theme="dark"]) .product-detail-view section:first-of-type > div[style*="background-image"] {
-  opacity: 0.12 !important;
+  opacity: 0.08 !important;
+  filter: contrast(0.95) !important;
 }
 
 [data-theme="light"] .product-detail-view h1,
@@ -5013,10 +5050,26 @@ html[data-theme="light"] .product-detail-view div[style*="border-radius: 20px"] 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
 }
 
-/* 4. DARK THEME HARMONY */
+/* 5. DARK THEME: Controlled 0.15 opacity & vibrant crisp text */
+[data-theme="dark"] .product-detail-view .sol-hero-section,
+[data-theme="dark"] .product-detail-view section:first-of-type,
+html[data-theme="dark"] .product-detail-view .sol-hero-section,
+html[data-theme="dark"] .product-detail-view section:first-of-type {
+  background: radial-gradient(circle at 50% 30%, #0d1e38 0%, #050b14 100%) !important;
+}
+
+[data-theme="dark"] .product-detail-view .sol-hero-bg,
+[data-theme="dark"] .product-detail-view section:first-of-type > div[style*="background-image"],
+html[data-theme="dark"] .product-detail-view .sol-hero-bg,
+html[data-theme="dark"] .product-detail-view section:first-of-type > div[style*="background-image"] {
+  opacity: 0.15 !important;
+  filter: saturate(1.15) !important;
+}
+
 [data-theme="dark"] .product-detail-view h1,
 html[data-theme="dark"] .product-detail-view h1 {
   color: #ffffff !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5) !important;
 }
 
 [data-theme="dark"] .product-detail-view h2,
