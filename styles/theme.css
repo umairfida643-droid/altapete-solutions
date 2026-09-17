@@ -4867,3 +4867,175 @@ header.stick {
     display: none !important;
   }
 }
+
+/* =============================================================================
+   VERTICAL SOLUTIONS & PRODUCTS: UNIFIED TYPOGRAPHY, THEME & STABILITY
+   ============================================================================= */
+
+.product-detail-view {
+  width: 100%;
+  overflow: visible;
+}
+
+/* 1. Stop all drifting/floating boxes from flying into wrong places */
+.product-detail-view [style*="animation:float"],
+.product-detail-view [style*="animation: float"],
+.product-detail-view [style*="animation:float "],
+.product-detail-view [style*="animation: float "] {
+  animation: none !important;
+}
+
+/* 2. Equal Typography Scale Across All 6 Product Pages */
+.product-detail-view h1 {
+  font-size: clamp(34px, 5vw, 56px) !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.5px !important;
+}
+
+.product-detail-view section:first-of-type p {
+  font-size: clamp(16px, 1.8vw, 18px) !important;
+  line-height: 1.7 !important;
+  max-width: 760px !important;
+}
+
+.product-detail-view h2 {
+  font-size: clamp(26px, 3.8vw, 42px) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+}
+
+.product-detail-view h3 {
+  font-size: clamp(18px, 2.2vw, 24px) !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
+
+/* 3. LIGHT THEME HARMONY */
+[data-theme="light"] .product-detail-view,
+html[data-theme="light"] .product-detail-view,
+:root:not([data-theme="dark"]) .product-detail-view {
+  color: #0f172a;
+}
+
+[data-theme="light"] .product-detail-view section:first-of-type,
+html[data-theme="light"] .product-detail-view section:first-of-type,
+:root:not([data-theme="dark"]) .product-detail-view section:first-of-type {
+  background: linear-gradient(180deg, #f0f7ff 0%, #ffffff 100%) !important;
+}
+
+[data-theme="light"] .product-detail-view section:first-of-type > div[style*="background-image"],
+html[data-theme="light"] .product-detail-view section:first-of-type > div[style*="background-image"],
+:root:not([data-theme="dark"]) .product-detail-view section:first-of-type > div[style*="background-image"] {
+  opacity: 0.12 !important;
+}
+
+[data-theme="light"] .product-detail-view h1,
+html[data-theme="light"] .product-detail-view h1,
+:root:not([data-theme="dark"]) .product-detail-view h1 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .product-detail-view h2,
+html[data-theme="light"] .product-detail-view h2,
+:root:not([data-theme="dark"]) .product-detail-view h2 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .product-detail-view h3,
+html[data-theme="light"] .product-detail-view h3,
+:root:not([data-theme="dark"]) .product-detail-view h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .product-detail-view p,
+html[data-theme="light"] .product-detail-view p,
+:root:not([data-theme="dark"]) .product-detail-view p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .product-detail-view li,
+html[data-theme="light"] .product-detail-view li,
+:root:not([data-theme="dark"]) .product-detail-view li {
+  color: #334155 !important;
+}
+
+/* Light Theme Stat Boxes in Hero */
+[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
+html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 > div,
+:root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 > div {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2,
+html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 h2,
+:root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 h2 {
+  color: #2c73d9 !important;
+  text-shadow: none !important;
+}
+
+[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
+html[data-theme="light"] .product-detail-view section:first-of-type .col-md-4 p,
+:root:not([data-theme="dark"]) .product-detail-view section:first-of-type .col-md-4 p {
+  color: #64748b !important;
+}
+
+/* Light Theme Hero CTA Button */
+[data-theme="light"] .product-detail-view a[href="/contact-us"],
+html[data-theme="light"] .product-detail-view a[href="/contact-us"],
+:root:not([data-theme="dark"]) .product-detail-view a[href="/contact-us"] {
+  background: #2c73d9 !important;
+  color: #ffffff !important;
+  border: 1px solid #1e5db5 !important;
+  box-shadow: 0 4px 15px rgba(44, 115, 217, 0.3) !important;
+}
+
+/* Light Theme Dark Sections Override (e.g. #0a1929 backgrounds) */
+[data-theme="light"] .product-detail-view section[style*="#0a1929"],
+html[data-theme="light"] .product-detail-view section[style*="#0a1929"],
+:root:not([data-theme="dark"]) .product-detail-view section[style*="#0a1929"] {
+  background: #f8fafc !important;
+}
+
+/* Light Theme Card Boxes */
+[data-theme="light"] .product-detail-view div[style*="border-radius:16px"],
+[data-theme="light"] .product-detail-view div[style*="border-radius: 16px"],
+[data-theme="light"] .product-detail-view div[style*="border-radius:20px"],
+[data-theme="light"] .product-detail-view div[style*="border-radius: 20px"],
+html[data-theme="light"] .product-detail-view div[style*="border-radius:16px"],
+html[data-theme="light"] .product-detail-view div[style*="border-radius: 16px"],
+html[data-theme="light"] .product-detail-view div[style*="border-radius:20px"],
+html[data-theme="light"] .product-detail-view div[style*="border-radius: 20px"] {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* 4. DARK THEME HARMONY */
+[data-theme="dark"] .product-detail-view h1,
+html[data-theme="dark"] .product-detail-view h1 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .product-detail-view h2,
+html[data-theme="dark"] .product-detail-view h2 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .product-detail-view h3,
+html[data-theme="dark"] .product-detail-view h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .product-detail-view p,
+html[data-theme="dark"] .product-detail-view p {
+  color: #b0bec5 !important;
+}
+
+[data-theme="dark"] .product-detail-view li,
+html[data-theme="dark"] .product-detail-view li {
+  color: #cbd5e1 !important;
+}
+

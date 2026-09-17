@@ -10,7 +10,7 @@ export default function ConstructionManagementSolutionsPage() {
       title={data?.title || "Altapete Solutions"}
       description={data?.description || ""}
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <div className="product-detail-view" dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
     </Layout>
   );
 }
