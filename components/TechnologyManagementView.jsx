@@ -300,8 +300,10 @@ export default function TechnologyManagementView() {
                         </div>
 
                         {/* Title & Tag */}
-                        <h3 className="card-headline">{card.title}</h3>
-                        <div className="card-tag-badge">{card.tag}</div>
+                        <div className="card-head-group">
+                          <h3 className="card-headline">{card.title}</h3>
+                          <div className="card-tag-badge">{card.tag}</div>
+                        </div>
 
                         {/* Description */}
                         <p className="card-body-desc">{card.desc}</p>
@@ -309,24 +311,26 @@ export default function TechnologyManagementView() {
                         {/* Stats Grid */}
                         <div className="card-stats-grid">
                           {card.stats.map((stat, sIdx) => (
-                            <div key={sIdx} className="stat-block">
-                              <div className="stat-number" style={{ color: card.accentColor }}>{stat.value}</div>
-                              <div className="stat-name">{stat.label}</div>
+                            <div key={sIdx} className="tech-stat-block">
+                              <div className="tech-stat-val" style={{ color: card.accentColor }}>{stat.value}</div>
+                              <div className="tech-stat-lbl">{stat.label}</div>
                             </div>
                           ))}
                         </div>
 
                         {/* Flip Button */}
-                        <button
-                          type="button"
-                          className="card-flip-btn"
-                          style={{ color: card.accentColor }}
-                          onClick={() => toggleFlip(card.id)}
-                          aria-label={`View details for ${card.title}`}
-                        >
-                          <span>View Details</span>
-                          <span className="flip-icon">↻</span>
-                        </button>
+                        <div className="card-action-wrap">
+                          <button
+                            type="button"
+                            className="card-flip-btn"
+                            style={{ color: card.accentColor }}
+                            onClick={() => toggleFlip(card.id)}
+                            aria-label={`View details for ${card.title}`}
+                          >
+                            <span>View Details</span>
+                            <span className="flip-icon">↻</span>
+                          </button>
+                        </div>
                       </div>
 
                       {/* BACK OF CARD */}
@@ -745,8 +749,8 @@ export default function TechnologyManagementView() {
         .tech-card-scene {
           perspective: 1000px;
           width: 100%;
-          min-height: 520px;
-          height: 520px;
+          min-height: 540px;
+          height: 540px;
         }
 
         .tech-card-flipper {
@@ -770,50 +774,55 @@ export default function TechnologyManagementView() {
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           border-radius: 24px;
-          padding: 34px 28px;
+          padding: 30px 24px;
           display: flex;
           flex-direction: column;
           box-sizing: border-box;
-          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         /* Dark Theme Card Face */
         .dark-theme .tech-card-face {
-          background: rgba(13, 22, 38, 0.75);
+          background: linear-gradient(180deg, rgba(13, 22, 40, 0.85) 0%, rgba(9, 15, 28, 0.95) 100%);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
-          border: 1.5px solid rgba(0, 174, 239, 0.2);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+          border: 1.5px solid rgba(0, 174, 239, 0.22);
+          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
         }
 
-        .dark-theme .tech-card-face:hover {
-          border-color: rgba(0, 174, 239, 0.45);
-          box-shadow: 0 20px 45px rgba(0, 174, 239, 0.15);
+        .dark-theme .tech-card-scene:hover .tech-card-face:not(.tech-card-back) {
+          border-color: rgba(0, 174, 239, 0.6);
+          box-shadow: 0 20px 50px rgba(0, 174, 239, 0.2), 0 0 20px rgba(0, 174, 239, 0.1);
+          transform: translateY(-6px);
         }
 
         /* Light Theme Card Face */
         .light-theme .tech-card-face {
           background: #FFFFFF;
           border: 1.5px solid rgba(0, 174, 239, 0.2);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         }
 
-        .light-theme .tech-card-face:hover {
+        .light-theme .tech-card-scene:hover .tech-card-face:not(.tech-card-back) {
           border-color: #00AEEF;
-          box-shadow: 0 16px 40px rgba(0, 174, 239, 0.18);
+          box-shadow: 0 20px 45px rgba(0, 174, 239, 0.16);
+          transform: translateY(-6px);
         }
 
         /* --- CARD FRONT CONTENT --- */
         .tech-card-front {
           align-items: center;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
         }
 
         /* EXACT CENTER-ALIGNED ICON CONTAINER */
         .tech-icon-box {
-          width: 76px;
-          height: 76px;
-          margin: 0 auto 20px auto;
+          width: 68px;
+          height: 68px;
+          margin: 0 auto 16px auto;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -838,11 +847,22 @@ export default function TechnologyManagementView() {
           transform: translateY(-4px);
         }
 
+        .card-head-group {
+          width: 100%;
+          min-height: 74px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+
         .card-headline {
-          font-size: 21px;
+          font-size: 20px;
           font-weight: 700;
           line-height: 1.3;
-          margin-bottom: 8px;
+          margin: 0 0 6px 0;
+          text-align: center;
         }
 
         .dark-theme .card-headline {
@@ -853,20 +873,37 @@ export default function TechnologyManagementView() {
         }
 
         .card-tag-badge {
-          display: inline-block;
-          font-size: 12px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 1px;
+          letter-spacing: 1.1px;
           color: #00AEEF;
-          margin-bottom: 14px;
+          padding: 3px 12px;
+          border-radius: 20px;
+        }
+
+        .dark-theme .card-tag-badge {
+          background: rgba(0, 174, 239, 0.1);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+        }
+        .light-theme .card-tag-badge {
+          background: rgba(0, 174, 239, 0.08);
+          border: 1px solid rgba(0, 174, 239, 0.2);
+          color: #0284C7;
         }
 
         .card-body-desc {
-          font-size: 14.5px;
-          line-height: 1.6;
-          margin-bottom: 20px;
-          flex-grow: 1;
+          font-size: 14px;
+          line-height: 1.55;
+          min-height: 66px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin: 0 0 16px 0;
         }
 
         .dark-theme .card-body-desc {
@@ -881,66 +918,90 @@ export default function TechnologyManagementView() {
           grid-template-columns: 1fr 1fr;
           gap: 12px;
           width: 100%;
-          margin-bottom: 20px;
+          margin-top: auto;
+          margin-bottom: 16px;
         }
 
-        .stat-block {
-          border-radius: 12px;
-          padding: 10px 8px;
+        .tech-stat-block {
+          border-radius: 14px;
+          padding: 12px 6px;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 64px;
+          box-sizing: border-box;
+          overflow: hidden;
+          transition: all 0.25s ease;
         }
 
-        .dark-theme .stat-block {
+        .dark-theme .tech-stat-block {
           background: rgba(0, 174, 239, 0.08);
           border: 1px solid rgba(0, 174, 239, 0.22);
         }
-        .light-theme .stat-block {
+        .light-theme .tech-stat-block {
           background: #F8FAFC;
           border: 1px solid #E2E8F0;
         }
 
-        .stat-number {
-          font-size: 18px;
-          font-weight: 700;
-          line-height: 1.2;
-          margin-bottom: 3px;
+        .tech-stat-val {
+          font-size: 19px !important;
+          font-weight: 800 !important;
+          line-height: 1.15 !important;
+          margin-bottom: 3px !important;
+          letter-spacing: -0.3px !important;
+          background: none !important;
+          -webkit-text-fill-color: initial !important;
+          white-space: nowrap !important;
         }
 
-        .stat-name {
-          font-size: 11.5px;
-          font-weight: 500;
+        .tech-stat-lbl {
+          font-size: 11px !important;
+          font-weight: 600 !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.8px !important;
+          line-height: 1.2 !important;
+          white-space: nowrap !important;
         }
 
-        .dark-theme .stat-name {
-          color: #94A3B8;
+        .dark-theme .tech-stat-lbl {
+          color: #94A3B8 !important;
         }
-        .light-theme .stat-name {
-          color: #64748B;
+        .light-theme .tech-stat-lbl {
+          color: #64748B !important;
+        }
+
+        .card-action-wrap {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          margin-top: 0;
         }
 
         .card-flip-btn {
           background: transparent;
-          border: none;
+          border: 1px solid rgba(0, 174, 239, 0.25);
           display: inline-flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
-          font-size: 13.5px;
+          font-size: 13px;
           font-weight: 600;
           cursor: pointer;
-          padding: 6px 14px;
+          padding: 6px 18px;
           border-radius: 20px;
           transition: all 0.25s ease;
-          margin: 0 auto;
         }
 
         .card-flip-btn:hover {
-          background: rgba(0, 174, 239, 0.12);
+          background: rgba(0, 174, 239, 0.15);
+          border-color: rgba(0, 174, 239, 0.5);
           transform: translateY(-1px);
         }
 
         .flip-icon {
-          font-size: 16px;
+          font-size: 15px;
           display: inline-block;
           transition: transform 0.3s ease;
         }
