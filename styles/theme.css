@@ -1484,6 +1484,7 @@ html[data-theme="light"] .hero-visual-wrapper {
 .odoo-view-wrapper .container,
 .corp-adv-wrapper .container,
 .tax-adv-wrapper .container,
+.outsourcing-view-wrapper .container,
 header .container,
 footer .container {
   width: 100% !important;
@@ -1508,6 +1509,7 @@ footer .container {
   .odoo-view-wrapper .container,
   .corp-adv-wrapper .container,
   .tax-adv-wrapper .container,
+  .outsourcing-view-wrapper .container,
   header .container,
   footer .container {
     max-width: 1280px !important;
@@ -1527,6 +1529,7 @@ footer .container {
   .odoo-view-wrapper .container,
   .corp-adv-wrapper .container,
   .tax-adv-wrapper .container,
+  .outsourcing-view-wrapper .container,
   header .container,
   footer .container {
     max-width: 100% !important;
@@ -1548,6 +1551,7 @@ footer .container {
   .odoo-view-wrapper .container,
   .corp-adv-wrapper .container,
   .tax-adv-wrapper .container,
+  .outsourcing-view-wrapper .container,
   header .container,
   footer .container {
     padding-left: 16px !important;
@@ -1592,7 +1596,8 @@ section .container .container {
 .zatca-view-wrapper,
 .odoo-view-wrapper,
 .corp-adv-wrapper,
-.tax-adv-wrapper {
+.tax-adv-wrapper,
+.outsourcing-view-wrapper {
   width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -1623,6 +1628,7 @@ main section {
 .zatca-hero-section,
 .corp-hero-section,
 .tax-hero-section,
+.out-hero-section,
 .cover-home1 section:first-of-type,
 .cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
 section.apx-hero,
@@ -1659,6 +1665,10 @@ section[class*="hero"] {
 .tax-checklist-section,
 .tax-why-section,
 .tax-faq-section,
+.out-capabilities-section,
+.out-integrated-section,
+.out-process-section,
+.out-industries-section,
 section[id*="solution"],
 section[id*="service"],
 section[id*="process"],
@@ -1678,6 +1688,7 @@ section[class*="services"] {
 .zatca-clients-section,
 .corp-marquee-section,
 .tax-marquee-section,
+.out-marquee-section,
 .cover-home1 section:has(.marquee-wrapper),
 .cover-home1 section:has(.slider-viewport),
 .cover-home1 section:has(.slider-track),
@@ -1699,6 +1710,7 @@ section:has(.slider-track) {
 .zatca-cta-section,
 .corp-cta-section,
 .tax-cta-section,
+.out-cta-section,
 section[id*="contact"],
 section[class*="cta"],
 section[class*="consultation"] {
@@ -1716,6 +1728,7 @@ section[class*="consultation"] {
   .zatca-hero-section,
   .corp-hero-section,
   .tax-hero-section,
+  .out-hero-section,
   .cover-home1 section:first-of-type,
   .cover-home1 > .container > .row > .col-xl-10 > section:first-of-type,
   section.apx-hero,
@@ -1751,6 +1764,10 @@ section[class*="consultation"] {
   .tax-checklist-section,
   .tax-why-section,
   .tax-faq-section,
+  .out-capabilities-section,
+  .out-integrated-section,
+  .out-process-section,
+  .out-industries-section,
   section[id*="solution"],
   section[id*="service"],
   section[id*="process"],
@@ -1769,6 +1786,7 @@ section[class*="consultation"] {
   .zatca-clients-section,
   .corp-marquee-section,
   .tax-marquee-section,
+  .out-marquee-section,
   .cover-home1 section:has(.marquee-wrapper),
   .cover-home1 section:has(.slider-viewport),
   .cover-home1 section:has(.slider-track),
@@ -1789,6 +1807,7 @@ section[class*="consultation"] {
   .zatca-cta-section,
   .corp-cta-section,
   .tax-cta-section,
+  .out-cta-section,
   section[id*="contact"],
   section[class*="cta"],
   section[class*="consultation"] {
@@ -1806,6 +1825,199 @@ section[class*="consultation"] {
 .container > .text-center.mb-50,
 section > .container > .text-center {
   margin-bottom: 40px !important;
+}
+
+/* ────────────────────────────────────────────────────────────
+   6E. SITE-WIDE SECTION & TYPOGRAPHY HARMONIZATION
+   Guarantees that all legacy or scraped sections across the entire
+   website (including process, industries, and integrated sections)
+   match the modern typography scale, body sizing, and colors.
+──────────────────────────────────────────────────────────── */
+.eyebrow,
+p.eyebrow {
+  display: inline-block !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #00AEEF !important;
+  margin-bottom: 12px !important;
+}
+
+.heading,
+h2.heading {
+  font-size: clamp(2rem, 3.5vw, 2.75rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  color: var(--heading-color, #ffffff) !important;
+  letter-spacing: -0.015em !important;
+  margin-bottom: 14px !important;
+}
+
+.heading .accent,
+h2.heading .accent {
+  color: #00AEEF !important;
+}
+
+.sub,
+p.sub {
+  font-size: clamp(0.98rem, 1.8vw, 1.1rem) !important;
+  line-height: 1.65 !important;
+  color: var(--text-color, #94a3b8) !important;
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 30px !important;
+}
+
+/* Site-wide Service Cards (.svc-box) */
+.svc-box {
+  background: rgba(13, 24, 44, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(0, 174, 239, 0.22) !important;
+  border-radius: 20px !important;
+  padding: 28px 24px !important;
+  transition: all 0.35s ease !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.svc-box:hover {
+  border-color: rgba(0, 174, 239, 0.5) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 16px 45px rgba(0, 174, 239, 0.18) !important;
+}
+
+.svc-title,
+h3.svc-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: var(--heading-color, #ffffff) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 8px !important;
+}
+
+.svc-text,
+p.svc-text {
+  font-size: 0.92rem !important;
+  line-height: 1.65 !important;
+  color: var(--text-color, #94a3b8) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Site-wide Process Steps (.step-title, .step-text) */
+.step-title,
+h3.step-title {
+  font-size: 1.12rem !important;
+  font-weight: 700 !important;
+  color: var(--heading-color, #ffffff) !important;
+  margin-bottom: 6px !important;
+}
+
+.step-text,
+p.step-text {
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  color: var(--text-color, #94a3b8) !important;
+}
+
+/* Site-wide Industry Cards (.ind-box) */
+.ind-box {
+  background: rgba(13, 24, 44, 0.65) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1.5px solid rgba(0, 174, 239, 0.2) !important;
+  border-radius: 18px !important;
+  padding: 22px 18px !important;
+  transition: all 0.35s ease !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ind-box:hover {
+  border-color: #00AEEF !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 35px rgba(0, 174, 239, 0.2) !important;
+}
+
+.ind-title,
+h3.ind-title {
+  font-size: 1.08rem !important;
+  font-weight: 700 !important;
+  color: var(--heading-color, #ffffff) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 6px !important;
+}
+
+.ind-text,
+p.ind-text {
+  font-size: 0.85rem !important;
+  line-height: 1.5 !important;
+  color: var(--text-color, #94a3b8) !important;
+}
+
+/* Site-wide Tags (.tag) */
+.tag {
+  display: inline-block !important;
+  background: rgba(0, 174, 239, 0.1) !important;
+  border: 1px solid rgba(0, 174, 239, 0.25) !important;
+  color: #00AEEF !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  padding: 4px 12px !important;
+  border-radius: 20px !important;
+}
+
+/* Site-wide CTA Box (.cta-box) */
+.cta-box {
+  background: rgba(13, 24, 44, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  border: 1.5px solid rgba(0, 174, 239, 0.25) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2) !important;
+}
+
+.cta-title,
+h2.cta-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem) !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  color: #ffffff !important;
+  letter-spacing: -0.015em !important;
+}
+
+.cta-text,
+p.cta-text {
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  color: #94a3b8 !important;
+}
+
+.cta-primary {
+  background: linear-gradient(90deg, #00AEEF 0%, #0077B6 100%) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  padding: 12px 24px !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.cta-primary:hover {
+  box-shadow: 0 10px 25px rgba(0, 174, 239, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+.cta-ghost {
+  background: transparent !important;
+  border: 1px solid rgba(0, 174, 239, 0.35) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  padding: 12px 22px !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.cta-ghost:hover {
+  border-color: #00AEEF !important;
+  color: #00AEEF !important;
 }
 
 @media (max-width: 768px) {

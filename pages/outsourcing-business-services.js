@@ -1,16 +1,15 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import OutsourcingView from '@/components/OutsourcingView';
 
 export default function OutsourcingBusinessServicesPage() {
-  const data = pagesData['/outsourcing-business-services'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Outsourcing & Business Process Services Saudi Arabia | BPO, FAO & WPS Payroll | Altapete Solutions"
+      description="Scalable business process outsourcing (BPO), full-cycle accounting & finance (FAO), WPS payroll administration, and multi-agency regulatory compliance services in Saudi Arabia."
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <OutsourcingView />
     </Layout>
   );
 }
+
