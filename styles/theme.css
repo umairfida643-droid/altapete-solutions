@@ -4957,6 +4957,24 @@ header.stick {
   display: inline !important;
 }
 
+.sol-heading-accent,
+.product-detail-view .sol-heading-accent,
+.product-detail-view h1 .sol-heading-accent,
+.product-detail-view h2 .sol-heading-accent,
+.product-detail-view h3 .sol-heading-accent,
+.product-detail-view h1 span[style*="#0066cc"],
+.product-detail-view h1 span[style*="linear-gradient"] {
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: initial !important;
+  color: #00AEEF !important;
+  display: inline !important;
+  -webkit-box-decoration-break: clone !important;
+  box-decoration-break: clone !important;
+  transition: color 0.2s ease !important;
+}
+
 .product-detail-view section:first-of-type p {
   font-size: clamp(15px, 1.5vw, 17px) !important;
   line-height: 1.6 !important;
@@ -5041,6 +5059,25 @@ html[data-theme="light"] .product-detail-view h1,
 :root:not([data-theme="dark"]) .product-detail-view h1 {
   color: #0f172a !important;
   text-shadow: 0 1px 12px rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-theme="light"] .sol-heading-accent,
+[data-theme="light"] .product-detail-view .sol-heading-accent,
+[data-theme="light"] .product-detail-view h1 .sol-heading-accent,
+[data-theme="light"] .product-detail-view h2 .sol-heading-accent,
+[data-theme="light"] .product-detail-view h3 .sol-heading-accent,
+html[data-theme="light"] .sol-heading-accent,
+html[data-theme="light"] .product-detail-view .sol-heading-accent,
+html[data-theme="light"] .product-detail-view h1 .sol-heading-accent,
+html[data-theme="light"] .product-detail-view h2 .sol-heading-accent,
+html[data-theme="light"] .product-detail-view h3 .sol-heading-accent,
+:root:not([data-theme="dark"]) .sol-heading-accent,
+:root:not([data-theme="dark"]) .product-detail-view .sol-heading-accent,
+:root:not([data-theme="dark"]) .product-detail-view h1 .sol-heading-accent,
+:root:not([data-theme="dark"]) .product-detail-view h2 .sol-heading-accent,
+:root:not([data-theme="dark"]) .product-detail-view h3 .sol-heading-accent {
+  color: #007bb5 !important;
+  text-shadow: none !important;
 }
 
 [data-theme="light"] .product-detail-view h2,
@@ -5152,6 +5189,20 @@ html[data-theme="dark"] .product-detail-view section:first-of-type > div[style*=
 html[data-theme="dark"] .product-detail-view h1 {
   color: #ffffff !important;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.85) !important;
+}
+
+[data-theme="dark"] .sol-heading-accent,
+[data-theme="dark"] .product-detail-view .sol-heading-accent,
+[data-theme="dark"] .product-detail-view h1 .sol-heading-accent,
+[data-theme="dark"] .product-detail-view h2 .sol-heading-accent,
+[data-theme="dark"] .product-detail-view h3 .sol-heading-accent,
+html[data-theme="dark"] .sol-heading-accent,
+html[data-theme="dark"] .product-detail-view .sol-heading-accent,
+html[data-theme="dark"] .product-detail-view h1 .sol-heading-accent,
+html[data-theme="dark"] .product-detail-view h2 .sol-heading-accent,
+html[data-theme="dark"] .product-detail-view h3 .sol-heading-accent {
+  color: #00d4ff !important;
+  text-shadow: 0 0 24px rgba(0, 212, 255, 0.45) !important;
 }
 
 [data-theme="dark"] .product-detail-view h2,
