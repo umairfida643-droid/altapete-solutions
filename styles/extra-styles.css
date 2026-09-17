@@ -480,18 +480,16 @@
           .tech-node   { width: 85px !important; height: 85px !important; }
         }
 
-@keyframes apSpin   { to { transform: rotate(360deg); } }
-        @keyframes apSpinBack { to { transform: rotate(-360deg); } }
-        @keyframes apPulse  { 0%,100% { opacity:.35 } 50% { opacity:1 } }
-        .ap-orbit-a { transform-origin: 220px 220px; animation: apSpin 42s linear infinite; }
-        .ap-orbit-b { transform-origin: 220px 220px; animation: apSpinBack 60s linear infinite; }
-        .ap-node    { animation: apPulse 3.6s ease-in-out infinite; }
-        .ap-node--2 { animation-delay: .9s; }
-        .ap-node--3 { animation-delay: 1.8s; }
-        .ap-node--4 { animation-delay: 2.7s; }
-        @media (prefers-reduced-motion: reduce) {
-          .ap-orbit-a, .ap-orbit-b, .ap-node { animation: none; }
-        }
+/* Spinning orbit circles removed — animations disabled globally */
+        @keyframes apSpin   { from { transform: none; } to { transform: none; } }
+        @keyframes apSpinBack { from { transform: none; } to { transform: none; } }
+        @keyframes apPulse  { 0%,100% { opacity:.7 } 50% { opacity:1 } }
+        .ap-orbit-a { animation: none !important; transform: none !important; }
+        .ap-orbit-b { animation: none !important; transform: none !important; }
+        .ap-node    { animation: none !important; }
+        /* Hide the full 440x440 SVG orbit diagram so it doesn't overflow page edges */
+        div[aria-hidden="true"] > svg[viewBox="0 0 440 440"] { display: none !important; }
+        div[aria-hidden="true"] { overflow: hidden !important; }
 
 @keyframes bounce {
           0%, 100% { transform: translateY(0); }

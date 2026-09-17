@@ -4505,3 +4505,13 @@ button[style*="linear-gradient"],
 .cp-stat-label {
   color: rgba(255, 255, 255, 0.75) !important;
 }
+
+/* -- Remove spinning orbit circles from all pages globally -- */
+@keyframes apSpin { from { transform: none; } to { transform: none; } }
+@keyframes apSpinBack { from { transform: none; } to { transform: none; } }
+.ap-orbit-a, .ap-orbit-b { animation: none !important; transform: none !important; }
+/* Hide the full hero-visual SVG orbit diagram on product/solution pages */
+.hero-visual [aria-hidden='true'],
+div[aria-hidden='true'] svg[viewBox='0 0 440 440'] {
+  display: none !important;
+}
