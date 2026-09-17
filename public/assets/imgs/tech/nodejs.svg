@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 50" width="130" height="50">
+  <g transform="translate(10, 8)">
+    <path fill="#5FA04E" d="M16 1.5L2.5 9.3c-1.5.9-2.5 2.5-2.5 4.3v15.6c0 1.8 1 3.4 2.5 4.3L16 41.3c1.5.9 3.5.9 5 0l13.5-7.8c1.5-.9 2.5-2.5 2.5-4.3V13.6c0-1.8-1-3.4-2.5-4.3L21 1.5c-1.5-.9-3.5-.9-5 0z"/>
+    <path fill="#ffffff" d="M18.5 13.5c.5-.3 1.1-.3 1.6 0l9.3 5.4c.5.3.8.8.8 1.4v10.8c0 .6-.3 1.1-.8 1.4l-9.3 5.4c-.5.3-1.1.3-1.6 0l-9.3-5.4c-.5-.3-.8-.8-.8-1.4V20.3c0-.6.3-1.1.8-1.4l9.3-5.4z"/>
+    <path fill="#333333" d="M18 20v11l-4-2.3V21.5L18 20z"/>
+  </g>
+  <text x="50" y="31" fill="#333333" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="19" letter-spacing="-0.2">Node.js</text>
+</svg>

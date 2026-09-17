@@ -63,7 +63,7 @@ const ROW_1_TECH = [
     name: "AWS Cloud", 
     tag: "Cloud Hosting", 
     desc: "High-Availability Infrastructure", 
-    logo: null, 
+    logo: "/assets/imgs/tech/aws.svg", 
     icon: Cloud, 
     badgeColor: "#0088C7" 
   },
@@ -71,7 +71,7 @@ const ROW_1_TECH = [
     name: "Microsoft", 
     tag: "Ecosystem", 
     desc: "Azure & Enterprise Integration", 
-    logo: null, 
+    logo: "/assets/imgs/tech/microsoft.svg", 
     icon: Monitor, 
     badgeColor: "#00AEEF" 
   }
@@ -98,7 +98,7 @@ const ROW_2_TECH = [
     name: "React & Next.js", 
     tag: "Frontend", 
     desc: "Modern High-Speed Web Platforms", 
-    logo: null, 
+    logo: "/assets/imgs/tech/react.svg", 
     icon: Globe, 
     badgeColor: "#00C6FF" 
   },
@@ -106,7 +106,7 @@ const ROW_2_TECH = [
     name: "Node.js", 
     tag: "Microservices", 
     desc: "Fast Event-Driven Architecture", 
-    logo: null, 
+    logo: "/assets/imgs/tech/nodejs.svg", 
     icon: Cpu, 
     badgeColor: "#0284c7" 
   },
@@ -114,7 +114,7 @@ const ROW_2_TECH = [
     name: "Docker & K8s", 
     tag: "DevOps", 
     desc: "Containerized Cloud Deployment", 
-    logo: null, 
+    logo: "/assets/imgs/tech/docker.svg", 
     icon: Box, 
     badgeColor: "#1e40af" 
   },
@@ -122,7 +122,7 @@ const ROW_2_TECH = [
     name: "REST & GraphQL", 
     tag: "API Sync", 
     desc: "Secure Real-time Conduits", 
-    logo: null, 
+    logo: "/assets/imgs/tech/graphql.svg", 
     icon: Zap, 
     badgeColor: "#0088C7" 
   },
@@ -130,7 +130,7 @@ const ROW_2_TECH = [
     name: "Financial AI", 
     tag: "IFRS Advisory", 
     desc: "Automated Ledger Analytics", 
-    logo: null, 
+    logo: "/assets/imgs/tech/financial-ai.svg", 
     icon: Calculator, 
     badgeColor: "#00AEEF" 
   }

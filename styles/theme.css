@@ -2079,6 +2079,7 @@ html[data-theme="dark"] .consultation-input:focus {
   padding: 8px 12px 14px;
   position: relative;
   overflow: hidden;
+  min-height: 340px;
 }
 
 .cockpit-radar-grid {
@@ -2158,28 +2159,28 @@ html[data-theme="dark"] .consultation-input:focus {
 
 /* Data Packets Flowing Along Lines */
 @keyframes packetMove0 {
-  0% { cx: 260px; cy: 170px; opacity: 0; }
+  0% { cx: 260px; cy: 160px; opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  100% { cx: 90px; cy: 75px; opacity: 0; }
+  100% { cx: 115px; cy: 36px; opacity: 0; }
 }
 @keyframes packetMove1 {
-  0% { cx: 260px; cy: 170px; opacity: 0; }
+  0% { cx: 260px; cy: 160px; opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  100% { cx: 430px; cy: 75px; opacity: 0; }
+  100% { cx: 405px; cy: 36px; opacity: 0; }
 }
 @keyframes packetMove2 {
-  0% { cx: 260px; cy: 170px; opacity: 0; }
+  0% { cx: 260px; cy: 160px; opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  100% { cx: 90px; cy: 265px; opacity: 0; }
+  100% { cx: 115px; cy: 274px; opacity: 0; }
 }
 @keyframes packetMove3 {
-  0% { cx: 260px; cy: 170px; opacity: 0; }
+  0% { cx: 260px; cy: 160px; opacity: 0; }
   20% { opacity: 1; }
   80% { opacity: 1; }
-  100% { cx: 430px; cy: 265px; opacity: 0; }
+  100% { cx: 405px; cy: 274px; opacity: 0; }
 }
 
 .packet-0 { animation: packetMove0 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
@@ -2194,7 +2195,8 @@ html[data-theme="dark"] .consultation-input:focus {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   z-index: 10;
-  white-space: nowrap;
+  white-space: nowrap !important;
+  max-width: 175px;
 }
 
 [data-theme="dark"] .cockpit-node-card {
@@ -3872,6 +3874,12 @@ html[data-theme="light"] div[style*="color:#E8F4FC"] h2 {
 [data-theme="light"] div[style*="color:#E8F4FC"] p[style*="color:#5A7D9A"],
 html[data-theme="light"] div[style*="color:#E8F4FC"] p[style*="color:#5A7D9A"] {
   color: #475569 !important;
+}
+
+/* Ensure CTA buttons with vibrant gradient backgrounds have crisp white readable text */
+a[style*="linear-gradient"],
+button[style*="linear-gradient"] {
+  color: #ffffff !important;
 }
 
 

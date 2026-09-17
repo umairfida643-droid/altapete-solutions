@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145 50" width="145" height="50">
+  <g transform="translate(8, 8)">
+    <!-- Circuit Chip Base -->
+    <rect x="4" y="4" width="26" height="26" rx="6" fill="none" stroke="#2c73d9" stroke-width="2"/>
+    <!-- Center AI Brain / Pulse -->
+    <rect x="10" y="10" width="14" height="14" rx="3" fill="#00AEEF" fill-opacity="0.2" stroke="#00AEEF" stroke-width="1.5"/>
+    <path d="M14 17h6M17 14v6" stroke="#00AEEF" stroke-width="2" stroke-linecap="round"/>
+    <!-- Pin Connectors -->
+    <line x1="17" y1="0" x2="17" y2="4" stroke="#2c73d9" stroke-width="2"/>
+    <line x1="17" y1="30" x2="17" y2="34" stroke="#2c73d9" stroke-width="2"/>
+    <line x1="0" y1="17" x2="4" y2="17" stroke="#2c73d9" stroke-width="2"/>
+    <line x1="30" y1="17" x2="34" y2="17" stroke="#2c73d9" stroke-width="2"/>
+    <circle cx="17" cy="0" r="1.5" fill="#00C6FF"/>
+    <circle cx="17" cy="34" r="1.5" fill="#00C6FF"/>
+    <circle cx="0" cy="17" r="1.5" fill="#00C6FF"/>
+    <circle cx="34" cy="17" r="1.5" fill="#00C6FF"/>
+  </g>
+  <text x="48" y="26" fill="#0f172a" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="14" letter-spacing="0.5">FINANCIAL</text>
+  <text x="48" y="38" fill="#00AEEF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="11" letter-spacing="1.5">AI ENGINE</text>
+</svg>
