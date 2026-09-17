@@ -97,18 +97,42 @@ export default function HomePage() {
     }
   ];
 
-  const clients = [
-    { name: "Ensco", logo: "/assets/imgs/clients-clean/ensco.png" },
-    { name: "Ijarah", logo: "/assets/imgs/clients-clean/ijarah.png" },
-    { name: "MSA Arabia", logo: "/assets/imgs/clients-clean/msaarabia.png" },
-    { name: "OCA Global", logo: "/assets/imgs/clients-clean/oca-global.png" },
-    { name: "Almutlaq Group", logo: "/assets/imgs/clients-clean/almutlaq.png" },
-    { name: "Rubber Future", logo: "/assets/imgs/clients-clean/rubber-future.png" },
-    { name: "Shahina", logo: "/assets/imgs/clients-clean/shahina.png" },
-    { name: "SIRC", logo: "/assets/imgs/clients-clean/sirc.png" },
-    { name: "Tajmie", logo: "/assets/imgs/clients-clean/tajmie.png" },
-    { name: "Yugen", logo: "/assets/imgs/clients-clean/yugen.png" },
-    { name: "Zamil Group", logo: "/assets/imgs/clients-clean/zamil.png" }
+  const clientRow1 = [
+    { name: "Ensco", logo: "/assets/imgs/updated-clients/ensco.png" },
+    { name: "Ijarah Finance", logo: "/assets/imgs/updated-clients/ijarah.png" },
+    { name: "MSA Arabia", logo: "/assets/imgs/updated-clients/msaarabia.png" },
+    { name: "OCA Global", logo: "/assets/imgs/updated-clients/oca-global.png" },
+    { name: "Almutlaq Group", logo: "/assets/imgs/updated-clients/rubber-future.png" },
+    { name: "Al Haytham Mining (AGC)", logo: "/assets/imgs/updated-clients/picture11.png" },
+    { name: "Amer El-Hoshan & Partners", logo: "/assets/imgs/updated-clients/picture12.png" },
+    { name: "Ammco Mining", logo: "/assets/imgs/updated-clients/picture13.png" },
+    { name: "AALICO", logo: "/assets/imgs/updated-clients/picture14.png" },
+    { name: "Madarat First Industrial Co.", logo: "/assets/imgs/updated-clients/picture15.png" },
+    { name: "Union Constructions", logo: "/assets/imgs/updated-clients/picture16.png" },
+    { name: "Khereiji", logo: "/assets/imgs/updated-clients/picture17.png" },
+    { name: "Carboline RPM", logo: "/assets/imgs/updated-clients/picture18.png" },
+    { name: "ISLC", logo: "/assets/imgs/updated-clients/picture19.png" },
+    { name: "Arabian Geophysical (AG)", logo: "/assets/imgs/updated-clients/picture20.png" },
+    { name: "Badael", logo: "/assets/imgs/updated-clients/download-24.png" }
+  ];
+
+  const clientRow2 = [
+    { name: "SIRC", logo: "/assets/imgs/updated-clients/sirc.png" },
+    { name: "Zamil Group", logo: "/assets/imgs/updated-clients/zamil-grop.png" },
+    { name: "Shahina", logo: "/assets/imgs/updated-clients/shahina.png" },
+    { name: "Tajmie", logo: "/assets/imgs/updated-clients/tajmie.png" },
+    { name: "Yugen", logo: "/assets/imgs/updated-clients/yugen.png" },
+    { name: "Mohammad Dossary Hospital (MDH)", logo: "/assets/imgs/updated-clients/picture3.png" },
+    { name: "iPlast", logo: "/assets/imgs/updated-clients/picture9.png" },
+    { name: "Rubber Future", logo: "/assets/imgs/updated-clients/picture10.png" },
+    { name: "IFE", logo: "/assets/imgs/updated-clients/picture21.png" },
+    { name: "Aanakaboot", logo: "/assets/imgs/updated-clients/picture22.png" },
+    { name: "Madar", logo: "/assets/imgs/updated-clients/picture23.png" },
+    { name: "Takyeef", logo: "/assets/imgs/updated-clients/picture24.png" },
+    { name: "Quill", logo: "/assets/imgs/updated-clients/picture25.png" },
+    { name: "Amber", logo: "/assets/imgs/updated-clients/picture26.png" },
+    { name: "Mawared Baladi", logo: "/assets/imgs/updated-clients/picture27.png" },
+    { name: "Obika Trattoria", logo: "/assets/imgs/updated-clients/picture28.png" }
   ];
 
   const pillars = [
@@ -373,12 +397,31 @@ export default function HomePage() {
         </div>
 
         <div className="marquee-wrapper">
-          <div className="slider-viewport">
-            <div className="slider-track">
-              {[...clients, ...clients].map((cl, idx) => (
+          {/* Row 1: Left to Right Loop */}
+          <div className="slider-viewport mb-3">
+            <div className="slider-track-ltr">
+              {[...clientRow1, ...clientRow1].map((cl, idx) => (
                 <div 
                   className="client-card-wrapper"
-                  key={idx}
+                  key={`r1-${idx}`}
+                >
+                  <img 
+                    src={cl.logo} 
+                    alt={cl.name} 
+                    className="client-logo-img"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2: Left to Right Loop */}
+          <div className="slider-viewport">
+            <div className="slider-track-ltr">
+              {[...clientRow2, ...clientRow2].map((cl, idx) => (
+                <div 
+                  className="client-card-wrapper"
+                  key={`r2-${idx}`}
                 >
                   <img 
                     src={cl.logo} 

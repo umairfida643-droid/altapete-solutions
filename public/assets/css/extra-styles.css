@@ -619,7 +619,25 @@
   animation-play-state: paused !important;
 }
 
+/* Smooth continuous left-to-right marquee */
+@keyframes marqueeScrollRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.slider-track-ltr {
+  display: flex !important;
+  gap: 24px !important;
+  width: max-content !important;
+  animation: marqueeScrollRight 45s linear infinite !important;
+}
+
+.slider-track-ltr:hover {
+  animation-play-state: paused !important;
+}
+
 /* Ensure mega menu link hover effect */
 .submenu .hover-link:hover {
   color: #00b8d4 !important;
 }
+
