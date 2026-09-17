@@ -61,7 +61,7 @@ const TECH_LAYERS = [
         projectsCount: '35+ Deployed',
         reliability: 'Global Edge Availability',
         sla: 'Sub-50ms TTFB / 95+ Core Web Vitals',
-        accentColor: '#FFFFFF',
+        accentColor: '#00AEEF',
         description: 'Next.js delivers enterprise-grade performance through hybrid static site generation, server-side rendering, and automated edge routing.',
         capabilities: [
           'Hybrid SSR & Static Site Generation (SSG) with ISR',
@@ -696,8 +696,7 @@ export default function CustomAppDevelopmentView() {
   // Handler when clicking a layer
   const handleLayerClick = (index) => {
     setSelectedLayerIndex(index);
-    // When layer changes, show that layer overview
-    setSelectedTech(null);
+    setSelectedTech(null); // Show layer overview
   };
 
   // Handler when clicking a specific technology
@@ -831,27 +830,23 @@ export default function CustomAppDevelopmentView() {
             <div className="col-lg-7">
               <div className="cad-layers-container">
                 {TECH_LAYERS.map((layer, idx) => {
-                  const isLayerActive = selectedLayerIndex === idx;
+                  const isLayerContainingActive = selectedLayerIndex === idx;
 
                   return (
                     <div key={layer.id} className="cad-layer-node-wrapper">
-                      {/* Connection vertical dot / line */}
                       {idx > 0 && <div className="cad-layer-line-dot"></div>}
                       
                       <div 
-                        className={`cad-layer-card ${isLayerActive ? 'active-layer' : ''}`}
+                        className={`cad-layer-card ${isLayerContainingActive ? 'active-layer' : ''}`}
                         onClick={() => handleLayerClick(idx)}
                       >
-                        {/* Left Active Glow Indicator */}
                         <div className="cad-layer-indicator"></div>
 
-                        {/* Layer Title & Subtitle */}
                         <div className="cad-layer-meta">
                           <h3 className="cad-layer-title">{layer.name}</h3>
                           <span className="cad-layer-sub">{layer.subtitle}</span>
                         </div>
 
-                        {/* Layer Tech Chips Row */}
                         <div className="cad-layer-tech-row">
                           {layer.technologies.map((tech) => {
                             const isTechSelected = selectedTech?.id === tech.id;
@@ -863,7 +858,7 @@ export default function CustomAppDevelopmentView() {
                                 className={`cad-tech-chip ${isTechSelected ? 'active-tech-chip' : ''}`}
                                 title={`Click to view ${tech.name} detailed metrics`}
                                 onClick={(e) => {
-                                  e.stopPropagation(); // prevent triggering parent layer click
+                                  e.stopPropagation();
                                   handleTechClick(tech, idx);
                                 }}
                               >
@@ -1072,8 +1067,8 @@ export default function CustomAppDevelopmentView() {
             </p>
           </div>
 
-          {/* Phase Selector Tabs */}
-          <div className="cad-phases-tabs-wrapper">
+          {/* 5-Phase Selector Tabs */}
+          <div className="cad-phases-tabs-container">
             <div className="cad-phases-tabs">
               {PHASES.map((p, idx) => {
                 const isActive = activePhaseIndex === idx;
@@ -1084,6 +1079,7 @@ export default function CustomAppDevelopmentView() {
                     type="button"
                     className={`cad-phase-tab-btn ${isActive ? 'active' : ''}`}
                     onClick={() => setActivePhaseIndex(idx)}
+                    aria-selected={isActive}
                   >
                     <span className="tab-phase-badge">Phase {p.id}</span>
                     <span className="tab-phase-name">{p.title}</span>
@@ -1092,21 +1088,32 @@ export default function CustomAppDevelopmentView() {
               })}
             </div>
 
-            {/* Timeline Progress Bar with connected dots */}
-            <div className="cad-timeline-track">
-              <div 
-                className="cad-timeline-fill"
-                style={{ width: `${(activePhaseIndex / 4) * 100}%` }}
-              ></div>
-              <div className="cad-timeline-dots">
-                {PHASES.map((p, idx) => (
-                  <div 
-                    key={p.id} 
-                    className={`cad-timeline-dot ${idx <= activePhaseIndex ? 'dot-active' : ''}`}
-                    onClick={() => setActivePhaseIndex(idx)}
-                    title={`Go to Phase ${p.id}: ${p.title}`}
-                  ></div>
-                ))}
+            {/* Timeline Progress Track & Dots (Pixel-perfect centered under each tab) */}
+            <div className="cad-timeline-wrapper">
+              <div className="cad-timeline-track">
+                <div 
+                  className="cad-timeline-fill"
+                  style={{ width: `${activePhaseIndex * 25}%` }}
+                ></div>
+              </div>
+              <div className="cad-timeline-dots-row">
+                {PHASES.map((p, idx) => {
+                  const isDotActive = idx <= activePhaseIndex;
+                  const isCurrent = idx === activePhaseIndex;
+
+                  return (
+                    <div 
+                      key={p.id} 
+                      className="cad-timeline-dot-col"
+                      onClick={() => setActivePhaseIndex(idx)}
+                      title={`Go to Phase ${p.id}: ${p.title}`}
+                    >
+                      <div className={`cad-timeline-dot ${isDotActive ? 'dot-active' : ''} ${isCurrent ? 'dot-current' : ''}`}>
+                        {isCurrent && <span className="dot-pulse"></span>}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
@@ -1134,12 +1141,12 @@ export default function CustomAppDevelopmentView() {
                 {/* Key Activities */}
                 <div className="cad-phase-activities">
                   <h4 className="activities-title">Key Activities</h4>
-                  <div className="row g-2">
+                  <div className="row g-3">
                     {currentPhase.activities.map((act, i) => (
                       <div key={i} className="col-md-6">
                         <div className="activity-item">
                           <span className="activity-dot"></span>
-                          <span>{act}</span>
+                          <span className="activity-text">{act}</span>
                         </div>
                       </div>
                     ))}
@@ -1226,7 +1233,7 @@ export default function CustomAppDevelopmentView() {
         </div>
       </section>
 
-      {/* SCOPED STYLES & THEME CONTRAST FIXES */}
+      {/* SCOPED STYLES & DUAL THEME CONTRAST RULES */}
       <style jsx>{`
         /* ==================== BASE CONTAINER & TYPOGRAPHY ==================== */
         .custom-app-view {
@@ -1237,14 +1244,17 @@ export default function CustomAppDevelopmentView() {
           transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        :global([data-theme="dark"]) .custom-app-view,
         .dark-theme {
-          background-color: #060c18;
-          color: #f1f5f9;
+          background-color: #060c18 !important;
+          color: #f1f5f9 !important;
         }
 
+        :global([data-theme="light"]) .custom-app-view,
+        :global(:root:not([data-theme="dark"])) .custom-app-view,
         .light-theme {
-          background-color: #f8fafc;
-          color: #0f172a;
+          background-color: #f8fafc !important;
+          color: #0f172a !important;
         }
 
         /* Gradient Headings */
@@ -1254,6 +1264,7 @@ export default function CustomAppDevelopmentView() {
           -webkit-text-fill-color: transparent;
         }
 
+        :global([data-theme="light"]) .cad-gradient-text,
         .light-theme .cad-gradient-text {
           background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
           -webkit-background-clip: text;
@@ -1264,35 +1275,38 @@ export default function CustomAppDevelopmentView() {
           color: #00C6FF !important;
         }
 
+        :global([data-theme="light"]) .text-cyan,
         .light-theme .text-cyan {
           color: #0284c7 !important;
         }
 
         .text-highlight {
           color: #00C6FF;
-          font-weight: 600;
+          font-weight: 700;
         }
 
+        :global([data-theme="light"]) .text-highlight,
         .light-theme .text-highlight {
           color: #0284c7;
         }
 
         /* Section Headers */
         .cad-section-header {
-          max-width: 780px;
+          max-width: 800px;
           margin: 0 auto 40px auto;
         }
 
         .cad-eyebrow {
           display: inline-block;
           font-size: 13px;
-          font-weight: 700;
+          font-weight: 800;
           letter-spacing: 2px;
           text-transform: uppercase;
           color: #00C6FF;
           margin-bottom: 12px;
         }
 
+        :global([data-theme="light"]) .cad-eyebrow,
         .light-theme .cad-eyebrow {
           color: #0284c7;
         }
@@ -1304,12 +1318,15 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 16px;
         }
 
+        :global([data-theme="dark"]) .cad-section-title,
         .dark-theme .cad-section-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-section-title,
+        :global(:root:not([data-theme="dark"])) .cad-section-title,
         .light-theme .cad-section-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-section-desc {
@@ -1318,12 +1335,15 @@ export default function CustomAppDevelopmentView() {
           margin: 0;
         }
 
+        :global([data-theme="dark"]) .cad-section-desc,
         .dark-theme .cad-section-desc {
-          color: #94a3b8;
+          color: #94a3b8 !important;
         }
 
+        :global([data-theme="light"]) .cad-section-desc,
+        :global(:root:not([data-theme="dark"])) .cad-section-desc,
         .light-theme .cad-section-desc {
-          color: #475569;
+          color: #475569 !important;
         }
 
         /* ==================== 1. HERO SECTION ==================== */
@@ -1340,18 +1360,20 @@ export default function CustomAppDevelopmentView() {
           padding: 6px 16px;
           border-radius: 30px;
           font-size: 13px;
-          font-weight: 600;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 1.5px;
           margin-bottom: 20px;
         }
 
+        :global([data-theme="dark"]) .cad-hero-badge,
         .dark-theme .cad-hero-badge {
           background: rgba(0, 174, 239, 0.1);
           border: 1px solid rgba(0, 174, 239, 0.3);
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .cad-hero-badge,
         .light-theme .cad-hero-badge {
           background: #e0f2fe;
           border: 1px solid #bae6fd;
@@ -1373,12 +1395,15 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 20px;
         }
 
+        :global([data-theme="dark"]) .cad-hero-title,
         .dark-theme .cad-hero-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-hero-title,
+        :global(:root:not([data-theme="dark"])) .cad-hero-title,
         .light-theme .cad-hero-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-hero-desc {
@@ -1387,12 +1412,15 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 30px;
         }
 
+        :global([data-theme="dark"]) .cad-hero-desc,
         .dark-theme .cad-hero-desc {
-          color: #cbd5e1;
+          color: #cbd5e1 !important;
         }
 
+        :global([data-theme="light"]) .cad-hero-desc,
+        :global(:root:not([data-theme="dark"])) .cad-hero-desc,
         .light-theme .cad-hero-desc {
-          color: #475569;
+          color: #334155 !important;
         }
 
         .cad-quick-tech-pills {
@@ -1412,16 +1440,20 @@ export default function CustomAppDevelopmentView() {
           transition: transform 0.2s ease;
         }
 
+        :global([data-theme="dark"]) .cad-quick-pill,
         .dark-theme .cad-quick-pill {
           background: rgba(0, 174, 239, 0.08);
           border: 1px solid rgba(0, 174, 239, 0.25);
           color: #38bdf8;
         }
 
+        :global([data-theme="light"]) .cad-quick-pill,
+        :global(:root:not([data-theme="dark"])) .cad-quick-pill,
         .light-theme .cad-quick-pill {
-          background: #f1f5f9;
-          border: 1px solid #cbd5e1;
-          color: #0369a1;
+          background: #ffffff;
+          border: 1.5px solid #cbd5e1;
+          color: #0f172a;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .cad-quick-pill:hover {
@@ -1435,6 +1467,11 @@ export default function CustomAppDevelopmentView() {
           background-color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .pill-dot,
+        .light-theme .pill-dot {
+          background-color: #0284c7;
+        }
+
         /* Terminal Window */
         .cad-code-window {
           border-radius: 16px;
@@ -1442,15 +1479,7 @@ export default function CustomAppDevelopmentView() {
           box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
           border: 1px solid rgba(0, 198, 255, 0.25);
           backdrop-filter: blur(12px);
-        }
-
-        .dark-theme .cad-code-window {
           background: rgba(13, 20, 36, 0.95);
-        }
-
-        .light-theme .cad-code-window {
-          background: #0f172a;
-          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
         .cad-window-header {
@@ -1615,15 +1644,18 @@ export default function CustomAppDevelopmentView() {
           overflow: hidden;
         }
 
+        :global([data-theme="dark"]) .cad-layer-card,
         .dark-theme .cad-layer-card {
           background: rgba(13, 22, 42, 0.7);
           border: 1px solid rgba(0, 198, 255, 0.2);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        :global([data-theme="light"]) .cad-layer-card,
+        :global(:root:not([data-theme="dark"])) .cad-layer-card,
         .light-theme .cad-layer-card {
           background: #ffffff;
-          border: 1px solid #e2e8f0;
+          border: 1.5px solid #cbd5e1;
           box-shadow: 0 8px 24px rgba(148, 163, 184, 0.12);
         }
 
@@ -1631,10 +1663,12 @@ export default function CustomAppDevelopmentView() {
           transform: translateY(-2px);
         }
 
+        :global([data-theme="dark"]) .cad-layer-card:hover,
         .dark-theme .cad-layer-card:hover {
           border-color: rgba(0, 198, 255, 0.5);
         }
 
+        :global([data-theme="light"]) .cad-layer-card:hover,
         .light-theme .cad-layer-card:hover {
           border-color: #0284c7;
         }
@@ -1644,15 +1678,17 @@ export default function CustomAppDevelopmentView() {
           transform: scale(1.01);
         }
 
+        :global([data-theme="dark"]) .cad-layer-card.active-layer,
         .dark-theme .cad-layer-card.active-layer {
-          border: 2px solid #00C6FF;
+          border: 2px solid #00C6FF !important;
           box-shadow: 0 0 30px rgba(0, 198, 255, 0.35), inset 0 0 15px rgba(0, 198, 255, 0.1);
           background: rgba(13, 27, 54, 0.9);
         }
 
+        :global([data-theme="light"]) .cad-layer-card.active-layer,
         .light-theme .cad-layer-card.active-layer {
-          border: 2px solid #0284c7;
-          box-shadow: 0 12px 32px rgba(2, 132, 199, 0.18);
+          border: 2px solid #0284c7 !important;
+          box-shadow: 0 12px 32px rgba(2, 132, 199, 0.2);
           background: #ffffff;
         }
 
@@ -1670,6 +1706,11 @@ export default function CustomAppDevelopmentView() {
           background: linear-gradient(180deg, #00C6FF 0%, #0077CC 100%);
         }
 
+        :global([data-theme="light"]) .cad-layer-card.active-layer .cad-layer-indicator,
+        .light-theme .cad-layer-card.active-layer .cad-layer-indicator {
+          background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+        }
+
         .cad-layer-meta {
           flex-shrink: 0;
           min-width: 140px;
@@ -1677,26 +1718,30 @@ export default function CustomAppDevelopmentView() {
 
         .cad-layer-title {
           font-size: 20px;
-          font-weight: 700;
+          font-weight: 800;
           margin: 0 0 4px 0;
         }
 
+        :global([data-theme="dark"]) .cad-layer-title,
         .dark-theme .cad-layer-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-layer-title,
+        :global(:root:not([data-theme="dark"])) .cad-layer-title,
         .light-theme .cad-layer-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-layer-sub {
           font-size: 10.5px;
-          font-weight: 700;
+          font-weight: 800;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .cad-layer-sub,
         .light-theme .cad-layer-sub {
           color: #0284c7;
         }
@@ -1726,28 +1771,33 @@ export default function CustomAppDevelopmentView() {
           padding: 4px;
         }
 
+        :global([data-theme="dark"]) .cad-tech-chip,
         .dark-theme .cad-tech-chip {
           background: rgba(18, 30, 58, 0.6);
           border-color: rgba(0, 198, 255, 0.2);
           color: #e2e8f0;
         }
 
+        :global([data-theme="light"]) .cad-tech-chip,
+        :global(:root:not([data-theme="dark"])) .cad-tech-chip,
         .light-theme .cad-tech-chip {
           background: #f8fafc;
-          border-color: #cbd5e1;
-          color: #334155;
+          border: 1.5px solid #cbd5e1;
+          color: #0f172a;
         }
 
         .cad-tech-chip:hover {
           transform: translateY(-3px);
         }
 
+        :global([data-theme="dark"]) .cad-tech-chip:hover,
         .dark-theme .cad-tech-chip:hover {
           border-color: #00C6FF;
           box-shadow: 0 6px 16px rgba(0, 198, 255, 0.25);
           color: #38bdf8;
         }
 
+        :global([data-theme="light"]) .cad-tech-chip:hover,
         .light-theme .cad-tech-chip:hover {
           border-color: #0284c7;
           box-shadow: 0 6px 16px rgba(2, 132, 199, 0.2);
@@ -1755,21 +1805,23 @@ export default function CustomAppDevelopmentView() {
         }
 
         .cad-tech-chip.active-tech-chip {
-          border-color: #00C6FF !important;
-          transform: scale(1.05);
+          transform: scale(1.06);
         }
 
+        :global([data-theme="dark"]) .cad-tech-chip.active-tech-chip,
         .dark-theme .cad-tech-chip.active-tech-chip {
-          background: rgba(0, 198, 255, 0.18);
-          box-shadow: 0 0 16px rgba(0, 198, 255, 0.4);
-          color: #00C6FF;
+          border-color: #00C6FF !important;
+          background: rgba(0, 198, 255, 0.2);
+          box-shadow: 0 0 18px rgba(0, 198, 255, 0.45);
+          color: #00C6FF !important;
         }
 
+        :global([data-theme="light"]) .cad-tech-chip.active-tech-chip,
         .light-theme .cad-tech-chip.active-tech-chip {
-          background: #e0f2fe;
           border-color: #0284c7 !important;
+          background: #e0f2fe;
           box-shadow: 0 0 16px rgba(2, 132, 199, 0.3);
-          color: #0284c7;
+          color: #0284c7 !important;
         }
 
         .cad-chip-score {
@@ -1787,11 +1839,13 @@ export default function CustomAppDevelopmentView() {
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
+        :global([data-theme="dark"]) .cad-chip-score,
         .dark-theme .cad-chip-score {
           background: #00C6FF;
           color: #060c18;
         }
 
+        :global([data-theme="light"]) .cad-chip-score,
         .light-theme .cad-chip-score {
           background: #0284c7;
           color: #ffffff;
@@ -1805,8 +1859,8 @@ export default function CustomAppDevelopmentView() {
         }
 
         .cad-chip-name {
-          font-size: 10px;
-          font-weight: 600;
+          font-size: 10.5px;
+          font-weight: 700;
           text-align: center;
           line-height: 1.1;
         }
@@ -1820,6 +1874,7 @@ export default function CustomAppDevelopmentView() {
           top: 100px;
         }
 
+        :global([data-theme="dark"]) .cad-detail-panel,
         .dark-theme .cad-detail-panel {
           background: rgba(13, 24, 48, 0.85);
           border: 1px solid rgba(0, 198, 255, 0.3);
@@ -1827,6 +1882,8 @@ export default function CustomAppDevelopmentView() {
           backdrop-filter: blur(15px);
         }
 
+        :global([data-theme="light"]) .cad-detail-panel,
+        :global(:root:not([data-theme="dark"])) .cad-detail-panel,
         .light-theme .cad-detail-panel {
           background: #ffffff;
           border: 1.5px solid #cbd5e1;
@@ -1841,19 +1898,21 @@ export default function CustomAppDevelopmentView() {
           background: transparent;
           border: none;
           font-size: 13px;
-          font-weight: 600;
+          font-weight: 700;
           cursor: pointer;
           padding: 0;
           margin-bottom: 20px;
           transition: all 0.2s ease;
         }
 
+        :global([data-theme="dark"]) .cad-back-btn,
         .dark-theme .cad-back-btn {
-          color: #00C6FF;
+          color: #00C6FF !important;
         }
 
+        :global([data-theme="light"]) .cad-back-btn,
         .light-theme .cad-back-btn {
-          color: #0284c7;
+          color: #0284c7 !important;
         }
 
         .cad-back-btn:hover {
@@ -1878,14 +1937,16 @@ export default function CustomAppDevelopmentView() {
           flex-shrink: 0;
         }
 
+        :global([data-theme="dark"]) .cad-tech-header-icon,
         .dark-theme .cad-tech-header-icon {
           background: rgba(0, 198, 255, 0.12);
           border: 1px solid rgba(0, 198, 255, 0.3);
         }
 
+        :global([data-theme="light"]) .cad-tech-header-icon,
         .light-theme .cad-tech-header-icon {
           background: #e0f2fe;
-          border: 1px solid #bae6fd;
+          border: 1.5px solid #bae6fd;
         }
 
         .cad-tech-title {
@@ -1894,29 +1955,34 @@ export default function CustomAppDevelopmentView() {
           margin: 0;
         }
 
+        :global([data-theme="dark"]) .cad-tech-title,
         .dark-theme .cad-tech-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-tech-title,
+        :global(:root:not([data-theme="dark"])) .cad-tech-title,
         .light-theme .cad-tech-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-expertise-badge {
           font-size: 11px;
-          font-weight: 700;
-          padding: 3px 10px;
+          font-weight: 800;
+          padding: 4px 10px;
           border-radius: 12px;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
+        :global([data-theme="dark"]) .cad-expertise-badge,
         .dark-theme .cad-expertise-badge {
           background: rgba(0, 198, 255, 0.15);
           color: #00C6FF;
           border: 1px solid rgba(0, 198, 255, 0.3);
         }
 
+        :global([data-theme="light"]) .cad-expertise-badge,
         .light-theme .cad-expertise-badge {
           background: #e0f2fe;
           color: #0284c7;
@@ -1925,8 +1991,17 @@ export default function CustomAppDevelopmentView() {
 
         .cad-tech-tagline {
           font-size: 12.5px;
+          font-weight: 600;
+        }
+
+        :global([data-theme="dark"]) .cad-tech-tagline,
+        .dark-theme .cad-tech-tagline {
+          color: #94a3b8;
+        }
+
+        :global([data-theme="light"]) .cad-tech-tagline,
+        .light-theme .cad-tech-tagline {
           color: #64748b;
-          font-weight: 500;
         }
 
         /* Meter Box */
@@ -1936,23 +2011,26 @@ export default function CustomAppDevelopmentView() {
 
         .meter-label {
           font-size: 12.5px;
-          font-weight: 600;
+          font-weight: 700;
         }
 
+        :global([data-theme="dark"]) .meter-label,
         .dark-theme .meter-label {
           color: #cbd5e1;
         }
 
+        :global([data-theme="light"]) .meter-label,
         .light-theme .meter-label {
-          color: #475569;
+          color: #334155;
         }
 
         .meter-value {
           font-size: 13px;
-          font-weight: 700;
+          font-weight: 800;
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .meter-value,
         .light-theme .meter-value {
           color: #0284c7;
         }
@@ -1964,10 +2042,12 @@ export default function CustomAppDevelopmentView() {
           overflow: hidden;
         }
 
+        :global([data-theme="dark"]) .meter-track,
         .dark-theme .meter-track {
           background: rgba(255, 255, 255, 0.1);
         }
 
+        :global([data-theme="light"]) .meter-track,
         .light-theme .meter-track {
           background: #e2e8f0;
         }
@@ -2000,14 +2080,16 @@ export default function CustomAppDevelopmentView() {
           grid-column: span 2;
         }
 
+        :global([data-theme="dark"]) .cad-stat-item,
         .dark-theme .cad-stat-item {
           background: rgba(18, 30, 58, 0.5);
           border: 1px solid rgba(255, 255, 255, 0.06);
         }
 
+        :global([data-theme="light"]) .cad-stat-item,
         .light-theme .cad-stat-item {
           background: #f1f5f9;
-          border: 1px solid #e2e8f0;
+          border: 1.5px solid #e2e8f0;
         }
 
         .stat-label {
@@ -2015,20 +2097,22 @@ export default function CustomAppDevelopmentView() {
           text-transform: uppercase;
           letter-spacing: 0.5px;
           color: #64748b;
-          font-weight: 600;
+          font-weight: 700;
         }
 
         .stat-val {
           font-size: 13.5px;
-          font-weight: 700;
+          font-weight: 800;
         }
 
+        :global([data-theme="dark"]) .stat-val,
         .dark-theme .stat-val {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .stat-val,
         .light-theme .stat-val {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-tech-bio p {
@@ -2037,12 +2121,14 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 18px;
         }
 
+        :global([data-theme="dark"]) .cad-tech-bio p,
         .dark-theme .cad-tech-bio p {
-          color: #94a3b8;
+          color: #94a3b8 !important;
         }
 
+        :global([data-theme="light"]) .cad-tech-bio p,
         .light-theme .cad-tech-bio p {
-          color: #475569;
+          color: #334155 !important;
         }
 
         /* Capabilities List */
@@ -2052,19 +2138,21 @@ export default function CustomAppDevelopmentView() {
 
         .cad-cap-title {
           font-size: 13.5px;
-          font-weight: 700;
+          font-weight: 800;
           display: flex;
           align-items: center;
           gap: 8px;
           margin-bottom: 10px;
         }
 
+        :global([data-theme="dark"]) .cad-cap-title,
         .dark-theme .cad-cap-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-cap-title,
         .light-theme .cad-cap-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-cap-list {
@@ -2084,12 +2172,15 @@ export default function CustomAppDevelopmentView() {
           line-height: 1.5;
         }
 
+        :global([data-theme="dark"]) .cad-cap-list li,
         .dark-theme .cad-cap-list li {
-          color: #cbd5e1;
+          color: #cbd5e1 !important;
         }
 
+        :global([data-theme="light"]) .cad-cap-list li,
         .light-theme .cad-cap-list li {
-          color: #334155;
+          color: #1e293b !important;
+          font-weight: 500;
         }
 
         .check-icon {
@@ -2098,6 +2189,7 @@ export default function CustomAppDevelopmentView() {
           margin-top: 2px;
         }
 
+        :global([data-theme="light"]) .check-icon,
         .light-theme .check-icon {
           color: #0284c7;
         }
@@ -2109,23 +2201,26 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 20px;
         }
 
+        :global([data-theme="dark"]) .cad-use-cases-box,
         .dark-theme .cad-use-cases-box {
           background: rgba(0, 198, 255, 0.05);
           border: 1px dashed rgba(0, 198, 255, 0.25);
         }
 
+        :global([data-theme="light"]) .cad-use-cases-box,
         .light-theme .cad-use-cases-box {
           background: #f0f9ff;
-          border: 1px dashed #7dd3fc;
+          border: 1.5px dashed #7dd3fc;
         }
 
         .use-case-title {
           font-size: 12.5px;
-          font-weight: 700;
+          font-weight: 800;
           margin-bottom: 6px;
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .use-case-title,
         .light-theme .use-case-title {
           color: #0284c7;
         }
@@ -2136,12 +2231,14 @@ export default function CustomAppDevelopmentView() {
           margin: 0;
         }
 
+        :global([data-theme="dark"]) .use-case-text,
         .dark-theme .use-case-text {
-          color: #94a3b8;
+          color: #94a3b8 !important;
         }
 
+        :global([data-theme="light"]) .use-case-text,
         .light-theme .use-case-text {
-          color: #334155;
+          color: #1e293b !important;
         }
 
         /* Quick Switcher Mini Pills */
@@ -2150,44 +2247,54 @@ export default function CustomAppDevelopmentView() {
           border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        :global([data-theme="light"]) .cad-other-tech-row,
+        .light-theme .cad-other-tech-row {
+          border-top: 1px solid #e2e8f0;
+        }
+
         .other-label {
           font-size: 11.5px;
-          font-weight: 600;
+          font-weight: 700;
           color: #64748b;
         }
 
         .cad-mini-pill {
-          padding: 4px 10px;
+          padding: 5px 12px;
           border-radius: 14px;
           font-size: 12px;
-          font-weight: 600;
+          font-weight: 700;
           background: transparent;
           border: 1px solid rgba(255, 255, 255, 0.15);
           cursor: pointer;
           transition: all 0.2s ease;
         }
 
+        :global([data-theme="dark"]) .cad-mini-pill,
         .dark-theme .cad-mini-pill {
           color: #cbd5e1;
+          border-color: rgba(255, 255, 255, 0.2);
         }
 
+        :global([data-theme="light"]) .cad-mini-pill,
         .light-theme .cad-mini-pill {
-          border-color: #cbd5e1;
-          color: #334155;
+          border: 1.5px solid #cbd5e1;
+          color: #1e293b;
         }
 
         .cad-mini-pill:hover,
         .cad-mini-pill.active {
-          border-color: #00C6FF;
+          border-color: #00C6FF !important;
           background: rgba(0, 198, 255, 0.15);
-          color: #00C6FF;
+          color: #00C6FF !important;
         }
 
+        :global([data-theme="light"]) .cad-mini-pill:hover,
+        :global([data-theme="light"]) .cad-mini-pill.active,
         .light-theme .cad-mini-pill:hover,
         .light-theme .cad-mini-pill.active {
-          border-color: #0284c7;
+          border-color: #0284c7 !important;
           background: #e0f2fe;
-          color: #0284c7;
+          color: #0284c7 !important;
         }
 
         /* Layer Overview Mode */
@@ -2197,41 +2304,47 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 4px;
         }
 
+        :global([data-theme="dark"]) .cad-detail-layer-title,
         .dark-theme .cad-detail-layer-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-detail-layer-title,
+        :global(:root:not([data-theme="dark"])) .cad-detail-layer-title,
         .light-theme .cad-detail-layer-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-detail-layer-sub {
           display: block;
           font-size: 11px;
-          font-weight: 700;
+          font-weight: 800;
           letter-spacing: 1.5px;
           text-transform: uppercase;
           color: #00C6FF;
           margin-bottom: 12px;
         }
 
+        :global([data-theme="light"]) .cad-detail-layer-sub,
         .light-theme .cad-detail-layer-sub {
           color: #0284c7;
         }
 
         .cad-detail-layer-desc {
           font-size: 15px;
-          font-weight: 500;
+          font-weight: 600;
           line-height: 1.55;
           margin-bottom: 14px;
         }
 
+        :global([data-theme="dark"]) .cad-detail-layer-desc,
         .dark-theme .cad-detail-layer-desc {
-          color: #cbd5e1;
+          color: #cbd5e1 !important;
         }
 
+        :global([data-theme="light"]) .cad-detail-layer-desc,
         .light-theme .cad-detail-layer-desc {
-          color: #334155;
+          color: #334155 !important;
         }
 
         .cad-layer-long-desc {
@@ -2240,12 +2353,14 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 24px;
         }
 
+        :global([data-theme="dark"]) .cad-layer-long-desc,
         .dark-theme .cad-layer-long-desc {
-          color: #94a3b8;
+          color: #94a3b8 !important;
         }
 
+        :global([data-theme="light"]) .cad-layer-long-desc,
         .light-theme .cad-layer-long-desc {
-          color: #475569;
+          color: #475569 !important;
         }
 
         .cad-techs-heading-row {
@@ -2257,26 +2372,29 @@ export default function CustomAppDevelopmentView() {
 
         .cad-techs-heading {
           font-size: 15px;
-          font-weight: 700;
+          font-weight: 800;
           margin: 0;
         }
 
+        :global([data-theme="dark"]) .cad-techs-heading,
         .dark-theme .cad-techs-heading {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-techs-heading,
         .light-theme .cad-techs-heading {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-techs-count {
           font-size: 11px;
-          font-weight: 600;
+          font-weight: 700;
           color: #00C6FF;
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }
 
+        :global([data-theme="light"]) .cad-techs-count,
         .light-theme .cad-techs-count {
           color: #0284c7;
         }
@@ -2296,25 +2414,30 @@ export default function CustomAppDevelopmentView() {
           transition: all 0.25s ease;
         }
 
+        :global([data-theme="dark"]) .cad-panel-tech-card,
         .dark-theme .cad-panel-tech-card {
           background: rgba(18, 30, 58, 0.6);
           border: 1px solid rgba(0, 198, 255, 0.2);
         }
 
+        :global([data-theme="light"]) .cad-panel-tech-card,
+        :global(:root:not([data-theme="dark"])) .cad-panel-tech-card,
         .light-theme .cad-panel-tech-card {
           background: #f8fafc;
-          border: 1px solid #cbd5e1;
+          border: 1.5px solid #cbd5e1;
         }
 
         .cad-panel-tech-card:hover {
           transform: translateY(-2px);
         }
 
+        :global([data-theme="dark"]) .cad-panel-tech-card:hover,
         .dark-theme .cad-panel-tech-card:hover {
           border-color: #00C6FF;
           box-shadow: 0 8px 20px rgba(0, 198, 255, 0.2);
         }
 
+        :global([data-theme="light"]) .cad-panel-tech-card:hover,
         .light-theme .cad-panel-tech-card:hover {
           border-color: #0284c7;
           box-shadow: 0 8px 20px rgba(2, 132, 199, 0.15);
@@ -2335,14 +2458,17 @@ export default function CustomAppDevelopmentView() {
 
         .panel-tech-name {
           font-size: 14px;
+          font-weight: 700;
         }
 
+        :global([data-theme="dark"]) .panel-tech-name,
         .dark-theme .panel-tech-name {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .panel-tech-name,
         .light-theme .panel-tech-name {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .panel-tech-bar-box {
@@ -2355,10 +2481,12 @@ export default function CustomAppDevelopmentView() {
           border-radius: 6px;
         }
 
+        :global([data-theme="dark"]) .panel-tech-bar-track,
         .dark-theme .panel-tech-bar-track {
           background: rgba(255, 255, 255, 0.1);
         }
 
+        :global([data-theme="light"]) .panel-tech-bar-track,
         .light-theme .panel-tech-bar-track {
           background: #e2e8f0;
         }
@@ -2377,14 +2505,28 @@ export default function CustomAppDevelopmentView() {
 
         .tech-level-text {
           font-size: 10.5px;
+          font-weight: 600;
+        }
+
+        :global([data-theme="dark"]) .tech-level-text,
+        .dark-theme .tech-level-text {
           color: #64748b;
-          font-weight: 500;
+        }
+
+        :global([data-theme="light"]) .tech-level-text,
+        .light-theme .tech-level-text {
+          color: #475569;
         }
 
         .panel-arrow {
           color: #00C6FF;
           opacity: 0.7;
           transition: transform 0.2s ease;
+        }
+
+        :global([data-theme="light"]) .panel-arrow,
+        .light-theme .panel-arrow {
+          color: #0284c7;
         }
 
         .cad-panel-tech-card:hover .panel-arrow {
@@ -2398,20 +2540,22 @@ export default function CustomAppDevelopmentView() {
           gap: 10px;
           padding: 12px 16px;
           border-radius: 12px;
-          font-size: 12px;
+          font-size: 12.5px;
           line-height: 1.5;
         }
 
+        :global([data-theme="dark"]) .cad-helper-hint,
         .dark-theme .cad-helper-hint {
           background: rgba(0, 198, 255, 0.08);
           border: 1px solid rgba(0, 198, 255, 0.2);
           color: #94a3b8;
         }
 
+        :global([data-theme="light"]) .cad-helper-hint,
         .light-theme .cad-helper-hint {
           background: #f0f9ff;
-          border: 1px solid #bae6fd;
-          color: #334155;
+          border: 1.5px solid #bae6fd;
+          color: #1e293b;
         }
 
         .hint-icon {
@@ -2420,108 +2564,180 @@ export default function CustomAppDevelopmentView() {
           margin-top: 1px;
         }
 
+        :global([data-theme="light"]) .hint-icon,
+        .light-theme .hint-icon {
+          color: #0284c7;
+        }
+
         /* ==================== 3. STRUCTURED DEVELOPMENT PROCESS ==================== */
         .cad-methodology-section {
           padding: 80px 0;
           position: relative;
         }
 
-        .cad-phases-tabs-wrapper {
-          margin-bottom: 30px;
+        .cad-phases-tabs-container {
+          margin-bottom: 35px;
         }
 
+        /* 5-Column Tabs Grid */
         .cad-phases-tabs {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
-          gap: 12px;
-          margin-bottom: 24px;
+          gap: 14px;
+          margin-bottom: 22px;
         }
 
         .cad-phase-tab-btn {
           border-radius: 14px;
-          padding: 14px 10px;
-          border: 1px solid transparent;
+          padding: 16px 12px;
           cursor: pointer;
           display: flex;
           flex-direction: column;
           align-items: center;
           text-align: center;
-          gap: 4px;
+          gap: 5px;
           transition: all 0.25s ease;
+          border: 1.5px solid transparent;
         }
 
+        /* Inactive Tab Styles - Dark Mode */
+        :global([data-theme="dark"]) .cad-phase-tab-btn,
         .dark-theme .cad-phase-tab-btn {
-          background: rgba(13, 22, 42, 0.6);
-          border-color: rgba(255, 255, 255, 0.08);
-          color: #94a3b8;
+          background: rgba(13, 22, 42, 0.7);
+          border-color: rgba(255, 255, 255, 0.09);
         }
 
-        .light-theme .cad-phase-tab-btn {
-          background: #ffffff;
-          border-color: #e2e8f0;
-          color: #475569;
+        :global([data-theme="dark"]) .cad-phase-tab-btn .tab-phase-badge,
+        .dark-theme .cad-phase-tab-btn .tab-phase-badge {
+          color: #00C6FF;
         }
 
-        .cad-phase-tab-btn:hover {
+        :global([data-theme="dark"]) .cad-phase-tab-btn .tab-phase-name,
+        .dark-theme .cad-phase-tab-btn .tab-phase-name {
+          color: #f1f5f9;
+        }
+
+        :global([data-theme="dark"]) .cad-phase-tab-btn:hover,
+        .dark-theme .cad-phase-tab-btn:hover {
+          border-color: #00C6FF;
+          background: rgba(13, 35, 70, 0.9);
           transform: translateY(-2px);
         }
 
-        .dark-theme .cad-phase-tab-btn:hover {
-          border-color: rgba(0, 198, 255, 0.4);
-          color: #e2e8f0;
+        /* Inactive Tab Styles - Light Mode */
+        :global([data-theme="light"]) .cad-phase-tab-btn,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn,
+        .light-theme .cad-phase-tab-btn {
+          background: #ffffff;
+          border-color: #cbd5e1;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
         }
 
-        .light-theme .cad-phase-tab-btn:hover {
-          border-color: #0284c7;
+        :global([data-theme="light"]) .cad-phase-tab-btn .tab-phase-badge,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn .tab-phase-badge,
+        .light-theme .cad-phase-tab-btn .tab-phase-badge {
+          color: #0284c7;
+        }
+
+        :global([data-theme="light"]) .cad-phase-tab-btn .tab-phase-name,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn .tab-phase-name,
+        .light-theme .cad-phase-tab-btn .tab-phase-name {
           color: #0f172a;
         }
 
-        /* Active Phase Tab */
-        .cad-phase-tab-btn.active {
+        :global([data-theme="light"]) .cad-phase-tab-btn:hover,
+        .light-theme .cad-phase-tab-btn:hover {
+          border-color: #0284c7;
+          background: #f0f9ff;
+          transform: translateY(-2px);
+        }
+
+        /* ACTIVE TAB STYLES - DARK MODE */
+        :global([data-theme="dark"]) .cad-phase-tab-btn.active,
+        .dark-theme .cad-phase-tab-btn.active {
+          background: #00AEEF !important;
+          border-color: #00C6FF !important;
+          box-shadow: 0 8px 25px rgba(0, 174, 239, 0.45);
           transform: scale(1.02);
         }
 
-        .dark-theme .cad-phase-tab-btn.active {
-          background: #00AEEF;
-          border-color: #00C6FF;
-          color: #060c18;
-          box-shadow: 0 8px 25px rgba(0, 174, 239, 0.4);
+        :global([data-theme="dark"]) .cad-phase-tab-btn.active .tab-phase-badge,
+        .dark-theme .cad-phase-tab-btn.active .tab-phase-badge {
+          color: #000000 !important;
+          opacity: 0.9;
+          font-weight: 800;
         }
 
+        :global([data-theme="dark"]) .cad-phase-tab-btn.active .tab-phase-name,
+        .dark-theme .cad-phase-tab-btn.active .tab-phase-name {
+          color: #000000 !important;
+          font-weight: 800;
+        }
+
+        /* ACTIVE TAB STYLES - LIGHT MODE */
+        :global([data-theme="light"]) .cad-phase-tab-btn.active,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn.active,
         .light-theme .cad-phase-tab-btn.active {
-          background: #0284c7;
-          border-color: #0369a1;
-          color: #ffffff;
-          box-shadow: 0 8px 25px rgba(2, 132, 199, 0.3);
+          background: #0284c7 !important;
+          border-color: #0369a1 !important;
+          box-shadow: 0 8px 25px rgba(2, 132, 199, 0.35);
+          transform: scale(1.02);
+        }
+
+        :global([data-theme="light"]) .cad-phase-tab-btn.active .tab-phase-badge,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn.active .tab-phase-badge,
+        .light-theme .cad-phase-tab-btn.active .tab-phase-badge {
+          color: #ffffff !important;
+          opacity: 0.95;
+          font-weight: 800;
+        }
+
+        :global([data-theme="light"]) .cad-phase-tab-btn.active .tab-phase-name,
+        :global(:root:not([data-theme="dark"])) .cad-phase-tab-btn.active .tab-phase-name,
+        .light-theme .cad-phase-tab-btn.active .tab-phase-name {
+          color: #ffffff !important;
+          font-weight: 800;
         }
 
         .tab-phase-badge {
           font-size: 11px;
-          font-weight: 700;
+          font-weight: 800;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .cad-phase-tab-btn.active .tab-phase-badge {
-          opacity: 0.9;
+          letter-spacing: 0.75px;
         }
 
         .tab-phase-name {
-          font-size: 13.5px;
+          font-size: 14px;
           font-weight: 700;
+          line-height: 1.25;
         }
 
-        /* Connected Timeline Progress Bar */
-        .cad-timeline-track {
+        /* Timeline Progress Track & Dots (Pixel-perfect center aligned under each tab) */
+        .cad-timeline-wrapper {
           position: relative;
-          width: 80%;
-          margin: 0 auto;
-          height: 3px;
-          background: rgba(255, 255, 255, 0.1);
+          width: 100%;
+          padding: 10px 0;
         }
 
+        .cad-timeline-track {
+          position: absolute;
+          top: 50%;
+          left: 10%;
+          right: 10%;
+          height: 3px;
+          transform: translateY(-50%);
+          z-index: 1;
+        }
+
+        :global([data-theme="dark"]) .cad-timeline-track,
+        .dark-theme .cad-timeline-track {
+          background: rgba(255, 255, 255, 0.12);
+        }
+
+        :global([data-theme="light"]) .cad-timeline-track,
+        :global(:root:not([data-theme="dark"])) .cad-timeline-track,
         .light-theme .cad-timeline-track {
-          background: #e2e8f0;
+          background: #cbd5e1;
         }
 
         .cad-timeline-fill {
@@ -2530,33 +2746,86 @@ export default function CustomAppDevelopmentView() {
           top: 0;
           height: 100%;
           background: linear-gradient(90deg, #00AEEF 0%, #00E5FF 100%);
-          transition: width 0.4s ease;
+          transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           box-shadow: 0 0 10px #00C6FF;
         }
 
-        .cad-timeline-dots {
-          position: absolute;
-          top: 50%;
-          left: 0;
-          right: 0;
-          transform: translateY(-50%);
+        :global([data-theme="light"]) .cad-timeline-fill,
+        .light-theme .cad-timeline-fill {
+          background: linear-gradient(90deg, #0284c7 0%, #00AEEF 100%);
+          box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+        }
+
+        .cad-timeline-dots-row {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 14px;
+          width: 100%;
+          position: relative;
+          z-index: 2;
+        }
+
+        .cad-timeline-dot-col {
           display: flex;
-          justify-content: space-between;
+          justify-content: center;
+          align-items: center;
+          cursor: pointer;
         }
 
         .cad-timeline-dot {
-          width: 12px;
-          height: 12px;
+          width: 14px;
+          height: 14px;
           border-radius: 50%;
-          background: #475569;
-          cursor: pointer;
           transition: all 0.3s ease;
+          position: relative;
         }
 
-        .cad-timeline-dot.dot-active {
+        :global([data-theme="dark"]) .cad-timeline-dot,
+        .dark-theme .cad-timeline-dot {
+          background: #1e293b;
+          border: 2px solid #475569;
+        }
+
+        :global([data-theme="light"]) .cad-timeline-dot,
+        :global(:root:not([data-theme="dark"])) .cad-timeline-dot,
+        .light-theme .cad-timeline-dot {
+          background: #e2e8f0;
+          border: 2px solid #94a3b8;
+        }
+
+        :global([data-theme="dark"]) .cad-timeline-dot.dot-active,
+        .dark-theme .cad-timeline-dot.dot-active {
           background: #00C6FF;
-          box-shadow: 0 0 12px #00C6FF;
-          transform: scale(1.2);
+          border-color: #ffffff;
+          box-shadow: 0 0 14px #00C6FF;
+          transform: scale(1.15);
+        }
+
+        :global([data-theme="light"]) .cad-timeline-dot.dot-active,
+        :global(:root:not([data-theme="dark"])) .cad-timeline-dot.dot-active,
+        .light-theme .cad-timeline-dot.dot-active {
+          background: #0284c7;
+          border-color: #ffffff;
+          box-shadow: 0 0 14px rgba(2, 132, 199, 0.6);
+          transform: scale(1.15);
+        }
+
+        .dot-pulse {
+          position: absolute;
+          inset: -4px;
+          border-radius: 50%;
+          border: 2px solid #00C6FF;
+          animation: dotPulseAnim 2s infinite;
+        }
+
+        :global([data-theme="light"]) .dot-pulse,
+        .light-theme .dot-pulse {
+          border-color: #0284c7;
+        }
+
+        @keyframes dotPulseAnim {
+          0% { transform: scale(1); opacity: 0.8; }
+          100% { transform: scale(1.8); opacity: 0; }
         }
 
         /* Left Card: Phase Scope */
@@ -2566,26 +2835,30 @@ export default function CustomAppDevelopmentView() {
           height: 100%;
         }
 
+        :global([data-theme="dark"]) .cad-phase-main-card,
         .dark-theme .cad-phase-main-card {
-          background: rgba(13, 24, 48, 0.8);
+          background: rgba(13, 24, 48, 0.85);
           border: 1px solid rgba(0, 198, 255, 0.25);
           box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
+        :global([data-theme="light"]) .cad-phase-main-card,
+        :global(:root:not([data-theme="dark"])) .cad-phase-main-card,
         .light-theme .cad-phase-main-card {
           background: #ffffff;
           border: 1.5px solid #cbd5e1;
-          box-shadow: 0 10px 30px rgba(148, 163, 184, 0.15);
+          box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
         }
 
         .cad-phase-badge-pill {
           font-size: 11px;
-          font-weight: 700;
+          font-weight: 800;
           letter-spacing: 1px;
           text-transform: uppercase;
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .cad-phase-badge-pill,
         .light-theme .cad-phase-badge-pill {
           color: #0284c7;
         }
@@ -2594,19 +2867,26 @@ export default function CustomAppDevelopmentView() {
           width: 38px;
           height: 38px;
           border-radius: 10px;
-          background: #00C6FF;
-          color: #060c18;
           font-weight: 800;
           font-size: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        :global([data-theme="dark"]) .cad-phase-number-box,
+        .dark-theme .cad-phase-number-box {
+          background: #00C6FF;
+          color: #060c18;
           box-shadow: 0 0 15px rgba(0, 198, 255, 0.5);
         }
 
+        :global([data-theme="light"]) .cad-phase-number-box,
+        :global(:root:not([data-theme="dark"])) .cad-phase-number-box,
         .light-theme .cad-phase-number-box {
           background: #0284c7;
           color: #ffffff;
+          box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
         .cad-phase-title {
@@ -2615,19 +2895,31 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 6px;
         }
 
+        :global([data-theme="dark"]) .cad-phase-title,
         .dark-theme .cad-phase-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-phase-title,
+        :global(:root:not([data-theme="dark"])) .cad-phase-title,
         .light-theme .cad-phase-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-phase-sub {
           font-size: 16px;
           font-weight: 600;
-          color: #64748b;
           margin-bottom: 16px;
+        }
+
+        :global([data-theme="dark"]) .cad-phase-sub,
+        .dark-theme .cad-phase-sub {
+          color: #94a3b8 !important;
+        }
+
+        :global([data-theme="light"]) .cad-phase-sub,
+        .light-theme .cad-phase-sub {
+          color: #475569 !important;
         }
 
         .cad-phase-desc {
@@ -2636,54 +2928,71 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 28px;
         }
 
+        :global([data-theme="dark"]) .cad-phase-desc,
         .dark-theme .cad-phase-desc {
-          color: #94a3b8;
+          color: #cbd5e1 !important;
         }
 
+        :global([data-theme="light"]) .cad-phase-desc,
+        :global(:root:not([data-theme="dark"])) .cad-phase-desc,
         .light-theme .cad-phase-desc {
-          color: #475569;
+          color: #334155 !important;
         }
 
         .activities-title {
           font-size: 16px;
-          font-weight: 700;
+          font-weight: 800;
           margin-bottom: 12px;
         }
 
+        :global([data-theme="dark"]) .activities-title,
         .dark-theme .activities-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .activities-title,
+        :global(:root:not([data-theme="dark"])) .activities-title,
         .light-theme .activities-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .activity-item {
           display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 13.5px;
-          margin-bottom: 8px;
-        }
-
-        .dark-theme .activity-item {
-          color: #cbd5e1;
-        }
-
-        .light-theme .activity-item {
-          color: #334155;
+          align-items: flex-start;
+          gap: 10px;
+          font-size: 14px;
+          margin-bottom: 4px;
         }
 
         .activity-dot {
-          width: 7px;
-          height: 7px;
+          width: 8px;
+          height: 8px;
           border-radius: 50%;
           background: #00C6FF;
           flex-shrink: 0;
+          margin-top: 6px;
         }
 
+        :global([data-theme="light"]) .activity-dot,
         .light-theme .activity-dot {
           background: #0284c7;
+        }
+
+        .activity-text {
+          font-weight: 500;
+          line-height: 1.45;
+        }
+
+        :global([data-theme="dark"]) .activity-text,
+        .dark-theme .activity-text {
+          color: #cbd5e1 !important;
+        }
+
+        :global([data-theme="light"]) .activity-text,
+        :global(:root:not([data-theme="dark"])) .activity-text,
+        .light-theme .activity-text {
+          color: #1e293b !important;
+          font-weight: 600;
         }
 
         /* Nav Action Buttons */
@@ -2695,10 +3004,15 @@ export default function CustomAppDevelopmentView() {
           border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        :global([data-theme="light"]) .cad-phase-nav-actions,
+        .light-theme .cad-phase-nav-actions {
+          border-top: 1px solid #e2e8f0;
+        }
+
         .cad-nav-btn {
           border-radius: 10px;
-          padding: 10px 22px;
-          font-size: 13.5px;
+          padding: 10px 24px;
+          font-size: 14px;
           font-weight: 700;
           cursor: pointer;
           display: inline-flex;
@@ -2709,8 +3023,20 @@ export default function CustomAppDevelopmentView() {
 
         .prev-btn {
           background: transparent;
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          color: #94a3b8;
+          border: 1.5px solid rgba(255, 255, 255, 0.18);
+        }
+
+        :global([data-theme="dark"]) .prev-btn,
+        .dark-theme .prev-btn {
+          color: #cbd5e1;
+        }
+
+        :global([data-theme="light"]) .prev-btn,
+        :global(:root:not([data-theme="dark"])) .prev-btn,
+        .light-theme .prev-btn {
+          background: #f1f5f9;
+          border: 1.5px solid #cbd5e1;
+          color: #1e293b;
         }
 
         .prev-btn:hover:not(:disabled) {
@@ -2718,26 +3044,45 @@ export default function CustomAppDevelopmentView() {
           color: #ffffff;
         }
 
+        :global([data-theme="light"]) .prev-btn:hover:not(:disabled),
+        .light-theme .prev-btn:hover:not(:disabled) {
+          border-color: #0284c7;
+          color: #0284c7;
+          background: #e0f2fe;
+        }
+
         .prev-btn:disabled {
-          opacity: 0.4;
+          opacity: 0.35;
           cursor: not-allowed;
         }
 
         .next-btn {
-          background: #00AEEF;
           border: none;
-          color: #060c18;
+        }
+
+        :global([data-theme="dark"]) .next-btn,
+        .dark-theme .next-btn {
+          background: #00AEEF;
+          color: #000000;
           box-shadow: 0 4px 15px rgba(0, 174, 239, 0.35);
         }
 
+        :global([data-theme="light"]) .next-btn,
+        :global(:root:not([data-theme="dark"])) .next-btn,
         .light-theme .next-btn {
           background: #0284c7;
           color: #ffffff;
+          box-shadow: 0 4px 15px rgba(2, 132, 199, 0.3);
         }
 
         .next-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 20px rgba(0, 174, 239, 0.5);
+        }
+
+        :global([data-theme="light"]) .next-btn:hover,
+        .light-theme .next-btn:hover {
+          box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
         }
 
         /* Right Card: Deliverables */
@@ -2750,30 +3095,36 @@ export default function CustomAppDevelopmentView() {
           justify-content: space-between;
         }
 
+        :global([data-theme="dark"]) .cad-deliverables-card,
         .dark-theme .cad-deliverables-card {
-          background: rgba(13, 24, 48, 0.8);
+          background: rgba(13, 24, 48, 0.85);
           border: 1px solid rgba(0, 198, 255, 0.25);
           box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
+        :global([data-theme="light"]) .cad-deliverables-card,
+        :global(:root:not([data-theme="dark"])) .cad-deliverables-card,
         .light-theme .cad-deliverables-card {
           background: #ffffff;
           border: 1.5px solid #cbd5e1;
-          box-shadow: 0 10px 30px rgba(148, 163, 184, 0.15);
+          box-shadow: 0 12px 36px rgba(0, 0, 0, 0.06);
         }
 
         .deliverables-title {
           font-size: 20px;
-          font-weight: 700;
+          font-weight: 800;
           margin-bottom: 24px;
         }
 
+        :global([data-theme="dark"]) .deliverables-title,
         .dark-theme .deliverables-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .deliverables-title,
+        :global(:root:not([data-theme="dark"])) .deliverables-title,
         .light-theme .deliverables-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .deliverables-list {
@@ -2787,18 +3138,21 @@ export default function CustomAppDevelopmentView() {
           align-items: center;
           gap: 12px;
           padding: 14px 0;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          font-size: 14.5px;
-          font-weight: 500;
+          font-size: 15px;
+          font-weight: 600;
         }
 
+        :global([data-theme="dark"]) .deliverable-item,
         .dark-theme .deliverable-item {
-          color: #e2e8f0;
+          color: #e2e8f0 !important;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        :global([data-theme="light"]) .deliverable-item,
+        :global(:root:not([data-theme="dark"])) .deliverable-item,
         .light-theme .deliverable-item {
-          color: #1e293b;
-          border-bottom-color: #f1f5f9;
+          color: #0f172a !important;
+          border-bottom: 1px solid #e2e8f0;
         }
 
         .deliverable-item:last-child {
@@ -2814,8 +3168,10 @@ export default function CustomAppDevelopmentView() {
           box-shadow: 0 0 8px #00C6FF;
         }
 
+        :global([data-theme="light"]) .del-bullet,
         .light-theme .del-bullet {
           background: #0284c7;
+          box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
         }
 
         /* Timeline Summary Box */
@@ -2827,24 +3183,32 @@ export default function CustomAppDevelopmentView() {
           justify-content: space-between;
         }
 
+        :global([data-theme="dark"]) .cad-timeline-summary-box,
         .dark-theme .cad-timeline-summary-box {
           background: rgba(0, 198, 255, 0.08);
           border: 1px solid rgba(0, 198, 255, 0.25);
         }
 
+        :global([data-theme="light"]) .cad-timeline-summary-box,
+        :global(:root:not([data-theme="dark"])) .cad-timeline-summary-box,
         .light-theme .cad-timeline-summary-box {
           background: #f0f9ff;
-          border: 1px solid #bae6fd;
+          border: 1.5px solid #bae6fd;
         }
 
         .timeline-title {
           display: block;
           font-size: 14px;
-          font-weight: 700;
-          color: #00C6FF;
+          font-weight: 800;
           margin-bottom: 3px;
         }
 
+        :global([data-theme="dark"]) .timeline-title,
+        .dark-theme .timeline-title {
+          color: #00C6FF;
+        }
+
+        :global([data-theme="light"]) .timeline-title,
         .light-theme .timeline-title {
           color: #0284c7;
         }
@@ -2852,15 +3216,30 @@ export default function CustomAppDevelopmentView() {
         .timeline-sub {
           display: block;
           font-size: 12px;
+          font-weight: 500;
+        }
+
+        :global([data-theme="dark"]) .timeline-sub,
+        .dark-theme .timeline-sub {
+          color: #94a3b8;
+        }
+
+        :global([data-theme="light"]) .timeline-sub,
+        .light-theme .timeline-sub {
           color: #64748b;
         }
 
         .cad-timeline-percent {
-          font-size: 28px;
+          font-size: 32px;
           font-weight: 800;
+        }
+
+        :global([data-theme="dark"]) .cad-timeline-percent,
+        .dark-theme .cad-timeline-percent {
           color: #00C6FF;
         }
 
+        :global([data-theme="light"]) .cad-timeline-percent,
         .light-theme .cad-timeline-percent {
           color: #0284c7;
         }
@@ -2878,13 +3257,16 @@ export default function CustomAppDevelopmentView() {
           padding: 50px 30px;
         }
 
+        :global([data-theme="dark"]) .cad-cta-glass-box,
         .dark-theme .cad-cta-glass-box {
-          background: rgba(13, 24, 48, 0.8);
+          background: rgba(13, 24, 48, 0.85);
           border: 1px solid rgba(0, 198, 255, 0.3);
           box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
           backdrop-filter: blur(15px);
         }
 
+        :global([data-theme="light"]) .cad-cta-glass-box,
+        :global(:root:not([data-theme="dark"])) .cad-cta-glass-box,
         .light-theme .cad-cta-glass-box {
           background: #ffffff;
           border: 1.5px solid #cbd5e1;
@@ -2897,12 +3279,15 @@ export default function CustomAppDevelopmentView() {
           margin-bottom: 16px;
         }
 
+        :global([data-theme="dark"]) .cad-cta-title,
         .dark-theme .cad-cta-title {
-          color: #ffffff;
+          color: #ffffff !important;
         }
 
+        :global([data-theme="light"]) .cad-cta-title,
+        :global(:root:not([data-theme="dark"])) .cad-cta-title,
         .light-theme .cad-cta-title {
-          color: #0f172a;
+          color: #0f172a !important;
         }
 
         .cad-cta-desc {
@@ -2912,12 +3297,15 @@ export default function CustomAppDevelopmentView() {
           line-height: 1.65;
         }
 
+        :global([data-theme="dark"]) .cad-cta-desc,
         .dark-theme .cad-cta-desc {
-          color: #94a3b8;
+          color: #94a3b8 !important;
         }
 
+        :global([data-theme="light"]) .cad-cta-desc,
+        :global(:root:not([data-theme="dark"])) .cad-cta-desc,
         .light-theme .cad-cta-desc {
-          color: #475569;
+          color: #475569 !important;
         }
 
         .cad-cta-btn-wrapper {
@@ -2934,33 +3322,34 @@ export default function CustomAppDevelopmentView() {
           font-size: 16px;
           font-weight: 700;
           text-decoration: none;
-          color: #ffffff;
+          color: #ffffff !important;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           cursor: pointer;
         }
 
+        :global([data-theme="dark"]) .cad-primary-cta-btn,
         .dark-theme .cad-primary-cta-btn {
-          background: linear-gradient(135deg, #00AEEF 0%, #0088C7 100%);
+          background: linear-gradient(135deg, #00AEEF 0%, #0088C7 100%) !important;
           box-shadow: 0 12px 32px rgba(0, 174, 239, 0.4);
-          color: #ffffff;
         }
 
+        :global([data-theme="dark"]) .cad-primary-cta-btn:hover,
         .dark-theme .cad-primary-cta-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 16px 42px rgba(0, 174, 239, 0.6);
-          color: #ffffff;
         }
 
+        :global([data-theme="light"]) .cad-primary-cta-btn,
+        :global(:root:not([data-theme="dark"])) .cad-primary-cta-btn,
         .light-theme .cad-primary-cta-btn {
-          background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+          background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
           box-shadow: 0 12px 28px rgba(2, 132, 199, 0.35);
-          color: #ffffff;
         }
 
+        :global([data-theme="light"]) .cad-primary-cta-btn:hover,
         .light-theme .cad-primary-cta-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 16px 36px rgba(2, 132, 199, 0.5);
-          color: #ffffff;
         }
 
         /* Animations */
@@ -2984,7 +3373,7 @@ export default function CustomAppDevelopmentView() {
           .cad-phases-tabs {
             grid-template-columns: repeat(3, 1fr);
           }
-          .cad-timeline-track {
+          .cad-timeline-wrapper {
             display: none;
           }
           .cad-detail-panel {
