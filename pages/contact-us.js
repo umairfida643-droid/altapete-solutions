@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@/components/Layout';
+import ContactUsView from '@/components/ContactUsView';
 import pagesData from '@/data/pagesData.json';
 
 export default function ContactUsPage() {
@@ -7,10 +8,11 @@ export default function ContactUsPage() {
 
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title={data?.title || "Contact Altapete | ERP, SAP, Oracle Consulting & Global Offices"}
+      description={data?.description || "Get in touch with Altapete Solutions for enterprise ERP implementation, SAP & Oracle migrations, and global consulting across Saudi Arabia, UAE, Bahrain, and Pakistan."}
     >
-      <div dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <ContactUsView />
     </Layout>
   );
 }
+
