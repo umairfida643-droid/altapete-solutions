@@ -25,8 +25,28 @@ import {
   Layers,
   FileCheck2,
   Copy,
-  Users
+  Users,
+  Eye
 } from 'lucide-react';
+
+const geoCountryPaths = {
+  "Saudi Arabia": "M 280.3 411.3 L 277.7 403.4 L 271.8 397.8 L 270.3 390.5 L 260.2 383.9 L 249.8 368.4 L 244.2 353.3 L 230.7 340.6 L 221.9 337.6 L 209.0 320.0 L 206.7 307.2 L 207.5 296.2 L 196.3 275.8 L 187.1 268.5 L 176.6 264.7 L 170.1 254.2 L 171.2 250.0 L 165.7 240.4 L 160.0 236.3 L 152.4 222.6 L 140.5 207.7 L 130.5 195.0 L 120.7 195.1 L 123.8 184.9 L 124.6 178.5 L 127.1 171.1 L 148.9 174.0 L 157.3 168.4 L 162.0 161.7 L 176.9 159.2 L 180.2 153.0 L 186.6 149.8 L 167.1 131.4 L 206.3 122.1 L 210.1 119.3 L 233.7 124.3 L 262.8 137.3 L 318.1 174.4 L 354.5 175.9 L 371.9 177.6 L 376.8 186.4 L 390.6 186.0 L 398.3 201.9 L 407.9 206.1 L 411.3 212.6 L 424.7 220.3 L 425.8 228.0 L 423.9 234.1 L 426.4 240.3 L 432.0 245.5 L 434.6 251.5 L 437.5 256.1 L 443.5 259.7 L 448.9 258.4 L 452.6 265.5 L 453.3 269.7 L 460.8 288.4 L 519.7 297.7 L 523.7 293.8 L 532.6 306.9 L 519.6 343.8 L 460.8 362.3 L 404.4 369.4 L 386.1 377.7 L 372.1 397.1 L 362.9 400.2 L 358.0 394.0 L 350.5 394.9 L 331.6 393.1 L 328.0 391.2 L 305.4 391.7 L 300.1 393.3 L 292.0 388.5 L 286.9 397.6 L 288.9 405.4 L 280.3 411.3 Z",
+  "United Arab Emirates": "M 452.6 265.5 L 456.1 264.6 L 456.8 269.6 L 472.1 266.7 L 488.3 267.2 L 500.2 267.8 L 513.6 255.3 L 528.2 243.4 L 540.6 232.1 L 544.3 238.3 L 546.9 252.9 L 536.9 253.0 L 535.3 265.0 L 538.8 267.6 L 529.9 271.2 L 529.9 278.8 L 524.2 286.4 L 523.7 293.8 L 519.7 297.7 L 460.8 288.4 L 453.3 269.7 L 452.6 265.5 Z",
+  "Pakistan": "M 914.3 27.5 L 928.8 36.2 L 934.6 50.3 L 966.8 57.8 L 947.9 73.3 L 926.1 76.1 L 896.4 71.6 L 886.8 79.5 L 893.7 95.7 L 900.5 108.2 L 916.3 117.3 L 899.6 128.0 L 899.9 141.1 L 880.9 159.7 L 868.6 178.4 L 848.1 197.8 L 825.4 196.4 L 803.8 215.7 L 816.6 224.0 L 818.9 238.2 L 829.9 247.6 L 833.8 263.4 L 790.7 263.4 L 777.6 275.7 L 763.3 271.0 L 757.4 257.7 L 742.3 243.7 L 706.2 247.2 L 674.4 247.5 L 646.8 250.1 L 654.2 228.6 L 682.5 219.1 L 680.8 210.6 L 671.5 207.6 L 670.9 191.4 L 652.2 183.2 L 644.3 172.1 L 634.6 162.4 L 667.4 171.8 L 687.0 169.0 L 698.7 171.4 L 702.7 167.4 L 716.3 169.0 L 741.8 161.3 L 742.5 145.6 L 753.4 135.1 L 768.0 135.2 L 770.1 130.0 L 785.1 127.6 L 792.3 129.3 L 800.0 124.1 L 798.9 113.0 L 807.2 101.9 L 819.7 97.2 L 812.0 85.0 L 830.6 85.6 L 836.0 78.9 L 835.2 71.8 L 844.9 64.1 L 842.7 54.9 L 838.1 47.1 L 849.5 39.0 L 870.5 35.2 L 893.0 33.0 L 902.9 29.6 L 914.3 27.5 Z",
+  "Oman": "M 595.2 323.3 L 587.9 335.9 L 579.0 335.0 L 574.9 339.4 L 571.8 348.7 L 574.2 361.1 L 572.3 363.3 L 563.3 363.3 L 551.1 370.2 L 549.2 379.2 L 544.7 383.1 L 532.5 382.9 L 524.9 387.6 L 525.0 395.0 L 515.5 400.1 L 504.7 398.4 L 491.6 404.6 L 482.5 405.7 L 476.2 392.8 L 460.8 362.3 L 519.6 343.8 L 532.6 306.9 L 523.7 293.8 L 524.2 286.4 L 529.9 278.8 L 529.9 271.2 L 538.8 267.6 L 535.3 265.0 L 536.9 253.0 L 546.9 252.9 L 555.7 265.5 L 566.7 272.2 L 581.0 274.7 L 592.6 278.0 L 601.5 288.6 L 606.7 294.7 L 613.7 297.1 L 613.7 301.2 L 606.6 312.2 L 603.4 317.4 L 595.2 323.3 Z M 546.8 235.0 L 544.3 238.3 L 540.6 232.1 L 546.3 225.8 L 548.7 227.4 L 546.8 235.0 Z",
+  "Qatar": "M 437.5 256.1 L 436.2 242.6 L 441.5 232.9 L 446.9 231.0 L 452.8 236.7 L 453.1 247.6 L 448.9 258.4 L 443.5 259.7 L 437.5 256.1 Z",
+  "Kuwait": "M 382.0 159.7 L 386.1 167.8 L 384.3 172.0 L 390.6 186.0 L 376.8 186.4 L 371.9 177.6 L 354.5 175.9 L 368.8 158.1 L 382.0 159.7 Z",
+  "Yemen": "M 482.5 405.7 L 468.4 410.6 L 464.6 418.8 L 464.1 425.1 L 444.6 432.9 L 413.3 441.5 L 395.8 454.6 L 387.2 455.6 L 381.3 454.5 L 369.9 462.1 L 357.4 465.7 L 340.9 466.7 L 336.0 467.7 L 331.7 472.6 L 326.6 473.9 L 323.5 478.6 L 313.9 478.2 L 307.6 480.7 L 294.0 479.8 L 288.9 469.0 L 289.5 458.9 L 286.3 453.5 L 282.5 439.8 L 276.8 432.2 L 280.8 431.3 L 278.8 422.9 L 281.1 419.3 L 280.3 411.3 L 288.9 405.4 L 286.9 397.6 L 292.0 388.5 L 300.1 393.3 L 305.4 391.7 L 328.0 391.2 L 331.6 393.1 L 350.5 394.9 L 358.0 394.0 L 362.9 400.2 L 372.1 397.1 L 386.1 377.7 L 404.4 369.4 L 460.8 362.3 L 476.2 392.8 L 482.5 405.7 Z",
+  "Jordan": "M 138.6 115.0 L 142.0 109.2 L 163.8 116.5 L 202.2 96.9 L 210.1 119.3 L 206.3 122.1 L 167.1 131.4 L 186.6 149.8 L 180.2 153.0 L 176.9 159.2 L 162.0 161.7 L 157.3 168.4 L 148.9 174.0 L 127.1 171.1 L 126.4 168.4 L 136.2 138.9 L 135.7 131.7 L 138.6 126.3 L 138.6 115.0 Z",
+  "Iraq": "M 332.0 48.9 L 344.8 54.4 L 346.3 65.2 L 336.4 71.6 L 331.9 86.0 L 345.5 103.5 L 369.5 113.6 L 379.5 127.7 L 376.3 141.0 L 382.6 141.0 L 382.8 150.9 L 393.6 160.6 L 382.0 159.7 L 368.8 158.1 L 354.5 175.9 L 318.1 174.4 L 262.8 137.3 L 233.7 124.3 L 210.1 119.3 L 202.2 96.9 L 245.5 77.6 L 252.9 55.3 L 251.1 41.8 L 261.8 37.3 L 271.8 25.8 L 280.3 22.9 L 303.0 25.3 L 309.9 30.0 L 319.3 26.9 L 332.0 48.9 Z",
+  "Iran": "M 498.5 26.3 L 515.7 22.8 L 529.6 12.2 L 542.7 12.7 L 551.3 9.3 L 565.2 11.0 L 586.9 20.4 L 602.5 22.4 L 624.9 38.7 L 639.5 39.4 L 641.2 54.9 L 633.2 77.9 L 627.8 91.4 L 636.4 94.1 L 628.0 104.2 L 634.4 118.9 L 635.9 130.7 L 650.8 133.8 L 652.4 145.6 L 634.6 162.4 L 644.3 172.1 L 652.2 183.2 L 670.9 191.4 L 671.5 207.6 L 680.8 210.6 L 682.5 219.1 L 654.2 228.6 L 646.8 250.1 L 610.0 244.5 L 588.6 240.3 L 566.5 237.9 L 558.2 215.2 L 548.8 212.0 L 533.8 215.3 L 514.0 224.2 L 490.1 218.1 L 470.3 203.9 L 451.4 198.6 L 438.4 181.1 L 423.9 156.5 L 413.4 159.5 L 400.9 153.4 L 393.6 160.6 L 382.8 150.9 L 382.6 141.0 L 376.3 141.0 L 379.5 127.7 L 369.5 113.6 L 345.5 103.5 L 331.9 86.0 L 336.4 71.6 L 346.3 65.2 L 344.8 54.4 L 332.0 48.9 L 319.3 26.9 L 308.6 12.1 L 312.4 6.3 L 306.3 -14.8 L 319.7 -20.1 L 322.8 -13.1 L 332.7 -4.6 L 346.1 -2.1 L 353.2 -2.7 L 376.3 -16.3 L 383.7 -17.7 L 389.5 -12.3 L 382.7 -3.1 L 394.9 6.5 L 399.8 5.6 L 406.0 19.2 L 424.6 23.1 L 438.2 32.3 L 466.0 35.5 L 496.6 30.6 L 498.5 26.3 Z",
+  "Afghanistan": "M 641.2 54.9 L 661.2 61.9 L 675.9 59.5 L 680.0 51.1 L 695.5 48.3 L 706.5 42.7 L 710.4 27.9 L 727.0 24.4 L 730.0 17.8 L 739.3 22.7 L 745.2 23.3 L 756.1 23.4 L 770.8 27.3 L 776.8 29.6 L 791.0 23.6 L 797.6 27.2 L 803.9 18.8 L 815.6 19.1 L 818.6 16.4 L 820.7 9.0 L 829.1 2.6 L 839.7 6.8 L 837.6 12.4 L 843.5 13.3 L 841.7 28.8 L 849.5 34.8 L 856.3 31.0 L 865.0 29.1 L 877.2 20.9 L 890.7 22.2 L 910.9 22.2 L 914.3 27.5 L 902.9 29.6 L 893.0 33.0 L 870.5 35.2 L 849.5 39.0 L 838.1 47.1 L 842.7 54.9 L 844.9 64.1 L 835.2 71.8 L 836.0 78.9 L 830.6 85.6 L 812.0 85.0 L 819.7 97.2 L 807.2 101.9 L 798.9 113.0 L 800.0 124.1 L 792.3 129.3 L 785.1 127.6 L 770.1 130.0 L 768.0 135.2 L 753.4 135.1 L 742.5 145.6 L 741.8 161.3 L 716.3 169.0 L 702.7 167.4 L 698.7 171.4 L 687.0 169.0 L 667.4 171.8 L 634.6 162.4 L 652.4 145.6 L 650.8 133.8 L 635.9 130.7 L 634.4 118.9 L 628.0 104.2 L 636.4 94.1 L 627.8 91.4 L 633.2 77.9 L 641.2 54.9 Z",
+  "Egypt": "M 126.4 168.4 L 120.9 175.9 L 116.7 189.8 L 111.4 199.4 L 106.8 202.6 L 100.3 196.7 L 91.4 188.4 L 77.5 162.0 L 75.4 163.7 L 83.6 183.1 L 95.6 201.7 L 110.4 230.5 L 117.6 240.5 L 123.9 250.9 L 141.5 271.4 L 137.6 274.6 L 138.2 286.6 L 161.0 303.1 L 164.5 306.9 L 86.8 306.9 L 10.8 306.9 L -67.9 306.9 L -67.9 238.9 L -67.9 173.3 L -73.8 158.4 L -68.7 147.0 L -71.8 139.1 L -64.7 130.3 L -38.6 130.0 L -19.8 134.8 L -0.3 140.3 L 8.7 143.2 L 23.8 137.3 L 31.9 132.0 L 49.1 130.5 L 63.1 132.8 L 68.4 142.0 L 72.9 136.0 L 88.6 140.3 L 103.9 141.4 L 113.5 136.7 L 126.4 168.4 Z",
+  "Syria": "M 202.2 96.9 L 163.8 116.5 L 142.0 109.2 L 141.6 109.1 L 144.3 106.3 L 144.0 98.7 L 148.8 88.6 L 159.5 81.7 L 156.3 74.4 L 147.5 73.5 L 145.6 59.4 L 150.4 51.8 L 155.7 47.7 L 160.9 43.7 L 162.0 33.4 L 168.4 37.0 L 190.0 31.8 L 200.4 35.3 L 216.5 35.2 L 239.0 28.3 L 249.6 28.6 L 271.8 25.8 L 261.8 37.3 L 251.1 41.8 L 252.9 55.3 L 245.5 77.6 L 202.2 96.9 Z"
+};
+
+// Bahrain island vector coordinates
+const bahrainIslandPath = "M 431.5 224 L 434.5 224.5 L 435.5 233 L 432.5 235 L 430.5 228 Z M 435.5 221 L 438 221.5 L 437 225 L 434.5 225 Z";
 
 export default function ContactUsView() {
   const { theme } = useTheme();
@@ -35,6 +55,7 @@ export default function ContactUsView() {
   // State management
   const [activeLocationTab, setActiveLocationTab] = useState('all');
   const [selectedLocationId, setSelectedLocationId] = useState('riyadh');
+  const [mapMode, setMapMode] = useState('vector'); // 'vector' or 'interactive'
   const [activeMapEmbed, setActiveMapEmbed] = useState('riyadh');
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
@@ -71,7 +92,6 @@ export default function ContactUsView() {
         const pkTime = new Intl.DateTimeFormat('en-US', { ...options, timeZone: 'Asia/Karachi' }).format(now);
         setTimes({ ksa: ksaTime, uae: uaeTime, pk: pkTime });
       } catch (e) {
-        // Fallback
         setTimes({ ksa: 'GMT+3 (AST)', uae: 'GMT+4 (GST)', pk: 'GMT+5 (PKT)' });
       }
     };
@@ -96,7 +116,7 @@ export default function ContactUsView() {
     }, 1200);
   };
 
-  // Geographic Locations Data
+  // Geographic Locations with Authentic Coordinates & Smart Separated Badge Offsets
   const locations = [
     {
       id: 'riyadh',
@@ -117,11 +137,15 @@ export default function ContactUsView() {
       currentTimeKey: 'ksa',
       lat: 24.7136,
       lng: 46.6753,
-      svgX: 292,
-      svgY: 246,
+      pinX: 356.6,
+      pinY: 256.8,
+      badgeX: 356.6,
+      badgeY: 185,
+      lineX2: 356.6,
+      lineY2: 202,
+      subTag: 'Corporate HQ',
       focus: 'Executive Leadership, Strategic ERP Consulting, ZATCA Phase 2 Advisory & Oracle Practice',
-      gmapUrl: 'https://maps.google.com/?q=Ibn+Katheer+Street+King+Abdulaziz+District+Riyadh',
-      embedMapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115984.73979401732!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f03890d48939b%3A0x6fb0d2fbcbb37452!2sRiyadh%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s'
+      gmapUrl: 'https://maps.google.com/?q=Ibn+Katheer+Street+King+Abdulaziz+District+Riyadh'
     },
     {
       id: 'khobar',
@@ -142,86 +166,15 @@ export default function ContactUsView() {
       currentTimeKey: 'ksa',
       lat: 26.2794,
       lng: 50.2083,
-      svgX: 360,
-      svgY: 214,
+      pinX: 425.7,
+      pinY: 227.9,
+      badgeX: 315,
+      badgeY: 125,
+      lineX2: 355,
+      lineY2: 139,
+      subTag: 'Eastern Hub',
       focus: 'Oil & Gas Solutions, Industrial ERP Implementation, Logistics & Supply Chain Automation',
-      gmapUrl: 'https://maps.google.com/?q=King+Khalid+Street+Cross+15+Al+Khobar',
-      embedMapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57228.46115933568!2d50.18!3d26.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49e83b8b64a275%3A0x8979c5b46e3d231e!2sAl%20Khobar%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1700000000001!5m2!1sen!2s'
-    },
-    {
-      id: 'lahore',
-      city: 'Lahore',
-      country: 'Pakistan',
-      countryCode: 'PK',
-      flag: '🇵🇰',
-      regionTag: 'South Asia Center',
-      type: 'Global Technology & Engineering Center',
-      isHQ: false,
-      address: '159-D Nawab Town, Raiwind Road / Thokar Niaz Baig, Lahore',
-      postalCode: '54000 Lahore, Punjab, PK',
-      phone: '+92 370 3536327',
-      altPhone: '+966 56 802 9153',
-      email: 'tech@altapetesolutions.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:30 PM (PKT)',
-      timeZoneLabel: 'Pakistan Standard Time (GMT+5)',
-      currentTimeKey: 'pk',
-      lat: 31.5204,
-      lng: 74.3587,
-      svgX: 818,
-      svgY: 110,
-      focus: 'Core ERP Development, Odoo Custom Modules, Cloud Microservices, Full-Stack Software Engineering',
-      gmapUrl: 'https://maps.google.com/?q=159-D+Nawab+Town+Lahore',
-      embedMapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13615.11475850989!2d74.2405!3d31.4682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391902264627d2c7%3A0xe54dbf117a22a368!2sNawab%20Town%20Lahore!5e0!3m2!1sen!2s!4v1700000000002!5m2!1sen!2s'
-    },
-    {
-      id: 'dubai',
-      city: 'Dubai',
-      country: 'United Arab Emirates',
-      countryCode: 'AE',
-      flag: '🇦🇪',
-      regionTag: 'Gulf Operations',
-      type: 'Regional Enterprise Hub',
-      isHQ: false,
-      address: 'Business Bay / Downtown Corporate Corridor, Dubai',
-      postalCode: 'Dubai, United Arab Emirates',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
-      email: 'uae@altapetesolutions.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
-      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
-      currentTimeKey: 'uae',
-      lat: 25.2048,
-      lng: 55.2708,
-      svgX: 455,
-      svgY: 236,
-      focus: 'FinTech Integrations, Cross-Border GCC Cloud Architectures & Corporate Systems',
-      gmapUrl: 'https://maps.google.com/?q=Business+Bay+Dubai+UAE',
-      embedMapSrc: ''
-    },
-    {
-      id: 'abudhabi',
-      city: 'Abu Dhabi',
-      country: 'United Arab Emirates',
-      countryCode: 'AE',
-      flag: '🇦🇪',
-      regionTag: 'Capital Hub',
-      type: 'Enterprise Liaison Desk',
-      isHQ: false,
-      address: 'Al Maryah Island / Capital Business Zone, Abu Dhabi',
-      postalCode: 'Abu Dhabi, United Arab Emirates',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
-      email: 'abudhabi@altapetesolutions.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
-      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
-      currentTimeKey: 'uae',
-      lat: 24.4539,
-      lng: 54.3773,
-      svgX: 438,
-      svgY: 251,
-      focus: 'Government & Enterprise Modernization, SAP S/4HANA Strategic Transformations',
-      gmapUrl: 'https://maps.google.com/?q=Abu+Dhabi+UAE',
-      embedMapSrc: ''
+      gmapUrl: 'https://maps.google.com/?q=King+Khalid+Street+Cross+15+Al+Khobar'
     },
     {
       id: 'manama',
@@ -242,11 +195,73 @@ export default function ContactUsView() {
       currentTimeKey: 'ksa',
       lat: 26.2285,
       lng: 50.5860,
-      svgX: 367,
-      svgY: 215,
+      pinX: 433.1,
+      pinY: 228.9,
+      badgeX: 490,
+      badgeY: 125,
+      lineX2: 450,
+      lineY2: 139,
+      subTag: 'Financial Desk',
       focus: 'Financial Institutions ERP, Zakat & Corporate Advisory, Cloud Systems',
-      gmapUrl: 'https://maps.google.com/?q=Diplomatic+Area+Manama+Bahrain',
-      embedMapSrc: ''
+      gmapUrl: 'https://maps.google.com/?q=Diplomatic+Area+Manama+Bahrain'
+    },
+    {
+      id: 'dubai',
+      city: 'Dubai',
+      country: 'United Arab Emirates',
+      countryCode: 'AE',
+      flag: '🇦🇪',
+      regionTag: 'Gulf Operations',
+      type: 'Regional Enterprise Hub',
+      isHQ: false,
+      address: 'Business Bay / Downtown Corporate Corridor, Dubai',
+      postalCode: 'Dubai, United Arab Emirates',
+      phone: '+966 55 101 3823',
+      altPhone: '+966 56 802 9153',
+      email: 'uae@altapetesolutions.com',
+      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
+      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
+      currentTimeKey: 'uae',
+      lat: 25.2048,
+      lng: 55.2708,
+      pinX: 524.9,
+      pinY: 247.8,
+      badgeX: 630,
+      badgeY: 200,
+      lineX2: 575,
+      lineY2: 212,
+      subTag: 'Gulf Operations',
+      focus: 'FinTech Integrations, Cross-Border GCC Cloud Architectures & Corporate Systems',
+      gmapUrl: 'https://maps.google.com/?q=Business+Bay+Dubai+UAE'
+    },
+    {
+      id: 'abudhabi',
+      city: 'Abu Dhabi',
+      country: 'United Arab Emirates',
+      countryCode: 'AE',
+      flag: '🇦🇪',
+      regionTag: 'Capital Hub',
+      type: 'Enterprise Liaison Desk',
+      isHQ: false,
+      address: 'Al Maryah Island / Capital Business Zone, Abu Dhabi',
+      postalCode: 'Abu Dhabi, United Arab Emirates',
+      phone: '+966 55 101 3823',
+      altPhone: '+966 56 802 9153',
+      email: 'abudhabi@altapetesolutions.com',
+      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
+      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
+      currentTimeKey: 'uae',
+      lat: 24.4539,
+      lng: 54.3773,
+      pinX: 507.4,
+      pinY: 261.6,
+      badgeX: 605,
+      badgeY: 315,
+      lineX2: 555,
+      lineY2: 303,
+      subTag: 'Capital Advisory',
+      focus: 'Government & Enterprise Modernization, SAP S/4HANA Strategic Transformations',
+      gmapUrl: 'https://maps.google.com/?q=Abu+Dhabi+UAE'
     },
     {
       id: 'jeddah',
@@ -267,11 +282,15 @@ export default function ContactUsView() {
       currentTimeKey: 'ksa',
       lat: 21.5433,
       lng: 39.1728,
-      svgX: 148,
-      svgY: 309,
+      pinX: 209.6,
+      pinY: 315.4,
+      badgeX: 135,
+      badgeY: 385,
+      lineX2: 175,
+      lineY2: 373,
+      subTag: 'Western Desk',
       focus: 'Western Province Retail, Port Logistics, Hospitality & Real Estate ERP',
-      gmapUrl: 'https://maps.google.com/?q=King+Abdulaziz+Road+Jeddah',
-      embedMapSrc: ''
+      gmapUrl: 'https://maps.google.com/?q=King+Abdulaziz+Road+Jeddah'
     },
     {
       id: 'karachi',
@@ -292,22 +311,53 @@ export default function ContactUsView() {
       currentTimeKey: 'pk',
       lat: 24.8607,
       lng: 67.0011,
-      svgX: 678,
-      svgY: 243,
+      pinX: 754.6,
+      pinY: 254.1,
+      badgeX: 730,
+      badgeY: 335,
+      lineX2: 742,
+      lineY2: 323,
+      subTag: 'Commercial Desk',
       focus: 'Textile & Manufacturing ERP, Export Shipping Systems & Commercial Financial Integration',
-      gmapUrl: 'https://maps.google.com/?q=Clifton+Karachi+Pakistan',
-      embedMapSrc: ''
+      gmapUrl: 'https://maps.google.com/?q=Clifton+Karachi+Pakistan'
+    },
+    {
+      id: 'lahore',
+      city: 'Lahore',
+      country: 'Pakistan',
+      countryCode: 'PK',
+      flag: '🇵🇰',
+      regionTag: 'South Asia Center',
+      type: 'Global Technology & Engineering Center',
+      isHQ: false,
+      address: '159-D Nawab Town, Raiwind Road / Thokar Niaz Baig, Lahore',
+      postalCode: '54000 Lahore, Punjab, PK',
+      phone: '+92 370 3536327',
+      altPhone: '+966 56 802 9153',
+      email: 'tech@altapetesolutions.com',
+      hours: 'Mon - Fri: 9:00 AM - 6:30 PM (PKT)',
+      timeZoneLabel: 'Pakistan Standard Time (GMT+5)',
+      currentTimeKey: 'pk',
+      lat: 31.5204,
+      lng: 74.3587,
+      pinX: 898.7,
+      pinY: 131.2,
+      badgeX: 805,
+      badgeY: 65,
+      lineX2: 855,
+      lineY2: 77,
+      subTag: 'Tech & R&D Center',
+      focus: 'Core ERP Development, Odoo Custom Modules, Cloud Microservices, Full-Stack Software Engineering',
+      gmapUrl: 'https://maps.google.com/?q=159-D+Nawab+Town+Lahore'
     }
   ];
 
-  // Filtered locations
   const filteredLocations = activeLocationTab === 'all'
     ? locations
     : locations.filter(loc => loc.countryCode.toLowerCase() === activeLocationTab.toLowerCase());
 
   const selectedLocation = locations.find(loc => loc.id === selectedLocationId) || locations[0];
 
-  // FAQs data
   const faqs = [
     {
       q: 'What is Altapete’s typical response time for RFPs and consultations?',
@@ -338,15 +388,12 @@ export default function ContactUsView() {
   return (
     <div className={`contact-page-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}>
       
-      {/* =========================================================================
-          SECTION 1: HERO HEADER WITH SLA & VALUE PROPOSITION
-          ========================================================================= */}
+      {/* SECTION 1: HERO */}
       <section className="contact-hero">
         <div className="container">
           <div className="row justify-content-center text-center">
             <div className="col-xl-9 col-lg-10">
               
-              {/* Eyebrow badge with pulsing online status */}
               <div className="hero-eyebrow-badge">
                 <span className="live-status-dot"></span>
                 <span className="eyebrow-text">GLOBAL ERP &amp; CLOUD ADVISORY • ACTIVE ON-CALL</span>
@@ -361,7 +408,6 @@ export default function ContactUsView() {
                 our cross-border specialists in Saudi Arabia, UAE, Bahrain, and Pakistan are ready to accelerate your transformation.
               </p>
 
-              {/* SLA & Confidence Pillars */}
               <div className="hero-pillars-grid">
                 <div className="pillar-item">
                   <div className="pillar-icon"><Clock size={16} /></div>
@@ -393,7 +439,6 @@ export default function ContactUsView() {
                 </div>
               </div>
 
-              {/* Hero Action Jump Links */}
               <div className="hero-action-buttons">
                 <a href="#inquiry-form" className="btn btn-linear hover-up">
                   <span>Submit RFP / Project Scope</span>
@@ -419,20 +464,15 @@ export default function ContactUsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          SECTION 2: MULTI-CHANNEL QUICK CONTACT TILES (4 STRATEGIC TILES)
-          ========================================================================= */}
+      {/* SECTION 2: CHANNELS */}
       <section className="channels-section">
         <div className="container">
           <div className="row g-4">
             
-            {/* Tile 1: Direct Corporate Calling */}
             <div className="col-lg-3 col-md-6 col-12">
               <div className="contact-tile">
                 <div className="tile-header">
-                  <div className="tile-icon-box phone-icon">
-                    <Phone size={20} />
-                  </div>
+                  <div className="tile-icon-box phone-icon"><Phone size={20} /></div>
                   <span className="tile-badge">Voice Desk</span>
                 </div>
                 <h3 className="tile-title">Direct Calling</h3>
@@ -463,13 +503,10 @@ export default function ContactUsView() {
               </div>
             </div>
 
-            {/* Tile 2: WhatsApp Chat & Instant Dispatch */}
             <div className="col-lg-3 col-md-6 col-12">
               <div className="contact-tile featured-tile">
                 <div className="tile-header">
-                  <div className="tile-icon-box whatsapp-icon">
-                    <MessageSquare size={20} />
-                  </div>
+                  <div className="tile-icon-box whatsapp-icon"><MessageSquare size={20} /></div>
                   <span className="tile-badge active-badge">Instant Connect</span>
                 </div>
                 <h3 className="tile-title">WhatsApp Direct</h3>
@@ -491,13 +528,10 @@ export default function ContactUsView() {
               </div>
             </div>
 
-            {/* Tile 3: Official Inquiries & RFP Mailbox */}
             <div className="col-lg-3 col-md-6 col-12">
               <div className="contact-tile">
                 <div className="tile-header">
-                  <div className="tile-icon-box mail-icon">
-                    <Mail size={20} />
-                  </div>
+                  <div className="tile-icon-box mail-icon"><Mail size={20} /></div>
                   <span className="tile-badge">Official Mailbox</span>
                 </div>
                 <h3 className="tile-title">Email &amp; RFPs</h3>
@@ -518,13 +552,10 @@ export default function ContactUsView() {
               </div>
             </div>
 
-            {/* Tile 4: Free Discovery Session */}
             <div className="col-lg-3 col-md-6 col-12">
               <div className="contact-tile">
                 <div className="tile-header">
-                  <div className="tile-icon-box calendar-icon">
-                    <Calendar size={20} />
-                  </div>
+                  <div className="tile-icon-box calendar-icon"><Calendar size={20} /></div>
                   <span className="tile-badge">Executive Advisory</span>
                 </div>
                 <h3 className="tile-title">Strategy Session</h3>
@@ -544,344 +575,437 @@ export default function ContactUsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          SECTION 3: GEOGRAPHIC VISUALIZATION & INTERACTIVE RADAR MAP (PRIMARY REQUEST)
-          ========================================================================= */}
+      {/* SECTION 3: PROFESSIONAL GEOGRAPHIC MAP */}
       <section id="geographic-map" className="geo-section">
         <div className="container">
           
-          {/* Section Heading */}
           <div className="section-head text-center">
             <div className="section-badge">
               <Globe2 size={13} />
-              <span>GEOGRAPHIC FOOTPRINT &amp; PHYSICAL PRESENCE</span>
+              <span>GEOGRAPHIC FOOTPRINT &amp; REGIONAL INFRASTRUCTURE</span>
             </div>
             <h2 className="section-title">
               Our Regional <span className="text-gradient">Operations Map</span>
             </h2>
             <p className="section-subtitle">
-              Strategically distributed across key GCC commercial capitals and South Asian tech hubs to guarantee
-              on-ground presence, regulatory fluency, and round-the-clock engineering execution.
+              Authentic geographical presence across the Kingdom of Saudi Arabia, United Arab Emirates, Bahrain, and Pakistan.
+              Hover or click on any office beacon to view complete details.
             </p>
           </div>
 
-          {/* Country Filter Tabs */}
-          <div className="geo-country-tabs">
-            {[
-              { id: 'all', label: 'All Operations', count: locations.length, icon: Globe2 },
-              { id: 'sa', label: 'Saudi Arabia', count: 3, flag: '🇸🇦' },
-              { id: 'ae', label: 'United Arab Emirates', count: 2, flag: '🇦🇪' },
-              { id: 'bh', label: 'Bahrain', count: 1, flag: '🇧🇭' },
-              { id: 'pk', label: 'Pakistan', count: 2, flag: '🇵🇰' }
-            ].map(tab => (
+          <div className="geo-controls-row">
+            
+            <div className="geo-country-tabs">
+              {[
+                { id: 'all', label: 'All Hubs', count: locations.length, icon: Globe2 },
+                { id: 'sa', label: 'Saudi Arabia', count: 3, flag: '🇸🇦' },
+                { id: 'ae', label: 'United Arab Emirates', count: 2, flag: '🇦🇪' },
+                { id: 'bh', label: 'Bahrain', count: 1, flag: '🇧🇭' },
+                { id: 'pk', label: 'Pakistan', count: 2, flag: '🇵🇰' }
+              ].map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveLocationTab(tab.id)}
+                  className={`country-tab-btn ${activeLocationTab === tab.id ? 'active' : ''}`}
+                >
+                  {tab.flag && <span className="tab-flag">{tab.flag}</span>}
+                  {tab.icon && <tab.icon size={15} className="tab-icon" />}
+                  <span className="tab-label">{tab.label}</span>
+                  <span className="tab-count">{tab.count}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="map-view-toggle">
               <button
-                key={tab.id}
-                onClick={() => setActiveLocationTab(tab.id)}
-                className={`country-tab-btn ${activeLocationTab === tab.id ? 'active' : ''}`}
+                onClick={() => setMapMode('vector')}
+                className={`toggle-pill-btn ${mapMode === 'vector' ? 'active' : ''}`}
               >
-                {tab.flag && <span className="tab-flag">{tab.flag}</span>}
-                {tab.icon && <tab.icon size={15} className="tab-icon" />}
-                <span className="tab-label">{tab.label}</span>
-                <span className="tab-count">{tab.count}</span>
+                <Compass size={14} />
+                <span>Tactical Vector Map</span>
               </button>
-            ))}
+              <button
+                onClick={() => setMapMode('interactive')}
+                className={`toggle-pill-btn ${mapMode === 'interactive' ? 'active' : ''}`}
+              >
+                <Eye size={14} />
+                <span>Live Satellite &amp; Street View</span>
+              </button>
+            </div>
+
           </div>
 
-          {/* Main Geo Interactive Visualizer: Map + Active Hub Detail Card */}
           <div className="geo-visualizer-container">
             <div className="row g-4 align-items-stretch">
               
-              {/* Left Col: Interactive SVG Radar Map Canvas */}
               <div className="col-xl-8 col-lg-7">
                 <div className="map-card-wrapper">
                   
-                  {/* Map Card Header / HUD bar */}
                   <div className="map-hud-bar">
                     <div className="hud-status">
                       <span className="hud-radar-pulse"></span>
-                      <span className="hud-text">GCC &amp; SOUTH ASIA SATELLITE NETWORK</span>
+                      <span className="hud-text">ENTERPRISE GEOGRAPHIC NETWORK • REGIONAL TOPOLOGY</span>
                     </div>
                     <div className="hud-clocks">
                       <div className="hud-clock-item">
-                        <span className="clock-city">KSA / BH:</span>
+                        <span className="clock-city">🇸🇦 KSA / 🇧🇭 BH:</span>
                         <span className="clock-time">{times.ksa}</span>
                       </div>
                       <div className="hud-clock-item">
-                        <span className="clock-city">UAE:</span>
+                        <span className="clock-city">🇦🇪 UAE:</span>
                         <span className="clock-time">{times.uae}</span>
                       </div>
                       <div className="hud-clock-item">
-                        <span className="clock-city">PK:</span>
+                        <span className="clock-city">🇵🇰 PK:</span>
                         <span className="clock-time">{times.pk}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* SVG Map Container */}
-                  <div className="map-svg-viewport">
-                    <svg
-                      viewBox="0 0 900 480"
-                      className="regional-vector-map"
-                      preserveAspectRatio="xMidYMid meet"
-                    >
-                      <defs>
-                        {/* Radar gradient fill */}
-                        <radialGradient id="hqGlow" cx="50%" cy="50%" r="50%">
-                          <stop offset="0%" stopColor="#2c73d9" stopOpacity="0.8" />
-                          <stop offset="50%" stopColor="#2c73d9" stopOpacity="0.25" />
-                          <stop offset="100%" stopColor="#2c73d9" stopOpacity="0" />
-                        </radialGradient>
+                  {mapMode === 'vector' ? (
+                    <div className="map-svg-viewport">
+                      <svg
+                        viewBox="0 0 1000 540"
+                        className="regional-vector-map"
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <defs>
+                          <radialGradient id="hqRadialGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.7" />
+                            <stop offset="60%" stopColor="#f59e0b" stopOpacity="0.18" />
+                            <stop offset="100%" stopColor="#f59e0b" stopOpacity="0" />
+                          </radialGradient>
 
-                        <radialGradient id="techGlow" cx="50%" cy="50%" r="50%">
-                          <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                          <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.25" />
-                          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
-                        </radialGradient>
+                          <radialGradient id="techRadialGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.75" />
+                            <stop offset="60%" stopColor="#8b5cf6" stopOpacity="0.2" />
+                            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+                          </radialGradient>
 
-                        {/* Animated gradient for flight/connection arcs */}
-                        <linearGradient id="arcLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#2c73d9" stopOpacity="0.8" />
-                          <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.9" />
-                          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                        </linearGradient>
+                          <linearGradient id="networkTrunkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#2c73d9" stopOpacity="0.7" />
+                            <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.9" />
+                            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.7" />
+                          </linearGradient>
 
-                        {/* Subtle grid pattern */}
-                        <pattern id="geoGrid" width="30" height="30" patternUnits="userSpaceOnUse">
-                          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.12" />
-                        </pattern>
-                      </defs>
+                          <pattern id="precisionGrid" width="25" height="25" patternUnits="userSpaceOnUse">
+                            <path d="M 25 0 L 0 0 0 25" fill="none" stroke="currentColor" strokeWidth="0.5" opacity="0.08" />
+                          </pattern>
+                        </defs>
 
-                      {/* Coordinate Grid Background */}
-                      <rect width="900" height="480" fill="url(#geoGrid)" />
+                        <rect width="1000" height="540" fill="url(#precisionGrid)" />
 
-                      {/* Latitude & Longitude Guidelines */}
-                      <g className="grid-lines" opacity="0.2">
-                        <line x1="0" y1="120" x2="900" y2="120" stroke="currentColor" strokeDasharray="3,6" />
-                        <line x1="0" y1="240" x2="900" y2="240" stroke="currentColor" strokeDasharray="3,6" />
-                        <line x1="0" y1="360" x2="900" y2="360" stroke="currentColor" strokeDasharray="3,6" />
-                        <line x1="200" y1="0" x2="200" y2="480" stroke="currentColor" strokeDasharray="3,6" />
-                        <line x1="450" y1="0" x2="450" y2="480" stroke="currentColor" strokeDasharray="3,6" />
-                        <line x1="700" y1="0" x2="700" y2="480" stroke="currentColor" strokeDasharray="3,6" />
-                      </g>
+                        <g className="graticule-lines" opacity={isDark ? '0.15' : '0.25'}>
+                          <line x1="30" y1="120" x2="970" y2="120" stroke="currentColor" strokeDasharray="2,6" />
+                          <line x1="30" y1="240" x2="970" y2="240" stroke="currentColor" strokeDasharray="2,6" />
+                          <line x1="30" y1="360" x2="970" y2="360" stroke="currentColor" strokeDasharray="2,6" />
+                          <line x1="480" y1="30" x2="480" y2="510" stroke="currentColor" strokeDasharray="2,6" />
+                          <line x1="250" y1="30" x2="250" y2="510" stroke="currentColor" strokeDasharray="2,6" />
+                          <line x1="720" y1="30" x2="720" y2="510" stroke="currentColor" strokeDasharray="2,6" />
+                        </g>
 
-                      {/* Geographic Water Bodies / Stylized Coastlines (Red Sea, Arabian Gulf, Arabian Sea, Indus River Basin) */}
-                      <g className="geo-landmasses" opacity={isDark ? "0.38" : "0.55"}>
-                        {/* Arabian Peninsula Silhouette */}
-                        <path
-                          d="M 120 180 Q 140 260 148 310 Q 180 390 280 430 Q 380 440 470 380 Q 510 320 480 270 Q 455 236 438 251 Q 380 210 360 214 Q 310 200 292 246 Q 230 180 160 150 Z"
-                          fill="currentColor"
-                          opacity="0.18"
-                          stroke="currentColor"
-                          strokeWidth="1.2"
-                        />
-                        {/* Arabian Gulf Water Body Outline */}
-                        <path
-                          d="M 330 170 Q 360 214 438 251 Q 455 236 465 190 Q 400 160 330 170 Z"
-                          fill="none"
-                          stroke="#00d2ff"
-                          strokeWidth="0.8"
-                          strokeDasharray="2,4"
-                          opacity="0.4"
-                        />
-                        {/* Pakistan & Indus Basin Silhouette */}
-                        <path
-                          d="M 640 180 Q 678 243 710 290 Q 770 290 820 220 Q 860 140 818 110 Q 760 100 700 130 Z"
-                          fill="currentColor"
-                          opacity="0.18"
-                          stroke="currentColor"
-                          strokeWidth="1.2"
-                        />
-                      </g>
-
-                      {/* Regional Geographic Labels */}
-                      <g className="geo-area-labels" opacity="0.35" fontSize="11" fontWeight="700" letterSpacing="1.5">
-                        <text x="230" y="320" fill="currentColor">KINGDOM OF SAUDI ARABIA</text>
-                        <text x="410" y="200" fill="currentColor">ARABIAN GULF</text>
-                        <text x="700" y="170" fill="currentColor">PAKISTAN</text>
-                        <text x="520" y="390" fill="currentColor">ARABIAN SEA</text>
-                        <text x="80" y="270" fill="currentColor">RED SEA</text>
-                      </g>
-
-                      {/* Inter-Office Connection Arcs (Riyadh HQ as Primary Hub) */}
-                      <g className="geo-network-arcs">
-                        {/* Riyadh -> Al Khobar */}
-                        <path
-                          d="M 292 246 Q 326 215 360 214"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="2.2"
-                          strokeDasharray="6,4"
-                          className="animated-arc"
-                        />
-                        {/* Riyadh -> Jeddah */}
-                        <path
-                          d="M 292 246 Q 220 270 148 309"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="1.8"
-                          strokeDasharray="5,4"
-                          className="animated-arc"
-                        />
-                        {/* Riyadh -> Manama */}
-                        <path
-                          d="M 292 246 Q 330 220 367 215"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="1.6"
-                          strokeDasharray="5,4"
-                          className="animated-arc"
-                        />
-                        {/* Riyadh -> Dubai */}
-                        <path
-                          d="M 292 246 Q 370 215 455 236"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="2.2"
-                          strokeDasharray="6,4"
-                          className="animated-arc"
-                        />
-                        {/* Riyadh -> Abu Dhabi */}
-                        <path
-                          d="M 292 246 Q 365 240 438 251"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="1.6"
-                          strokeDasharray="5,4"
-                          className="animated-arc"
-                        />
-                        {/* Riyadh HQ -> Lahore Tech Center (High-Bandwidth Trunk Line) */}
-                        <path
-                          d="M 292 246 Q 550 90 818 110"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="3"
-                          strokeDasharray="8,5"
-                          className="animated-arc-fast"
-                        />
-                        {/* Dubai -> Karachi Direct Corridor */}
-                        <path
-                          d="M 455 236 Q 566 220 678 243"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="2"
-                          strokeDasharray="6,4"
-                          className="animated-arc"
-                        />
-                        {/* Karachi -> Lahore Domestic Trunk */}
-                        <path
-                          d="M 678 243 Q 750 176 818 110"
-                          fill="none"
-                          stroke="url(#arcLineGrad)"
-                          strokeWidth="2.2"
-                          strokeDasharray="6,4"
-                          className="animated-arc"
-                        />
-                      </g>
-
-                      {/* Interactive Location Beacon Pins */}
-                      {locations.map((loc) => {
-                        const isSelected = selectedLocationId === loc.id;
-                        const isMatched = activeLocationTab === 'all' || loc.countryCode.toLowerCase() === activeLocationTab.toLowerCase();
-                        const opacityVal = isMatched ? 1 : 0.25;
-
-                        return (
-                          <g
-                            key={loc.id}
-                            className={`geo-map-pin ${isSelected ? 'selected' : ''}`}
-                            onClick={() => setSelectedLocationId(loc.id)}
-                            style={{ cursor: 'pointer', transition: 'all 0.3s ease', opacity: opacityVal }}
-                          >
-                            {/* Outer Radar Ripple Rings */}
-                            {loc.isHQ && (
-                              <circle
-                                cx={loc.svgX}
-                                cy={loc.svgY}
-                                r="28"
-                                fill="url(#hqGlow)"
-                                className="radar-ripple-pulse"
-                              />
-                            )}
-                            {loc.id === 'lahore' && (
-                              <circle
-                                cx={loc.svgX}
-                                cy={loc.svgY}
-                                r="24"
-                                fill="url(#techGlow)"
-                                className="radar-ripple-pulse"
-                              />
-                            )}
-
-                            {/* Active Ring on Selected */}
-                            {isSelected && (
-                              <circle
-                                cx={loc.svgX}
-                                cy={loc.svgY}
-                                r="18"
-                                fill="none"
-                                stroke={loc.isHQ ? '#f59e0b' : '#2c73d9'}
-                                strokeWidth="2"
-                                strokeDasharray="3,3"
-                                className="spin-dash-ring"
-                              />
-                            )}
-
-                            {/* Outer Dot */}
-                            <circle
-                              cx={loc.svgX}
-                              cy={loc.svgY}
-                              r={loc.isHQ ? "9" : "7"}
-                              fill={loc.isHQ ? '#f59e0b' : (loc.id === 'lahore' ? '#8b5cf6' : '#2c73d9')}
-                              stroke="#ffffff"
-                              strokeWidth="2.5"
-                              filter="drop-shadow(0 2px 6px rgba(0,0,0,0.5))"
+                        {/* Surrounding Context Countries */}
+                        <g className="geo-context-countries">
+                          {['Oman', 'Qatar', 'Kuwait', 'Jordan', 'Egypt', 'Iraq', 'Iran', 'Afghanistan', 'Yemen', 'Syria'].map((cName) => (
+                            <path
+                              key={cName}
+                              d={geoCountryPaths[cName] || ''}
+                              fill={isDark ? 'rgba(255, 255, 255, 0.015)' : 'rgba(0, 0, 0, 0.015)'}
+                              stroke={isDark ? 'rgba(148, 163, 184, 0.22)' : 'rgba(100, 116, 139, 0.28)'}
+                              strokeWidth="0.9"
+                              strokeDasharray="3,3"
                             />
+                          ))}
+                        </g>
 
-                            {/* Core Center Pulse */}
-                            <circle
-                              cx={loc.svgX}
-                              cy={loc.svgY}
-                              r={loc.isHQ ? "4" : "3"}
-                              fill="#ffffff"
-                            />
+                        {/* Core Operational Focus Countries */}
+                        <g className="geo-operational-countries">
+                          <path
+                            d={geoCountryPaths['Saudi Arabia'] || ''}
+                            fill={isDark ? 'rgba(44, 115, 217, 0.14)' : 'rgba(44, 115, 217, 0.09)'}
+                            stroke="#2c73d9"
+                            strokeWidth="1.6"
+                            className="country-glow-sa"
+                          />
 
-                            {/* City Text Label */}
-                            <text
-                              x={loc.svgX + (loc.svgX > 750 ? -14 : 14)}
-                              y={loc.svgY + 4}
-                              textAnchor={loc.svgX > 750 ? "end" : "start"}
-                              className="map-city-text"
-                              fill={isSelected ? (loc.isHQ ? '#f59e0b' : '#2c73d9') : (isDark ? '#e2e8f0' : '#1e293b')}
-                              fontWeight={isSelected ? '800' : '600'}
-                              fontSize={loc.isHQ ? '13' : '11.5'}
-                            >
-                              {loc.city} {loc.isHQ ? '★ HQ' : ''}
-                            </text>
-                          </g>
-                        );
-                      })}
-                    </svg>
+                          <path
+                            d={geoCountryPaths['United Arab Emirates'] || ''}
+                            fill={isDark ? 'rgba(44, 115, 217, 0.18)' : 'rgba(44, 115, 217, 0.12)'}
+                            stroke="#2c73d9"
+                            strokeWidth="1.6"
+                          />
 
-                    {/* Interactive Legend in Map Corner */}
-                    <div className="map-corner-legend">
-                      <div className="legend-item">
-                        <span className="legend-marker hq-marker">★</span>
-                        <span>Corporate HQ (Riyadh)</span>
+                          <path
+                            d={geoCountryPaths['Pakistan'] || ''}
+                            fill={isDark ? 'rgba(139, 92, 246, 0.14)' : 'rgba(139, 92, 246, 0.09)'}
+                            stroke="#8b5cf6"
+                            strokeWidth="1.6"
+                          />
+
+                          <path
+                            d={bahrainIslandPath}
+                            fill="#2c73d9"
+                            stroke="#00d2ff"
+                            strokeWidth="1.5"
+                          />
+                        </g>
+
+                        {/* Water Labels */}
+                        <g className="water-labels" opacity={isDark ? '0.35' : '0.5'}>
+                          <text x="120" y="270" fill="currentColor" fontSize="10.5" fontStyle="italic" letterSpacing="1.8">RED SEA</text>
+                          <text x="460" y="225" fill="#00d2ff" fontSize="10" fontStyle="italic" letterSpacing="1.6">ARABIAN GULF</text>
+                          <text x="560" y="430" fill="currentColor" fontSize="11" fontStyle="italic" letterSpacing="2">ARABIAN SEA</text>
+                          <text x="560" y="275" fill="currentColor" fontSize="9.5" fontStyle="italic" letterSpacing="1.2">GULF OF OMAN</text>
+                        </g>
+
+                        {/* Country Watermarks */}
+                        <g className="country-watermarks" opacity={isDark ? '0.4' : '0.55'}>
+                          <text x="280" y="300" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="2.5">SAUDI ARABIA</text>
+                          <text x="800" y="200" fill="currentColor" fontSize="12" fontWeight="700" letterSpacing="2.5">PAKISTAN</text>
+                          <text x="520" y="280" fill="currentColor" fontSize="8.5" fontWeight="700" letterSpacing="1">UAE</text>
+                        </g>
+
+                        {/* Inter-Office Sync Arcs */}
+                        <g className="geo-sync-arcs">
+                          <path d="M 356.6 256.8 Q 391 235 425.7 227.9" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.8" strokeDasharray="4,4" className="sync-pulse-line" />
+                          <path d="M 356.6 256.8 Q 280 295 209.6 315.4" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.5" strokeDasharray="4,4" className="sync-pulse-line" />
+                          <path d="M 356.6 256.8 Q 440 240 524.9 247.8" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.8" strokeDasharray="4,4" className="sync-pulse-line" />
+                          <path d="M 524.9 247.8 Q 515 255 507.4 261.6" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.4" strokeDasharray="3,3" />
+                          <path d="M 425.7 227.9 L 433.1 228.9" fill="none" stroke="#f59e0b" strokeWidth="2" />
+                          <path d="M 356.6 256.8 Q 630 115 898.7 131.2" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="2.5" strokeDasharray="6,4" className="sync-pulse-line-fast" />
+                          <path d="M 524.9 247.8 Q 640 235 754.6 254.1" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.8" strokeDasharray="4,4" className="sync-pulse-line" />
+                          <path d="M 754.6 254.1 Q 830 200 898.7 131.2" fill="none" stroke="url(#networkTrunkGrad)" strokeWidth="1.8" strokeDasharray="4,4" className="sync-pulse-line" />
+                        </g>
+
+                        {/* Leader Lines */}
+                        <g className="badge-leader-lines">
+                          {locations.map((loc) => {
+                            const isSelected = selectedLocationId === loc.id;
+                            const strokeColor = isSelected ? (loc.isHQ ? '#f59e0b' : '#2c73d9') : (isDark ? 'rgba(148, 163, 184, 0.5)' : 'rgba(100, 116, 139, 0.6)');
+                            return (
+                              <g key={`leader-${loc.id}`}>
+                                <line
+                                  x1={loc.pinX}
+                                  y1={loc.pinY}
+                                  x2={loc.lineX2}
+                                  y2={loc.lineY2}
+                                  stroke={strokeColor}
+                                  strokeWidth={isSelected ? '1.8' : '1.2'}
+                                  strokeDasharray="2,3"
+                                />
+                                <circle cx={loc.lineX2} cy={loc.lineY2} r="2" fill={strokeColor} />
+                              </g>
+                            );
+                          })}
+                        </g>
+
+                        {/* Coordinate Pins */}
+                        <g className="location-pins">
+                          {locations.map((loc) => {
+                            const isSelected = selectedLocationId === loc.id;
+                            const isMatched = activeLocationTab === 'all' || loc.countryCode.toLowerCase() === activeLocationTab.toLowerCase();
+                            const pinOpacity = isMatched ? 1 : 0.25;
+
+                            return (
+                              <g
+                                key={`pin-${loc.id}`}
+                                onClick={() => setSelectedLocationId(loc.id)}
+                                style={{ cursor: 'pointer', opacity: pinOpacity, transition: 'all 0.3s ease' }}
+                              >
+                                {loc.isHQ && (
+                                  <circle cx={loc.pinX} cy={loc.pinY} r="26" fill="url(#hqRadialGlow)" className="radar-ripple-pulse" />
+                                )}
+                                {loc.id === 'lahore' && (
+                                  <circle cx={loc.pinX} cy={loc.pinY} r="24" fill="url(#techRadialGlow)" className="radar-ripple-pulse" />
+                                )}
+
+                                {isSelected && (
+                                  <circle
+                                    cx={loc.pinX}
+                                    cy={loc.pinY}
+                                    r="15"
+                                    fill="none"
+                                    stroke={loc.isHQ ? '#f59e0b' : '#2c73d9'}
+                                    strokeWidth="2"
+                                    strokeDasharray="3,3"
+                                    className="spin-dash-ring"
+                                  />
+                                )}
+
+                                <circle
+                                  cx={loc.pinX}
+                                  cy={loc.pinY}
+                                  r={loc.isHQ ? "8" : "6.5"}
+                                  fill={loc.isHQ ? '#f59e0b' : (loc.id === 'lahore' ? '#8b5cf6' : '#2c73d9')}
+                                  stroke="#ffffff"
+                                  strokeWidth="2"
+                                />
+                                <circle cx={loc.pinX} cy={loc.pinY} r="2.5" fill="#ffffff" />
+                              </g>
+                            );
+                          })}
+                        </g>
+
+                        {/* Zero-Collision Floating Badges */}
+                        <g className="location-badges">
+                          {locations.map((loc) => {
+                            const isSelected = selectedLocationId === loc.id;
+                            const isMatched = activeLocationTab === 'all' || loc.countryCode.toLowerCase() === activeLocationTab.toLowerCase();
+                            const badgeOpacity = isMatched ? 1 : 0.3;
+                            
+                            const badgeW = loc.isHQ ? 165 : 145;
+                            const badgeH = 28;
+                            const rectX = loc.badgeX - badgeW / 2;
+                            const rectY = loc.badgeY - badgeH / 2;
+
+                            return (
+                              <g
+                                key={`badge-${loc.id}`}
+                                onClick={() => setSelectedLocationId(loc.id)}
+                                style={{ cursor: 'pointer', opacity: badgeOpacity, transition: 'all 0.3s ease' }}
+                                className={`map-badge-group ${isSelected ? 'active-badge-group' : ''}`}
+                              >
+                                <rect
+                                  x={rectX}
+                                  y={rectY}
+                                  width={badgeW}
+                                  height={badgeH}
+                                  rx="7"
+                                  ry="7"
+                                  fill={
+                                    isSelected 
+                                      ? (isDark ? 'rgba(44, 115, 217, 0.28)' : '#e0ecff') 
+                                      : (isDark ? 'rgba(13, 21, 39, 0.94)' : '#ffffff')
+                                  }
+                                  stroke={
+                                    isSelected 
+                                      ? (loc.isHQ ? '#f59e0b' : '#2c73d9') 
+                                      : (isDark ? 'rgba(44, 115, 217, 0.4)' : 'rgba(0, 0, 0, 0.12)')
+                                  }
+                                  strokeWidth={isSelected ? '1.8' : '1'}
+                                  filter="drop-shadow(0 3px 8px rgba(0,0,0,0.25))"
+                                />
+
+                                <text
+                                  x={rectX + 12}
+                                  y={rectY + 18}
+                                  fontSize="12.5"
+                                  dominantBaseline="auto"
+                                >
+                                  {loc.flag}
+                                </text>
+
+                                <text
+                                  x={rectX + 32}
+                                  y={rectY + 14}
+                                  fontSize="11.5"
+                                  fontWeight={isSelected ? '800' : '700'}
+                                  fill={
+                                    isSelected 
+                                      ? (loc.isHQ ? '#f59e0b' : '#2c73d9') 
+                                      : (isDark ? '#f1f5f9' : '#0f172a')
+                                  }
+                                >
+                                  {loc.city} {loc.isHQ ? '★' : ''}
+                                </text>
+
+                                <text
+                                  x={rectX + 32}
+                                  y={rectY + 23}
+                                  fontSize="8.5"
+                                  fontWeight="600"
+                                  fill={isDark ? '#94a3b8' : '#64748b'}
+                                >
+                                  {loc.subTag}
+                                </text>
+                              </g>
+                            );
+                          })}
+                        </g>
+
+                      </svg>
+
+                      <div className="map-corner-legend">
+                        <div className="legend-item">
+                          <span className="legend-marker hq-marker">★</span>
+                          <span>Corporate HQ (Riyadh)</span>
+                        </div>
+                        <div className="legend-item">
+                          <span className="legend-marker tech-marker">●</span>
+                          <span>Global Tech &amp; R&amp;D Center (Lahore)</span>
+                        </div>
+                        <div className="legend-item">
+                          <span className="legend-marker hub-marker">●</span>
+                          <span>GCC Regional Operations &amp; Desks</span>
+                        </div>
                       </div>
-                      <div className="legend-item">
-                        <span className="legend-marker tech-marker">●</span>
-                        <span>Tech &amp; Engineering Center (Lahore)</span>
+
+                    </div>
+                  ) : (
+                    <div className="interactive-mode-container">
+                      <div className="interactive-tabs-bar">
+                        <button
+                          onClick={() => setActiveMapEmbed('riyadh')}
+                          className={`subtab-btn ${activeMapEmbed === 'riyadh' ? 'active' : ''}`}
+                        >
+                          🇸🇦 Riyadh Executive HQ
+                        </button>
+                        <button
+                          onClick={() => setActiveMapEmbed('khobar')}
+                          className={`subtab-btn ${activeMapEmbed === 'khobar' ? 'active' : ''}`}
+                        >
+                          🇸🇦 Al Khobar Eastern Hub
+                        </button>
+                        <button
+                          onClick={() => setActiveMapEmbed('lahore')}
+                          className={`subtab-btn ${activeMapEmbed === 'lahore' ? 'active' : ''}`}
+                        >
+                          🇵🇰 Lahore Global Tech Center
+                        </button>
                       </div>
-                      <div className="legend-item">
-                        <span className="legend-marker hub-marker">●</span>
-                        <span>GCC Regional Hubs &amp; Desks</span>
+
+                      <div className="map-iframe-container">
+                        {activeMapEmbed === 'riyadh' && (
+                          <iframe
+                            title="Altapete Solutions Riyadh HQ Map"
+                            src="https://maps.google.com/maps?q=Building%2044,%20Ibn%20Katheer%20Street,%20King%20Abdulaziz%20District,%20Riyadh&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="440"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                          ></iframe>
+                        )}
+                        {activeMapEmbed === 'khobar' && (
+                          <iframe
+                            title="Altapete Solutions Al Khobar Map"
+                            src="https://maps.google.com/maps?q=King%20Khalid%20Street%20Cross%2015,%20Al%20Khobar,%20Saudi%20Arabia&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="440"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                          ></iframe>
+                        )}
+                        {activeMapEmbed === 'lahore' && (
+                          <iframe
+                            title="Altapete Solutions Lahore Tech Center Map"
+                            src="https://maps.google.com/maps?q=159-D%20Nawab%20Town,%20Lahore,%20Pakistan&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="440"
+                            style={{ border: 0 }}
+                            allowFullScreen=""
+                            loading="lazy"
+                          ></iframe>
+                        )}
                       </div>
                     </div>
+                  )}
 
-                  </div>
                 </div>
               </div>
 
-              {/* Right Col: Dynamic Selected Hub HUD Inspection Card */}
+              {/* Right Col: Selected Hub Details */}
               <div className="col-xl-4 col-lg-5">
                 <div className="selected-hub-card">
                   
@@ -898,7 +1022,6 @@ export default function ContactUsView() {
                     </span>
                   </div>
 
-                  {/* Quick Coordinates & Region */}
                   <div className="hub-coord-row">
                     <div className="coord-item">
                       <Compass size={13} />
@@ -910,7 +1033,6 @@ export default function ContactUsView() {
                     </div>
                   </div>
 
-                  {/* Address Box */}
                   <div className="hub-info-block">
                     <div className="info-label">
                       <MapPin size={14} color="#2c73d9" />
@@ -920,7 +1042,6 @@ export default function ContactUsView() {
                     <span className="postal-text">{selectedLocation.postalCode}</span>
                   </div>
 
-                  {/* Core Practice Focus */}
                   <div className="hub-info-block">
                     <div className="info-label">
                       <Layers size={14} color="#2c73d9" />
@@ -929,7 +1050,6 @@ export default function ContactUsView() {
                     <p className="info-val focus-text">{selectedLocation.focus}</p>
                   </div>
 
-                  {/* Operating Schedule */}
                   <div className="hub-info-block">
                     <div className="info-label">
                       <Clock size={14} color="#2c73d9" />
@@ -938,7 +1058,6 @@ export default function ContactUsView() {
                     <p className="info-val">{selectedLocation.hours}</p>
                   </div>
 
-                  {/* Direct Hub Actions */}
                   <div className="hub-action-row">
                     <a href={`tel:${selectedLocation.phone.replace(/\s+/g, '')}`} className="hub-call-btn hover-up">
                       <Phone size={15} />
@@ -956,7 +1075,6 @@ export default function ContactUsView() {
                     </a>
                   </div>
 
-                  {/* Hub Switcher Quick Chips */}
                   <div className="hub-quick-switcher">
                     <span className="switcher-label">Quick Select Hub:</span>
                     <div className="switcher-chips">
@@ -978,9 +1096,7 @@ export default function ContactUsView() {
             </div>
           </div>
 
-          {/* =====================================================================
-              DETAILED OFFICE CARDS GRID (ALL LOCATIONS)
-              ===================================================================== */}
+          {/* Complete Directory Grid */}
           <div className="offices-grid-section">
             <div className="offices-grid-header">
               <h3 className="offices-heading">Complete Directory of Registered Offices &amp; Regional Hubs</h3>
@@ -1075,85 +1191,14 @@ export default function ContactUsView() {
             </div>
           </div>
 
-          {/* =====================================================================
-              INTERACTIVE EMBEDDED REAL-WORLD GOOGLE MAP (HQ & TECH CENTER)
-              ===================================================================== */}
-          <div className="live-maps-embed-wrapper">
-            <div className="embed-header">
-              <div className="embed-title-area">
-                <MapPin size={18} color="#2c73d9" />
-                <h4 className="embed-title">Interactive Satellite &amp; Road Maps for On-Site Visits</h4>
-              </div>
-              <div className="embed-tabs">
-                <button
-                  onClick={() => setActiveMapEmbed('riyadh')}
-                  className={`embed-tab-btn ${activeMapEmbed === 'riyadh' ? 'active' : ''}`}
-                >
-                  🇸🇦 Riyadh Executive HQ
-                </button>
-                <button
-                  onClick={() => setActiveMapEmbed('khobar')}
-                  className={`embed-tab-btn ${activeMapEmbed === 'khobar' ? 'active' : ''}`}
-                >
-                  🇸🇦 Al Khobar Eastern Hub
-                </button>
-                <button
-                  onClick={() => setActiveMapEmbed('lahore')}
-                  className={`embed-tab-btn ${activeMapEmbed === 'lahore' ? 'active' : ''}`}
-                >
-                  🇵🇰 Lahore Global Tech Center
-                </button>
-              </div>
-            </div>
-
-            <div className="map-iframe-container">
-              {activeMapEmbed === 'riyadh' && (
-                <iframe
-                  title="Altapete Solutions Riyadh HQ Map"
-                  src="https://maps.google.com/maps?q=Building%2044,%20Ibn%20Katheer%20Street,%20King%20Abdulaziz%20District,%20Riyadh&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="420"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
-              )}
-              {activeMapEmbed === 'khobar' && (
-                <iframe
-                  title="Altapete Solutions Al Khobar Map"
-                  src="https://maps.google.com/maps?q=King%20Khalid%20Street%20Cross%2015,%20Al%20Khobar,%20Saudi%20Arabia&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="420"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
-              )}
-              {activeMapEmbed === 'lahore' && (
-                <iframe
-                  title="Altapete Solutions Lahore Tech Center Map"
-                  src="https://maps.google.com/maps?q=159-D%20Nawab%20Town,%20Lahore,%20Pakistan&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                  width="100%"
-                  height="420"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                ></iframe>
-              )}
-            </div>
-          </div>
-
         </div>
       </section>
 
-      {/* =========================================================================
-          SECTION 4: HIGH-CONVERSION ENTERPRISE RFP & CONSULTATION FORM
-          ========================================================================= */}
+      {/* SECTION 4: FORM */}
       <section id="inquiry-form" className="form-section">
         <div className="container">
           <div className="row g-5 align-items-center">
             
-            {/* Left Column: Why Partner & Trust Certifications */}
             <div className="col-lg-5">
               <div className="form-pitch-wrapper">
                 
@@ -1205,7 +1250,6 @@ export default function ContactUsView() {
                   </div>
                 </div>
 
-                {/* Direct Help Callout Box */}
                 <div className="pitch-emergency-box">
                   <Headphones size={24} color="#2c73d9" />
                   <div>
@@ -1217,7 +1261,6 @@ export default function ContactUsView() {
               </div>
             </div>
 
-            {/* Right Column: Interactive RFP & Message Form */}
             <div className="col-lg-7">
               <div className="form-card-container">
                 
@@ -1263,7 +1306,6 @@ export default function ContactUsView() {
                 ) : (
                   <form onSubmit={handleFormSubmit} className="contact-actual-form">
                     
-                    {/* Row 1: Name & Business Email */}
                     <div className="row g-3 mb-3">
                       <div className="col-md-6">
                         <label className="form-field-label">Full Name *</label>
@@ -1289,7 +1331,6 @@ export default function ContactUsView() {
                       </div>
                     </div>
 
-                    {/* Row 2: Phone/WhatsApp & Company Name */}
                     <div className="row g-3 mb-3">
                       <div className="col-md-6">
                         <label className="form-field-label">Phone / WhatsApp Number *</label>
@@ -1314,7 +1355,6 @@ export default function ContactUsView() {
                       </div>
                     </div>
 
-                    {/* Row 3: Primary Service & Estimated Budget */}
                     <div className="row g-3 mb-3">
                       <div className="col-md-6">
                         <label className="form-field-label">Primary Service Required *</label>
@@ -1349,7 +1389,6 @@ export default function ContactUsView() {
                       </div>
                     </div>
 
-                    {/* Row 4: Subject */}
                     <div className="mb-3">
                       <label className="form-field-label">Subject / Engagement Title *</label>
                       <input
@@ -1362,7 +1401,6 @@ export default function ContactUsView() {
                       />
                     </div>
 
-                    {/* Row 5: Detailed Message */}
                     <div className="mb-4">
                       <label className="form-field-label">Project Scope, Current Systems &amp; Key Requirements *</label>
                       <textarea
@@ -1375,7 +1413,6 @@ export default function ContactUsView() {
                       ></textarea>
                     </div>
 
-                    {/* Submit Button & SLA Disclaimer */}
                     <div className="form-submit-row">
                       <button
                         type="submit"
@@ -1407,9 +1444,7 @@ export default function ContactUsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          SECTION 5: ENTERPRISE FAQ ACCORDION
-          ========================================================================= */}
+      {/* SECTION 5: FAQS */}
       <section className="faq-section">
         <div className="container">
           <div className="section-head text-center">
@@ -1457,9 +1492,7 @@ export default function ContactUsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          SECTION 6: BOTTOM CONVERSION BANNER
-          ========================================================================= */}
+      {/* SECTION 6: BOTTOM CTA */}
       <section className="bottom-cta-section">
         <div className="container">
           <div className="cta-banner-box">
@@ -1481,11 +1514,8 @@ export default function ContactUsView() {
         </div>
       </section>
 
-      {/* =========================================================================
-          STYLES (SCOPED JSX WITH FULL THEME VARIABLES)
-          ========================================================================= */}
+      {/* STYLES */}
       <style jsx>{`
-        /* --- Base & Typography --- */
         .contact-page-wrapper {
           position: relative;
           overflow: hidden;
@@ -1498,7 +1528,7 @@ export default function ContactUsView() {
           -webkit-text-fill-color: transparent;
         }
 
-        /* --- Section 1: Hero --- */
+        /* --- Hero --- */
         .contact-hero {
           padding: 85px 0 65px;
           position: relative;
@@ -1687,7 +1717,7 @@ export default function ContactUsView() {
           box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 
-        /* --- Section 2: Contact Channels --- */
+        /* --- Channels --- */
         .channels-section {
           padding: 30px 0 70px;
         }
@@ -1756,15 +1786,8 @@ export default function ContactUsView() {
           border-radius: 100px;
         }
 
-        .dark-theme .tile-badge {
-          background: rgba(255, 255, 255, 0.06);
-          color: #94a3b8;
-        }
-
-        .light-theme .tile-badge {
-          background: rgba(0, 0, 0, 0.05);
-          color: #64748b;
-        }
+        .dark-theme .tile-badge { background: rgba(255, 255, 255, 0.06); color: #94a3b8; }
+        .light-theme .tile-badge { background: rgba(0, 0, 0, 0.05); color: #64748b; }
 
         .active-badge {
           background: rgba(16, 185, 129, 0.14) !important;
@@ -1896,9 +1919,7 @@ export default function ContactUsView() {
           margin-top: auto;
         }
 
-        .wa-btn:hover {
-          background: #059669;
-        }
+        .wa-btn:hover { background: #059669; }
 
         .email-address-box {
           padding: 10px 12px;
@@ -1991,23 +2012,18 @@ export default function ContactUsView() {
           color: #ffffff !important;
         }
 
-        /* --- Section 3: Geographic Footprint & Radar Map --- */
+        /* --- Geographic Map Section --- */
         .geo-section {
           padding: 80px 0 70px;
           position: relative;
         }
 
-        .dark-theme .geo-section {
-          background: #080d1a;
-        }
-
-        .light-theme .geo-section {
-          background: #f8fafc;
-        }
+        .dark-theme .geo-section { background: #080f1d; }
+        .light-theme .geo-section { background: #f8fafc; }
 
         .section-head {
           max-width: 720px;
-          margin: 0 auto 38px;
+          margin: 0 auto 34px;
         }
 
         .section-badge {
@@ -2052,22 +2068,29 @@ export default function ContactUsView() {
         .dark-theme .section-subtitle { color: #94a3b8; }
         .light-theme .section-subtitle { color: #475569; }
 
+        .geo-controls-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 16px;
+          margin-bottom: 28px;
+        }
+
         .geo-country-tabs {
           display: flex;
           align-items: center;
-          justify-content: center;
-          gap: 10px;
+          gap: 8px;
           flex-wrap: wrap;
-          margin-bottom: 32px;
         }
 
         .country-tab-btn {
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          padding: 9px 18px;
+          gap: 7px;
+          padding: 8px 16px;
           border-radius: 100px;
-          font-size: 13.5px;
+          font-size: 13px;
           font-weight: 600;
           cursor: pointer;
           border: 1.5px solid transparent;
@@ -2124,7 +2147,49 @@ export default function ContactUsView() {
         .dark-theme .tab-count { background: rgba(255, 255, 255, 0.1); color: #e2e8f0; }
         .light-theme .tab-count { background: rgba(0, 0, 0, 0.07); color: #1e293b; }
 
-        /* Map Canvas & HUD */
+        /* Map Mode Toggle */
+        .map-view-toggle {
+          display: flex;
+          gap: 6px;
+          padding: 4px;
+          border-radius: 12px;
+        }
+
+        .dark-theme .map-view-toggle {
+          background: rgba(15, 23, 42, 0.7);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .light-theme .map-view-toggle {
+          background: #ffffff;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .toggle-pill-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          padding: 7px 14px;
+          border-radius: 8px;
+          font-size: 12.5px;
+          font-weight: 600;
+          border: none;
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .dark-theme .toggle-pill-btn { color: #94a3b8; }
+        .light-theme .toggle-pill-btn { color: #64748b; }
+
+        .toggle-pill-btn.active {
+          background: #2c73d9 !important;
+          color: #ffffff !important;
+          box-shadow: 0 2px 8px rgba(44, 115, 217, 0.3);
+        }
+
+        /* Map Canvas */
         .map-card-wrapper {
           border-radius: 20px;
           overflow: hidden;
@@ -2150,14 +2215,14 @@ export default function ContactUsView() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 14px 20px;
+          padding: 13px 20px;
           border-bottom: 1px solid;
           flex-wrap: wrap;
           gap: 12px;
         }
 
         .dark-theme .map-hud-bar {
-          background: rgba(15, 23, 42, 0.8);
+          background: rgba(15, 23, 42, 0.85);
           border-color: rgba(255, 255, 255, 0.07);
         }
 
@@ -2193,7 +2258,7 @@ export default function ContactUsView() {
         .hud-clocks {
           display: flex;
           align-items: center;
-          gap: 16px;
+          gap: 14px;
         }
 
         .hud-clock-item {
@@ -2202,29 +2267,22 @@ export default function ContactUsView() {
           gap: 5px;
         }
 
-        .clock-city {
-          font-weight: 700;
-        }
-
+        .clock-city { font-weight: 700; }
         .dark-theme .clock-city { color: #94a3b8; }
         .light-theme .clock-city { color: #475569; }
 
-        .clock-time {
-          font-family: monospace;
-          font-weight: 600;
-        }
-
+        .clock-time { font-family: monospace; font-weight: 600; }
         .dark-theme .clock-time { color: #f1f5f9; }
         .light-theme .clock-time { color: #0f172a; }
 
         .map-svg-viewport {
           position: relative;
           width: 100%;
-          min-height: 440px;
+          min-height: 480px;
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 10px;
+          padding: 8px;
         }
 
         .regional-vector-map {
@@ -2233,16 +2291,19 @@ export default function ContactUsView() {
           display: block;
         }
 
-        /* SVG Animations */
-        .animated-arc {
-          animation: dashDraw 18s linear infinite;
+        .country-glow-sa {
+          filter: drop-shadow(0 0 8px rgba(44, 115, 217, 0.25));
         }
 
-        .animated-arc-fast {
-          animation: dashDraw 12s linear infinite;
+        .sync-pulse-line {
+          animation: syncDash 16s linear infinite;
         }
 
-        @keyframes dashDraw {
+        .sync-pulse-line-fast {
+          animation: syncDash 10s linear infinite;
+        }
+
+        @keyframes syncDash {
           to {
             stroke-dashoffset: -100;
           }
@@ -2254,8 +2315,8 @@ export default function ContactUsView() {
         }
 
         @keyframes radarExpand {
-          0% { transform: scale(0.4); opacity: 1; }
-          100% { transform: scale(2.2); opacity: 0; }
+          0% { transform: scale(0.3); opacity: 1; }
+          100% { transform: scale(2.4); opacity: 0; }
         }
 
         .spin-dash-ring {
@@ -2267,31 +2328,35 @@ export default function ContactUsView() {
           100% { transform: rotate(360deg); }
         }
 
-        .map-city-text {
-          transition: all 0.25s ease;
-          user-select: none;
+        .map-badge-group:hover rect {
+          stroke: #2c73d9 !important;
+          stroke-width: 2 !important;
+        }
+
+        .active-badge-group rect {
+          filter: drop-shadow(0 4px 12px rgba(44, 115, 217, 0.45)) !important;
         }
 
         .map-corner-legend {
           position: absolute;
-          bottom: 16px;
-          left: 16px;
-          padding: 10px 14px;
+          bottom: 14px;
+          left: 14px;
+          padding: 9px 14px;
           border-radius: 10px;
           font-size: 11px;
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 5px;
         }
 
         .dark-theme .map-corner-legend {
-          background: rgba(15, 23, 42, 0.85);
+          background: rgba(15, 23, 42, 0.88);
           border: 1px solid rgba(255, 255, 255, 0.08);
           color: #94a3b8;
         }
 
         .light-theme .map-corner-legend {
-          background: rgba(255, 255, 255, 0.9);
+          background: rgba(255, 255, 255, 0.92);
           border: 1px solid rgba(0, 0, 0, 0.08);
           color: #475569;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -2303,15 +2368,64 @@ export default function ContactUsView() {
           gap: 7px;
         }
 
-        .legend-marker {
-          font-size: 12px;
-        }
-
+        .legend-marker { font-size: 12px; }
         .hq-marker { color: #f59e0b; }
         .tech-marker { color: #8b5cf6; }
         .hub-marker { color: #2c73d9; }
 
-        /* Selected Hub Detail Card (Right col) */
+        /* Interactive Mode (Google Maps) */
+        .interactive-mode-container {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        .interactive-tabs-bar {
+          display: flex;
+          gap: 8px;
+          padding: 12px 18px;
+          border-bottom: 1px solid;
+          flex-wrap: wrap;
+        }
+
+        .dark-theme .interactive-tabs-bar {
+          background: rgba(15, 23, 42, 0.6);
+          border-color: rgba(255, 255, 255, 0.07);
+        }
+
+        .light-theme .interactive-tabs-bar {
+          background: #f8fafc;
+          border-color: rgba(0, 0, 0, 0.07);
+        }
+
+        .subtab-btn {
+          padding: 6px 14px;
+          border-radius: 8px;
+          font-size: 12px;
+          font-weight: 600;
+          border: 1px solid transparent;
+          background: transparent;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .dark-theme .subtab-btn {
+          background: rgba(255, 255, 255, 0.04);
+          color: #94a3b8;
+        }
+
+        .light-theme .subtab-btn {
+          background: #e2e8f0;
+          color: #475569;
+        }
+
+        .subtab-btn.active {
+          border-color: #2c73d9 !important;
+          background: #2c73d9 !important;
+          color: #ffffff !important;
+        }
+
+        /* Selected Hub Detail Card */
         .selected-hub-card {
           border-radius: 20px;
           padding: 28px;
@@ -2351,9 +2465,7 @@ export default function ContactUsView() {
           gap: 12px;
         }
 
-        .hub-flag {
-          font-size: 32px;
-        }
+        .hub-flag { font-size: 32px; }
 
         .hub-country {
           font-size: 12px;
@@ -2454,9 +2566,7 @@ export default function ContactUsView() {
         .dark-theme .info-val { color: #cbd5e1; }
         .light-theme .info-val { color: #334155; }
 
-        .address-text {
-          font-weight: 600;
-        }
+        .address-text { font-weight: 600; }
 
         .postal-text {
           font-size: 12px;
@@ -2467,9 +2577,7 @@ export default function ContactUsView() {
         .dark-theme .postal-text { color: #64748b; }
         .light-theme .postal-text { color: #94a3b8; }
 
-        .focus-text {
-          font-size: 13px;
-        }
+        .focus-text { font-size: 13px; }
 
         .hub-action-row {
           display: grid;
@@ -2498,9 +2606,7 @@ export default function ContactUsView() {
           color: #ffffff !important;
         }
 
-        .hub-call-btn:hover {
-          background: #1d4ed8;
-        }
+        .hub-call-btn:hover { background: #1d4ed8; }
 
         .dark-theme .hub-nav-btn {
           background: rgba(255, 255, 255, 0.05);
@@ -2683,9 +2789,7 @@ export default function ContactUsView() {
           gap: 10px;
         }
 
-        .card-flag {
-          font-size: 24px;
-        }
+        .card-flag { font-size: 24px; }
 
         .card-city-line {
           display: flex;
@@ -2711,10 +2815,7 @@ export default function ContactUsView() {
           border-radius: 4px;
         }
 
-        .card-country {
-          font-size: 12px;
-        }
-
+        .card-country { font-size: 12px; }
         .dark-theme .card-country { color: #94a3b8; }
         .light-theme .card-country { color: #64748b; }
 
@@ -2833,9 +2934,7 @@ export default function ContactUsView() {
           color: #2c73d9;
         }
 
-        .office-dir-link:hover {
-          text-decoration: underline;
-        }
+        .office-dir-link:hover { text-decoration: underline; }
 
         .office-email-link {
           display: inline-flex;
@@ -2849,97 +2948,7 @@ export default function ContactUsView() {
         .light-theme .office-email-link { color: #64748b; }
         .light-theme .office-email-link:hover { color: #1e293b; }
 
-        /* Live Map Embed Section */
-        .live-maps-embed-wrapper {
-          margin-top: 60px;
-          border-radius: 20px;
-          overflow: hidden;
-        }
-
-        .dark-theme .live-maps-embed-wrapper {
-          background: #0d1527;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .light-theme .live-maps-embed-wrapper {
-          background: #ffffff;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .embed-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 16px 24px;
-          border-bottom: 1px solid;
-          flex-wrap: wrap;
-          gap: 12px;
-        }
-
-        .dark-theme .embed-header {
-          background: rgba(15, 23, 42, 0.8);
-          border-color: rgba(255, 255, 255, 0.07);
-        }
-
-        .light-theme .embed-header {
-          background: #f8fafc;
-          border-color: rgba(0, 0, 0, 0.07);
-        }
-
-        .embed-title-area {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .embed-title {
-          font-size: 15px;
-          font-weight: 700;
-          margin: 0;
-        }
-
-        .dark-theme .embed-title { color: #f1f5f9; }
-        .light-theme .embed-title { color: #0f172a; }
-
-        .embed-tabs {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-
-        .embed-tab-btn {
-          padding: 6px 14px;
-          border-radius: 8px;
-          font-size: 12.5px;
-          font-weight: 600;
-          border: 1px solid transparent;
-          background: transparent;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .dark-theme .embed-tab-btn {
-          background: rgba(255, 255, 255, 0.04);
-          color: #94a3b8;
-        }
-
-        .light-theme .embed-tab-btn {
-          background: #e2e8f0;
-          color: #475569;
-        }
-
-        .embed-tab-btn.active {
-          border-color: #2c73d9 !important;
-          background: #2c73d9 !important;
-          color: #ffffff !important;
-        }
-
-        .map-iframe-container iframe {
-          display: block;
-        }
-
-        /* --- Section 4: Enterprise Form & Pitch --- */
+        /* Form Pitch Section */
         .form-section {
           padding: 85px 0 75px;
         }
@@ -3056,7 +3065,7 @@ export default function ContactUsView() {
         .dark-theme .em-text { color: #cbd5e1; }
         .light-theme .em-text { color: #334155; }
 
-        /* Form Card Styling */
+        /* Form Card */
         .form-card-container {
           border-radius: 22px;
           padding: 38px 32px;
@@ -3183,7 +3192,6 @@ export default function ContactUsView() {
         .dark-theme .form-nda-text { color: #64748b; }
         .light-theme .form-nda-text { color: #64748b; }
 
-        /* Form Success State */
         .form-success-state {
           padding: 30px 10px;
         }
@@ -3244,12 +3252,12 @@ export default function ContactUsView() {
           color: #334155;
         }
 
-        /* --- Section 5: FAQ Accordion --- */
+        /* FAQ Section */
         .faq-section {
           padding: 75px 0 80px;
         }
 
-        .dark-theme .faq-section { background: #080d1a; }
+        .dark-theme .faq-section { background: #080f1d; }
         .light-theme .faq-section { background: #f8fafc; }
 
         .faq-accordion-list {
@@ -3288,13 +3296,8 @@ export default function ContactUsView() {
           border-color: #2c73d9 !important;
         }
 
-        .dark-theme .active-faq {
-          background: rgba(44, 115, 217, 0.06);
-        }
-
-        .light-theme .active-faq {
-          background: #f0f7ff;
-        }
+        .dark-theme .active-faq { background: rgba(44, 115, 217, 0.06); }
+        .light-theme .active-faq { background: #f0f7ff; }
 
         .faq-question-row {
           display: flex;
@@ -3350,7 +3353,7 @@ export default function ContactUsView() {
         .dark-theme .faq-answer-text { color: #94a3b8; }
         .light-theme .faq-answer-text { color: #334155; }
 
-        /* --- Section 6: Bottom CTA Banner --- */
+        /* Bottom CTA Banner */
         .bottom-cta-section {
           padding: 20px 0 60px;
         }
@@ -3391,7 +3394,7 @@ export default function ContactUsView() {
         .dark-theme .cta-banner-desc { color: #94a3b8; }
         .light-theme .cta-banner-desc { color: #475569; }
 
-        /* Responsive Adjustments */
+        /* Responsive */
         @media (max-width: 991px) {
           .map-hud-bar {
             flex-direction: column;
@@ -3400,6 +3403,18 @@ export default function ContactUsView() {
           .hud-clocks {
             width: 100%;
             justify-content: space-between;
+          }
+          .geo-controls-row {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+          .map-view-toggle {
+            width: 100%;
+            justify-content: space-between;
+          }
+          .toggle-pill-btn {
+            flex: 1;
+            justify-content: center;
           }
           .form-card-container {
             padding: 26px 20px;
