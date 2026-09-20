@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from '@/context/ThemeContext';
 import ThemeToggle from './ThemeToggle';
+import TopAnnouncementBar from './TopAnnouncementBar';
 import { 
   Building2, 
   Server, 
@@ -234,6 +235,7 @@ export default function Header({ onToggleMobileMenu }) {
         transition: 'background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.25s ease'
       }}
     >
+      <TopAnnouncementBar />
       <div className="container" style={{ position: 'relative' }}>
         <div 
           className="main-header" 
