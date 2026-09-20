@@ -332,7 +332,7 @@ export default function ChatbotWidget() {
         message: userText
       };
 
-      // Save locally
+      // Save locally and send email to info@altapetesolutions.com
       try {
         const saved = JSON.parse(localStorage.getItem('altapete_inquiries') || '[]');
         saved.push({ ...finalBooking, date: new Date().toISOString() });
@@ -340,6 +340,21 @@ export default function ChatbotWidget() {
       } catch (e) {
         // ignore
       }
+
+      // Asynchronously trigger server-side email to info@altapetesolutions.com
+      fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'chatbot',
+          name: finalBooking.name,
+          email: (finalBooking.contact && finalBooking.contact.includes('@')) ? finalBooking.contact : '',
+          phone: (finalBooking.contact && !finalBooking.contact.includes('@')) ? finalBooking.contact : finalBooking.contact,
+          service: finalBooking.service,
+          subject: `Chatbot Strategy Consultation: ${finalBooking.service}`,
+          message: userText
+        })
+      }).catch(err => console.error('Chatbot email send error:', err));
 
       setBookingState({ active: false, step: 0, name: '', contact: '', service: '', message: '' });
 

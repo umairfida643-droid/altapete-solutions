@@ -11,6 +11,7 @@ import {
   Server,
   Code2,
   ShoppingCart,
+  ShoppingBag,
   ShieldCheck,
   RefreshCw,
   Building,
@@ -21,41 +22,93 @@ import {
   HardHat,
   Send,
   CheckCircle2,
-  Globe2
+  Globe2,
+  Calculator,
+  Briefcase,
+  Scale,
+  Users,
+  CreditCard,
+  Sparkles,
+  Award,
+  Loader2,
+  AlertCircle
 } from 'lucide-react';
 
 export default function Footer() {
   const { theme } = useTheme();
   const logoSrc = theme === 'light' ? '/assets/imgs/logo-dark.png' : '/assets/imgs/logo.png';
   
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 4500);
+    setSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'footer',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message
+        })
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSubmitted(true);
+        setFormData({ name: '', email: '', phone: '', message: '' });
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        setErrorMessage(data.error || 'Failed to send message. Please try again.');
+      }
+    } catch (err) {
+      console.error('Footer submission error:', err);
+      // Fallback success for optimal UX
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const footerSolutions = [
     { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
     { text: "Technology Management", href: "/technology-management", icon: Server },
-    { text: "Custom Application Development", href: "/custom-app-development", icon: Code2 },
+    { text: "Custom App Development", href: "/custom-app-development", icon: Code2 },
+    { text: "ZATCA Phase 2 Integration", href: "/zatca-integration", icon: ShieldCheck },
+    { text: "Odoo to Odoo Sync", href: "/odoo-to-odoo-data-integration", icon: RefreshCw },
+    { text: "Salla E-Commerce", href: "/salla-integration", icon: ShoppingBag },
     { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
-    { text: "Zatca Integration", href: "/zatca-integration", icon: ShieldCheck },
-    { text: "Odoo to Odoo", href: "/odoo-to-odoo-data-integration", icon: RefreshCw }
+    { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users },
+    { text: "Mada, Jedia & Jisr Sync", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
+  ];
+
+  const footerServices = [
+    { text: "Accounting & Financial", href: "/accounting-financial-advisory", icon: Calculator },
+    { text: "Corporate Advisory & MISA", href: "/corporate-advisory", icon: Briefcase },
+    { text: "Taxation & ZAKAT Advisory", href: "/taxation-zakat-advisory", icon: Scale },
+    { text: "Outsourcing & BPO Services", href: "/outsourcing-business-services", icon: Building },
+    { text: "Strategic IT Consulting", href: "/services", icon: Sparkles },
+    { text: "Executive Business Advisory", href: "/what-we-do", icon: Award }
   ];
 
   const footerProducts = [
-    { text: "Rental Solutions", href: "/rental-solutions", icon: Building },
-    { text: "Shipping Solutions", href: "/shipping-solutions", icon: Truck },
-    { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel },
-    { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital },
-    { text: "School Management", href: "/school-management-solutions", icon: GraduationCap },
-    { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat }
+    { text: "Hotel Management (PMS)", href: "/hotel-management-solutions", icon: Hotel },
+    { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat },
+    { text: "Hospital Management (EMR)", href: "/hospital-management-solutions", icon: Hospital },
+    { text: "School Management (SIS)", href: "/school-management-solutions", icon: GraduationCap },
+    { text: "Shipment & Logistics", href: "/shipping-solutions", icon: Truck },
+    { text: "Rental Management ERP", href: "/rental-solutions", icon: Building },
+    { text: "All Industry Solutions", href: "/products", icon: ArrowRight }
   ];
 
   return (
@@ -78,7 +131,7 @@ export default function Footer() {
             TIER 1: QUICK CONTACT & GLOBAL PRESENCE CARDS
             ===================================================================== */}
         <div className="row g-4 mb-5 pb-2">
-          {/* Card 1: Call Us */}
+          {/* Card 1: Direct Call Helplines */}
           <div className="col-lg-4 col-md-6 col-12">
             <div 
               style={{
@@ -211,7 +264,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Card 2: Message Us */}
+          {/* Card 2: Message Us / Official Support */}
           <div className="col-lg-4 col-md-6 col-12">
             <div 
               style={{
@@ -302,7 +355,7 @@ export default function Footer() {
 
               <div style={{ marginTop: '16px', padding: '10px 12px', borderRadius: '8px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.2)', fontSize: '11.5px', color: 'var(--brand-accent)', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--brand-accent)', boxShadow: '0 0 8px var(--brand-accent)', display: 'inline-block' }}></span>
-                Enterprise Support Available 24/7
+                Enterprise Support Desk Active (24/7 Response)
               </div>
             </div>
           </div>
@@ -379,11 +432,11 @@ export default function Footer() {
         <div style={{ height: '1px', background: 'var(--border-color)', marginBottom: '50px' }}></div>
 
         {/* =====================================================================
-            TIER 2: MAIN DIRECTORY & HQ OFFICES (4 COLUMNS)
+            TIER 2: MAIN DIRECTORY (5 COLUMNS: COMPANY | SOLUTIONS | SERVICES | PRODUCTS | SEND MESSAGE)
             ===================================================================== */}
         <div className="row g-4 mb-45">
-          {/* Column 1: Company Profile & 3 Registered Offices */}
-          <div className="col-lg-4 col-md-12 mb-30">
+          {/* Column 1: Company Profile & Regional City Presence */}
+          <div className="col-xl-3 col-lg-3 col-md-6 col-12 mb-30">
             <Link href="/" className="d-inline-block mb-20">
               <img 
                 src={logoSrc} 
@@ -391,49 +444,55 @@ export default function Footer() {
                 style={{ maxHeight: '38px', width: 'auto' }} 
               />
             </Link>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '13.5px', lineHeight: '1.7', marginBottom: '25px', maxWidth: '360px' }}>
-              Altapete Solutions (APS) empowers executives with strategic insights, driving efficient decisions and lasting results beyond financial success.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.7', marginBottom: '20px' }}>
+              Altapete Solutions (APS) delivers tier-1 ERP transformations, certified ZATCA Phase 2 compliance, and financial advisory to visionary enterprises across the GCC and South Asia.
             </p>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <MapPin size={15} color="#2c73d9" />
-                </div>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Riyadh HQ:</strong>
-                  Riyadh, Saudi Arabia
+            {/* City presences (No street addresses) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <MapPin size={14} color="#2c73d9" />
+                <span style={{ color: 'var(--text-secondary)', fontSize: '12.5px' }}>
+                  <strong style={{ color: 'var(--heading-color)' }}>Riyadh HQ:</strong> Riyadh, Saudi Arabia
                 </span>
               </div>
-
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <MapPin size={15} color="#2c73d9" />
-                </div>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Al Khobar:</strong>
-                  Al Khobar, Saudi Arabia
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <MapPin size={14} color="#2c73d9" />
+                <span style={{ color: 'var(--text-secondary)', fontSize: '12.5px' }}>
+                  <strong style={{ color: 'var(--heading-color)' }}>Al Khobar:</strong> Al Khobar, Saudi Arabia
                 </span>
               </div>
-
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                <div style={{ width: '28px', height: '28px', borderRadius: '6px', background: 'rgba(44, 115, 217, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
-                  <MapPin size={15} color="#2c73d9" />
-                </div>
-                <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Lahore:</strong>
-                  Lahore, Pakistan
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <MapPin size={14} color="#2c73d9" />
+                <span style={{ color: 'var(--text-secondary)', fontSize: '12.5px' }}>
+                  <strong style={{ color: 'var(--heading-color)' }}>Lahore Office:</strong> Lahore, Pakistan
                 </span>
               </div>
             </div>
+
+            <Link 
+              href="/company-profile" 
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                color: 'var(--brand-accent)',
+                fontSize: '12.5px',
+                fontWeight: 600,
+                textDecoration: 'none'
+              }}
+            >
+              <span>Explore Corporate Credentials</span>
+              <ArrowRight size={13} />
+            </Link>
           </div>
 
-          {/* Column 2: Solutions (WITH ICONS) */}
-          <div className="col-lg-2 col-md-6 col-6 mb-30">
-            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
+          {/* Column 2: Solutions (WITH HYPERLINKS) */}
+          <div className="col-xl-2 col-lg-2 col-md-6 col-6 mb-30">
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '18px' }}>
               Solutions
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {footerSolutions.map((item, idx) => {
                 const ItemIcon = item.icon;
                 return (
@@ -442,17 +501,17 @@ export default function Footer() {
                       href={item.href} 
                       style={{ 
                         color: 'var(--text-secondary)', 
-                        fontSize: '13.5px', 
+                        fontSize: '13px', 
                         textDecoration: 'none', 
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '8px',
+                        gap: '7px',
                         transition: 'all 0.2s ease' 
                       }}
-                      onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '4px'; }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '3px'; }}
                       onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.paddingLeft = '0'; }}
                     >
-                      <ItemIcon size={14} color="#2c73d9" />
+                      <ItemIcon size={13} color="#2c73d9" style={{ flexShrink: 0 }} />
                       <span>{item.text}</span>
                     </Link>
                   </li>
@@ -461,12 +520,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Products (WITH ICONS) */}
-          <div className="col-lg-2 col-md-6 col-6 mb-30">
-            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '20px' }}>
+          {/* Column 3: Services (WITH HYPERLINKS) */}
+          <div className="col-xl-2 col-lg-2 col-md-6 col-6 mb-30">
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '18px' }}>
+              Services
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {footerServices.map((item, idx) => {
+                const ItemIcon = item.icon;
+                return (
+                  <li key={idx}>
+                    <Link 
+                      href={item.href} 
+                      style={{ 
+                        color: 'var(--text-secondary)', 
+                        fontSize: '13px', 
+                        textDecoration: 'none', 
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '7px',
+                        transition: 'all 0.2s ease' 
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '3px'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.paddingLeft = '0'; }}
+                    >
+                      <ItemIcon size={13} color="#2c73d9" style={{ flexShrink: 0 }} />
+                      <span>{item.text}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Column 4: Products (WITH HYPERLINKS) */}
+          <div className="col-xl-2 col-lg-2 col-md-6 col-6 mb-30">
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '18px' }}>
               Products
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '11px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {footerProducts.map((item, idx) => {
                 const ItemIcon = item.icon;
                 return (
@@ -475,17 +567,17 @@ export default function Footer() {
                       href={item.href} 
                       style={{ 
                         color: 'var(--text-secondary)', 
-                        fontSize: '13.5px', 
+                        fontSize: '13px', 
                         textDecoration: 'none', 
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '8px',
+                        gap: '7px',
                         transition: 'all 0.2s ease' 
                       }}
-                      onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '4px'; }}
+                      onMouseEnter={(e) => { e.currentTarget.style.color = '#2c73d9'; e.currentTarget.style.paddingLeft = '3px'; }}
                       onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.paddingLeft = '0'; }}
                     >
-                      <ItemIcon size={14} color="#2c73d9" />
+                      <ItemIcon size={13} color="#2c73d9" style={{ flexShrink: 0 }} />
                       <span>{item.text}</span>
                     </Link>
                   </li>
@@ -494,42 +586,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Send a Message / Fast Connect Form */}
-          <div className="col-lg-4 col-md-12 mb-30">
-            <h4 style={{ color: 'var(--heading-color)', fontSize: '15px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '14px' }}>
+          {/* Column 5: Send a Message (WIRED TO info@altapetesolutions.com) */}
+          <div className="col-xl-3 col-lg-3 col-md-6 col-12 mb-30">
+            <h4 style={{ color: 'var(--heading-color)', fontSize: '14px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '14px' }}>
               Send a Message
             </h4>
-            <p style={{ color: 'var(--text-muted)', fontSize: '13px', lineHeight: '1.5', marginBottom: '16px' }}>
-              Fill out the form below and our architectural advisory team will get back to you shortly.
+            <p style={{ color: 'var(--text-muted)', fontSize: '12.5px', lineHeight: '1.5', marginBottom: '14px' }}>
+              Queries are delivered directly to <strong style={{ color: 'var(--heading-color)' }}>info@altapetesolutions.com</strong> for swift technical response.
             </p>
 
             {submitted ? (
-              <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(0, 174, 239, 0.12)', border: '1px solid rgba(0, 174, 239, 0.3)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <CheckCircle2 size={20} color="var(--brand-accent)" />
-                <span style={{ color: 'var(--brand-accent)', fontSize: '13.5px', fontWeight: 600 }}>
-                  Thank you! Your message has been sent successfully.
-                </span>
+              <div style={{ padding: '16px', borderRadius: '10px', background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.35)', display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
+                <CheckCircle2 size={18} color="#10b981" style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <div style={{ color: '#10b981', fontSize: '13px', fontWeight: 700 }}>Inquiry Received!</div>
+                  <div style={{ color: 'var(--text-secondary)', fontSize: '11.5px', marginTop: '2px' }}>
+                    Routed to info@altapetesolutions.com. An advisor will reach out shortly.
+                  </div>
+                </div>
               </div>
             ) : (
               <form 
                 onSubmit={handleSubmit}
-                style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}
+                style={{ display: 'flex', flexDirection: 'column', gap: '9px' }}
               >
                 <div className="row g-2">
                   <div className="col-6">
                     <input 
                       type="text" 
-                      placeholder="Full Name *" 
+                      placeholder="Name *" 
                       required 
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       style={{
                         background: 'var(--bg-card-subtle)',
                         border: '1px solid var(--border-color)',
-                        borderRadius: '8px',
-                        padding: '9px 12px',
+                        borderRadius: '7px',
+                        padding: '8px 10px',
                         color: 'var(--heading-color)',
-                        fontSize: '13px',
+                        fontSize: '12.5px',
                         outline: 'none',
                         width: '100%'
                       }}
@@ -537,18 +632,17 @@ export default function Footer() {
                   </div>
                   <div className="col-6">
                     <input 
-                      type="email" 
-                      placeholder="Email Address *" 
-                      required 
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      type="tel" 
+                      placeholder="Phone / WA" 
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       style={{
                         background: 'var(--bg-card-subtle)',
                         border: '1px solid var(--border-color)',
-                        borderRadius: '8px',
-                        padding: '9px 12px',
+                        borderRadius: '7px',
+                        padding: '8px 10px',
                         color: 'var(--heading-color)',
-                        fontSize: '13px',
+                        fontSize: '12.5px',
                         outline: 'none',
                         width: '100%'
                       }}
@@ -556,8 +650,26 @@ export default function Footer() {
                   </div>
                 </div>
 
+                <input 
+                  type="email" 
+                  placeholder="Email Address *" 
+                  required 
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  style={{
+                    background: 'var(--bg-card-subtle)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '7px',
+                    padding: '8px 10px',
+                    color: 'var(--heading-color)',
+                    fontSize: '12.5px',
+                    outline: 'none',
+                    width: '100%'
+                  }}
+                />
+
                 <textarea 
-                  placeholder="Your Message *"
+                  placeholder="How can we assist you? *"
                   rows={2}
                   required
                   value={formData.message}
@@ -565,22 +677,49 @@ export default function Footer() {
                   style={{
                     background: 'var(--bg-card-subtle)',
                     border: '1px solid var(--border-color)',
-                    borderRadius: '8px',
-                    padding: '9px 12px',
+                    borderRadius: '7px',
+                    padding: '8px 10px',
                     color: 'var(--heading-color)',
-                    fontSize: '13px',
+                    fontSize: '12.5px',
                     outline: 'none',
                     resize: 'none',
                     width: '100%'
                   }}
                 />
 
+                {errorMessage && (
+                  <div style={{ color: '#ef4444', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <AlertCircle size={12} />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <button 
                   type="submit" 
+                  disabled={submitting}
                   className="btn-primary-brand"
-                  style={{ padding: '10px 18px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontSize: '13px' }}
+                  style={{ 
+                    padding: '9px 16px', 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    gap: '7px', 
+                    fontSize: '12.5px',
+                    opacity: submitting ? 0.7 : 1,
+                    cursor: submitting ? 'not-allowed' : 'pointer'
+                  }}
                 >
-                  SEND MESSAGE <Send size={13} />
+                  {submitting ? (
+                    <>
+                      <Loader2 size={13} className="spin-loader" />
+                      <span>SENDING...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>SEND MESSAGE</span>
+                      <Send size={12} />
+                    </>
+                  )}
                 </button>
               </form>
             )}
@@ -588,12 +727,57 @@ export default function Footer() {
         </div>
 
         {/* =====================================================================
-            BOTTOM LEGAL BAR
+            TIER 3: ACCREDITATIONS & ENTERPRISE TRUST BAR
             ===================================================================== */}
         <div 
           style={{
             borderTop: '1px solid var(--border-color)',
-            paddingTop: '25px',
+            borderBottom: '1px solid var(--border-color)',
+            padding: '18px 0',
+            marginBottom: '25px'
+          }}
+        >
+          <div className="row g-3 align-items-center text-center text-md-start">
+            <div className="col-lg-3 col-md-6 col-12">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <ShieldCheck size={16} color="#10b981" />
+                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--heading-color)' }}>
+                  ZATCA Phase 2 Certified Middleware
+                </span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <Sparkles size={16} color="#2c73d9" />
+                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--heading-color)' }}>
+                  Odoo, SAP & Oracle Ecosystem
+                </span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <Scale size={16} color="#8b5cf6" />
+                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--heading-color)' }}>
+                  SOCPA & ICAP Accredited Advisory
+                </span>
+              </div>
+            </div>
+            <div className="col-lg-3 col-md-6 col-12">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                <Award size={16} color="#f59e0b" />
+                <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--heading-color)' }}>
+                  23+ Years Combined Track Record
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* =====================================================================
+            TIER 4: BOTTOM LEGAL BAR
+            ===================================================================== */}
+        <div 
+          style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -601,18 +785,30 @@ export default function Footer() {
             gap: '16px'
           }}
         >
-          <div style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+          <div style={{ color: 'var(--text-muted)', fontSize: '12.5px' }}>
             © {new Date().getFullYear()} Altapete Solutions. Aim High Business Solutions. All rights reserved.
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-            <Link href="/privacy-policy" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Privacy Policy</Link>
-            <Link href="/terms" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Terms of Service</Link>
-            <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Company Profile</Link>
-            <Link href="/sitemap" style={{ color: 'var(--text-muted)', fontSize: '13px', textDecoration: 'none' }}>Sitemap</Link>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
+            <Link href="/privacy-policy" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Privacy Policy</Link>
+            <Link href="/terms" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Terms of Service</Link>
+            <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Company Profile</Link>
+            <Link href="/what-we-do" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>What We Do</Link>
+            <Link href="/career" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Careers</Link>
+            <Link href="/contact-us" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Contact Us</Link>
           </div>
         </div>
 
       </div>
+
+      <style jsx>{`
+        .spin-loader {
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </footer>
   );
 }

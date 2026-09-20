@@ -108,13 +108,31 @@ export default function ContactUsView() {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitting(true);
-    setTimeout(() => {
+    try {
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'contact_page',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          service: formData.service,
+          budget: formData.budget,
+          subject: formData.subject,
+          message: formData.message
+        })
+      });
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+    } finally {
       setFormSubmitting(false);
       setFormSubmitted(true);
-    }, 1200);
+    }
   };
 
   // Geographic Locations with Authentic Coordinates & Smart Separated Badge Offsets

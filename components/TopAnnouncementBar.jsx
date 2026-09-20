@@ -1,24 +1,20 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { Sparkles, ArrowRight } from 'lucide-react';
-import { useTheme } from '@/context/ThemeContext';
+import { ArrowRight } from 'lucide-react';
 
 export default function TopAnnouncementBar() {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
-  // 6 identical items ensure a completely seamless -50% CSS infinite translation without visible seams
-  const items = Array.from({ length: 6 });
+  // 6 identical ticker items ensure a continuous seamless -50% CSS infinite marquee
+  const tickerItems = Array.from({ length: 6 });
 
   return (
     <div
-      className={`top-announcement-bar ${isDark ? 'dark-theme' : 'light-theme'}`}
+      className="top-announcement-bar"
       role="region"
       aria-label="Announcement ticker"
     >
       <div className="marquee-wrapper">
         <div className="marquee-track">
-          {items.map((_, idx) => (
+          {tickerItems.map((_, idx) => (
             <Link
               key={idx}
               href="/contact-us"
@@ -26,26 +22,23 @@ export default function TopAnnouncementBar() {
               tabIndex={idx === 0 ? 0 : -1}
               aria-label="Cut operational costs by up to 30% - Book your 100% Free ERP Demo today - Schedule Now"
             >
-              <span className="ticker-badge">
-                <Sparkles size={11} className="ticker-sparkle" />
-                <span>OFFER</span>
-              </span>
-
               <span className="ticker-phrase">
                 Cut operational costs by <strong className="ticker-highlight">up to 30%</strong>
               </span>
 
-              <span className="ticker-bullet">•</span>
+              <span className="ticker-dot">•</span>
 
               <span className="ticker-phrase">
                 Book your <strong className="ticker-highlight">100% Free ERP Demo</strong> today
               </span>
 
-              <span className="ticker-bullet">•</span>
+              <span className="ticker-dot">•</span>
 
               <span className="ticker-phrase">
                 No hidden implementation fees
               </span>
+
+              <span className="ticker-dot">•</span>
 
               <span className="ticker-cta">
                 <span>Schedule Now</span>
@@ -59,26 +52,19 @@ export default function TopAnnouncementBar() {
       <style jsx>{`
         .top-announcement-bar {
           width: 100%;
-          height: 38px;
+          height: 31px;
           position: relative;
           overflow: hidden;
           z-index: 1001;
           display: flex;
           align-items: center;
+          /* Website's signature dark brand navy across both themes */
+          background: #141133;
+          background: linear-gradient(90deg, #0d0a27 0%, #191444 35%, #221c54 65%, #0d0a27 100%);
+          border-bottom: 1px solid rgba(44, 115, 217, 0.28);
+          color: #ffffff;
           font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-          transition: background 0.3s ease, border-color 0.3s ease;
-        }
-
-        .dark-theme.top-announcement-bar {
-          background: linear-gradient(90deg, #0e0c24 0%, #17133b 50%, #0e0c24 100%);
-          border-bottom: 1px solid rgba(44, 115, 217, 0.22);
-          color: #cbd5e1;
-        }
-
-        .light-theme.top-announcement-bar {
-          background: linear-gradient(90deg, #f0f5ff 0%, #e3ecfc 50%, #f0f5ff 100%);
-          border-bottom: 1px solid rgba(44, 115, 217, 0.18);
-          color: #1e293b;
+          user-select: none;
         }
 
         .marquee-wrapper {
@@ -87,19 +73,19 @@ export default function TopAnnouncementBar() {
           display: flex;
           align-items: center;
           position: relative;
-          mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
-          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 40px, black calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 28px, black calc(100% - 28px), transparent 100%);
         }
 
         .marquee-track {
           display: flex;
           align-items: center;
           width: max-content;
-          animation: marqueeScroll 34s linear infinite;
+          animation: marqueeScroll 32s linear infinite;
           will-change: transform;
         }
 
-        /* Smooth pause on hover and keyboard focus */
+        /* Pause animation smoothly on hover or keyboard focus */
         .top-announcement-bar:hover .marquee-track,
         .top-announcement-bar:focus-within .marquee-track {
           animation-play-state: paused;
@@ -117,120 +103,64 @@ export default function TopAnnouncementBar() {
         .marquee-item {
           display: inline-flex;
           align-items: center;
-          gap: 12px;
-          padding: 0 28px;
+          gap: 10px;
+          padding: 0 24px;
           text-decoration: none;
           white-space: nowrap;
           cursor: pointer;
-          color: inherit;
-          font-size: 12.5px;
-          font-weight: 500;
-          letter-spacing: 0.15px;
+          color: #ffffff;
+          font-size: 11.5px;
+          font-weight: 450;
+          letter-spacing: 0.2px;
+          line-height: 31px;
           transition: opacity 0.2s ease;
         }
 
         .marquee-item:hover {
-          opacity: 0.92;
-        }
-
-        .ticker-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          padding: 2px 7px;
-          border-radius: 4px;
-          font-size: 10px;
-          font-weight: 800;
-          letter-spacing: 0.6px;
-          text-transform: uppercase;
-        }
-
-        .dark-theme .ticker-badge {
-          background: rgba(44, 115, 217, 0.25);
-          color: #60a5fa;
-          border: 1px solid rgba(44, 115, 217, 0.45);
-        }
-
-        .light-theme .ticker-badge {
-          background: rgba(44, 115, 217, 0.12);
-          color: #1d4ed8;
-          border: 1px solid rgba(44, 115, 217, 0.28);
-        }
-
-        .ticker-sparkle {
-          animation: sparkleSpin 4s ease-in-out infinite;
-        }
-
-        @keyframes sparkleSpin {
-          0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
-          50% { transform: scale(1.25) rotate(18deg); opacity: 1; }
+          opacity: 0.95;
         }
 
         .ticker-phrase {
           display: inline-flex;
           align-items: center;
-          gap: 4px;
+          color: rgba(255, 255, 255, 0.92);
         }
 
         .ticker-highlight {
-          font-weight: 700;
-        }
-
-        .dark-theme .ticker-highlight {
           color: #38bdf8;
+          font-weight: 600;
+          margin-left: 3px;
         }
 
-        .light-theme .ticker-highlight {
-          color: #1d4ed8;
-        }
-
-        .ticker-bullet {
-          font-size: 10px;
-          opacity: 0.45;
-          margin: 0 2px;
+        .ticker-dot {
+          font-size: 9px;
+          color: rgba(255, 255, 255, 0.35);
+          display: inline-block;
+          margin: 0 1px;
         }
 
         .ticker-cta {
           display: inline-flex;
           align-items: center;
-          gap: 5px;
-          padding: 3px 10px;
-          border-radius: 100px;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.2px;
-          transition: all 0.2s ease;
-          margin-left: 4px;
-        }
-
-        .dark-theme .ticker-cta {
-          background: linear-gradient(135deg, rgba(44, 115, 217, 0.3), rgba(30, 26, 80, 0.6));
-          border: 1px solid rgba(56, 189, 248, 0.4);
-          color: #f8fafc;
-          box-shadow: 0 2px 8px rgba(44, 115, 217, 0.25);
-        }
-
-        .light-theme .ticker-cta {
-          background: #282460;
-          border: 1px solid #1f1b4d;
+          gap: 4px;
+          background: rgba(44, 115, 217, 0.22);
+          border: 1px solid rgba(56, 189, 248, 0.35);
           color: #ffffff;
-          box-shadow: 0 2px 8px rgba(40, 36, 96, 0.2);
+          padding: 2px 9px;
+          border-radius: 999px;
+          font-size: 10.5px;
+          font-weight: 600;
+          letter-spacing: 0.3px;
+          line-height: 1.4;
+          transition: all 0.2s ease;
+          margin-left: 2px;
         }
 
         .marquee-item:hover .ticker-cta {
-          transform: translateY(-1px);
-        }
-
-        .dark-theme .marquee-item:hover .ticker-cta {
           background: #2c73d9;
           border-color: #38bdf8;
-          color: #ffffff;
-          box-shadow: 0 3px 12px rgba(44, 115, 217, 0.45);
-        }
-
-        .light-theme .marquee-item:hover .ticker-cta {
-          background: #1e1b4d;
-          box-shadow: 0 4px 12px rgba(40, 36, 96, 0.3);
+          box-shadow: 0 0 10px rgba(44, 115, 217, 0.5);
+          transform: translateY(-0.5px);
         }
 
         .ticker-arrow {
@@ -238,41 +168,40 @@ export default function TopAnnouncementBar() {
         }
 
         .marquee-item:hover .ticker-arrow {
-          transform: translateX(3px);
+          transform: translateX(2.5px);
         }
 
         @media (max-width: 991px) {
           .top-announcement-bar {
-            height: 35px;
-          }
-          .marquee-item {
-            font-size: 11.5px;
-            padding: 0 20px;
-            gap: 10px;
-          }
-          .ticker-cta {
-            font-size: 10.5px;
-            padding: 2.5px 8px;
-          }
-        }
-
-        @media (max-width: 575px) {
-          .top-announcement-bar {
-            height: 33px;
+            height: 29px;
           }
           .marquee-item {
             font-size: 11px;
-            padding: 0 16px;
             gap: 8px;
+            padding: 0 18px;
+            line-height: 29px;
           }
-          .ticker-badge {
-            display: none; /* Keep clean on small mobile */
+          .ticker-cta {
+            font-size: 10px;
+            padding: 1.5px 7px;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .top-announcement-bar {
+            height: 27px;
+          }
+          .marquee-item {
+            font-size: 10.5px;
+            gap: 6px;
+            padding: 0 14px;
+            line-height: 27px;
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
           .marquee-track {
-            animation: none;
+            animation-duration: 70s;
           }
         }
       `}</style>
