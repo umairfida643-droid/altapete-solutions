@@ -239,7 +239,7 @@ export default function HomePage() {
               {/* CTAs */}
               <div 
                 className="d-flex flex-wrap align-items-center gap-3 hero-cta-buttons"
-                style={{ marginBottom: '38px' }}
+                style={{ marginBottom: '26px' }}
               >
                 <Link 
                   href="/contact-us"
@@ -255,6 +255,57 @@ export default function HomePage() {
                 >
                   <Layers size={18} color="#2c73d9" /> Explore Capabilities
                 </Link>
+              </div>
+
+              {/* Supported ERP Ecosystems Mini Logos: Oracle Fusion, Odoo, SAP Business One, Microsoft Dynamics 365, ERP NEXT */}
+              <div className="hero-erp-ecosystem">
+                <div className="hero-erp-logos-strip">
+                  <div className="hero-erp-logo-item" title="Oracle Fusion">
+                    <img 
+                      src="/assets/imgs/tech/oracle-fusion.svg" 
+                      alt="Oracle Fusion" 
+                      className="hero-erp-logo" 
+                      width="110"
+                      height="20"
+                    />
+                  </div>
+                  <div className="hero-erp-logo-item" title="Odoo">
+                    <img 
+                      src="/assets/imgs/tech/odoo-erp.svg" 
+                      alt="Odoo" 
+                      className="hero-erp-logo" 
+                      width="54"
+                      height="20"
+                    />
+                  </div>
+                  <div className="hero-erp-logo-item" title="SAP Business One">
+                    <img 
+                      src="/assets/imgs/tech/sap-business-one.svg" 
+                      alt="SAP Business One" 
+                      className="hero-erp-logo" 
+                      width="106"
+                      height="20"
+                    />
+                  </div>
+                  <div className="hero-erp-logo-item" title="Microsoft Dynamics 365">
+                    <img 
+                      src="/assets/imgs/tech/microsoft-dynamics-365.svg" 
+                      alt="Microsoft Dynamics 365" 
+                      className="hero-erp-logo" 
+                      width="114"
+                      height="20"
+                    />
+                  </div>
+                  <div className="hero-erp-logo-item" title="ERP NEXT">
+                    <img 
+                      src="/assets/imgs/tech/erpnext.svg" 
+                      alt="ERP NEXT" 
+                      className="hero-erp-logo" 
+                      width="94"
+                      height="20"
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Trust Indicators */}

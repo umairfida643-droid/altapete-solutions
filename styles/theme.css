@@ -6070,3 +6070,75 @@ html[data-theme="light"] .services-hero-secondary-btn:hover *,
 :root:not([data-theme="dark"]) .services-hero-secondary-btn:hover * {
   color: #ffffff !important;
 }
+
+/* =============================================================================
+   HERO SUPPORTED ERP PLATFORMS STRIP (ABOVE TRUST BAR)
+   Sequence: Oracle Fusion, Odoo, SAP Business One, Microsoft Dynamics 365, ERP NEXT
+   Dark Mode: Pure crisp white (#ffffff)
+   Light Mode: 100% original authentic brand colors
+   ============================================================================= */
+
+.hero-erp-ecosystem {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-erp-logos-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+}
+
+.hero-erp-logo-item {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-erp-logo-item:hover {
+  transform: translateY(-2px);
+}
+
+/* 1. Dark Mode (Default / [data-theme="dark"]): Pure White */
+.hero-erp-logo {
+  height: 20px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.88;
+  transition: all 0.3s ease;
+}
+
+.hero-erp-logo-item:hover .hero-erp-logo {
+  opacity: 1;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(255, 255, 255, 0.55)) !important;
+}
+
+/* 2. Light Mode: Authentic Brand Colors */
+[data-theme="light"] .hero-erp-logo,
+html[data-theme="light"] .hero-erp-logo,
+:root:not([data-theme="dark"]) .hero-erp-logo {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+[data-theme="light"] .hero-erp-logo-item:hover .hero-erp-logo,
+html[data-theme="light"] .hero-erp-logo-item:hover .hero-erp-logo,
+:root:not([data-theme="dark"]) .hero-erp-logo-item:hover .hero-erp-logo {
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.16)) !important;
+}
+
+@media (max-width: 768px) {
+  .hero-erp-logos-strip {
+    gap: 14px 20px;
+  }
+  .hero-erp-logo {
+    height: 17px;
+  }
+}
+
