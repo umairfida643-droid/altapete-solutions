@@ -211,8 +211,8 @@ export default function CustomAppDevelopmentView() {
             <Link href="/contact-us" className="btn btn-linear hover-up">
               Start Your Project
             </Link>
-            <Link href="/portfolio" className="cad-btn-outline hover-up">
-              View Portfolio
+            <Link href="/services" className="btn btn-outline-brand hover-up cad-btn-outline">
+              View Services
             </Link>
           </div>
           {/* Stats */}

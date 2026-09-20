@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
+import { ArrowRight } from 'lucide-react';
 
 const TECH_CARDS = [
   {
@@ -420,32 +421,10 @@ export default function TechnologyManagementView() {
             <div className="cta-btn-wrapper">
               <Link 
                 href="/contact-us" 
-                className="cta-primary-btn"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '10px',
-                  borderRadius: '50px',
-                  padding: '16px 44px',
-                  fontSize: '16px',
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  textDecoration: 'none',
-                  background: isDark 
-                    ? 'linear-gradient(135deg, #00AEEF 0%, #0088C7 100%)' 
-                    : 'linear-gradient(135deg, #2c73d9 0%, #1d4ed8 100%)',
-                  boxShadow: isDark 
-                    ? '0 12px 32px rgba(0, 174, 239, 0.4)' 
-                    : '0 12px 28px rgba(44, 115, 217, 0.35)',
-                  transition: 'all 0.3s ease'
-                }}
+                className="btn btn-linear hover-up"
               >
                 <span>Schedule Free Consultation</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+                <ArrowRight size={18} />
               </Link>
             </div>
           </div>

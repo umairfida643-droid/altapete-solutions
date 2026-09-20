@@ -242,12 +242,12 @@ export default function WhatWeDoPage() {
                     With a <strong>13-year proven heritage</strong> across Saudi Arabia and the GCC, <strong>Alta Pete Solutions</strong> empowers enterprises with certified ERP ecosystems, custom cloud platforms, and mission-critical regulatory integrations.
                   </p>
 
-                  <div className="wwd-hero-actions">
-                    <a href="#capabilities" className="wwd-primary-btn">
+                  <div className="wwd-hero-actions d-flex flex-wrap align-items-center gap-3">
+                    <a href="#capabilities" className="btn btn-linear hover-up wwd-primary-btn">
                       <span>Explore Capabilities</span>
                       <ArrowRight size={18} />
                     </a>
-                    <Link href="/contact-us" className="wwd-secondary-btn">
+                    <Link href="/contact-us" className="btn btn-outline-brand hover-up wwd-secondary-btn">
                       <span>Schedule Consultation</span>
                     </Link>
                   </div>
@@ -627,7 +627,7 @@ export default function WhatWeDoPage() {
                   </div>
 
                   <div className="mt-4 pt-2">
-                    <Link href="/contact-us" className="wwd-primary-btn">
+                    <Link href="/contact-us" className="btn btn-linear hover-up wwd-primary-btn">
                       <span>Schedule an Executive Briefing</span>
                       <ArrowRight size={17} />
                     </Link>
@@ -1603,11 +1603,6 @@ export default function WhatWeDoPage() {
           color: #cbd5e1 !important;
         }
 
-        [data-theme="dark"] .wwd-secondary-btn {
-          color: #ffffff !important;
-          border-color: rgba(0, 174, 239, 0.4);
-          background: rgba(0, 174, 239, 0.05);
-        }
 
         [data-theme="dark"] .wwd-satellite-node {
           background: rgba(13, 24, 48, 0.85);
@@ -1726,18 +1721,6 @@ export default function WhatWeDoPage() {
           color: #1e293b !important;
         }
 
-        [data-theme="light"] .wwd-secondary-btn,
-        :root:not([data-theme="dark"]) .wwd-secondary-btn {
-          color: #0f172a !important;
-          border-color: #cbd5e1;
-          background: #ffffff;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="light"] .wwd-secondary-btn:hover,
-        :root:not([data-theme="dark"]) .wwd-secondary-btn:hover {
-          background: #f1f5f9;
-        }
 
         [data-theme="light"] .wwd-satellite-node,
         :root:not([data-theme="dark"]) .wwd-satellite-node {

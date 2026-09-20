@@ -508,31 +508,14 @@ export default function HrMuqeemView() {
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 36 }}>
                         <a
                           href="#hr-services-section"
-                          className="btn btn-brand-1"
-                          style={{
-                            padding: '14px 28px',
-                            fontWeight: 600,
-                            borderRadius: 12,
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 10
-                          }}
+                          className="btn btn-linear hover-up"
                         >
                           Explore HR Solutions
                           <ArrowRight size={18} />
                         </a>
                         <Link
-                          href="/contact"
-                          className="btn btn-outline"
-                          style={{
-                            padding: '14px 28px',
-                            fontWeight: 600,
-                            borderRadius: 12,
-                            border: '1.5px solid rgba(0, 174, 239, 0.4)',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 10
-                          }}
+                          href="/contact-us"
+                          className="btn btn-outline-brand hover-up"
                         >
                           Schedule Consultation
                         </Link>
@@ -1645,16 +1628,8 @@ export default function HrMuqeemView() {
                       </p>
                       <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 16 }}>
                         <Link
-                          href="/contact"
-                          className="btn btn-brand-1"
-                          style={{
-                            padding: '15px 36px',
-                            fontWeight: 700,
-                            borderRadius: 12,
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: 10
-                          }}
+                          href="/contact-us"
+                          className="btn btn-linear hover-up"
                         >
                           Book a Consultation Call
                           <ArrowUpRight size={18} />

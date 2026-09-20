@@ -5725,6 +5725,348 @@ html[data-theme="light"] .product-detail-view span[style*="color: #b0bec5"],
   }
 }
 
+/* ==========================================================================
+   GLOBAL STANDARDIZED CTA BUTTONS (Matching Taxation & ZATCA Advisory)
+   ========================================================================== */
 
+/* Primary CTA Buttons */
+.btn-linear,
+.btn-brand-1,
+.cta-primary-btn,
+.wwd-primary-btn,
+.zatca-primary-btn,
+.odoo-hero-btn,
+.corp-hero-btn,
+.tax-hero-btn,
+.out-hero-btn,
+.services-hero-btn {
+  background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(0, 174, 239, 0.4) !important;
+  border-radius: 12px !important;
+  padding: 14px 30px !important;
+  font-size: 14.5px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  box-shadow: 0 8px 24px rgba(0, 174, 239, 0.35) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+}
 
+.btn-linear:hover,
+.btn-brand-1:hover,
+.cta-primary-btn:hover,
+.wwd-primary-btn:hover,
+.zatca-primary-btn:hover,
+.odoo-hero-btn:hover,
+.corp-hero-btn:hover,
+.tax-hero-btn:hover,
+.out-hero-btn:hover,
+.services-hero-btn:hover {
+  background: linear-gradient(135deg, #0099d8 0%, #1e5cb8 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(0, 174, 239, 0.5) !important;
+}
 
+.btn-linear *,
+.btn-brand-1 *,
+.cta-primary-btn *,
+.wwd-primary-btn *,
+.zatca-primary-btn *,
+.odoo-hero-btn *,
+.corp-hero-btn *,
+.tax-hero-btn *,
+.out-hero-btn *,
+.services-hero-btn * {
+  color: #ffffff !important;
+}
+
+/* Secondary CTA Buttons */
+.btn-outline-brand,
+.btn-outline,
+.btn-outline-custom,
+.cad-btn-outline,
+.wwd-secondary-btn,
+.zatca-secondary-btn,
+.odoo-hero-secondary-btn,
+.corp-hero-secondary-btn,
+.tax-hero-secondary-btn,
+.out-hero-secondary-btn,
+.services-hero-secondary-btn {
+  border-radius: 12px !important;
+  padding: 13px 26px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer !important;
+}
+
+/* Dark Theme for Secondary CTA */
+[data-theme="dark"] .btn-outline-brand,
+[data-theme="dark"] .btn-outline,
+[data-theme="dark"] .btn-outline-custom,
+[data-theme="dark"] .cad-btn-outline,
+[data-theme="dark"] .wwd-secondary-btn,
+[data-theme="dark"] .zatca-secondary-btn,
+[data-theme="dark"] .odoo-hero-secondary-btn,
+[data-theme="dark"] .corp-hero-secondary-btn,
+[data-theme="dark"] .tax-hero-secondary-btn,
+[data-theme="dark"] .out-hero-secondary-btn,
+[data-theme="dark"] .services-hero-secondary-btn,
+html[data-theme="dark"] .btn-outline-brand,
+html[data-theme="dark"] .btn-outline,
+html[data-theme="dark"] .btn-outline-custom,
+html[data-theme="dark"] .cad-btn-outline,
+html[data-theme="dark"] .wwd-secondary-btn,
+html[data-theme="dark"] .zatca-secondary-btn,
+html[data-theme="dark"] .odoo-hero-secondary-btn,
+html[data-theme="dark"] .corp-hero-secondary-btn,
+html[data-theme="dark"] .tax-hero-secondary-btn,
+html[data-theme="dark"] .out-hero-secondary-btn,
+html[data-theme="dark"] .services-hero-secondary-btn {
+  background: rgba(44, 115, 217, 0.12) !important;
+  border: 1.5px solid rgba(0, 174, 239, 0.5) !important;
+  color: #00C6FF !important;
+  box-shadow: 0 2px 12px rgba(0, 174, 239, 0.15) !important;
+}
+
+[data-theme="dark"] .btn-outline-brand:hover,
+[data-theme="dark"] .btn-outline:hover,
+[data-theme="dark"] .btn-outline-custom:hover,
+[data-theme="dark"] .cad-btn-outline:hover,
+[data-theme="dark"] .wwd-secondary-btn:hover,
+[data-theme="dark"] .zatca-secondary-btn:hover,
+[data-theme="dark"] .odoo-hero-secondary-btn:hover,
+[data-theme="dark"] .corp-hero-secondary-btn:hover,
+[data-theme="dark"] .tax-hero-secondary-btn:hover,
+[data-theme="dark"] .out-hero-secondary-btn:hover,
+[data-theme="dark"] .services-hero-secondary-btn:hover,
+html[data-theme="dark"] .btn-outline-brand:hover,
+html[data-theme="dark"] .btn-outline:hover,
+html[data-theme="dark"] .btn-outline-custom:hover,
+html[data-theme="dark"] .cad-btn-outline:hover,
+html[data-theme="dark"] .wwd-secondary-btn:hover,
+html[data-theme="dark"] .zatca-secondary-btn:hover,
+html[data-theme="dark"] .odoo-hero-secondary-btn:hover,
+html[data-theme="dark"] .corp-hero-secondary-btn:hover,
+html[data-theme="dark"] .tax-hero-secondary-btn:hover,
+html[data-theme="dark"] .out-hero-secondary-btn:hover,
+html[data-theme="dark"] .services-hero-secondary-btn:hover {
+  background: #00AEEF !important;
+  border-color: #00AEEF !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(0, 174, 239, 0.45) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="dark"] .btn-outline-brand *,
+[data-theme="dark"] .btn-outline *,
+[data-theme="dark"] .btn-outline-custom *,
+[data-theme="dark"] .cad-btn-outline *,
+[data-theme="dark"] .wwd-secondary-btn *,
+[data-theme="dark"] .zatca-secondary-btn *,
+[data-theme="dark"] .odoo-hero-secondary-btn *,
+[data-theme="dark"] .corp-hero-secondary-btn *,
+[data-theme="dark"] .tax-hero-secondary-btn *,
+[data-theme="dark"] .out-hero-secondary-btn *,
+[data-theme="dark"] .services-hero-secondary-btn *,
+html[data-theme="dark"] .btn-outline-brand *,
+html[data-theme="dark"] .btn-outline *,
+html[data-theme="dark"] .btn-outline-custom *,
+html[data-theme="dark"] .cad-btn-outline *,
+html[data-theme="dark"] .wwd-secondary-btn *,
+html[data-theme="dark"] .zatca-secondary-btn *,
+html[data-theme="dark"] .odoo-hero-secondary-btn *,
+html[data-theme="dark"] .corp-hero-secondary-btn *,
+html[data-theme="dark"] .tax-hero-secondary-btn *,
+html[data-theme="dark"] .out-hero-secondary-btn *,
+html[data-theme="dark"] .services-hero-secondary-btn * {
+  color: #00C6FF !important;
+}
+
+[data-theme="dark"] .btn-outline-brand:hover *,
+[data-theme="dark"] .btn-outline:hover *,
+[data-theme="dark"] .btn-outline-custom:hover *,
+[data-theme="dark"] .cad-btn-outline:hover *,
+[data-theme="dark"] .wwd-secondary-btn:hover *,
+[data-theme="dark"] .zatca-secondary-btn:hover *,
+[data-theme="dark"] .odoo-hero-secondary-btn:hover *,
+[data-theme="dark"] .corp-hero-secondary-btn:hover *,
+[data-theme="dark"] .tax-hero-secondary-btn:hover *,
+[data-theme="dark"] .out-hero-secondary-btn:hover *,
+[data-theme="dark"] .services-hero-secondary-btn:hover *,
+html[data-theme="dark"] .btn-outline-brand:hover *,
+html[data-theme="dark"] .btn-outline:hover *,
+html[data-theme="dark"] .btn-outline-custom:hover *,
+html[data-theme="dark"] .cad-btn-outline:hover *,
+html[data-theme="dark"] .wwd-secondary-btn:hover *,
+html[data-theme="dark"] .zatca-secondary-btn:hover *,
+html[data-theme="dark"] .odoo-hero-secondary-btn:hover *,
+html[data-theme="dark"] .corp-hero-secondary-btn:hover *,
+html[data-theme="dark"] .tax-hero-secondary-btn:hover *,
+html[data-theme="dark"] .out-hero-secondary-btn:hover *,
+html[data-theme="dark"] .services-hero-secondary-btn:hover * {
+  color: #ffffff !important;
+}
+
+/* Light Theme for Secondary CTA */
+[data-theme="light"] .btn-outline-brand,
+[data-theme="light"] .btn-outline,
+[data-theme="light"] .btn-outline-custom,
+[data-theme="light"] .cad-btn-outline,
+[data-theme="light"] .wwd-secondary-btn,
+[data-theme="light"] .zatca-secondary-btn,
+[data-theme="light"] .odoo-hero-secondary-btn,
+[data-theme="light"] .corp-hero-secondary-btn,
+[data-theme="light"] .tax-hero-secondary-btn,
+[data-theme="light"] .out-hero-secondary-btn,
+[data-theme="light"] .services-hero-secondary-btn,
+html[data-theme="light"] .btn-outline-brand,
+html[data-theme="light"] .btn-outline,
+html[data-theme="light"] .btn-outline-custom,
+html[data-theme="light"] .cad-btn-outline,
+html[data-theme="light"] .wwd-secondary-btn,
+html[data-theme="light"] .zatca-secondary-btn,
+html[data-theme="light"] .odoo-hero-secondary-btn,
+html[data-theme="light"] .corp-hero-secondary-btn,
+html[data-theme="light"] .tax-hero-secondary-btn,
+html[data-theme="light"] .out-hero-secondary-btn,
+html[data-theme="light"] .services-hero-secondary-btn,
+:root:not([data-theme="dark"]) .btn-outline-brand,
+:root:not([data-theme="dark"]) .btn-outline,
+:root:not([data-theme="dark"]) .btn-outline-custom,
+:root:not([data-theme="dark"]) .cad-btn-outline,
+:root:not([data-theme="dark"]) .wwd-secondary-btn,
+:root:not([data-theme="dark"]) .zatca-secondary-btn,
+:root:not([data-theme="dark"]) .odoo-hero-secondary-btn,
+:root:not([data-theme="dark"]) .corp-hero-secondary-btn,
+:root:not([data-theme="dark"]) .tax-hero-secondary-btn,
+:root:not([data-theme="dark"]) .out-hero-secondary-btn,
+:root:not([data-theme="dark"]) .services-hero-secondary-btn {
+  background: rgba(44, 115, 217, 0.08) !important;
+  border: 1.5px solid rgba(44, 115, 217, 0.4) !important;
+  color: #1e40af !important;
+  box-shadow: 0 2px 8px rgba(44, 115, 217, 0.1) !important;
+}
+
+[data-theme="light"] .btn-outline-brand:hover,
+[data-theme="light"] .btn-outline:hover,
+[data-theme="light"] .btn-outline-custom:hover,
+[data-theme="light"] .cad-btn-outline:hover,
+[data-theme="light"] .wwd-secondary-btn:hover,
+[data-theme="light"] .zatca-secondary-btn:hover,
+[data-theme="light"] .odoo-hero-secondary-btn:hover,
+[data-theme="light"] .corp-hero-secondary-btn:hover,
+[data-theme="light"] .tax-hero-secondary-btn:hover,
+[data-theme="light"] .out-hero-secondary-btn:hover,
+[data-theme="light"] .services-hero-secondary-btn:hover,
+html[data-theme="light"] .btn-outline-brand:hover,
+html[data-theme="light"] .btn-outline:hover,
+html[data-theme="light"] .btn-outline-custom:hover,
+html[data-theme="light"] .cad-btn-outline:hover,
+html[data-theme="light"] .wwd-secondary-btn:hover,
+html[data-theme="light"] .zatca-secondary-btn:hover,
+html[data-theme="light"] .odoo-hero-secondary-btn:hover,
+html[data-theme="light"] .corp-hero-secondary-btn:hover,
+html[data-theme="light"] .tax-hero-secondary-btn:hover,
+html[data-theme="light"] .out-hero-secondary-btn:hover,
+html[data-theme="light"] .services-hero-secondary-btn:hover,
+:root:not([data-theme="dark"]) .btn-outline-brand:hover,
+:root:not([data-theme="dark"]) .btn-outline:hover,
+:root:not([data-theme="dark"]) .btn-outline-custom:hover,
+:root:not([data-theme="dark"]) .cad-btn-outline:hover,
+:root:not([data-theme="dark"]) .wwd-secondary-btn:hover,
+:root:not([data-theme="dark"]) .zatca-secondary-btn:hover,
+:root:not([data-theme="dark"]) .odoo-hero-secondary-btn:hover,
+:root:not([data-theme="dark"]) .corp-hero-secondary-btn:hover,
+:root:not([data-theme="dark"]) .tax-hero-secondary-btn:hover,
+:root:not([data-theme="dark"]) .out-hero-secondary-btn:hover,
+:root:not([data-theme="dark"]) .services-hero-secondary-btn:hover {
+  background: #2c73d9 !important;
+  border-color: #2c73d9 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 16px rgba(44, 115, 217, 0.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+[data-theme="light"] .btn-outline-brand *,
+[data-theme="light"] .btn-outline *,
+[data-theme="light"] .btn-outline-custom *,
+[data-theme="light"] .cad-btn-outline *,
+[data-theme="light"] .wwd-secondary-btn *,
+[data-theme="light"] .zatca-secondary-btn *,
+[data-theme="light"] .odoo-hero-secondary-btn *,
+[data-theme="light"] .corp-hero-secondary-btn *,
+[data-theme="light"] .tax-hero-secondary-btn *,
+[data-theme="light"] .out-hero-secondary-btn *,
+[data-theme="light"] .services-hero-secondary-btn *,
+html[data-theme="light"] .btn-outline-brand *,
+html[data-theme="light"] .btn-outline *,
+html[data-theme="light"] .btn-outline-custom *,
+html[data-theme="light"] .cad-btn-outline *,
+html[data-theme="light"] .wwd-secondary-btn *,
+html[data-theme="light"] .zatca-secondary-btn *,
+html[data-theme="light"] .odoo-hero-secondary-btn *,
+html[data-theme="light"] .corp-hero-secondary-btn *,
+html[data-theme="light"] .tax-hero-secondary-btn *,
+html[data-theme="light"] .out-hero-secondary-btn *,
+html[data-theme="light"] .services-hero-secondary-btn *,
+:root:not([data-theme="dark"]) .btn-outline-brand *,
+:root:not([data-theme="dark"]) .btn-outline *,
+:root:not([data-theme="dark"]) .btn-outline-custom *,
+:root:not([data-theme="dark"]) .cad-btn-outline *,
+:root:not([data-theme="dark"]) .wwd-secondary-btn *,
+:root:not([data-theme="dark"]) .zatca-secondary-btn *,
+:root:not([data-theme="dark"]) .odoo-hero-secondary-btn *,
+:root:not([data-theme="dark"]) .corp-hero-secondary-btn *,
+:root:not([data-theme="dark"]) .tax-hero-secondary-btn *,
+:root:not([data-theme="dark"]) .out-hero-secondary-btn *,
+:root:not([data-theme="dark"]) .services-hero-secondary-btn * {
+  color: #1e40af !important;
+}
+
+[data-theme="light"] .btn-outline-brand:hover *,
+[data-theme="light"] .btn-outline:hover *,
+[data-theme="light"] .btn-outline-custom:hover *,
+[data-theme="light"] .cad-btn-outline:hover *,
+[data-theme="light"] .wwd-secondary-btn:hover *,
+[data-theme="light"] .zatca-secondary-btn:hover *,
+[data-theme="light"] .odoo-hero-secondary-btn:hover *,
+[data-theme="light"] .corp-hero-secondary-btn:hover *,
+[data-theme="light"] .tax-hero-secondary-btn:hover *,
+[data-theme="light"] .out-hero-secondary-btn:hover *,
+[data-theme="light"] .services-hero-secondary-btn:hover *,
+html[data-theme="light"] .btn-outline-brand:hover *,
+html[data-theme="light"] .btn-outline:hover *,
+html[data-theme="light"] .btn-outline-custom:hover *,
+html[data-theme="light"] .cad-btn-outline:hover *,
+html[data-theme="light"] .wwd-secondary-btn:hover *,
+html[data-theme="light"] .zatca-secondary-btn:hover *,
+html[data-theme="light"] .odoo-hero-secondary-btn:hover *,
+html[data-theme="light"] .corp-hero-secondary-btn:hover *,
+html[data-theme="light"] .tax-hero-secondary-btn:hover *,
+html[data-theme="light"] .out-hero-secondary-btn:hover *,
+html[data-theme="light"] .services-hero-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .btn-outline-brand:hover *,
+:root:not([data-theme="dark"]) .btn-outline:hover *,
+:root:not([data-theme="dark"]) .btn-outline-custom:hover *,
+:root:not([data-theme="dark"]) .cad-btn-outline:hover *,
+:root:not([data-theme="dark"]) .wwd-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .zatca-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .odoo-hero-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .corp-hero-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .tax-hero-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .out-hero-secondary-btn:hover *,
+:root:not([data-theme="dark"]) .services-hero-secondary-btn:hover * {
+  color: #ffffff !important;
+}

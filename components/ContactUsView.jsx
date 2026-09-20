@@ -444,7 +444,7 @@ export default function ContactUsView() {
                   <span>Submit RFP / Project Scope</span>
                   <ArrowRight size={16} />
                 </a>
-                <a href="#geographic-map" className="btn btn-outline-custom hover-up">
+                <a href="#geographic-map" className="btn btn-outline-brand hover-up">
                   <Compass size={16} />
                   <span>Explore Regional Offices</span>
                 </a>
@@ -1298,7 +1298,7 @@ export default function ContactUsView() {
                           message: ''
                         });
                       }}
-                      className="btn btn-outline-custom mt-4 hover-up"
+                      className="btn btn-outline-brand mt-4 hover-up"
                     >
                       Submit Another Inquiry
                     </button>
@@ -1702,9 +1702,9 @@ export default function ContactUsView() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 12px 24px;
-          border-radius: 10px;
-          font-weight: 600;
+          padding: 14px 28px;
+          border-radius: 12px;
+          font-weight: 700;
           font-size: 14.5px;
           background: #10b981;
           color: #ffffff !important;
@@ -1714,6 +1714,7 @@ export default function ContactUsView() {
 
         .btn-whatsapp:hover {
           background: #059669;
+          transform: translateY(-2px);
           box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
         }
 

@@ -214,12 +214,12 @@ export default function ZatcaIntegrationView() {
                 Achieve 100% full ZATCA (FATOORA) Phase 2 e-invoicing compliance with our enterprise integration solutions. We ensure seamless cryptographic clearance and reporting while preserving uninterrupted business velocity.
               </p>
 
-              <div className="zatca-hero-actions">
-                <Link href="/contact-us" className="zatca-primary-btn">
+              <div className="zatca-hero-actions d-flex flex-wrap align-items-center gap-3">
+                <Link href="/contact-us" className="btn btn-linear hover-up zatca-primary-btn">
                   <span>Schedule ZATCA Consultation</span>
                   <ArrowRight size={17} />
                 </Link>
-                <a href="#compliance-solutions" className="zatca-secondary-btn">
+                <a href="#compliance-solutions" className="btn btn-outline-brand hover-up zatca-secondary-btn">
                   <span>Explore Solutions</span>
                 </a>
               </div>
@@ -487,11 +487,11 @@ export default function ZatcaIntegrationView() {
               Connect with our certified Saudi integration specialists today to evaluate your ERP infrastructure, initiate sandbox testing, and secure immediate compliance.
             </p>
             <div className="d-flex justify-content-center gap-3 flex-wrap">
-              <Link href="/contact-us" className="zatca-primary-btn">
+              <Link href="/contact-us" className="btn btn-linear hover-up zatca-primary-btn">
                 <span>Book Compliance Consultation</span>
                 <ArrowRight size={17} />
               </Link>
-              <a href="tel:+966551013823" className="zatca-secondary-btn">
+              <a href="tel:+966551013823" className="btn btn-outline-brand hover-up zatca-secondary-btn">
                 <span>Call Saudi Office (+966 55 101 3823)</span>
               </a>
             </div>
@@ -1248,11 +1248,6 @@ export default function ZatcaIntegrationView() {
           color: #cbd5e1;
         }
 
-        [data-theme="dark"] .zatca-secondary-btn {
-          color: #ffffff !important;
-          border-color: rgba(0, 174, 239, 0.4);
-          background: rgba(0, 174, 239, 0.05);
-        }
 
         /* ---------------- LIGHT THEME ---------------- */
         [data-theme="light"] .zatca-view-wrapper,
@@ -1363,12 +1358,6 @@ export default function ZatcaIntegrationView() {
           color: #0f172a;
         }
 
-        [data-theme="light"] .zatca-secondary-btn,
-        :root:not([data-theme="dark"]) .zatca-secondary-btn {
-          color: #0f172a !important;
-          border-color: #cbd5e1;
-          background: #ffffff;
-        }
       `}</style>
     </div>
   );
