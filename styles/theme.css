@@ -4732,6 +4732,52 @@ button[style*="linear-gradient"],
   color: #475569 !important;
 }
 
+/* ── Company Profile CTA Banner White Text in All Themes ── */
+.cp-cta-banner h2,
+.cp-cta-banner .cp-cta-heading,
+[data-theme="light"] .cp-cta-banner h2,
+[data-theme="light"] .cp-cta-banner .cp-cta-heading,
+html[data-theme="light"] .cp-cta-banner h2,
+html[data-theme="light"] .cp-cta-banner .cp-cta-heading,
+.light-theme .cp-cta-banner h2,
+.light-theme .cp-cta-banner .cp-cta-heading {
+  color: #ffffff !important;
+}
+
+.cp-cta-banner p,
+.cp-cta-banner .cp-cta-sub,
+[data-theme="light"] .cp-cta-banner p,
+[data-theme="light"] .cp-cta-banner .cp-cta-sub,
+html[data-theme="light"] .cp-cta-banner p,
+html[data-theme="light"] .cp-cta-banner .cp-cta-sub,
+.light-theme .cp-cta-banner p,
+.light-theme .cp-cta-banner .cp-cta-sub {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.cp-cta-banner a,
+.cp-cta-banner .cp-cta-btn-primary,
+.cp-cta-banner .cp-cta-btn-secondary,
+[data-theme="light"] .cp-cta-banner a,
+[data-theme="light"] .cp-cta-banner .cp-cta-btn-primary,
+[data-theme="light"] .cp-cta-banner .cp-cta-btn-secondary,
+html[data-theme="light"] .cp-cta-banner a,
+html[data-theme="light"] .cp-cta-banner .cp-cta-btn-primary,
+html[data-theme="light"] .cp-cta-banner .cp-cta-btn-secondary,
+.light-theme .cp-cta-banner a,
+.light-theme .cp-cta-banner .cp-cta-btn-primary,
+.light-theme .cp-cta-banner .cp-cta-btn-secondary {
+  color: #ffffff !important;
+}
+
+.cp-cta-banner .cp-cta-btn-secondary,
+[data-theme="light"] .cp-cta-banner .cp-cta-btn-secondary,
+html[data-theme="light"] .cp-cta-banner .cp-cta-btn-secondary,
+.light-theme .cp-cta-banner .cp-cta-btn-secondary {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.28) !important;
+}
+
 /* -- Remove spinning orbit circles from all pages globally -- */
 @keyframes apSpin { from { transform: none; } to { transform: none; } }
 @keyframes apSpinBack { from { transform: none; } to { transform: none; } }

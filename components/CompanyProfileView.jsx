@@ -476,17 +476,20 @@ export default function CompanyProfileView() {
       {/* ─────────────────────────── CTA ──────────────────────────── */}
       <section style={{ padding: '60px 0 80px' }}>
         <div className="container" style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
-          <div style={{
-            background: isDark
-              ? 'linear-gradient(135deg, #0d1b35 0%, #0a1628 100%)'
-              : 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
-            borderRadius: 24,
-            padding: 'clamp(40px, 6vw, 72px)',
-            textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden',
-            border: isDark ? '1px solid rgba(0,174,239,0.15)' : 'none',
-          }}>
+          <div
+            className="cp-cta-banner"
+            style={{
+              background: isDark
+                ? 'linear-gradient(135deg, #0d1b35 0%, #0a1628 100%)'
+                : 'linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%)',
+              borderRadius: 24,
+              padding: 'clamp(40px, 6vw, 72px)',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
+              border: isDark ? '1px solid rgba(0,174,239,0.15)' : 'none',
+            }}
+          >
             <div style={{
               position: 'absolute', top: '50%', left: '50%',
               transform: 'translate(-50%, -50%)',
@@ -495,15 +498,33 @@ export default function CompanyProfileView() {
               pointerEvents: 'none',
             }} />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontSize: 'clamp(24px, 4vw, 42px)', fontWeight: 800, color: '#ffffff', marginBottom: 16 }}>
+              <h2
+                className="cp-cta-heading"
+                style={{
+                  fontSize: 'clamp(24px, 4vw, 42px)',
+                  fontWeight: 800,
+                  color: '#ffffff',
+                  marginBottom: 16
+                }}
+              >
                 Ready to Partner with Altapete?
               </h2>
-              <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.72)', maxWidth: 500, margin: '0 auto 36px', lineHeight: 1.7 }}>
+              <p
+                className="cp-cta-sub"
+                style={{
+                  fontSize: 16,
+                  color: 'rgba(255,255,255,0.9)',
+                  maxWidth: 500,
+                  margin: '0 auto 36px',
+                  lineHeight: 1.7
+                }}
+              >
                 Reach out to our team for a tailored consultation or to discuss how our services align with your business goals.
               </p>
               <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Link
-                  href="/contact"
+                  href="/contact-us"
+                  className="cp-cta-btn-primary"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     background: '#00AEEF',
@@ -520,6 +541,7 @@ export default function CompanyProfileView() {
                 </Link>
                 <Link
                   href="/what-we-do"
+                  className="cp-cta-btn-secondary"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     background: 'rgba(255,255,255,0.12)',
@@ -566,6 +588,44 @@ export default function CompanyProfileView() {
           .cp-hero-stats {
             flex-direction: column;
           }
+        }
+
+        /* Enforce pure white text on dark gradient CTA banner in all themes */
+        :global(.cp-cta-banner h2),
+        :global(.cp-cta-heading),
+        :global([data-theme="light"] .cp-cta-banner h2),
+        :global([data-theme="light"] .cp-cta-heading),
+        :global(html[data-theme="light"] .cp-cta-banner h2),
+        :global(html[data-theme="light"] .cp-cta-heading) {
+          color: #ffffff !important;
+        }
+
+        :global(.cp-cta-banner p),
+        :global(.cp-cta-sub),
+        :global([data-theme="light"] .cp-cta-banner p),
+        :global([data-theme="light"] .cp-cta-sub),
+        :global(html[data-theme="light"] .cp-cta-banner p),
+        :global(html[data-theme="light"] .cp-cta-sub) {
+          color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        :global(.cp-cta-banner a),
+        :global(.cp-cta-btn-primary),
+        :global(.cp-cta-btn-secondary),
+        :global([data-theme="light"] .cp-cta-banner a),
+        :global([data-theme="light"] .cp-cta-btn-primary),
+        :global([data-theme="light"] .cp-cta-btn-secondary),
+        :global(html[data-theme="light"] .cp-cta-banner a),
+        :global(html[data-theme="light"] .cp-cta-btn-primary),
+        :global(html[data-theme="light"] .cp-cta-btn-secondary) {
+          color: #ffffff !important;
+        }
+
+        :global(.cp-cta-btn-secondary),
+        :global([data-theme="light"] .cp-cta-btn-secondary),
+        :global(html[data-theme="light"] .cp-cta-btn-secondary) {
+          background: rgba(255, 255, 255, 0.12) !important;
+          border-color: rgba(255, 255, 255, 0.28) !important;
         }
       `}</style>
     </div>
