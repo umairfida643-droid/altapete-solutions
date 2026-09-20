@@ -2366,6 +2366,13 @@ html[data-theme="light"] .consultation-input::placeholder {
   color: #94a3b8 !important;
 }
 
+[data-theme="light"] .consultation-input:focus,
+html[data-theme="light"] .consultation-input:focus {
+  border-color: #2c73d9 !important;
+  box-shadow: 0 0 0 3px rgba(44, 115, 217, 0.15) !important;
+  background: #ffffff !important;
+}
+
 [data-theme="dark"] .consultation-form-card,
 html[data-theme="dark"] .consultation-form-card {
   background: rgba(19, 17, 42, 0.85) !important;

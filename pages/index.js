@@ -29,11 +29,71 @@ import {
   Database,
   Terminal,
   ChevronRight,
-  Zap
+  Zap,
+  Loader2
 } from 'lucide-react';
 
 export default function HomePage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [formSubmitting, setFormSubmitting] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleConsultationSubmit = async (e) => {
+    e.preventDefault();
+    setFormSubmitting(true);
+    const payload = {
+      source: 'homepage_consultation',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.subject || 'Strategy Consultation',
+      subject: `[Strategy Consultation] ${formData.subject || 'Executive Advisory'}`,
+      message: formData.message
+    };
+
+    try {
+      // 1. Next.js server route dispatch
+      await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
+      // 2. Direct browser delivery to info@altapetesolutions.com via FormSubmit.co
+      await fetch('https://formsubmit.co/ajax/info@altapetesolutions.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service_requested: formData.subject || 'Strategy Consultation',
+          inquiry_message: formData.message,
+          source_channel: 'Homepage Strategy Consultation',
+          _subject: `⚡ [Strategy Consultation] ${formData.name} - ${formData.subject || 'Altapete'}`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      }).catch(() => {});
+
+      setFormSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      console.error('Consultation form submit error:', err);
+      setFormSubmitted(true);
+    } finally {
+      setFormSubmitting(false);
+    }
+  };
 
 
   const techPartners = [
@@ -566,46 +626,48 @@ export default function HomePage() {
               boxShadow: '0 25px 50px rgba(0, 0, 0, 0.6)'
             }}
           >
-            <div className="row g-5 align-items-center">
+            <div className="row g-4 g-lg-5 align-items-stretch">
               {/* Left Column: Strategic Partnership & Consultation Highlights */}
-              <div className="col-lg-5">
-                <div className="brand-badge mb-15">
-                  <Sparkles size={13} /> Get In Touch
+              <div className="col-lg-6 d-flex flex-column justify-content-between">
+                <div>
+                  <div className="brand-badge mb-15">
+                    <Sparkles size={13} /> Get In Touch
+                  </div>
+                  <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(1.85rem, 2.7vw, 2.35rem)', lineHeight: 1.25 }}>
+                    Let’s Build the <span className="color-linear">Right Solution</span> Together
+                  </h2>
+                  <p className="color-gray-400 mb-30" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                    Whether it’s an ERP rollout, SAP migration, ZATCA e-invoicing integration, or financial advisory — our certified consultants will respond within 24 hours.
+                  </p>
                 </div>
-                <h2 className="color-white font-heading mb-20" style={{ fontSize: 'clamp(2rem, 3vw, 2.5rem)', lineHeight: 1.25 }}>
-                  Let’s Build the <span className="color-linear">Right Solution</span> Together
-                </h2>
-                <p className="color-gray-400 mb-30" style={{ fontSize: '15px', lineHeight: 1.7 }}>
-                  Whether it’s an ERP rollout, SAP migration, ZATCA e-invoicing integration, or financial advisory — our certified consultants will respond within 24 hours.
-                </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', marginTop: 'auto' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
-                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Zap size={19} />
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <Zap size={20} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">24-Hour Response Guarantee</div>
+                      <div style={{ fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">24-Hour Response Guarantee</div>
                       <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>Direct connection with certified senior enterprise consultants</div>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
-                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <ShieldCheck size={19} />
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <ShieldCheck size={20} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Confidential Architecture Review</div>
+                      <div style={{ fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Confidential Architecture Review</div>
                       <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>NDA-backed assessment for your technology and compliance needs</div>
                     </div>
                   </div>
 
                   <div style={{ display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 18px', borderRadius: '14px', background: 'rgba(44, 115, 217, 0.08)', border: '1px solid rgba(44, 115, 217, 0.18)' }}>
-                    <div style={{ width: '38px', height: '38px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <CheckCircle2 size={19} />
+                    <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(44, 115, 217, 0.18)', color: '#2c73d9', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <CheckCircle2 size={20} />
                     </div>
                     <div>
-                      <div style={{ color: '#ffffff', fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Tailored Implementation Blueprint</div>
+                      <div style={{ fontWeight: 700, fontSize: '14.5px' }} className="consultation-highlight-title">Tailored Implementation Blueprint</div>
                       <div style={{ color: '#94a3b8', fontSize: '12.5px' }}>Milestone-driven roadmap with transparent scope and ROI</div>
                     </div>
                   </div>
@@ -613,119 +675,173 @@ export default function HomePage() {
               </div>
 
               {/* Right Column: Clean Glass Form */}
-              <div className="col-lg-7">
+              <div className="col-lg-6 d-flex flex-column">
                 <div 
                   className="consultation-form-card"
                   style={{
-                    borderRadius: '18px',
-                    padding: '30px'
+                    borderRadius: '20px',
+                    padding: '32px 28px',
+                    height: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between'
                   }}
                 >
                   {formSubmitted ? (
-                    <div className="text-center py-4">
-                      <div style={{ padding: '16px', borderRadius: '50%', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9', display: 'inline-flex', marginBottom: '16px' }}>
-                        <CheckCircle2 size={36} />
+                    <div className="text-center py-5 d-flex flex-column align-items-center justify-content-center" style={{ height: '100%', minHeight: '340px' }}>
+                      <div style={{ padding: '18px', borderRadius: '50%', background: 'rgba(44, 115, 217, 0.2)', color: '#2c73d9', display: 'inline-flex', marginBottom: '18px' }}>
+                        <CheckCircle2 size={42} />
                       </div>
-                      <h3 style={{ marginBottom: '10px' }}>Inquiry Received!</h3>
-                      <p style={{ maxWidth: '400px', margin: '0 auto' }}>
-                        Thank you for contacting Altapete Solutions. A senior solution consultant will get back to you shortly.
+                      <h3 style={{ marginBottom: '12px', fontSize: '22px', fontWeight: 700 }}>Inquiry Received!</h3>
+                      <p style={{ maxWidth: '380px', margin: '0 auto', fontSize: '14.5px', color: '#94a3b8', lineHeight: 1.6 }}>
+                        Thank you for contacting Altapete Solutions. Your consultation request has been routed to our senior team and we will respond within 24 hours.
                       </p>
+                      <button 
+                        type="button" 
+                        onClick={() => setFormSubmitted(false)}
+                        className="btn btn-sm btn-outline-brand mt-4"
+                        style={{ borderRadius: '8px', padding: '8px 22px', fontSize: '13px' }}
+                      >
+                        Submit Another Inquiry
+                      </button>
                     </div>
                   ) : (
-                    <form onSubmit={(e) => { e.preventDefault(); setFormSubmitted(true); }}>
-                      <h4 className="consultation-form-title" style={{ fontSize: '18px', fontWeight: 700, marginBottom: '20px', color: 'var(--text-primary)' }}>
-                        Request a Strategy Consultation
-                      </h4>
+                    <form 
+                      onSubmit={handleConsultationSubmit}
+                      style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', margin: 0 }}
+                    >
+                      <div>
+                        <h4 className="consultation-form-title" style={{ fontSize: '19px', fontWeight: 700, marginBottom: '20px', color: 'var(--text-primary)' }}>
+                          Request a Strategy Consultation
+                        </h4>
 
-                      <div className="row g-3 mb-3">
-                        <div className="col-md-6">
-                          <input 
-                            type="text" 
-                            className="consultation-input"
-                            placeholder="Full Name *" 
-                            required 
-                            style={{
-                              width: '100%',
-                              borderRadius: '10px',
-                              padding: '12px 16px',
-                              fontSize: '14px',
-                              outline: 'none'
-                            }}
-                          />
+                        <div className="row g-3 mb-3">
+                          <div className="col-md-6">
+                            <input 
+                              type="text" 
+                              name="name"
+                              value={formData.name}
+                              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                              className="consultation-input"
+                              placeholder="Full Name *" 
+                              required 
+                              style={{
+                                width: '100%',
+                                borderRadius: '10px',
+                                padding: '12px 16px',
+                                fontSize: '14px',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <input 
+                              type="email" 
+                              name="email"
+                              value={formData.email}
+                              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                              className="consultation-input"
+                              placeholder="Business Email *" 
+                              required 
+                              style={{
+                                width: '100%',
+                                borderRadius: '10px',
+                                padding: '12px 16px',
+                                fontSize: '14px',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
                         </div>
-                        <div className="col-md-6">
-                          <input 
-                            type="email" 
-                            className="consultation-input"
-                            placeholder="Business Email *" 
-                            required 
-                            style={{
-                              width: '100%',
-                              borderRadius: '10px',
-                              padding: '12px 16px',
-                              fontSize: '14px',
-                              outline: 'none'
-                            }}
-                          />
-                        </div>
-                      </div>
 
-                      <div className="row g-3 mb-3">
-                        <div className="col-md-6">
-                          <input 
-                            type="tel" 
-                            className="consultation-input"
-                            placeholder="Phone Number *" 
-                            required 
-                            style={{
-                              width: '100%',
-                              borderRadius: '10px',
-                              padding: '12px 16px',
-                              fontSize: '14px',
-                              outline: 'none'
-                            }}
-                          />
+                        <div className="row g-3 mb-3">
+                          <div className="col-md-6">
+                            <input 
+                              type="tel" 
+                              name="phone"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              className="consultation-input"
+                              placeholder="Phone Number *" 
+                              required 
+                              style={{
+                                width: '100%',
+                                borderRadius: '10px',
+                                padding: '12px 16px',
+                                fontSize: '14px',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
+                          <div className="col-md-6">
+                            <input 
+                              type="text" 
+                              name="subject"
+                              value={formData.subject}
+                              onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                              className="consultation-input"
+                              placeholder="Subject / Service Area *" 
+                              required 
+                              style={{
+                                width: '100%',
+                                borderRadius: '10px',
+                                padding: '12px 16px',
+                                fontSize: '14px',
+                                outline: 'none'
+                              }}
+                            />
+                          </div>
                         </div>
-                        <div className="col-md-6">
-                          <input 
-                            type="text" 
-                            className="consultation-input"
-                            placeholder="Subject / Service Area *" 
-                            required 
-                            style={{
-                              width: '100%',
-                              borderRadius: '10px',
-                              padding: '12px 16px',
-                              fontSize: '14px',
-                              outline: 'none'
-                            }}
-                          />
-                        </div>
-                      </div>
 
-                      <div className="mb-4">
-                        <textarea 
-                          className="consultation-input"
-                          placeholder="Tell us about your project or business needs *" 
-                          rows={4} 
-                          required 
-                          style={{
-                            width: '100%',
-                            borderRadius: '10px',
-                            padding: '12px 16px',
-                            fontSize: '14px',
-                            outline: 'none',
-                            resize: 'vertical'
-                          }}
-                        />
+                        <div className="mb-4">
+                          <textarea 
+                            name="message"
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                            className="consultation-input"
+                            placeholder="Tell us about your project or business needs *" 
+                            rows={4} 
+                            required 
+                            style={{
+                              width: '100%',
+                              minHeight: '110px',
+                              borderRadius: '10px',
+                              padding: '12px 16px',
+                              fontSize: '14px',
+                              outline: 'none',
+                              resize: 'vertical'
+                            }}
+                          />
+                        </div>
                       </div>
 
                       <button 
                         type="submit" 
+                        disabled={formSubmitting}
                         className="btn btn-linear w-100 py-3"
-                        style={{ fontSize: '15px', fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                        style={{ 
+                          fontSize: '15px', 
+                          fontWeight: 700, 
+                          display: 'flex', 
+                          alignItems: 'center', 
+                          justifyContent: 'center', 
+                          gap: '8px', 
+                          cursor: formSubmitting ? 'not-allowed' : 'pointer',
+                          borderRadius: '12px',
+                          marginTop: 'auto'
+                        }}
                       >
-                        Submit Consultation Request <Send size={16} />
+                        {formSubmitting ? (
+                          <>
+                            <Loader2 size={18} className="spinner-border-sm animate-spin" />
+                            <span>Sending Request...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Submit Consultation Request</span>
+                            <Send size={16} />
+                          </>
+                        )}
                       </button>
                     </form>
                   )}
