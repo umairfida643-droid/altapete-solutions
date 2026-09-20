@@ -225,18 +225,22 @@ export default function HomePage() {
 
               {/* Subtitle */}
               <p 
-                className="hero-subtitle mb-35"
+                className="hero-subtitle"
                 style={{
                   fontSize: 'clamp(1.02rem, 1.3vw, 1.15rem)',
                   lineHeight: 1.75,
-                  maxWidth: '560px'
+                  maxWidth: '560px',
+                  marginBottom: '32px'
                 }}
               >
                 <strong className="brand-highlight">Altapete</strong> delivers expert ERP, SAP, Oracle, and bookkeeping solutions to streamline operations, reduce operational costs, and accelerate enterprise growth.
               </p>
 
               {/* CTAs */}
-              <div className="d-flex flex-wrap align-items-center gap-3">
+              <div 
+                className="d-flex flex-wrap align-items-center gap-3 hero-cta-buttons"
+                style={{ marginBottom: '38px' }}
+              >
                 <Link 
                   href="/contact-us"
                   className="btn btn-linear hover-up"
@@ -247,14 +251,20 @@ export default function HomePage() {
                 <Link 
                   href="/what-we-do"
                   className="btn-outline-brand hover-up"
-                  style={{ padding: '14px 28px', fontSize: '15px' }}
+                  style={{ padding: '14px 28px', fontSize: '15px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                 >
                   <Layers size={18} color="#2c73d9" /> Explore Capabilities
                 </Link>
               </div>
 
               {/* Trust Indicators */}
-              <div className="mt-40 pt-25 border-top d-flex align-items-center gap-4 flex-wrap hero-trust-bar" style={{ borderColor: 'var(--border-color)' }}>
+              <div 
+                className="border-top d-flex align-items-center gap-4 flex-wrap hero-trust-bar" 
+                style={{ 
+                  borderColor: 'var(--border-color)',
+                  paddingTop: '24px'
+                }}
+              >
                 <div className="d-flex align-items-center gap-2">
                   <ShieldCheck size={20} color="#2c73d9" />
                   <span className="hero-trust-text" style={{ fontSize: '13.5px', fontWeight: 600 }}>ZATCA Phase 2 Certified</span>

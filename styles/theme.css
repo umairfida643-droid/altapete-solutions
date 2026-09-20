@@ -2169,7 +2169,6 @@ section h3.font-heading,
 }
 
 .section-subtitle,
-.hero-subtitle,
 .hero-description,
 .section-description,
 p.mx-auto[style*="max-width"],
@@ -2179,6 +2178,14 @@ p.mx-auto[style*="max-width"],
   margin-right: auto !important;
   margin-bottom: 0 !important;
   line-height: 1.65 !important;
+}
+
+.hero-subtitle {
+  margin-top: 0 !important;
+  margin-bottom: 32px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  line-height: 1.75 !important;
 }
 
 /* Standardize card hover and prevent jittery cutoffs */
