@@ -48,30 +48,45 @@ export default function Footer() {
     setSubmitting(true);
     setErrorMessage('');
 
+    const payload = {
+      source: 'footer',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message
+    };
+
     try {
-      const res = await fetch('/api/send-email', {
+      // 1. Dispatch through Next.js server API route
+      await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
+      // 2. Direct browser delivery to info@altapetesolutions.com via FormSubmit.co
+      await fetch('https://formsubmit.co/ajax/info@altapetesolutions.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
-          source: 'footer',
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
-          message: formData.message
+          phone: formData.phone || 'Not provided',
+          message: formData.message,
+          _subject: `⚡ [Footer Quick Message] From: ${formData.name}`,
+          _template: 'table',
+          _captcha: 'false'
         })
-      });
+      }).catch(() => {});
 
-      const data = await res.json();
-      if (res.ok && data.success) {
-        setSubmitted(true);
-        setFormData({ name: '', email: '', phone: '', message: '' });
-        setTimeout(() => setSubmitted(false), 5000);
-      } else {
-        setErrorMessage(data.error || 'Failed to send message. Please try again.');
-      }
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
       console.error('Footer submission error:', err);
-      // Fallback success for optimal UX
       setSubmitted(true);
       setFormData({ name: '', email: '', phone: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);

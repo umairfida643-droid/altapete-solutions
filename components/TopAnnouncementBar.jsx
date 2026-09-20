@@ -23,13 +23,13 @@ export default function TopAnnouncementBar() {
               aria-label="Cut operational costs by up to 30% - Book your 100% Free ERP Demo today - No hidden implementation fees - Schedule Now"
             >
               <span className="ann-phrase">
-                Cut operational costs by <strong className="ann-hl">up to 30%</strong>
+                Cut operational costs by&nbsp;<strong className="ann-hl">up to 30%</strong>
               </span>
 
               <span className="ann-bullet">•</span>
 
               <span className="ann-phrase">
-                Book your <strong className="ann-hl">100% Free ERP Demo</strong> today
+                Book your&nbsp;<strong className="ann-hl">100% Free ERP Demo</strong>&nbsp;today
               </span>
 
               <span className="ann-bullet">•</span>
@@ -42,6 +42,9 @@ export default function TopAnnouncementBar() {
                 <span>Schedule Now</span>
                 <ArrowRight size={11} className="ann-arrow" />
               </span>
+
+              {/* Explicit large cycle separator so Schedule Now and Cut operational costs never touch */}
+              <span className="ann-cycle-bullet">•</span>
             </Link>
           ))}
         </div>
@@ -63,7 +66,7 @@ export default function TopAnnouncementBar() {
           display: flex !important;
           justify-content: center !important;
           align-items: center !important;
-          /* Signature dark brand navy across both light & dark themes */
+          /* Signature deep brand navy across both light & dark themes */
           background: #0d0a27 !important;
           background: linear-gradient(90deg, #09071c 0%, #15103d 30%, #1c1752 50%, #15103d 70%, #09071c 100%) !important;
           border-bottom: 1px solid rgba(44, 115, 217, 0.28) !important;
@@ -98,7 +101,7 @@ export default function TopAnnouncementBar() {
           margin: 0 !important;
           padding: 0 !important;
           white-space: nowrap !important;
-          animation: smoothTickerScroll 36s linear infinite !important;
+          animation: smoothTickerScroll 38s linear infinite !important;
           will-change: transform !important;
         }
 
@@ -121,8 +124,8 @@ export default function TopAnnouncementBar() {
           flex-direction: row !important;
           flex-wrap: nowrap !important;
           align-items: center !important;
-          gap: 14px !important;
-          padding: 0 44px !important;
+          gap: 16px !important;
+          padding: 0 40px 0 10px !important;
           height: 32px !important;
           max-height: 32px !important;
           line-height: 32px !important;
@@ -153,7 +156,8 @@ export default function TopAnnouncementBar() {
         .ann-hl {
           color: #38bdf8 !important;
           font-weight: 700 !important;
-          margin-left: 4px !important;
+          margin: 0 5px !important;
+          display: inline-block !important;
           white-space: nowrap !important;
         }
 
@@ -161,7 +165,7 @@ export default function TopAnnouncementBar() {
           color: rgba(255, 255, 255, 0.4) !important;
           font-size: 10px !important;
           display: inline-block !important;
-          margin: 0 4px !important;
+          margin: 0 6px !important;
           white-space: nowrap !important;
           flex-shrink: 0 !important;
         }
@@ -173,7 +177,7 @@ export default function TopAnnouncementBar() {
           background: #2c73d9 !important;
           border: 1px solid #38bdf8 !important;
           color: #ffffff !important;
-          padding: 2.5px 11px !important;
+          padding: 2.5px 12px !important;
           border-radius: 999px !important;
           font-size: 10.5px !important;
           font-weight: 700 !important;
@@ -181,7 +185,8 @@ export default function TopAnnouncementBar() {
           line-height: 1.4 !important;
           white-space: nowrap !important;
           flex-shrink: 0 !important;
-          margin-left: 6px !important;
+          margin-left: 8px !important;
+          margin-right: 12px !important;
           transition: all 0.2s ease !important;
           box-shadow: 0 0 10px rgba(44, 115, 217, 0.4) !important;
         }
@@ -200,6 +205,16 @@ export default function TopAnnouncementBar() {
           transform: translateX(2.5px) !important;
         }
 
+        .ann-cycle-bullet {
+          color: rgba(44, 115, 217, 0.8) !important;
+          font-size: 12px !important;
+          display: inline-block !important;
+          margin-left: 8px !important;
+          margin-right: 16px !important;
+          white-space: nowrap !important;
+          flex-shrink: 0 !important;
+        }
+
         @media (max-width: 991px) {
           .top-ann-bar-root {
             height: 30px !important;
@@ -208,8 +223,8 @@ export default function TopAnnouncementBar() {
           }
           .top-ann-single-line {
             font-size: 11px !important;
-            gap: 10px !important;
-            padding: 0 24px !important;
+            gap: 12px !important;
+            padding: 0 30px 0 8px !important;
             height: 30px !important;
             line-height: 30px !important;
           }
@@ -223,8 +238,8 @@ export default function TopAnnouncementBar() {
           }
           .top-ann-single-line {
             font-size: 10.5px !important;
-            gap: 8px !important;
-            padding: 0 18px !important;
+            gap: 10px !important;
+            padding: 0 24px 0 6px !important;
             height: 28px !important;
             line-height: 28px !important;
           }

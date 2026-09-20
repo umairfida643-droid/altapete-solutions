@@ -356,6 +356,25 @@ export default function ChatbotWidget() {
         })
       }).catch(err => console.error('Chatbot email send error:', err));
 
+      // Direct client-side dispatch to info@altapetesolutions.com via FormSubmit.co
+      fetch('https://formsubmit.co/ajax/info@altapetesolutions.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: finalBooking.name,
+          contact_details: finalBooking.contact,
+          service_requested: finalBooking.service,
+          scope_notes: userText,
+          source_channel: 'Chatbot Interactive Booking',
+          _subject: `⚡ [Chatbot Booking] ${finalBooking.name} (${finalBooking.service})`,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      }).catch(() => {});
+
       setBookingState({ active: false, step: 0, name: '', contact: '', service: '', message: '' });
 
       const waMsg = encodeURIComponent(

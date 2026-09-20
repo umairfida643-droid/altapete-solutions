@@ -111,22 +111,47 @@ export default function ContactUsView() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitting(true);
+    const payload = {
+      source: 'contact_page',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      company: formData.company,
+      service: formData.service,
+      budget: formData.budget,
+      subject: formData.subject,
+      message: formData.message
+    };
+
     try {
+      // 1. Dispatch via Next.js server API
       await fetch('/api/send-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => {});
+
+      // 2. Direct browser delivery to info@altapetesolutions.com via FormSubmit.co
+      await fetch('https://formsubmit.co/ajax/info@altapetesolutions.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
         body: JSON.stringify({
-          source: 'contact_page',
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          company: formData.company,
+          company: formData.company || 'Not provided',
           service: formData.service,
           budget: formData.budget,
           subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          _subject: `⚡ [Contact RFP] ${formData.name} - ${formData.service}`,
+          _template: 'table',
+          _captcha: 'false'
         })
-      });
+      }).catch(() => {});
     } catch (err) {
       console.error('Contact form submission error:', err);
     } finally {
