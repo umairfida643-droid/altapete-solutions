@@ -1,16 +1,14 @@
 import React from 'react';
 import Layout from '@/components/Layout';
-import pagesData from '@/data/pagesData.json';
+import ShippingSolutionsView from '@/components/ShippingSolutionsView';
 
 export default function ShippingSolutionsPage() {
-  const data = pagesData['/shipping-solutions'];
-
   return (
     <Layout
-      title={data?.title || "Altapete Solutions"}
-      description={data?.description || ""}
+      title="Freight & Shipping Management Solutions | Altapete Solutions"
+      description="Simplify and scale your multi-modal freight operations with Altapete Solutions. End-to-end shipment planning, telematics, customs compliance, and ERP integration across Saudi Arabia and the GCC."
     >
-      <div className="product-detail-view" dangerouslySetInnerHTML={{ __html: data?.html || '' }} />
+      <ShippingSolutionsView />
     </Layout>
   );
 }
