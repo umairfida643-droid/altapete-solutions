@@ -785,68 +785,92 @@ export default function ChatbotWidget() {
           margin: 0;
         }
 
-        /* Floating Trigger Button */
+        /* Floating Circular Trigger Button */
         .chatbot-trigger-btn {
           position: fixed;
           bottom: 24px;
           right: 24px;
-          width: 54px;
-          height: 54px;
-          border-radius: 50%;
-          border: none;
-          background: transparent;
+          width: 56px !important;
+          height: 56px !important;
+          min-width: 56px !important;
+          min-height: 56px !important;
+          max-width: 56px !important;
+          max-height: 56px !important;
+          aspect-ratio: 1 / 1 !important;
+          border-radius: 50% !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          border: none !important;
+          background: transparent !important;
           cursor: pointer;
           z-index: 99999;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          outline: none;
-          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          outline: none !important;
+          box-sizing: border-box !important;
+          overflow: visible !important;
+          transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
 
         .chatbot-trigger-btn:hover {
-          transform: translateY(-3px) scale(1.05);
+          transform: translateY(-3px) scale(1.06) !important;
         }
 
         .bot-pulse-ring {
           position: absolute;
-          inset: -3px;
-          border-radius: 50%;
-          border: 2px solid rgba(0, 174, 239, 0.6);
+          inset: -4px;
+          border-radius: 50% !important;
+          border: 2px solid rgba(0, 174, 239, 0.6) !important;
           animation: botPulse 2.4s infinite cubic-bezier(0.25, 0, 0, 1);
           pointer-events: none;
+          box-sizing: border-box !important;
         }
 
         @keyframes botPulse {
           0% { transform: scale(0.96); opacity: 0.8; }
-          70% { transform: scale(1.22); opacity: 0; }
-          100% { transform: scale(1.25); opacity: 0; }
+          70% { transform: scale(1.2); opacity: 0; }
+          100% { transform: scale(1.24); opacity: 0; }
         }
 
         .bot-btn-inner {
           position: relative;
           z-index: 2;
-          width: 100%;
-          height: 100%;
-          border-radius: 50%;
-          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
-          color: #ffffff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 8px 25px rgba(0, 174, 239, 0.45);
-          border: 1.5px solid rgba(255, 255, 255, 0.25);
+          width: 56px !important;
+          height: 56px !important;
+          min-width: 56px !important;
+          min-height: 56px !important;
+          max-width: 56px !important;
+          max-height: 56px !important;
+          aspect-ratio: 1 / 1 !important;
+          border-radius: 50% !important;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%) !important;
+          color: #ffffff !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-shadow: 0 8px 25px rgba(0, 174, 239, 0.45) !important;
+          border: 2px solid rgba(255, 255, 255, 0.35) !important;
+          box-sizing: border-box !important;
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+
+        .bot-btn-inner svg {
+          display: block !important;
+          margin: auto !important;
         }
 
         .bot-online-badge {
           position: absolute;
-          top: 2px;
-          right: 2px;
-          width: 13px;
-          height: 13px;
-          border-radius: 50%;
+          top: 1px;
+          right: 1px;
+          width: 14px;
+          height: 14px;
+          border-radius: 50% !important;
           background: #10b981;
-          border: 2px solid #060c18;
+          border: 2.5px solid #060c18;
+          box-sizing: border-box !important;
           z-index: 3;
         }
 
@@ -1315,8 +1339,26 @@ export default function ChatbotWidget() {
           .chatbot-trigger-btn {
             bottom: 18px;
             right: 18px;
-            width: 48px;
-            height: 48px;
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            min-height: 50px !important;
+            max-width: 50px !important;
+            max-height: 50px !important;
+            border-radius: 50% !important;
+            aspect-ratio: 1 / 1 !important;
+            padding: 0 !important;
+          }
+          .bot-btn-inner {
+            width: 50px !important;
+            height: 50px !important;
+            min-width: 50px !important;
+            min-height: 50px !important;
+            max-width: 50px !important;
+            max-height: 50px !important;
+            border-radius: 50% !important;
+            aspect-ratio: 1 / 1 !important;
+            padding: 0 !important;
           }
           .chatbot-teaser-bubble {
             bottom: 78px;
