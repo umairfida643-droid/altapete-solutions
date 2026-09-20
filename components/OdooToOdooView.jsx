@@ -4,7 +4,8 @@ import {
   Database, RefreshCw, Layers, Zap, Sliders,
   ShieldCheck, CheckCircle2, ArrowRight, Server,
   Code2, Cpu, Globe, Check, ExternalLink,
-  ChevronRight, Sparkles, Building2, Award
+  ChevronRight, Sparkles, Building2, Award,
+  Activity, Lock
 } from 'lucide-react';
 
 const odooSolutionCategories = [
@@ -212,47 +213,142 @@ export default function OdooToOdooView() {
               </div>
             </div>
 
-            {/* Right Visual: Dual Instance Bridge Animation */}
+            {/* Right Visual: Enterprise Dual-Instance Synchronization Architecture */}
             <div className="col-lg-6">
-              <div className="odoo-hero-visual">
-                {/* Center Synced Pulse Conduits */}
-                <div className="bridge-center-pulse">
-                  <RefreshCw size={36} color="#ffffff" className="sync-rotate-icon" />
-                  <span className="bridge-sync-label">BI-DIRECTIONAL SYNC</span>
-                </div>
+              <div className="odoo-architecture-canvas">
+                {/* Ambient Background Glow */}
+                <div className="arch-glow-radial" />
 
-                {/* Left Instance Card */}
-                <div className="instance-card instance-left">
-                  <div className="instance-header">
-                    <Database size={20} color="#00AEEF" />
-                    <span>Odoo Instance A</span>
+                {/* Top Status Header */}
+                <div className="arch-top-bar">
+                  <div className="arch-status-badge">
+                    <span className="live-dot" />
+                    <span>ACTIVE BI-DIRECTIONAL BRIDGE</span>
                   </div>
-                  <div className="instance-meta">Primary Headquarters (KSA)</div>
-                  <div className="instance-badge live">● Connected</div>
-                </div>
-
-                {/* Right Instance Card */}
-                <div className="instance-card instance-right">
-                  <div className="instance-header">
-                    <Database size={20} color="#2c73d9" />
-                    <span>Odoo Instance B</span>
+                  <div className="arch-telemetry-tag">
+                    <Activity size={12} />
+                    <span>0.2s Latency SLA</span>
                   </div>
-                  <div className="instance-meta">Subsidiary / Global Unit</div>
-                  <div className="instance-badge live">● Synchronized</div>
                 </div>
 
-                {/* SVG Laser Conduit Lines */}
-                <svg className="bridge-svg-lines" viewBox="0 0 500 300">
-                  <defs>
-                    <linearGradient id="bridgeGrad" x1="0%" y1="50%" x2="100%" y2="50%">
-                      <stop offset="0%" stopColor="#00AEEF" stopOpacity="0.8" />
-                      <stop offset="50%" stopColor="#00E5FF" stopOpacity="1" />
-                      <stop offset="100%" stopColor="#2c73d9" stopOpacity="0.8" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M 150 150 Q 250 80 350 150" fill="none" stroke="url(#bridgeGrad)" strokeWidth="2.5" strokeDasharray="6 6" />
-                  <path d="M 150 150 Q 250 220 350 150" fill="none" stroke="url(#bridgeGrad)" strokeWidth="2.5" strokeDasharray="6 6" />
-                </svg>
+                {/* Main 3-Column Visual Layout */}
+                <div className="arch-nodes-wrapper">
+                  {/* Left Node: Instance A (HQ) */}
+                  <div className="arch-node-card node-hq">
+                    <div className="node-card-head">
+                      <div className="node-icon-wrapper hq-icon">
+                        <Database size={17} />
+                      </div>
+                      <div className="node-title-group">
+                        <span className="node-name">Odoo Instance A</span>
+                        <span className="node-subtitle">HQ (KSA)</span>
+                      </div>
+                      <span className="node-status-pill">Master</span>
+                    </div>
+
+                    <div className="node-metrics-list">
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">Sales & Invoices</span>
+                        <span className="metric-val">Live</span>
+                      </div>
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">Master Contacts</span>
+                        <span className="metric-val">Synced</span>
+                      </div>
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">General Ledger</span>
+                        <span className="metric-val">Mirrored</span>
+                      </div>
+                    </div>
+
+                    <div className="node-card-footer">
+                      <span className="footer-env">PostgreSQL 16</span>
+                      <span className="footer-ping">99.99% Uptime</span>
+                    </div>
+                  </div>
+
+                  {/* Center Node: Sync Engine Conduit */}
+                  <div className="arch-center-conduit">
+                    {/* Top data stream line with animated particle */}
+                    <div className="conduit-channel top-channel">
+                      <div className="conduit-wire" />
+                      <div className="conduit-packet packet-right" />
+                      <span className="channel-tooltip">SO / Invoices →</span>
+                    </div>
+
+                    {/* Central Sync Orb */}
+                    <div className="sync-core-orb">
+                      <div className="sync-core-ring" />
+                      <div className="sync-core-inner">
+                        <RefreshCw size={22} color="#ffffff" className="sync-rotate-icon" />
+                        <span className="sync-core-text">SYNC</span>
+                      </div>
+                    </div>
+
+                    {/* Bottom data stream line with animated particle (opposite) */}
+                    <div className="conduit-channel bottom-channel">
+                      <div className="conduit-wire" />
+                      <div className="conduit-packet packet-left" />
+                      <span className="channel-tooltip">← Stock / Orders</span>
+                    </div>
+
+                    <div className="conduit-label-badge">
+                      <span>Real-Time ETL</span>
+                    </div>
+                  </div>
+
+                  {/* Right Node: Instance B (Subsidiary) */}
+                  <div className="arch-node-card node-branch">
+                    <div className="node-card-head">
+                      <div className="node-icon-wrapper branch-icon">
+                        <Server size={17} />
+                      </div>
+                      <div className="node-title-group">
+                        <span className="node-name">Odoo Instance B</span>
+                        <span className="node-subtitle">Subsidiary Unit</span>
+                      </div>
+                      <span className="node-status-pill subsidiary">Replica</span>
+                    </div>
+
+                    <div className="node-metrics-list">
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">Inter-Co PO/SO</span>
+                        <span className="metric-val">Active</span>
+                      </div>
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">Stock Allocations</span>
+                        <span className="metric-val">Synced</span>
+                      </div>
+                      <div className="node-metric-item">
+                        <span className="metric-bullet" />
+                        <span className="metric-label">Multi-Currency FX</span>
+                        <span className="metric-val">Auto</span>
+                      </div>
+                    </div>
+
+                    <div className="node-card-footer">
+                      <span className="footer-env">REST & Webhooks</span>
+                      <span className="footer-ping">0 Pending</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Telemetry Bar */}
+                <div className="arch-bottom-telemetry">
+                  <div className="telemetry-chip">
+                    <ShieldCheck size={13} className="chip-icon" />
+                    <span>Zero Data Loss Protocol</span>
+                  </div>
+                  <div className="telemetry-chip">
+                    <Lock size={13} className="chip-icon" />
+                    <span>TLS 1.3 End-to-End Encryption</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -581,89 +677,388 @@ export default function OdooToOdooView() {
           color: #00AEEF;
         }
 
-        /* Hero Visual */
-        .odoo-hero-visual {
+        /* Enterprise Architecture Canvas Visual */
+        .odoo-architecture-canvas {
           position: relative;
           width: 100%;
-          max-width: 480px;
-          height: 340px;
+          max-width: 580px;
           margin: 0 auto;
+          padding: 24px 22px;
+          border-radius: 24px;
+          background: rgba(13, 24, 48, 0.7);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+          backdrop-filter: blur(16px);
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .arch-glow-radial {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 320px;
+          height: 320px;
+          background: radial-gradient(circle, rgba(0, 174, 239, 0.18) 0%, rgba(44, 115, 217, 0.05) 50%, transparent 70%);
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        /* Top Bar */
+        .arch-top-bar {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          padding-bottom: 16px;
+          margin-bottom: 18px;
+          border-bottom: 1px solid rgba(0, 174, 239, 0.15);
+          position: relative;
+          z-index: 2;
         }
 
-        .bridge-center-pulse {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%);
-          width: 90px;
-          height: 90px;
+        .arch-status-badge {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 11px;
+          font-weight: 800;
+          letter-spacing: 0.8px;
+          color: #00E5FF;
+        }
+
+        .live-dot {
+          width: 7px;
+          height: 7px;
           border-radius: 50%;
-          background: linear-gradient(135deg, #00AEEF, #2c73d9);
+          background: #00E5FF;
+          box-shadow: 0 0 10px #00E5FF;
+          animation: pulseAnim 1.8s infinite;
+        }
+
+        .arch-telemetry-tag {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 11px;
+          font-weight: 700;
+          color: #94a3b8;
+        }
+
+        /* 3-Column Nodes Wrapper */
+        .arch-nodes-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          position: relative;
+          z-index: 2;
+          margin-bottom: 18px;
+        }
+
+        /* Node Cards */
+        .arch-node-card {
+          flex: 1;
+          min-width: 0;
+          padding: 16px 14px;
+          border-radius: 16px;
+          background: rgba(15, 30, 60, 0.85);
+          border: 1px solid rgba(0, 174, 239, 0.25);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+          transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .arch-node-card:hover {
+          transform: translateY(-3px);
+          border-color: rgba(0, 174, 239, 0.5);
+        }
+
+        .node-card-head {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          margin-bottom: 12px;
+          padding-bottom: 10px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .node-icon-wrapper {
+          width: 32px;
+          height: 32px;
+          border-radius: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .node-icon-wrapper.hq-icon {
+          background: rgba(0, 174, 239, 0.15);
+          color: #00AEEF;
+          border: 1px solid rgba(0, 174, 239, 0.3);
+        }
+
+        .node-icon-wrapper.branch-icon {
+          background: rgba(44, 115, 217, 0.15);
+          color: #3b82f6;
+          border: 1px solid rgba(44, 115, 217, 0.3);
+        }
+
+        .node-title-group {
+          flex: 1;
+          min-width: 0;
+        }
+
+        .node-name {
+          display: block;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: #ffffff;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .node-subtitle {
+          display: block;
+          font-size: 10px;
+          color: #94a3b8;
+          line-height: 1.2;
+        }
+
+        .node-status-pill {
+          font-size: 9px;
+          font-weight: 800;
+          text-transform: uppercase;
+          padding: 2px 7px;
+          border-radius: 20px;
+          background: rgba(16, 185, 129, 0.15);
+          color: #10b981;
+          border: 1px solid rgba(16, 185, 129, 0.3);
+          letter-spacing: 0.4px;
+        }
+
+        .node-status-pill.subsidiary {
+          background: rgba(0, 174, 239, 0.15);
+          color: #00E5FF;
+          border-color: rgba(0, 174, 239, 0.3);
+        }
+
+        /* Metrics List */
+        .node-metrics-list {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          margin-bottom: 12px;
+        }
+
+        .node-metric-item {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 10.5px;
+        }
+
+        .metric-bullet {
+          width: 4px;
+          height: 4px;
+          border-radius: 50%;
+          background: #00AEEF;
+          flex-shrink: 0;
+        }
+
+        .metric-label {
+          color: #cbd5e1;
+          flex: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .metric-val {
+          font-weight: 700;
+          color: #10b981;
+          font-size: 10px;
+        }
+
+        .node-card-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 8px;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+          font-size: 9.5px;
+          color: #64748b;
+          font-weight: 600;
+        }
+
+        .footer-ping {
+          color: #00E5FF;
+        }
+
+        /* Center Conduit */
+        .arch-center-conduit {
+          width: 96px;
+          flex-shrink: 0;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 0 35px rgba(0, 174, 239, 0.5);
-          z-index: 5;
-          text-align: center;
+          position: relative;
+        }
+
+        .conduit-channel {
+          position: relative;
+          width: 100%;
+          height: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .conduit-channel.top-channel {
+          margin-bottom: 8px;
+        }
+
+        .conduit-channel.bottom-channel {
+          margin-top: 8px;
+        }
+
+        .conduit-wire {
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(0, 174, 239, 0.3);
+          border-radius: 2px;
+        }
+
+        .conduit-packet {
+          position: absolute;
+          width: 20px;
+          height: 4px;
+          border-radius: 4px;
+          background: linear-gradient(90deg, transparent, #00E5FF, transparent);
+          box-shadow: 0 0 8px #00E5FF;
+        }
+
+        .packet-right {
+          animation: flowRight 2.2s ease-in-out infinite;
+        }
+
+        .packet-left {
+          animation: flowLeft 2.2s ease-in-out infinite;
+        }
+
+        @keyframes flowRight {
+          0% { left: 0%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { left: calc(100% - 20px); opacity: 0; }
+        }
+
+        @keyframes flowLeft {
+          0% { right: 0%; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { right: calc(100% - 20px); opacity: 0; }
+        }
+
+        .channel-tooltip {
+          font-size: 8px;
+          font-weight: 700;
+          color: #00E5FF;
+          white-space: nowrap;
+          background: rgba(6, 12, 24, 0.9);
+          padding: 1px 5px;
+          border-radius: 4px;
+          border: 1px solid rgba(0, 229, 255, 0.3);
+          position: relative;
+          z-index: 3;
+          letter-spacing: 0.2px;
+        }
+
+        .sync-core-orb {
+          position: relative;
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 4;
+        }
+
+        .sync-core-ring {
+          position: absolute;
+          inset: 0;
+          border-radius: 50%;
+          border: 2px dashed rgba(0, 229, 255, 0.6);
+          animation: spinCounter 10s linear infinite;
+        }
+
+        .sync-core-inner {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 0 24px rgba(0, 174, 239, 0.6);
         }
 
         .sync-rotate-icon {
-          animation: spinCounter 12s linear infinite;
+          animation: spinCounter 6s linear infinite;
         }
 
-        .bridge-sync-label {
+        .sync-core-text {
           font-size: 7px;
           font-weight: 800;
           color: #ffffff;
-          margin-top: 4px;
+          letter-spacing: 0.6px;
+          margin-top: 1px;
+        }
+
+        .conduit-label-badge {
+          margin-top: 6px;
+          font-size: 8.5px;
+          font-weight: 800;
+          color: #00E5FF;
           letter-spacing: 0.5px;
+          text-transform: uppercase;
         }
 
-        .instance-card {
-          width: 170px;
-          padding: 16px 14px;
-          border-radius: 16px;
-          z-index: 4;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-          transition: all 0.3s ease;
-        }
-
-        .instance-card:hover {
-          transform: translateY(-4px);
-        }
-
-        .instance-header {
+        /* Bottom Telemetry Bar */
+        .arch-bottom-telemetry {
           display: flex;
           align-items: center;
-          gap: 8px;
-          font-size: 13px;
-          font-weight: 700;
-          margin-bottom: 6px;
+          justify-content: space-around;
+          gap: 12px;
+          padding-top: 16px;
+          border-top: 1px solid rgba(0, 174, 239, 0.15);
+          position: relative;
+          z-index: 2;
+          flex-wrap: wrap;
         }
 
-        .instance-meta {
+        .telemetry-chip {
+          display: flex;
+          align-items: center;
+          gap: 6px;
           font-size: 11px;
-          line-height: 1.35;
-          margin-bottom: 10px;
+          font-weight: 600;
+          color: #94a3b8;
+          padding: 4px 10px;
+          border-radius: 20px;
+          background: rgba(0, 174, 239, 0.06);
+          border: 1px solid rgba(0, 174, 239, 0.18);
         }
 
-        .instance-badge.live {
-          display: inline-block;
-          font-size: 10px;
-          font-weight: 700;
-          color: #10b981;
-        }
-
-        .bridge-svg-lines {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          pointer-events: none;
+        .chip-icon {
+          color: #00E5FF;
+          flex-shrink: 0;
         }
 
         /* 2. Solutions Tabs */
@@ -906,14 +1301,39 @@ export default function OdooToOdooView() {
           line-height: 1.6;
         }
 
+        @media (max-width: 991px) {
+          .odoo-architecture-canvas {
+            max-width: 100%;
+            margin-top: 15px;
+          }
+        }
+
         @media (max-width: 767px) {
           .service-features-grid {
             grid-template-columns: 1fr;
           }
-          .odoo-hero-visual {
-            height: 380px;
+        }
+
+        @media (max-width: 575px) {
+          .arch-nodes-wrapper {
             flex-direction: column;
-            justify-content: space-around;
+            gap: 16px;
+          }
+          .arch-center-conduit {
+            width: 100%;
+            flex-direction: row;
+            gap: 12px;
+          }
+          .conduit-channel {
+            display: none;
+          }
+          .arch-node-card {
+            width: 100%;
+          }
+          .arch-bottom-telemetry {
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
           }
         }
       `}</style>
@@ -954,9 +1374,25 @@ export default function OdooToOdooView() {
           color: #cbd5e1 !important;
         }
 
-        [data-theme="dark"] .instance-card {
-          background: rgba(13, 24, 48, 0.9);
-          border: 1.5px solid rgba(0, 174, 239, 0.35);
+        [data-theme="dark"] .odoo-architecture-canvas {
+          background: rgba(13, 24, 48, 0.75);
+          border-color: rgba(0, 174, 239, 0.25);
+        }
+
+        [data-theme="dark"] .arch-node-card {
+          background: rgba(15, 30, 60, 0.85);
+          border-color: rgba(0, 174, 239, 0.25);
+        }
+
+        [data-theme="dark"] .node-name {
+          color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .node-subtitle,
+        [data-theme="dark"] .metric-label,
+        [data-theme="dark"] .arch-telemetry-tag,
+        [data-theme="dark"] .telemetry-chip {
+          color: #94a3b8 !important;
         }
 
         [data-theme="dark"] .odoo-tabs-nav {
@@ -1068,10 +1504,77 @@ export default function OdooToOdooView() {
           color: #1e293b !important;
         }
 
-        [data-theme="light"] .instance-card,
-        :root:not([data-theme="dark"]) .instance-card {
+        [data-theme="light"] .odoo-architecture-canvas,
+        :root:not([data-theme="dark"]) .odoo-architecture-canvas {
           background: #ffffff;
-          border: 1.5px solid #cbd5e1;
+          border-color: #cbd5e1;
+          box-shadow: 0 20px 45px rgba(0, 70, 150, 0.08);
+        }
+
+        [data-theme="light"] .arch-glow-radial,
+        :root:not([data-theme="dark"]) .arch-glow-radial {
+          background: radial-gradient(circle, rgba(0, 174, 239, 0.1) 0%, transparent 70%);
+        }
+
+        [data-theme="light"] .arch-top-bar,
+        :root:not([data-theme="dark"]) .arch-top-bar,
+        [data-theme="light"] .arch-bottom-telemetry,
+        :root:not([data-theme="dark"]) .arch-bottom-telemetry {
+          border-color: #e2e8f0;
+        }
+
+        [data-theme="light"] .arch-status-badge,
+        :root:not([data-theme="dark"]) .arch-status-badge {
+          color: #0077b6;
+        }
+
+        [data-theme="light"] .live-dot,
+        :root:not([data-theme="dark"]) .live-dot {
+          background: #0077b6;
+          box-shadow: 0 0 10px #0077b6;
+        }
+
+        [data-theme="light"] .arch-node-card,
+        :root:not([data-theme="dark"]) .arch-node-card {
+          background: #f8fafc;
+          border-color: #e2e8f0;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="light"] .node-name,
+        :root:not([data-theme="dark"]) .node-name {
+          color: #0f172a !important;
+        }
+
+        [data-theme="light"] .node-subtitle,
+        :root:not([data-theme="dark"]) .node-subtitle {
+          color: #64748b !important;
+        }
+
+        [data-theme="light"] .metric-label,
+        :root:not([data-theme="dark"]) .metric-label {
+          color: #334155 !important;
+        }
+
+        [data-theme="light"] .node-card-head,
+        :root:not([data-theme="dark"]) .node-card-head,
+        [data-theme="light"] .node-card-footer,
+        :root:not([data-theme="dark"]) .node-card-footer {
+          border-color: #e2e8f0;
+        }
+
+        [data-theme="light"] .telemetry-chip,
+        :root:not([data-theme="dark"]) .telemetry-chip {
+          background: #f1f5f9;
+          border-color: #cbd5e1;
+          color: #334155 !important;
+        }
+
+        [data-theme="light"] .channel-tooltip,
+        :root:not([data-theme="dark"]) .channel-tooltip {
+          background: #ffffff;
+          color: #0284c7;
+          border-color: #bae6fd;
         }
 
         [data-theme="light"] .odoo-tabs-nav,
