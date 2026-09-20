@@ -6,6 +6,7 @@ import MobileDrawer from './MobileDrawer';
 import TechBackground from './TechBackground';
 import InteractivePageEnhancer from './InteractivePageEnhancer';
 import FloatingWidgets from './FloatingWidgets';
+import SmoothScroll from './SmoothScroll';
 
 export default function Layout({ children, title, description }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,6 +23,8 @@ export default function Layout({ children, title, description }) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       </Head>
 
+      {/* Global Smooth Momentum Inertia Scrolling */}
+      <SmoothScroll />
       {/* Global Subtle Animated Technology Background */}
       <TechBackground />
       {/* Global Client-side Interactivity Enhancer for Auto-steps, Hero Tabs & Pills */}

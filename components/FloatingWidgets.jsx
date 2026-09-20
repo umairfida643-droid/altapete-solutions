@@ -19,10 +19,14 @@ export default function FloatingWidgets() {
 
   const scrollToTop = () => {
     if (typeof window !== 'undefined') {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      if (window.lenis) {
+        window.lenis.scrollTo(0, { duration: 1.2 });
+      } else {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     }
   };
 
