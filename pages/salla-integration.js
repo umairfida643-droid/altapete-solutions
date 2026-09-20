@@ -1168,93 +1168,36 @@ export default function SallaIntegrationPage() {
 
               {/* 7. STRATEGIC CONSULTATION & DIRECT CTA */}
               <section id="contact-salla" className="pt-40 pb-80">
-                <div style={{
-                  background: 'linear-gradient(135deg, rgba(40, 36, 96, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)',
-                  borderRadius: '28px',
-                  padding: '50px 40px',
-                  border: '1.5px solid rgba(44, 115, 217, 0.35)',
-                  boxShadow: '0 25px 60px rgba(0, 0, 0, 0.35)',
-                  color: '#ffffff',
-                  position: 'relative',
-                  overflow: 'hidden'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    top: '-40%',
-                    right: '-20%',
-                    width: 400,
-                    height: 400,
-                    borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%)',
-                    filter: 'blur(50px)'
-                  }} />
+                <div className="salla-cta-card">
+                  <div className="salla-cta-glow" />
 
                   <div className="row align-items-center g-4 position-relative" style={{ zIndex: 2 }}>
                     <div className="col-lg-7">
-                      <div style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: 8,
-                        padding: '6px 16px',
-                        borderRadius: '20px',
-                        background: 'rgba(0, 212, 255, 0.15)',
-                        border: '1px solid rgba(0, 212, 255, 0.35)',
-                        color: '#00d4ff',
-                        fontSize: '12px',
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        marginBottom: 16
-                      }}>
+                      <div className="salla-cta-badge">
                         <Sparkles size={14} />
                         Saudi Integration Advisory
                       </div>
 
-                      <h2 style={{ fontSize: 'clamp(2rem, 3.8vw, 2.6rem)', fontWeight: 800, color: '#ffffff', marginBottom: 12 }}>
+                      <h2 className="salla-cta-heading">
                         Ready to Connect Your Salla Store to Enterprise Power?
                       </h2>
 
-                      <div className="ar-font" dir="rtl" style={{
-                        fontSize: '16px',
-                        color: '#00d4ff',
-                        fontWeight: 700,
-                        marginBottom: 16
-                      }}>
+                      <div className="ar-font salla-cta-arabic" dir="rtl">
                         ابدأ رحلة الربط المؤسسي لمتجرك مع أنظمة تخطيط الموارد والفاتورة الإلكترونية
                       </div>
 
-                      <p style={{ fontSize: '1.05rem', color: '#cbd5e1', lineHeight: 1.7, maxWidth: 600 }}>
+                      <p className="salla-cta-desc">
                         Speak directly with our senior Saudi integration architects in Riyadh or Al Khobar. We will analyze your SKU structure, ERP workflows, and deliver a tailored execution roadmap.
                       </p>
                     </div>
 
                     <div className="col-lg-5">
-                      <div style={{
-                        background: 'rgba(255, 255, 255, 0.05)',
-                        backdropFilter: 'blur(16px)',
-                        border: '1px solid rgba(255, 255, 255, 0.15)',
-                        borderRadius: '20px',
-                        padding: '28px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: 16
-                      }}>
+                      <div className="salla-cta-action-box">
                         <a
                           href="https://wa.me/966568029153"
                           target="_blank"
                           rel="noopener noreferrer"
-                          style={{
-                            background: '#25D366',
-                            color: '#ffffff',
-                            padding: '14px 20px',
-                            borderRadius: '12px',
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: 10,
-                            boxShadow: '0 8px 20px rgba(37, 211, 102, 0.3)'
-                          }}
+                          className="salla-cta-wa-btn"
                         >
                           <MessageSquare size={18} />
                           Chat on WhatsApp: +966 56 802 9153
@@ -1262,19 +1205,7 @@ export default function SallaIntegrationPage() {
 
                         <a
                           href="tel:+966551013823"
-                          style={{
-                            background: 'rgba(255, 255, 255, 0.1)',
-                            border: '1px solid rgba(255, 255, 255, 0.2)',
-                            color: '#ffffff',
-                            padding: '14px 20px',
-                            borderRadius: '12px',
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: 10
-                          }}
+                          className="salla-cta-call-btn"
                         >
                           <Phone size={18} />
                           Call Saudi Office: +966 55 101 3823
@@ -1282,20 +1213,7 @@ export default function SallaIntegrationPage() {
 
                         <a
                           href="mailto:info@altapetesolutions.com"
-                          style={{
-                            background: 'transparent',
-                            border: '1px dashed rgba(255, 255, 255, 0.25)',
-                            color: '#cbd5e1',
-                            padding: '12px 20px',
-                            borderRadius: '12px',
-                            fontWeight: 600,
-                            fontSize: '13px',
-                            textDecoration: 'none',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            gap: 8
-                          }}
+                          className="salla-cta-email-btn"
                         >
                           Send RFQ to info@altapetesolutions.com
                         </a>
@@ -1311,6 +1229,218 @@ export default function SallaIntegrationPage() {
       </div>
 
       <style jsx global>{`
+        /* ── Salla CTA Card Dark & Light Theme Styling ── */
+        .salla-cta-card {
+          border-radius: 28px;
+          padding: 50px 40px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .salla-cta-glow {
+          position: absolute;
+          top: -40%;
+          right: -20%;
+          width: 400px;
+          height: 400px;
+          border-radius: 50%;
+          filter: blur(50px);
+          pointer-events: none;
+        }
+
+        .salla-cta-heading {
+          font-size: clamp(2rem, 3.8vw, 2.6rem);
+          font-weight: 800;
+          margin-bottom: 12px;
+          line-height: 1.2;
+        }
+
+        .salla-cta-arabic {
+          font-size: 16px;
+          font-weight: 700;
+          margin-bottom: 16px;
+        }
+
+        .salla-cta-desc {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          max-width: 600px;
+          margin-bottom: 0;
+        }
+
+        .salla-cta-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        }
+
+        .salla-cta-action-box {
+          border-radius: 20px;
+          padding: 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+
+        .salla-cta-wa-btn {
+          background: #25D366 !important;
+          color: #ffffff !important;
+          padding: 14px 20px;
+          border-radius: 12px;
+          font-weight: 700;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .salla-cta-wa-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 12px 25px rgba(37, 211, 102, 0.45);
+        }
+
+        .salla-cta-call-btn {
+          padding: 14px 20px;
+          border-radius: 12px;
+          font-weight: 700;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: all 0.2s ease;
+        }
+        .salla-cta-call-btn:hover {
+          transform: translateY(-2px);
+        }
+
+        .salla-cta-email-btn {
+          padding: 12px 20px;
+          border-radius: 12px;
+          font-weight: 600;
+          font-size: 13px;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          transition: all 0.2s ease;
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] .salla-cta-card {
+          background: linear-gradient(135deg, rgba(40, 36, 96, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+          border: 1.5px solid rgba(44, 115, 217, 0.35) !important;
+          box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45) !important;
+        }
+        [data-theme="dark"] .salla-cta-glow {
+          background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+        }
+        [data-theme="dark"] .salla-cta-heading {
+          color: #ffffff !important;
+        }
+        [data-theme="dark"] .salla-cta-arabic {
+          color: #00d4ff !important;
+        }
+        [data-theme="dark"] .salla-cta-desc {
+          color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .salla-cta-badge {
+          background: rgba(0, 212, 255, 0.15) !important;
+          border: 1px solid rgba(0, 212, 255, 0.35) !important;
+          color: #00d4ff !important;
+        }
+        [data-theme="dark"] .salla-cta-action-box {
+          background: rgba(255, 255, 255, 0.05) !important;
+          backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+        [data-theme="dark"] .salla-cta-call-btn {
+          background: rgba(255, 255, 255, 0.1) !important;
+          border: 1px solid rgba(255, 255, 255, 0.2) !important;
+          color: #ffffff !important;
+        }
+        [data-theme="dark"] .salla-cta-call-btn:hover {
+          background: rgba(255, 255, 255, 0.18) !important;
+        }
+        [data-theme="dark"] .salla-cta-email-btn {
+          background: transparent !important;
+          border: 1px dashed rgba(255, 255, 255, 0.25) !important;
+          color: #cbd5e1 !important;
+        }
+        [data-theme="dark"] .salla-cta-email-btn:hover {
+          color: #00d4ff !important;
+          border-color: #00d4ff !important;
+        }
+
+        /* Light Theme */
+        [data-theme="light"] .salla-cta-card,
+        :root:not([data-theme="dark"]) .salla-cta-card {
+          background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%) !important;
+          border: 1.5px solid rgba(44, 115, 217, 0.35) !important;
+          box-shadow: 0 20px 50px rgba(40, 36, 96, 0.08) !important;
+        }
+        [data-theme="light"] .salla-cta-glow,
+        :root:not([data-theme="dark"]) .salla-cta-glow {
+          background: radial-gradient(circle, rgba(44, 115, 217, 0.1) 0%, transparent 70%);
+        }
+        [data-theme="light"] .salla-cta-heading,
+        :root:not([data-theme="dark"]) .salla-cta-heading {
+          color: #0f172a !important;
+        }
+        [data-theme="light"] .salla-cta-arabic,
+        :root:not([data-theme="dark"]) .salla-cta-arabic {
+          color: #2c73d9 !important;
+        }
+        [data-theme="light"] .salla-cta-desc,
+        :root:not([data-theme="dark"]) .salla-cta-desc {
+          color: #475569 !important;
+        }
+        [data-theme="light"] .salla-cta-badge,
+        :root:not([data-theme="dark"]) .salla-cta-badge {
+          background: rgba(44, 115, 217, 0.1) !important;
+          border: 1px solid rgba(44, 115, 217, 0.3) !important;
+          color: #2c73d9 !important;
+        }
+        [data-theme="light"] .salla-cta-action-box,
+        :root:not([data-theme="dark"]) .salla-cta-action-box {
+          background: #ffffff !important;
+          border: 1.5px solid rgba(44, 115, 217, 0.22) !important;
+          box-shadow: 0 10px 30px rgba(40, 36, 96, 0.06) !important;
+        }
+        [data-theme="light"] .salla-cta-call-btn,
+        :root:not([data-theme="dark"]) .salla-cta-call-btn {
+          background: rgba(44, 115, 217, 0.08) !important;
+          border: 1.5px solid rgba(44, 115, 217, 0.3) !important;
+          color: #0f172a !important;
+        }
+        [data-theme="light"] .salla-cta-call-btn:hover,
+        :root:not([data-theme="dark"]) .salla-cta-call-btn:hover {
+          background: rgba(44, 115, 217, 0.15) !important;
+          border-color: #2c73d9 !important;
+        }
+        [data-theme="light"] .salla-cta-email-btn,
+        :root:not([data-theme="dark"]) .salla-cta-email-btn {
+          background: transparent !important;
+          border: 1px dashed rgba(44, 115, 217, 0.4) !important;
+          color: #2c73d9 !important;
+        }
+        [data-theme="light"] .salla-cta-email-btn:hover,
+        :root:not([data-theme="dark"]) .salla-cta-email-btn:hover {
+          color: #0066cc !important;
+          border-color: #0066cc !important;
+        }
+
+        /* ── Salla Phase Detail Card ── */
         [data-theme="dark"] .salla-phase-detail-card {
           background: #0d1830 !important;
           border: 1.5px solid rgba(0, 174, 239, 0.35) !important;

@@ -935,7 +935,7 @@ export default function ShopifyIntegrationView() {
                     
                     {/* Left Column: 6 Clickable Step Selectors */}
                     <div className="col-lg-5">
-                      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 12, height: '100%', justifyContent: 'space-between' }}>
                         {launchSteps.map((step, idx) => {
                           const StepIcon = step.icon;
                           const isActive = activeStepIndex === idx;
@@ -947,13 +947,14 @@ export default function ShopifyIntegrationView() {
                               onClick={() => setActiveStepIndex(idx)}
                               style={{
                                 borderRadius: 16,
-                                padding: '18px 20px',
+                                padding: '16px 20px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'space-between',
                                 cursor: 'pointer',
                                 transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-                                position: 'relative'
+                                position: 'relative',
+                                flex: 1
                               }}
                             >
                               <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -1023,7 +1024,7 @@ export default function ShopifyIntegrationView() {
                         className="shopify-step-detail-card"
                         style={{
                           borderRadius: 22,
-                          padding: '40px',
+                          padding: '36px',
                           height: '100%',
                           display: 'flex',
                           flexDirection: 'column',
@@ -1032,17 +1033,6 @@ export default function ShopifyIntegrationView() {
                           overflow: 'hidden'
                         }}
                       >
-                        {/* Background Watermark Icon */}
-                        <div style={{
-                          position: 'absolute',
-                          top: 20,
-                          right: 20,
-                          opacity: 0.05,
-                          pointerEvents: 'none'
-                        }}>
-                          <ActiveStepIcon size={140} color="#00AEEF" />
-                        </div>
-
                         <div>
                           {/* Step Header Badge & Duration */}
                           <div style={{
@@ -1051,7 +1041,7 @@ export default function ShopifyIntegrationView() {
                             alignItems: 'center',
                             justifyContent: 'space-between',
                             gap: 12,
-                            marginBottom: 24
+                            marginBottom: 20
                           }}>
                             <div style={{
                               display: 'inline-flex',
@@ -1086,22 +1076,41 @@ export default function ShopifyIntegrationView() {
                             </div>
                           </div>
 
-                          {/* Title & Subtitle */}
-                          <h3 style={{
-                            fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)',
-                            fontWeight: 800,
-                            marginBottom: 6,
-                            color: 'var(--heading-color)'
-                          }}>
-                            {activeStep.title}
-                          </h3>
-                          <div style={{
-                            fontSize: '1rem',
-                            fontWeight: 600,
-                            color: '#00AEEF',
-                            marginBottom: 20
-                          }}>
-                            {activeStep.subtitle}
+                          {/* Title & Subtitle with Icon Badge */}
+                          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, marginBottom: 18 }}>
+                            <div style={{
+                              width: 48,
+                              height: 48,
+                              borderRadius: 14,
+                              background: 'rgba(0, 174, 239, 0.12)',
+                              border: '1.5px solid rgba(0, 174, 239, 0.3)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              color: '#00AEEF',
+                              flexShrink: 0,
+                              marginTop: 2
+                            }}>
+                              <ActiveStepIcon size={24} />
+                            </div>
+                            <div>
+                              <h3 style={{
+                                fontSize: 'clamp(1.5rem, 2.3vw, 2.1rem)',
+                                fontWeight: 800,
+                                marginBottom: 4,
+                                color: 'var(--heading-color)',
+                                lineHeight: 1.2
+                              }}>
+                                {activeStep.title}
+                              </h3>
+                              <div style={{
+                                fontSize: '0.95rem',
+                                fontWeight: 600,
+                                color: '#00AEEF'
+                              }}>
+                                {activeStep.subtitle}
+                              </div>
+                            </div>
                           </div>
 
                           {/* Main Step Description */}

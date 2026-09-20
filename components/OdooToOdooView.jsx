@@ -171,11 +171,26 @@ export default function OdooToOdooView() {
               </p>
 
               <div className="odoo-hero-actions">
-                <Link href="/contact-us" className="odoo-primary-btn">
-                  <span>Consult Odoo Architects</span>
-                  <ArrowRight size={17} />
+                <Link 
+                  href="/contact-us" 
+                  className="odoo-primary-btn"
+                  style={{
+                    background: 'linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%)',
+                    color: '#ffffff',
+                    border: '1px solid rgba(0, 174, 239, 0.4)',
+                    boxShadow: '0 8px 24px rgba(0, 174, 239, 0.4)'
+                  }}
+                >
+                  <span style={{ color: '#ffffff', fontWeight: 700 }}>Consult Odoo Architects</span>
+                  <ArrowRight size={17} color="#ffffff" />
                 </Link>
-                <a href="#solutions-grid" className="odoo-secondary-btn">
+                <a 
+                  href="#solutions-grid" 
+                  className="odoo-secondary-btn"
+                  style={{
+                    border: '1.5px solid rgba(0, 174, 239, 0.5)'
+                  }}
+                >
                   <span>Explore Solutions</span>
                 </a>
               </div>
@@ -970,10 +985,36 @@ export default function OdooToOdooView() {
           border: 1px solid rgba(0, 174, 239, 0.18);
         }
 
+        [data-theme="dark"] .odoo-primary-btn,
+        .dark-theme .odoo-primary-btn {
+          background: linear-gradient(135deg, #00AEEF 0%, #0077c8 100%) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(0, 174, 239, 0.5) !important;
+          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.45) !important;
+        }
+        [data-theme="dark"] .odoo-primary-btn span,
+        [data-theme="dark"] .odoo-primary-btn svg {
+          color: #ffffff !important;
+          stroke: #ffffff !important;
+        }
+        [data-theme="dark"] .odoo-primary-btn:hover {
+          background: linear-gradient(135deg, #0099d8 0%, #0066b3 100%) !important;
+          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.6) !important;
+        }
+
         [data-theme="dark"] .odoo-secondary-btn {
           color: #ffffff !important;
-          border-color: rgba(0, 174, 239, 0.4);
-          background: rgba(0, 174, 239, 0.05);
+          border: 1.5px solid rgba(0, 174, 239, 0.6) !important;
+          background: rgba(0, 174, 239, 0.12) !important;
+          box-shadow: 0 4px 16px rgba(0, 174, 239, 0.2) !important;
+        }
+        [data-theme="dark"] .odoo-secondary-btn span {
+          color: #ffffff !important;
+        }
+        [data-theme="dark"] .odoo-secondary-btn:hover {
+          background: rgba(0, 174, 239, 0.25) !important;
+          border-color: #00AEEF !important;
+          color: #ffffff !important;
         }
 
         /* ---------------- LIGHT THEME ---------------- */
