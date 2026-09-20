@@ -296,15 +296,6 @@ export default function HomePage() {
                       height="20"
                     />
                   </div>
-                  <div className="hero-erp-logo-item" title="ERP NEXT">
-                    <img 
-                      src="/assets/imgs/tech/erpnext.svg" 
-                      alt="ERP NEXT" 
-                      className="hero-erp-logo" 
-                      width="94"
-                      height="20"
-                    />
-                  </div>
                 </div>
               </div>
 
