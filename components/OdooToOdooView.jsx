@@ -491,7 +491,7 @@ export default function OdooToOdooView() {
                 Request Architecture Review <ArrowRight size={17} />
               </Link>
               <a href="tel:+966551013823" className="btn btn-outline-brand odoo-hero-secondary-btn">
-                Direct Hotline (+966 55 101 3823)
+                Direct Hotline (+966-551-013823)
               </a>
             </div>
           </div>

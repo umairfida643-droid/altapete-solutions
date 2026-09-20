@@ -26,7 +26,8 @@ import {
   FileCheck2,
   Copy,
   Users,
-  Eye
+  Eye,
+  MessageCircle
 } from 'lucide-react';
 
 const geoCountryPaths = {
@@ -120,17 +121,21 @@ export default function ContactUsView() {
   const locations = [
     {
       id: 'riyadh',
-      city: 'Riyadh',
+      city: 'Riyadh HQ',
       country: 'Saudi Arabia',
       countryCode: 'SA',
       flag: '🇸🇦',
       regionTag: 'Central Province',
       type: 'Executive Headquarters',
       isHQ: true,
-      address: 'Building #44, Ibn Katheer Street, King Abdulaziz District, Riyadh',
-      postalCode: '12411 Riyadh, KSA',
-      phone: '+966 53 382 0454',
-      altPhone: '+966 55 101 3823',
+      address: 'Riyadh, Saudi Arabia',
+      phone: '+966-533-820454',
+      phoneNumbers: [
+        { label: 'WhatsApp', number: '+966 55 107 6961', isWa: true, href: 'https://wa.me/966551076961' },
+        { label: 'Direct Call', number: '+966-533-820454', isWa: false, href: 'tel:+966533820454' },
+        { label: 'Direct Call', number: '+966-558-569116', isWa: false, href: 'tel:+966558569116' },
+        { label: 'Direct Call', number: '+966-551-013823', isWa: false, href: 'tel:+966551013823' },
+      ],
       email: 'riyadh@altapetesolutions.com',
       hours: 'Sun - Thu: 9:00 AM - 6:00 PM (AST)',
       timeZoneLabel: 'Arabia Standard Time (GMT+3)',
@@ -145,7 +150,7 @@ export default function ContactUsView() {
       lineY2: 202,
       subTag: 'Corporate HQ',
       focus: 'Executive Leadership, Strategic ERP Consulting, ZATCA Phase 2 Advisory & Oracle Practice',
-      gmapUrl: 'https://maps.google.com/?q=Ibn+Katheer+Street+King+Abdulaziz+District+Riyadh'
+      gmapUrl: 'https://maps.google.com/?q=Riyadh+Saudi+Arabia'
     },
     {
       id: 'khobar',
@@ -156,10 +161,14 @@ export default function ContactUsView() {
       regionTag: 'Eastern Province',
       type: 'Industrial & Commercial Hub',
       isHQ: false,
-      address: 'Office# 09, 4th Floor, King Khalid Street Cross 15, Al Khobar',
-      postalCode: '34414 Al Khobar, KSA',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
+      address: 'Al Khobar, Saudi Arabia',
+      phone: '+966-558-569116',
+      phoneNumbers: [
+        { label: 'WhatsApp', number: '+966 55 107 6961', isWa: true, href: 'https://wa.me/966551076961' },
+        { label: 'Direct Call', number: '+966-533-820454', isWa: false, href: 'tel:+966533820454' },
+        { label: 'Direct Call', number: '+966-558-569116', isWa: false, href: 'tel:+966558569116' },
+        { label: 'Direct Call', number: '+966-551-013823', isWa: false, href: 'tel:+966551013823' },
+      ],
       email: 'khobar@altapetesolutions.com',
       hours: 'Sun - Thu: 9:00 AM - 6:00 PM (AST)',
       timeZoneLabel: 'Arabia Standard Time (GMT+3)',
@@ -174,94 +183,7 @@ export default function ContactUsView() {
       lineY2: 139,
       subTag: 'Eastern Hub',
       focus: 'Oil & Gas Solutions, Industrial ERP Implementation, Logistics & Supply Chain Automation',
-      gmapUrl: 'https://maps.google.com/?q=King+Khalid+Street+Cross+15+Al+Khobar'
-    },
-    {
-      id: 'manama',
-      city: 'Manama',
-      country: 'Bahrain',
-      countryCode: 'BH',
-      flag: '🇧🇭',
-      regionTag: 'GCC Financial Gateway',
-      type: 'Regional Financial Advisory Desk',
-      isHQ: false,
-      address: 'Diplomatic Area, Bahrain Financial Harbour Corridor, Manama',
-      postalCode: 'Manama, Kingdom of Bahrain',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
-      email: 'bahrain@altapetesolutions.com',
-      hours: 'Sun - Thu: 8:30 AM - 5:30 PM (AST)',
-      timeZoneLabel: 'Arabia Standard Time (GMT+3)',
-      currentTimeKey: 'ksa',
-      lat: 26.2285,
-      lng: 50.5860,
-      pinX: 433.1,
-      pinY: 228.9,
-      badgeX: 490,
-      badgeY: 125,
-      lineX2: 450,
-      lineY2: 139,
-      subTag: 'Financial Desk',
-      focus: 'Financial Institutions ERP, Zakat & Corporate Advisory, Cloud Systems',
-      gmapUrl: 'https://maps.google.com/?q=Diplomatic+Area+Manama+Bahrain'
-    },
-    {
-      id: 'dubai',
-      city: 'Dubai',
-      country: 'United Arab Emirates',
-      countryCode: 'AE',
-      flag: '🇦🇪',
-      regionTag: 'Gulf Operations',
-      type: 'Regional Enterprise Hub',
-      isHQ: false,
-      address: 'Business Bay / Downtown Corporate Corridor, Dubai',
-      postalCode: 'Dubai, United Arab Emirates',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
-      email: 'uae@altapetesolutions.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
-      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
-      currentTimeKey: 'uae',
-      lat: 25.2048,
-      lng: 55.2708,
-      pinX: 524.9,
-      pinY: 247.8,
-      badgeX: 630,
-      badgeY: 200,
-      lineX2: 575,
-      lineY2: 212,
-      subTag: 'Gulf Operations',
-      focus: 'FinTech Integrations, Cross-Border GCC Cloud Architectures & Corporate Systems',
-      gmapUrl: 'https://maps.google.com/?q=Business+Bay+Dubai+UAE'
-    },
-    {
-      id: 'abudhabi',
-      city: 'Abu Dhabi',
-      country: 'United Arab Emirates',
-      countryCode: 'AE',
-      flag: '🇦🇪',
-      regionTag: 'Capital Hub',
-      type: 'Enterprise Liaison Desk',
-      isHQ: false,
-      address: 'Al Maryah Island / Capital Business Zone, Abu Dhabi',
-      postalCode: 'Abu Dhabi, United Arab Emirates',
-      phone: '+966 55 101 3823',
-      altPhone: '+966 56 802 9153',
-      email: 'abudhabi@altapetesolutions.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
-      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
-      currentTimeKey: 'uae',
-      lat: 24.4539,
-      lng: 54.3773,
-      pinX: 507.4,
-      pinY: 261.6,
-      badgeX: 605,
-      badgeY: 315,
-      lineX2: 555,
-      lineY2: 303,
-      subTag: 'Capital Advisory',
-      focus: 'Government & Enterprise Modernization, SAP S/4HANA Strategic Transformations',
-      gmapUrl: 'https://maps.google.com/?q=Abu+Dhabi+UAE'
+      gmapUrl: 'https://maps.google.com/?q=Al+Khobar+Saudi+Arabia'
     },
     {
       id: 'jeddah',
@@ -272,10 +194,14 @@ export default function ContactUsView() {
       regionTag: 'Western Province',
       type: 'Commercial & Logistics Desk',
       isHQ: false,
-      address: 'King Abdulaziz Road / Al Andalus Business District, Jeddah',
-      postalCode: '21589 Jeddah, KSA',
-      phone: '+966 53 382 0454',
-      altPhone: '+966 55 101 3823',
+      address: 'Jeddah, Saudi Arabia',
+      phone: '+966-551-013823',
+      phoneNumbers: [
+        { label: 'WhatsApp', number: '+966 55 107 6961', isWa: true, href: 'https://wa.me/966551076961' },
+        { label: 'Direct Call', number: '+966-533-820454', isWa: false, href: 'tel:+966533820454' },
+        { label: 'Direct Call', number: '+966-558-569116', isWa: false, href: 'tel:+966558569116' },
+        { label: 'Direct Call', number: '+966-551-013823', isWa: false, href: 'tel:+966551013823' },
+      ],
       email: 'jeddah@altapetesolutions.com',
       hours: 'Sun - Thu: 9:00 AM - 6:00 PM (AST)',
       timeZoneLabel: 'Arabia Standard Time (GMT+3)',
@@ -290,21 +216,55 @@ export default function ContactUsView() {
       lineY2: 373,
       subTag: 'Western Desk',
       focus: 'Western Province Retail, Port Logistics, Hospitality & Real Estate ERP',
-      gmapUrl: 'https://maps.google.com/?q=King+Abdulaziz+Road+Jeddah'
+      gmapUrl: 'https://maps.google.com/?q=Jeddah+Saudi+Arabia'
+    },
+    {
+      id: 'uae',
+      city: 'United Arab Emirates',
+      country: 'United Arab Emirates',
+      countryCode: 'AE',
+      flag: '🇦🇪',
+      regionTag: 'Gulf Operations',
+      type: 'Regional Enterprise Hub',
+      isHQ: false,
+      address: 'Dubai & Abu Dhabi, United Arab Emirates',
+      phone: '+966-533-820454',
+      phoneNumbers: [
+        { label: 'WhatsApp', number: '+966 55 107 6961', isWa: true, href: 'https://wa.me/966551076961' },
+        { label: 'Direct Call', number: '+966-533-820454', isWa: false, href: 'tel:+966533820454' },
+        { label: 'Direct Call', number: '+966-558-569116', isWa: false, href: 'tel:+966558569116' },
+        { label: 'Direct Call', number: '+966-551-013823', isWa: false, href: 'tel:+966551013823' },
+      ],
+      email: 'uae@altapetesolutions.com',
+      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (GST)',
+      timeZoneLabel: 'Gulf Standard Time (GMT+4)',
+      currentTimeKey: 'uae',
+      lat: 25.2048,
+      lng: 55.2708,
+      pinX: 524.9,
+      pinY: 247.8,
+      badgeX: 630,
+      badgeY: 200,
+      lineX2: 575,
+      lineY2: 212,
+      subTag: 'UAE Operations',
+      focus: 'FinTech Integrations, Cross-Border GCC Cloud Architectures & Corporate Systems',
+      gmapUrl: 'https://maps.google.com/?q=Dubai+UAE'
     },
     {
       id: 'lahore',
-      city: 'Lahore',
+      city: 'Pakistan',
       country: 'Pakistan',
       countryCode: 'PK',
       flag: '🇵🇰',
       regionTag: 'South Asia Center',
       type: 'Global Technology & Engineering Center',
       isHQ: false,
-      address: '159-D Nawab Town, Raiwind Road / Thokar Niaz Baig, Lahore',
-      postalCode: '54000 Lahore, Punjab, PK',
+      address: 'Lahore, Pakistan',
       phone: '+92 370 3536327',
-      altPhone: '+966 56 802 9153',
+      phoneNumbers: [
+        { label: 'Direct Call', number: '+92 370 3536327', isWa: false, href: 'tel:+923703536327' },
+      ],
       email: 'tech@altapetesolutions.com',
       hours: 'Mon - Fri: 9:00 AM - 6:30 PM (PKT)',
       timeZoneLabel: 'Pakistan Standard Time (GMT+5)',
@@ -317,9 +277,9 @@ export default function ContactUsView() {
       badgeY: 65,
       lineX2: 855,
       lineY2: 77,
-      subTag: 'Tech & R&D Center',
+      subTag: 'Tech Center',
       focus: 'Core ERP Development, Odoo Custom Modules, Cloud Microservices, Full-Stack Software Engineering',
-      gmapUrl: 'https://maps.google.com/?q=159-D+Nawab+Town+Lahore'
+      gmapUrl: 'https://maps.google.com/?q=Lahore+Pakistan'
     }
   ];
 
@@ -420,7 +380,7 @@ export default function ContactUsView() {
                   <span>Explore Regional Offices</span>
                 </a>
                 <a 
-                  href="https://wa.me/966568029153?text=Hello%20Altapete%20Solutions,%20I%20would%20like%20to%20inquire%20about%20your%20ERP%20services."
+                  href="https://wa.me/966551076961?text=Hello%20Altapete%20Solutions,%20I%20would%20like%20to%20inquire%20about%20your%20ERP%20services."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-whatsapp hover-up"
@@ -452,23 +412,30 @@ export default function ContactUsView() {
                   <a href="tel:+966533820454" className="channel-link">
                     <div className="channel-link-main">
                       <span className="channel-flag">🇸🇦</span>
-                      <span className="channel-number">+966 53 382 0454</span>
+                      <span className="channel-number">+966-533-820454</span>
                     </div>
-                    <span className="channel-tag">Riyadh HQ</span>
+                    <span className="channel-tag">Direct Call</span>
+                  </a>
+                  <a href="tel:+966558569116" className="channel-link">
+                    <div className="channel-link-main">
+                      <span className="channel-flag">🇸🇦</span>
+                      <span className="channel-number">+966-558-569116</span>
+                    </div>
+                    <span className="channel-tag">Direct Call</span>
                   </a>
                   <a href="tel:+966551013823" className="channel-link">
                     <div className="channel-link-main">
                       <span className="channel-flag">🇸🇦</span>
-                      <span className="channel-number">+966 55 101 3823</span>
+                      <span className="channel-number">+966-551-013823</span>
                     </div>
-                    <span className="channel-tag">Eastern Prov.</span>
+                    <span className="channel-tag">Direct Call</span>
                   </a>
                   <a href="tel:+923703536327" className="channel-link">
                     <div className="channel-link-main">
                       <span className="channel-flag">🇵🇰</span>
                       <span className="channel-number">+92 370 3536327</span>
                     </div>
-                    <span className="channel-tag">Tech Desk</span>
+                    <span className="channel-tag">Pakistan</span>
                   </a>
                 </div>
               </div>
@@ -483,11 +450,11 @@ export default function ContactUsView() {
                 <h3 className="tile-title">WhatsApp Direct</h3>
                 <p className="tile-desc">Fast-track response for executive proposals &amp; urgent briefs.</p>
                 <div className="whatsapp-info-box">
-                  <span className="wa-num">+966 56 802 9153</span>
+                  <span className="wa-num">+966 55 107 6961</span>
                   <span className="wa-sub">Official Altapete Business Desk</span>
                 </div>
                 <a 
-                  href="https://wa.me/966568029153?text=Hello%20Altapete,%20we%20have%20an%20urgent%20ERP%20consulting%20inquiry."
+                  href="https://wa.me/966551076961?text=Hello%20Altapete,%20we%20have%20an%20urgent%20ERP%20consulting%20inquiry."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="tile-action-btn wa-btn hover-up"
@@ -559,7 +526,7 @@ export default function ContactUsView() {
               Our Regional <span className="text-gradient">Operations Map</span>
             </h2>
             <p className="section-subtitle">
-              Authentic geographical presence across the Kingdom of Saudi Arabia, United Arab Emirates, Bahrain, and Pakistan.
+              Authentic geographical presence across the Kingdom of Saudi Arabia, United Arab Emirates, and Pakistan.
               Hover or click on any office beacon to view complete details.
             </p>
           </div>
@@ -569,10 +536,9 @@ export default function ContactUsView() {
             <div className="geo-country-tabs">
               {[
                 { id: 'all', label: 'All Hubs', count: locations.length, icon: Globe2 },
-                { id: 'sa', label: 'Saudi Arabia', count: 3, flag: '🇸🇦' },
-                { id: 'ae', label: 'United Arab Emirates', count: 2, flag: '🇦🇪' },
-                { id: 'bh', label: 'Bahrain', count: 1, flag: '🇧🇭' },
-                { id: 'pk', label: 'Pakistan', count: 2, flag: '🇵🇰' }
+                { id: 'sa', label: 'Saudi Arabia', count: locations.filter(l => l.countryCode === 'SA').length, flag: '🇸🇦' },
+                { id: 'ae', label: 'United Arab Emirates', count: locations.filter(l => l.countryCode === 'AE').length, flag: '🇦🇪' },
+                { id: 'pk', label: 'Pakistan', count: locations.filter(l => l.countryCode === 'PK').length, flag: '🇵🇰' }
               ].map(tab => (
                 <button
                   key={tab.id}
@@ -1007,10 +973,9 @@ export default function ContactUsView() {
                   <div className="hub-info-block">
                     <div className="info-label">
                       <MapPin size={14} color="#2c73d9" />
-                      <span>Physical Address</span>
+                      <span>Regional Location</span>
                     </div>
                     <p className="info-val address-text">{selectedLocation.address}</p>
-                    <span className="postal-text">{selectedLocation.postalCode}</span>
                   </div>
 
                   <div className="hub-info-block">
@@ -1029,11 +994,42 @@ export default function ContactUsView() {
                     <p className="info-val">{selectedLocation.hours}</p>
                   </div>
 
-                  <div className="hub-action-row">
-                    <a href={`tel:${selectedLocation.phone.replace(/\s+/g, '')}`} className="hub-call-btn hover-up">
-                      <Phone size={15} />
-                      <span>{selectedLocation.phone}</span>
-                    </a>
+                  <div className="hub-info-block">
+                    <div className="info-label">
+                      <Phone size={14} color="#2c73d9" />
+                      <span>Direct Contact Lines</span>
+                    </div>
+                    <div className="hub-phones-list" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '6px' }}>
+                      {selectedLocation.phoneNumbers && selectedLocation.phoneNumbers.map((p, idx) => (
+                        <a
+                          key={idx}
+                          href={p.href}
+                          target={p.isWa ? '_blank' : undefined}
+                          rel={p.isWa ? 'noopener noreferrer' : undefined}
+                          className="hub-call-btn hover-up"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            padding: '8px 14px',
+                            borderRadius: '8px',
+                            background: p.isWa ? 'rgba(37, 211, 102, 0.12)' : 'var(--input-bg, rgba(255,255,255,0.06))',
+                            color: p.isWa ? '#25D366' : 'inherit',
+                            border: p.isWa ? '1px solid rgba(37, 211, 102, 0.3)' : '1px solid var(--border-color, rgba(255,255,255,0.1))',
+                            fontSize: '0.88rem',
+                            fontWeight: '600',
+                            textDecoration: 'none'
+                          }}
+                        >
+                          {p.isWa ? <MessageCircle size={15} color="#25D366" /> : <Phone size={14} color="#2c73d9" />}
+                          <span>{p.number}</span>
+                          <span style={{ fontSize: '0.72rem', opacity: 0.8, marginLeft: 'auto' }}>({p.label})</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="hub-action-row" style={{ marginTop: '12px' }}>
                     <a 
                       href={selectedLocation.gmapUrl} 
                       target="_blank" 
@@ -1109,15 +1105,34 @@ export default function ContactUsView() {
 
                         <div className="office-meta-row">
                           <Phone size={15} className="meta-icon" />
-                          <div className="meta-content">
-                            <a href={`tel:${loc.phone.replace(/\s+/g, '')}`} className="meta-phone-link">
-                              {loc.phone}
-                            </a>
-                            {loc.altPhone && (
-                              <a href={`tel:${loc.altPhone.replace(/\s+/g, '')}`} className="meta-alt-phone">
-                                Alt: {loc.altPhone}
+                          <div className="meta-content" style={{ display: 'flex', flexDirection: 'column', gap: '6px', width: '100%' }}>
+                            {loc.phoneNumbers && loc.phoneNumbers.map((p, idx) => (
+                              <a
+                                key={idx}
+                                href={p.href}
+                                target={p.isWa ? '_blank' : undefined}
+                                rel={p.isWa ? 'noopener noreferrer' : undefined}
+                                className="meta-phone-link"
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'space-between',
+                                  color: p.isWa ? '#25D366' : 'inherit',
+                                  fontWeight: p.isWa ? '600' : '500',
+                                  fontSize: '0.85rem',
+                                  textDecoration: 'none'
+                                }}
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                  {p.isWa ? <MessageCircle size={13} color="#25D366" /> : <Phone size={13} />}
+                                  {p.number}
+                                </span>
+                                <span style={{ fontSize: '0.7rem', opacity: 0.75, padding: '2px 6px', borderRadius: '4px', background: p.isWa ? 'rgba(37,211,102,0.1)' : 'rgba(120,120,120,0.1)' }}>
+                                  {p.label}
+                                </span>
                               </a>
-                            )}
+                            ))}
                           </div>
                         </div>
 

@@ -201,9 +201,9 @@ const clientLogos = [
 ];
 
 const offices = [
-  { city: 'Al Khobar', country: 'Saudi Arabia', address: '7982 King Fahd Road, Al Khobar' },
-  { city: 'Riyadh', country: 'Saudi Arabia', address: 'Riyadh Business Center' },
-  { city: 'Lahore', country: 'Pakistan', address: '28-A Sector XX, Phase 3 DHA, Lahore' }
+  { city: 'Al Khobar', country: 'Saudi Arabia', address: 'Al Khobar, Saudi Arabia' },
+  { city: 'Riyadh', country: 'Saudi Arabia', address: 'Riyadh, Saudi Arabia' },
+  { city: 'Lahore', country: 'Pakistan', address: 'Lahore, Pakistan' }
 ];
 
 export default function WhatWeDoPage() {
@@ -608,7 +608,9 @@ export default function WhatWeDoPage() {
                         <Phone size={20} className="touch-icon" />
                         <div>
                           <div className="touch-label">Call Our Advisors</div>
-                          <a href="tel:+966551013823" className="touch-value">+966 55 101 3823 (KSA)</a>
+                          <a href="tel:+966533820454" className="touch-value">+966-533-820454 (KSA)</a>
+                          <a href="tel:+966558569116" className="touch-value">+966-558-569116 (KSA)</a>
+                          <a href="tel:+966551013823" className="touch-value">+966-551-013823 (KSA)</a>
                           <a href="tel:+923703536327" className="touch-value">+92 370 3536327 (PK)</a>
                         </div>
                       </div>
@@ -620,7 +622,7 @@ export default function WhatWeDoPage() {
                         <div>
                           <div className="touch-label">Direct Correspondence</div>
                           <a href="mailto:info@altapetesolutions.com" className="touch-value">info@altapetesolutions.com</a>
-                          <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" className="touch-value">WhatsApp Support</a>
+                          <a href="https://wa.me/966551076961" target="_blank" rel="noopener noreferrer" className="touch-value">WhatsApp: +966 55 107 6961</a>
                         </div>
                       </div>
                     </div>

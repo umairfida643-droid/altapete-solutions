@@ -656,13 +656,13 @@ export default function ServicesPage() {
                     Speak directly with our senior ERP architects and certified financial advisors to design a tailored transformation roadmap for your business.
                   </p>
                   <div className="cta-contact-links">
-                    <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" className="cta-link-pill">
+                    <a href="https://wa.me/966551076961" target="_blank" rel="noopener noreferrer" className="cta-link-pill">
                       <Zap size={15} color="#25D366" />
-                      <span>WhatsApp: +966 56 802 9153</span>
+                      <span>WhatsApp: +966 55 107 6961</span>
                     </a>
                     <a href="tel:+966551013823" className="cta-link-pill">
                       <Headphones size={15} color="#00AEEF" />
-                      <span>Hotline: +966 55 101 3823</span>
+                      <span>Direct: +966-551-013823</span>
                     </a>
                     <a href="mailto:info@altapete.com" className="cta-link-pill">
                       <Globe size={15} color="#2c73d9" />

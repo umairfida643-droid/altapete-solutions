@@ -181,22 +181,16 @@ export default function Header({ onToggleMobileMenu }) {
 
   const productsList = [
     { 
-      text: "Rental Solutions", 
-      href: "/rental-solutions", 
-      icon: Building, 
-      desc: "Fleet, machinery & equipment rental lifecycle management" 
-    },
-    { 
-      text: "Shipping Solutions", 
-      href: "/shipping-solutions", 
-      icon: Truck, 
-      desc: "Freight forwarding, dispatch tracking & logistics billing" 
-    },
-    { 
       text: "Hotel Management", 
       href: "/hotel-management-solutions", 
       icon: Hotel, 
       desc: "PMS, room booking engine, housekeeping & guest folio" 
+    },
+    { 
+      text: "Construction Management", 
+      href: "/construction-management-solutions", 
+      icon: HardHat, 
+      desc: "Job costing, project billing, subcontractor & BOQ tracking" 
     },
     { 
       text: "Hospital Management", 
@@ -211,10 +205,16 @@ export default function Header({ onToggleMobileMenu }) {
       desc: "LMS, admissions, fee management & academic gradebook" 
     },
     { 
-      text: "Construction Management", 
-      href: "/construction-management-solutions", 
-      icon: HardHat, 
-      desc: "Job costing, project billing, subcontractor & BOQ tracking" 
+      text: "Shipment Solutions", 
+      href: "/shipping-solutions", 
+      icon: Truck, 
+      desc: "Freight forwarding, dispatch tracking & logistics billing" 
+    },
+    { 
+      text: "Rental Management", 
+      href: "/rental-solutions", 
+      icon: Building, 
+      desc: "Fleet, machinery & equipment rental lifecycle management" 
     }
   ];
 

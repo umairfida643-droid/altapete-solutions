@@ -795,7 +795,7 @@ export default function CorporateAdvisoryView() {
                       <Phone size={18} />
                     </div>
                     <div>
-                      <div className="corp-channel-title">+966 55 101 3823</div>
+                      <div className="corp-channel-title">+966-551-013823</div>
                       <div className="corp-channel-sub">Saudi Arabia Direct</div>
                     </div>
                   </a>
@@ -810,12 +810,12 @@ export default function CorporateAdvisoryView() {
                     </div>
                   </a>
 
-                  <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" className="corp-cta-channel-item">
+                  <a href="https://wa.me/966551076961" target="_blank" rel="noopener noreferrer" className="corp-cta-channel-item">
                     <div className="corp-channel-icon">
                       <Send size={18} />
                     </div>
                     <div>
-                      <div className="corp-channel-title">+966 56 802 9153</div>
+                      <div className="corp-channel-title">+966 55 107 6961</div>
                       <div className="corp-channel-sub">WhatsApp Advisory</div>
                     </div>
                   </a>

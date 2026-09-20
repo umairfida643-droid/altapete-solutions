@@ -755,7 +755,7 @@ export default function TaxationZakatView() {
                       <Phone size={18} />
                     </div>
                     <div>
-                      <div className="tax-channel-title">+966 55 101 3823</div>
+                      <div className="tax-channel-title">+966-551-013823</div>
                       <div className="tax-channel-sub">Saudi Direct Helpline</div>
                     </div>
                   </a>
@@ -770,12 +770,12 @@ export default function TaxationZakatView() {
                     </div>
                   </a>
 
-                  <a href="https://wa.me/966568029153" target="_blank" rel="noopener noreferrer" className="tax-cta-channel-item">
+                  <a href="https://wa.me/966551076961" target="_blank" rel="noopener noreferrer" className="tax-cta-channel-item">
                     <div className="tax-channel-icon">
                       <Send size={18} />
                     </div>
                     <div>
-                      <div className="tax-channel-title">+966 56 802 9153</div>
+                      <div className="tax-channel-title">+966 55 107 6961</div>
                       <div className="tax-channel-sub">WhatsApp Advisory Desk</div>
                     </div>
                   </a>

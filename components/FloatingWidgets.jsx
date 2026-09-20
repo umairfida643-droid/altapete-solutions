@@ -30,12 +30,12 @@ export default function FloatingWidgets() {
     <>
       {/* ── 1. Floating WhatsApp Button (Bottom Left) ── */}
       <a
-        href="https://wa.me/966568029153"
+        href="https://wa.me/966551076961"
         target="_blank"
         rel="noopener noreferrer"
         className="floating-whatsapp-widget"
-        aria-label="Direct WhatsApp Chat: +966 56 802 9153"
-        title="Direct WhatsApp Chat: +966 56 802 9153"
+        aria-label="Direct WhatsApp Chat: +966 55 107 6961"
+        title="Direct WhatsApp Chat: +966 55 107 6961"
       >
         <div className="whatsapp-pulse-ring" />
         <div className="whatsapp-btn-body">
@@ -52,7 +52,7 @@ export default function FloatingWidgets() {
           </div>
           <div className="whatsapp-text-details">
             <span className="whatsapp-text-title">Direct WhatsApp Chat</span>
-            <span className="whatsapp-text-sub">+966 56 802 9153</span>
+            <span className="whatsapp-text-sub">+966 55 107 6961</span>
           </div>
         </div>
       </a>

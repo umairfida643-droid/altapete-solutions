@@ -701,7 +701,7 @@ export default function OutsourcingView() {
                     </div>
                     <div>
                       <div className="out-helpline-label">Saudi Helpline</div>
-                      <div className="out-helpline-val">+966 55 101 3823</div>
+                      <div className="out-helpline-val">+966-551-013823</div>
                     </div>
                   </a>
 

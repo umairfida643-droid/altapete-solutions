@@ -201,12 +201,12 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     {activeAccordion === 3 && (
                       <div style={{ background: 'var(--bg-card-subtle)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
                         {[
-                          { text: "Rental Solutions", href: "/rental-solutions", icon: Building },
-                          { text: "Shipping Solutions", href: "/shipping-solutions", icon: Truck },
                           { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel },
+                          { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat },
                           { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital },
                           { text: "School Management", href: "/school-management-solutions", icon: GraduationCap },
-                          { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat }
+                          { text: "Shipment Solutions", href: "/shipping-solutions", icon: Truck },
+                          { text: "Rental Management", href: "/rental-solutions", icon: Building }
                         ].map((item, i) => {
                           const Icon = item.icon;
                           return (

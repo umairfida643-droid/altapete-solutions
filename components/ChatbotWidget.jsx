@@ -125,24 +125,29 @@ We offer specialized turnkey ERP software designed for specific industries:
     quickOptions: ['Book Consultation', 'Company Profile', 'Contact Us']
   },
   {
-    keywords: ['contact', 'location', 'address', 'office', 'phone', 'whatsapp', 'email', 'riyadh', 'khobar', 'lahore', 'call', 'where', 'support'],
+    keywords: ['contact', 'location', 'address', 'office', 'phone', 'whatsapp', 'email', 'riyadh', 'khobar', 'jeddah', 'uae', 'lahore', 'call', 'where', 'support'],
     title: 'Office Locations & Contact Details',
     response: `📍 **Altapete Solutions Offices & Contact Details**
 
-🏢 **Saudi Arabia Offices**:
-• **Al Khobar**: 7982 King Fahd Road, Al Khobar, Saudi Arabia
-• **Riyadh**: Riyadh Office, Saudi Arabia
+🏢 **Saudi Arabia (Riyadh HQ, Al Khobar, Jeddah)**:
+• **WhatsApp**: [+966 55 107 6961](https://wa.me/966551076961)
+• **Direct Call**: +966-533-820454
+• **Direct Call**: +966-558-569116
+• **Direct Call**: +966-551-013823
 
-🏢 **Pakistan Office**:
-• **Lahore**: 28-A Sector XX, DHA Phase 3, Lahore, Pakistan
+🏢 **United Arab Emirates**:
+• **WhatsApp**: [+966 55 107 6961](https://wa.me/966551076961)
+• **Direct Call**: +966-533-820454
+• **Direct Call**: +966-558-569116
+• **Direct Call**: +966-551-013823
 
-📞 **Direct Communication Channels**:
-• **WhatsApp**: [+966 56 802 9153](https://wa.me/966568029153)
-• **Hotline**: +966 55 101 3823
-• **Email**: info@altapete.com`,
+🏢 **Pakistan (Lahore)**:
+• **Direct Call**: +92 370 3536327
+
+📧 **Email**: info@altapetesolutions.com`,
     links: [
       { text: 'Visit Contact Page', href: '/contact-us' },
-      { text: 'Open WhatsApp Chat', href: 'https://wa.me/966568029153' }
+      { text: 'Open WhatsApp Chat', href: 'https://wa.me/966551076961' }
     ],
     quickOptions: ['Book Consultation', 'Download Profile', 'Our Services']
   },
@@ -153,11 +158,11 @@ We offer specialized turnkey ERP software designed for specific industries:
 
 You can view our complete company profiles and download the latest PDF brochures:
 
-1. **Altapete Custom Business Solutions Profile (2026)** — Detailed overview of custom software, integrations & advisory.
+1. **Altapete Odoo Custom Profile (2026)** — Detailed overview of custom software, integrations & advisory.
 2. **Altapete Main Profile (2026)** — Corporate credentials, client portfolio, and 13-year legacy.`,
     links: [
       { text: 'View Company Profile Page', href: '/company-profile' },
-      { text: 'Download Custom Profile (PDF)', href: '/assets/pdf/Altapete%20Custom%20Business%20Solutions%20Profile.pdf' },
+      { text: 'Download Odoo Custom Profile (PDF)', href: '/assets/pdf/Altapete%20Custom%20Business%20Solutions%20Profile.pdf' },
       { text: 'Download Main Profile (PDF)', href: '/assets/pdf/Altapete%20Main%20Profile%202026.pdf' }
     ],
     quickOptions: ['Book Consultation', 'Office Locations', 'All Services']
@@ -348,7 +353,7 @@ export default function ChatbotWidget() {
         [
           {
             text: '📱 Open Direct WhatsApp Chat',
-            href: `https://wa.me/966568029153?text=${waMsg}`
+            href: `https://wa.me/966551076961?text=${waMsg}`
           }
         ],
         true
@@ -387,7 +392,7 @@ export default function ChatbotWidget() {
       `I can help you with comprehensive information on:\n\n• ⚡ **ZATCA Phase 2 E-Invoicing**\n• 🏢 **Odoo ERP & SAP Implementations**\n• 📑 **Taxation, Zakat & Accounting Advisory**\n• 🛍️ **Salla & Shopify Integrations**\n• 📍 **Office Locations & Contact Numbers**\n• 📥 **Company Profile PDF Downloads**\n\nChoose an option below or type your question:`,
       ['⚡ ZATCA Phase 2', '🏢 ERP Solutions', '📑 Tax & Zakat', '📍 Office Locations', '📅 Book Free Consultation'],
       [
-        { text: 'Direct WhatsApp Support', href: 'https://wa.me/966568029153' }
+        { text: 'Direct WhatsApp Support', href: 'https://wa.me/966551076961' }
       ]
     );
   };

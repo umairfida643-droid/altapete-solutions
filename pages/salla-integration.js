@@ -1194,13 +1194,13 @@ export default function SallaIntegrationPage() {
                     <div className="col-lg-5">
                       <div className="salla-cta-action-box">
                         <a
-                          href="https://wa.me/966568029153"
+                          href="https://wa.me/966551076961"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="salla-cta-wa-btn"
                         >
                           <MessageSquare size={18} />
-                          Chat on WhatsApp: +966 56 802 9153
+                          Chat on WhatsApp: +966 55 107 6961
                         </a>
 
                         <a
@@ -1208,7 +1208,7 @@ export default function SallaIntegrationPage() {
                           className="salla-cta-call-btn"
                         >
                           <Phone size={18} />
-                          Call Saudi Office: +966 55 101 3823
+                          Call Saudi Office: +966-551-013823
                         </a>
 
                         <a

@@ -492,7 +492,7 @@ export default function ZatcaIntegrationView() {
                 <ArrowRight size={17} />
               </Link>
               <a href="tel:+966551013823" className="btn btn-outline-brand hover-up zatca-secondary-btn">
-                <span>Call Saudi Office (+966 55 101 3823)</span>
+                <span>Call Saudi Office (+966-551-013823)</span>
               </a>
             </div>
           </div>

@@ -118,29 +118,7 @@ export default function Footer() {
                   </h4>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <a 
-                    href="tel:+966551013823"
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      textDecoration: 'none',
-                      color: 'var(--heading-color)',
-                      padding: '8px 10px',
-                      borderRadius: '8px',
-                      background: 'var(--bg-card-subtle)',
-                      transition: 'all 0.2s ease'
-                    }}
-                    className="contact-sub-item"
-                  >
-                    <div>
-                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 55 101 3823</div>
-                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Saudi Arabia</div>
-                    </div>
-                    <ExternalLink size={13} color="var(--brand-accent)" />
-                  </a>
-
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   <a 
                     href="tel:+966533820454"
                     style={{
@@ -149,7 +127,7 @@ export default function Footer() {
                       justifyContent: 'space-between',
                       textDecoration: 'none',
                       color: 'var(--heading-color)',
-                      padding: '8px 10px',
+                      padding: '7px 10px',
                       borderRadius: '8px',
                       background: 'var(--bg-card-subtle)',
                       transition: 'all 0.2s ease'
@@ -157,8 +135,52 @@ export default function Footer() {
                     className="contact-sub-item"
                   >
                     <div>
-                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 53 382 0454</div>
-                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Saudi Arabia</div>
+                      <div style={{ fontSize: '13px', fontWeight: 600 }}>+966-533-820454</div>
+                      <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Saudi Arabia / UAE</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+
+                  <a 
+                    href="tel:+966558569116"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '7px 10px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13px', fontWeight: 600 }}>+966-558-569116</div>
+                      <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Saudi Arabia / UAE</div>
+                    </div>
+                    <ExternalLink size={13} color="var(--brand-accent)" />
+                  </a>
+
+                  <a 
+                    href="tel:+966551013823"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textDecoration: 'none',
+                      color: 'var(--heading-color)',
+                      padding: '7px 10px',
+                      borderRadius: '8px',
+                      background: 'var(--bg-card-subtle)',
+                      transition: 'all 0.2s ease'
+                    }}
+                    className="contact-sub-item"
+                  >
+                    <div>
+                      <div style={{ fontSize: '13px', fontWeight: 600 }}>+966-551-013823</div>
+                      <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Saudi Arabia / UAE</div>
                     </div>
                     <ExternalLink size={13} color="var(--brand-accent)" />
                   </a>
@@ -171,7 +193,7 @@ export default function Footer() {
                       justifyContent: 'space-between',
                       textDecoration: 'none',
                       color: 'var(--heading-color)',
-                      padding: '8px 10px',
+                      padding: '7px 10px',
                       borderRadius: '8px',
                       background: 'var(--bg-card-subtle)',
                       transition: 'all 0.2s ease'
@@ -179,8 +201,8 @@ export default function Footer() {
                     className="contact-sub-item"
                   >
                     <div>
-                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+92 370 3536327</div>
-                      <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Pakistan</div>
+                      <div style={{ fontSize: '13px', fontWeight: 600 }}>+92 370 3536327</div>
+                      <div style={{ fontSize: '10.5px', color: 'var(--text-muted)' }}>Pakistan</div>
                     </div>
                     <ExternalLink size={13} color="var(--brand-accent)" />
                   </a>
@@ -253,7 +275,7 @@ export default function Footer() {
                   </a>
 
                   <a 
-                    href="https://wa.me/966568029153"
+                    href="https://wa.me/966551076961"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -270,7 +292,7 @@ export default function Footer() {
                     className="contact-sub-item"
                   >
                     <div>
-                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 56 802 9153</div>
+                      <div style={{ fontSize: '13.5px', fontWeight: 600 }}>+966 55 107 6961</div>
                       <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Direct WhatsApp Chat</div>
                     </div>
                     <ExternalLink size={13} color="var(--brand-accent)" />
@@ -379,8 +401,8 @@ export default function Footer() {
                   <MapPin size={15} color="#2c73d9" />
                 </div>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Al Khobar, KSA:</strong>
-                  Office# 09, 4th Floor, King Khalid Street Cross 15
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Riyadh HQ:</strong>
+                  Riyadh, Saudi Arabia
                 </span>
               </div>
 
@@ -389,8 +411,8 @@ export default function Footer() {
                   <MapPin size={15} color="#2c73d9" />
                 </div>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Riyadh, KSA:</strong>
-                  Building #44, Ibn Katheer Street, King Abdulaziz District
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Al Khobar:</strong>
+                  Al Khobar, Saudi Arabia
                 </span>
               </div>
 
@@ -399,8 +421,8 @@ export default function Footer() {
                   <MapPin size={15} color="#2c73d9" />
                 </div>
                 <span style={{ color: 'var(--text-secondary)', fontSize: '13px', lineHeight: '1.5' }}>
-                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Lahore, PK:</strong>
-                  159-D Nawab Town, Lahore, PK
+                  <strong style={{ color: 'var(--heading-color)', display: 'block' }}>Lahore:</strong>
+                  Lahore, Pakistan
                 </span>
               </div>
             </div>

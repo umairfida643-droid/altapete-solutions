@@ -45,7 +45,7 @@ const PROFILES = [
   },
   {
     id: 2,
-    name: 'Altapete Custom Business Solutions Profile',
+    name: 'Altapete Odoo Custom Profile',
     shortDesc: 'Tailored business process design and customisation services built to match your organisation\'s unique operational landscape.',
     icon: Briefcase,
     accent: '#7C3AED',
