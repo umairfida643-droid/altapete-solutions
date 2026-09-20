@@ -171,28 +171,19 @@ export default function OdooToOdooView() {
                 Connect and synchronize multiple Odoo databases seamlessly. We build high-throughput bi-directional data pipelines, multi-company ledger bridges, and real-time inventory allocation networks with zero data loss.
               </p>
 
-              <div className="odoo-hero-actions">
+              {/* Action Buttons */}
+              <div className="d-flex flex-wrap align-items-center gap-3 mb-4">
                 <Link 
                   href="/contact-us" 
-                  className="odoo-primary-btn"
-                  style={{
-                    background: 'linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%)',
-                    color: '#ffffff',
-                    border: '1px solid rgba(0, 174, 239, 0.4)',
-                    boxShadow: '0 8px 24px rgba(0, 174, 239, 0.4)'
-                  }}
+                  className="btn btn-linear hover-up odoo-hero-btn"
                 >
-                  <span style={{ color: '#ffffff', fontWeight: 700 }}>Consult Odoo Architects</span>
-                  <ArrowRight size={17} color="#ffffff" />
+                  Consult Odoo Architects <ArrowRight size={17} />
                 </Link>
                 <a 
                   href="#solutions-grid" 
-                  className="odoo-secondary-btn"
-                  style={{
-                    border: '1.5px solid rgba(0, 174, 239, 0.5)'
-                  }}
+                  className="btn btn-outline-brand odoo-hero-secondary-btn"
                 >
-                  <span>Explore Solutions</span>
+                  Explore Solutions
                 </a>
               </div>
 
@@ -496,12 +487,11 @@ export default function OdooToOdooView() {
               Speak with our senior Odoo solution architects to design a zero-downtime integration architecture tailored to your multi-company structure.
             </p>
             <div className="d-flex justify-content-center gap-3 flex-wrap">
-              <Link href="/contact-us" className="odoo-primary-btn">
-                <span>Request Architecture Review</span>
-                <ArrowRight size={17} />
+              <Link href="/contact-us" className="btn btn-linear hover-up odoo-hero-btn">
+                Request Architecture Review <ArrowRight size={17} />
               </Link>
-              <a href="tel:+966551013823" className="odoo-secondary-btn">
-                <span>Direct Hotline (+966 55 101 3823)</span>
+              <a href="tel:+966551013823" className="btn btn-outline-brand odoo-hero-secondary-btn">
+                Direct Hotline (+966 55 101 3823)
               </a>
             </div>
           </div>
@@ -618,42 +608,24 @@ export default function OdooToOdooView() {
           margin-bottom: 30px;
         }
 
-        .odoo-primary-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 13px 28px;
-          border-radius: 50px;
-          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
-          color: #ffffff !important;
+        .odoo-hero-btn {
+          padding: 14px 30px;
+          font-size: 14.5px;
           font-weight: 700;
-          font-size: 14.5px;
-          text-decoration: none;
-          box-shadow: 0 10px 24px rgba(0, 174, 239, 0.35);
-          transition: all 0.3s ease;
-        }
-
-        .odoo-primary-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 14px 32px rgba(0, 174, 239, 0.5);
-          color: #ffffff !important;
-        }
-
-        .odoo-secondary-btn {
           display: inline-flex;
           align-items: center;
-          padding: 13px 26px;
-          border-radius: 50px;
-          border: 1.5px solid rgba(0, 174, 239, 0.4);
-          font-weight: 600;
-          font-size: 14.5px;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          gap: 9px;
+          border-radius: 12px;
         }
 
-        .odoo-secondary-btn:hover {
-          background: rgba(0, 174, 239, 0.1);
-          transform: translateY(-2px);
+        .odoo-hero-secondary-btn {
+          padding: 13px 26px;
+          font-size: 14px;
+          font-weight: 600;
+          border-radius: 12px;
+          display: inline-flex;
+          align-items: center;
+          transition: all 0.3s ease;
         }
 
         .odoo-trust-row {
@@ -1421,37 +1393,7 @@ export default function OdooToOdooView() {
           border: 1px solid rgba(0, 174, 239, 0.18);
         }
 
-        [data-theme="dark"] .odoo-primary-btn,
-        .dark-theme .odoo-primary-btn {
-          background: linear-gradient(135deg, #00AEEF 0%, #0077c8 100%) !important;
-          color: #ffffff !important;
-          border: 1px solid rgba(0, 174, 239, 0.5) !important;
-          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.45) !important;
-        }
-        [data-theme="dark"] .odoo-primary-btn span,
-        [data-theme="dark"] .odoo-primary-btn svg {
-          color: #ffffff !important;
-          stroke: #ffffff !important;
-        }
-        [data-theme="dark"] .odoo-primary-btn:hover {
-          background: linear-gradient(135deg, #0099d8 0%, #0066b3 100%) !important;
-          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.6) !important;
-        }
 
-        [data-theme="dark"] .odoo-secondary-btn {
-          color: #ffffff !important;
-          border: 1.5px solid rgba(0, 174, 239, 0.6) !important;
-          background: rgba(0, 174, 239, 0.12) !important;
-          box-shadow: 0 4px 16px rgba(0, 174, 239, 0.2) !important;
-        }
-        [data-theme="dark"] .odoo-secondary-btn span {
-          color: #ffffff !important;
-        }
-        [data-theme="dark"] .odoo-secondary-btn:hover {
-          background: rgba(0, 174, 239, 0.25) !important;
-          border-color: #00AEEF !important;
-          color: #ffffff !important;
-        }
 
         /* ---------------- LIGHT THEME ---------------- */
         [data-theme="light"] .odoo-view-wrapper,
@@ -1611,12 +1553,7 @@ export default function OdooToOdooView() {
           border: 1px solid #e2e8f0;
         }
 
-        [data-theme="light"] .odoo-secondary-btn,
-        :root:not([data-theme="dark"]) .odoo-secondary-btn {
-          color: #0f172a !important;
-          border-color: #cbd5e1;
-          background: #ffffff;
-        }
+
       `}</style>
     </div>
   );
