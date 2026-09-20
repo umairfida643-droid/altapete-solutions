@@ -128,8 +128,11 @@
   --card-shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 25px rgba(44, 115, 217, 0.2);
 }
 
-/* Global Body Styling */
+/* Global Body & HTML Reset */
+html,
 body {
+  margin: 0 !important;
+  padding: 0 !important;
   background-color: var(--bg-body) !important;
   color: var(--text-primary) !important;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -4902,6 +4905,9 @@ header#header,
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   z-index: 1000 !important;
   background-color: var(--header-bg) !important;
   border-bottom: 1px solid var(--header-border) !important;

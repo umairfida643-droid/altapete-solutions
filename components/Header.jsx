@@ -224,6 +224,8 @@ export default function Header({ onToggleMobileMenu }) {
       id="header" 
       className={`header sticky-bar ${isSticky ? 'stick' : ''}`}
       style={{
+        margin: 0,
+        padding: 0,
         backgroundColor: 'var(--header-bg)',
         borderBottom: '1px solid var(--header-border)',
         boxShadow: isSticky ? '0 8px 24px rgba(0, 0, 0, 0.2)' : 'none',

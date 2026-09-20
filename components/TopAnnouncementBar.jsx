@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export default function TopAnnouncementBar() {
-  // 3 repeats with generous spacing create a seamless, continuous, stutter-free loop
+  // 3 identical cleanly-spaced ticker items for an infinite, smooth, stutter-free loop
   const announcements = [1, 2, 3];
 
   return (
@@ -22,33 +22,26 @@ export default function TopAnnouncementBar() {
               tabIndex={id === 1 ? 0 : -1}
               aria-label="Cut operational costs by up to 30% - Book your 100% Free ERP Demo today - No hidden implementation fees - Schedule Now"
             >
-              <span className="ann-badge">
-                <Sparkles size={11} className="ann-sparkle" />
-                <span>LIMITED OFFER</span>
-              </span>
-
-              <span className="ann-text">
+              <span className="ann-phrase">
                 Cut operational costs by <strong className="ann-hl">up to 30%</strong>
               </span>
 
-              <span className="ann-sep">•</span>
+              <span className="ann-bullet">•</span>
 
-              <span className="ann-text">
+              <span className="ann-phrase">
                 Book your <strong className="ann-hl">100% Free ERP Demo</strong> today
               </span>
 
-              <span className="ann-sep">•</span>
+              <span className="ann-bullet">•</span>
 
-              <span className="ann-text">
+              <span className="ann-phrase">
                 No hidden implementation fees
               </span>
 
-              <span className="ann-cta-pill">
+              <span className="ann-cta">
                 <span>Schedule Now</span>
-                <ArrowRight size={11} className="ann-cta-arrow" />
+                <ArrowRight size={11} className="ann-arrow" />
               </span>
-
-              <span className="ann-spacer-diamond">✦</span>
             </Link>
           ))}
         </div>
@@ -61,33 +54,35 @@ export default function TopAnnouncementBar() {
           max-height: 32px !important;
           line-height: 32px !important;
           position: relative !important;
+          top: 0 !important;
+          left: 0 !important;
+          margin: 0 !important;
+          padding: 0 !important;
           overflow: hidden !important;
           z-index: 1001 !important;
           display: flex !important;
           justify-content: center !important;
           align-items: center !important;
-          /* Signature deep brand navy across both light & dark themes */
+          /* Signature dark brand navy across both light & dark themes */
           background: #0d0a27 !important;
           background: linear-gradient(90deg, #09071c 0%, #15103d 30%, #1c1752 50%, #15103d 70%, #09071c 100%) !important;
-          border-bottom: 1px solid rgba(44, 115, 217, 0.32) !important;
+          border-bottom: 1px solid rgba(44, 115, 217, 0.28) !important;
           color: #ffffff !important;
           font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif) !important;
           user-select: none !important;
-          padding: 0 !important;
-          margin: 0 !important;
         }
 
-        /* Contained width for clean professional alignment instead of stretching across extreme ultra-wide screen */
         .top-ann-inner-container {
           width: 100% !important;
           max-width: 1200px !important;
           height: 32px !important;
           max-height: 32px !important;
+          margin: 0 auto !important;
+          padding: 0 !important;
           overflow: hidden !important;
           display: flex !important;
           align-items: center !important;
           position: relative !important;
-          /* Subtle fade mask on left and right edges */
           mask-image: linear-gradient(to right, transparent 0%, black 36px, black calc(100% - 36px), transparent 100%) !important;
           -webkit-mask-image: linear-gradient(to right, transparent 0%, black 36px, black calc(100% - 36px), transparent 100%) !important;
         }
@@ -100,6 +95,8 @@ export default function TopAnnouncementBar() {
           width: max-content !important;
           height: 32px !important;
           max-height: 32px !important;
+          margin: 0 !important;
+          padding: 0 !important;
           white-space: nowrap !important;
           animation: smoothTickerScroll 36s linear infinite !important;
           will-change: transform !important;
@@ -119,14 +116,13 @@ export default function TopAnnouncementBar() {
           }
         }
 
-        /* Strict single line row - completely forbids vertical wrapping */
         .top-ann-single-line {
           display: inline-flex !important;
           flex-direction: row !important;
           flex-wrap: nowrap !important;
           align-items: center !important;
-          gap: 12px !important;
-          padding: 0 28px !important;
+          gap: 14px !important;
+          padding: 0 44px !important;
           height: 32px !important;
           max-height: 32px !important;
           line-height: 32px !important;
@@ -145,28 +141,7 @@ export default function TopAnnouncementBar() {
           opacity: 0.95 !important;
         }
 
-        .ann-badge {
-          display: inline-flex !important;
-          align-items: center !important;
-          gap: 4px !important;
-          background: rgba(44, 115, 217, 0.3) !important;
-          border: 1px solid rgba(56, 189, 248, 0.5) !important;
-          color: #38bdf8 !important;
-          font-size: 9.5px !important;
-          font-weight: 700 !important;
-          letter-spacing: 0.6px !important;
-          padding: 1px 7px !important;
-          border-radius: 4px !important;
-          white-space: nowrap !important;
-          flex-shrink: 0 !important;
-          line-height: 1.4 !important;
-        }
-
-        .ann-sparkle {
-          color: #38bdf8 !important;
-        }
-
-        .ann-text {
+        .ann-phrase {
           display: inline-flex !important;
           align-items: center !important;
           white-space: nowrap !important;
@@ -178,57 +153,51 @@ export default function TopAnnouncementBar() {
         .ann-hl {
           color: #38bdf8 !important;
           font-weight: 700 !important;
-          margin: 0 4px !important;
+          margin-left: 4px !important;
           white-space: nowrap !important;
         }
 
-        .ann-sep {
+        .ann-bullet {
           color: rgba(255, 255, 255, 0.4) !important;
-          font-size: 9px !important;
+          font-size: 10px !important;
           display: inline-block !important;
-          margin: 0 2px !important;
+          margin: 0 4px !important;
           white-space: nowrap !important;
           flex-shrink: 0 !important;
         }
 
-        .ann-cta-pill {
+        .ann-cta {
           display: inline-flex !important;
           align-items: center !important;
           gap: 5px !important;
           background: #2c73d9 !important;
           border: 1px solid #38bdf8 !important;
           color: #ffffff !important;
-          padding: 2px 10px !important;
+          padding: 2.5px 11px !important;
           border-radius: 999px !important;
           font-size: 10.5px !important;
           font-weight: 700 !important;
           letter-spacing: 0.3px !important;
-          line-height: 1.5 !important;
+          line-height: 1.4 !important;
           white-space: nowrap !important;
           flex-shrink: 0 !important;
+          margin-left: 6px !important;
           transition: all 0.2s ease !important;
           box-shadow: 0 0 10px rgba(44, 115, 217, 0.4) !important;
         }
 
-        .top-ann-single-line:hover .ann-cta-pill {
+        .top-ann-single-line:hover .ann-cta {
           background: #1d4ed8 !important;
           box-shadow: 0 0 14px rgba(44, 115, 217, 0.7) !important;
           transform: translateY(-0.5px) !important;
         }
 
-        .ann-cta-arrow {
+        .ann-arrow {
           transition: transform 0.2s ease !important;
         }
 
-        .top-ann-single-line:hover .ann-cta-arrow {
+        .top-ann-single-line:hover .ann-arrow {
           transform: translateX(2.5px) !important;
-        }
-
-        .ann-spacer-diamond {
-          color: rgba(44, 115, 217, 0.7) !important;
-          font-size: 11px !important;
-          margin-left: 16px !important;
-          flex-shrink: 0 !important;
         }
 
         @media (max-width: 991px) {
@@ -239,8 +208,8 @@ export default function TopAnnouncementBar() {
           }
           .top-ann-single-line {
             font-size: 11px !important;
-            gap: 9px !important;
-            padding: 0 18px !important;
+            gap: 10px !important;
+            padding: 0 24px !important;
             height: 30px !important;
             line-height: 30px !important;
           }
@@ -254,13 +223,10 @@ export default function TopAnnouncementBar() {
           }
           .top-ann-single-line {
             font-size: 10.5px !important;
-            gap: 7px !important;
-            padding: 0 14px !important;
+            gap: 8px !important;
+            padding: 0 18px !important;
             height: 28px !important;
             line-height: 28px !important;
-          }
-          .ann-badge {
-            display: none !important;
           }
         }
 
