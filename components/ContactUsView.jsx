@@ -602,7 +602,7 @@ export default function ContactUsView() {
                   {mapMode === 'vector' ? (
                     <div className="map-svg-viewport">
                       <svg
-                        viewBox="0 0 1000 540"
+                        viewBox="40 10 940 480"
                         className="regional-vector-map"
                         preserveAspectRatio="xMidYMid meet"
                       >
@@ -630,7 +630,7 @@ export default function ContactUsView() {
                           </pattern>
                         </defs>
 
-                        <rect width="1000" height="540" fill="url(#precisionGrid)" />
+                        <rect x="40" y="10" width="940" height="480" fill="url(#precisionGrid)" />
 
                         <g className="graticule-lines" opacity={isDark ? '0.15' : '0.25'}>
                           <line x1="30" y1="120" x2="970" y2="120" stroke="currentColor" strokeDasharray="2,6" />
@@ -948,7 +948,10 @@ export default function ContactUsView() {
                   
                   <div className="hub-card-header">
                     <div className="hub-flag-title">
-                      <span className="hub-flag">{selectedLocation.flag}</span>
+                      <div className={`hub-country-badge badge-${selectedLocation.countryCode ? selectedLocation.countryCode.toLowerCase() : 'sa'}`}>
+                        <span className="badge-flag-emoji">{selectedLocation.flag}</span>
+                        <span className="badge-code-text">{selectedLocation.countryCode}</span>
+                      </div>
                       <div>
                         <span className="hub-country">{selectedLocation.country}</span>
                         <h3 className="hub-city-name">{selectedLocation.city}</h3>
@@ -961,26 +964,38 @@ export default function ContactUsView() {
 
                   <div className="hub-coord-row">
                     <div className="coord-item">
-                      <Compass size={13} />
+                      <Compass size={13} className="coord-icon" />
                       <span>{selectedLocation.lat}° N, {selectedLocation.lng}° E</span>
                     </div>
                     <div className="coord-item">
-                      <Clock size={13} />
-                      <span>{times[selectedLocation.currentTimeKey]}</span>
+                      <Clock size={13} className="coord-icon" />
+                      <span>Live: <strong>{times[selectedLocation.currentTimeKey]}</strong></span>
                     </div>
                   </div>
 
                   <div className="hub-info-block">
                     <div className="info-label">
-                      <MapPin size={14} color="#2c73d9" />
+                      <MapPin size={13} color="#2c73d9" />
                       <span>Regional Location</span>
                     </div>
-                    <p className="info-val address-text">{selectedLocation.address}</p>
+                    <div className="hub-address-row">
+                      <p className="info-val address-text">{selectedLocation.address}</p>
+                      <a 
+                        href={selectedLocation.gmapUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="hub-nav-inline-btn hover-up"
+                        title="Open in Google Maps for Navigation"
+                      >
+                        <Navigation size={12} />
+                        <span>Directions</span>
+                      </a>
+                    </div>
                   </div>
 
                   <div className="hub-info-block">
                     <div className="info-label">
-                      <Layers size={14} color="#2c73d9" />
+                      <Layers size={13} color="#2c73d9" />
                       <span>Regional Practice Focus</span>
                     </div>
                     <p className="info-val focus-text">{selectedLocation.focus}</p>
@@ -988,58 +1003,55 @@ export default function ContactUsView() {
 
                   <div className="hub-info-block">
                     <div className="info-label">
-                      <Clock size={14} color="#2c73d9" />
+                      <Clock size={13} color="#2c73d9" />
                       <span>Office Consultation Hours</span>
                     </div>
-                    <p className="info-val">{selectedLocation.hours}</p>
+                    <p className="info-val hours-text">{selectedLocation.hours}</p>
                   </div>
 
-                  <div className="hub-info-block">
+                  <div className="hub-info-block hub-contact-block">
                     <div className="info-label">
-                      <Phone size={14} color="#2c73d9" />
-                      <span>Direct Contact Lines</span>
+                      <Phone size={13} color="#2c73d9" />
+                      <span>Direct Contact Lines &amp; WhatsApp</span>
                     </div>
-                    <div className="hub-phones-list" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '6px' }}>
-                      {selectedLocation.phoneNumbers && selectedLocation.phoneNumbers.map((p, idx) => (
-                        <a
-                          key={idx}
-                          href={p.href}
-                          target={p.isWa ? '_blank' : undefined}
-                          rel={p.isWa ? 'noopener noreferrer' : undefined}
-                          className="hub-call-btn hover-up"
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            padding: '8px 14px',
-                            borderRadius: '8px',
-                            background: p.isWa ? 'rgba(37, 211, 102, 0.12)' : 'var(--input-bg, rgba(255,255,255,0.06))',
-                            color: p.isWa ? '#25D366' : 'inherit',
-                            border: p.isWa ? '1px solid rgba(37, 211, 102, 0.3)' : '1px solid var(--border-color, rgba(255,255,255,0.1))',
-                            fontSize: '0.88rem',
-                            fontWeight: '600',
-                            textDecoration: 'none'
-                          }}
-                        >
-                          {p.isWa ? <MessageCircle size={15} color="#25D366" /> : <Phone size={14} color="#2c73d9" />}
-                          <span>{p.number}</span>
-                          <span style={{ fontSize: '0.72rem', opacity: 0.8, marginLeft: 'auto' }}>({p.label})</span>
-                        </a>
-                      ))}
+                    <div className="hub-channels-list">
+                      {selectedLocation.phoneNumbers && selectedLocation.phoneNumbers.map((p, idx) => {
+                        if (p.isWa) {
+                          return (
+                            <a
+                              key={idx}
+                              href={p.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hub-channel-btn hub-channel-wa hover-up"
+                            >
+                              <div className="channel-left">
+                                <div className="channel-icon-pill wa-icon-pill">
+                                  <MessageCircle size={14} />
+                                </div>
+                                <span className="channel-num">{p.number}</span>
+                              </div>
+                              <span className="channel-badge wa-badge">WhatsApp Chat</span>
+                            </a>
+                          );
+                        }
+                        return (
+                          <a
+                            key={idx}
+                            href={p.href}
+                            className="hub-channel-btn hub-channel-call hover-up"
+                          >
+                            <div className="channel-left">
+                              <div className="channel-icon-pill call-icon-pill">
+                                <Phone size={13} />
+                              </div>
+                              <span className="channel-num">{p.number}</span>
+                            </div>
+                            <span className="channel-badge call-badge">Direct Call</span>
+                          </a>
+                        );
+                      })}
                     </div>
-                  </div>
-
-                  <div className="hub-action-row" style={{ marginTop: '12px' }}>
-                    <a 
-                      href={selectedLocation.gmapUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="hub-nav-btn hover-up"
-                      title="Open in Google Maps for Navigation"
-                    >
-                      <Navigation size={15} />
-                      <span>Get Directions</span>
-                    </a>
                   </div>
 
                   <div className="hub-quick-switcher">
@@ -2265,16 +2277,18 @@ export default function ContactUsView() {
         .map-svg-viewport {
           position: relative;
           width: 100%;
-          min-height: 480px;
+          flex: 1;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 8px;
+          padding: 8px 12px 14px;
         }
 
         .regional-vector-map {
           width: 100%;
-          height: auto;
+          height: 100%;
+          max-height: 520px;
           display: block;
         }
 
@@ -2415,7 +2429,7 @@ export default function ContactUsView() {
         /* Selected Hub Detail Card */
         .selected-hub-card {
           border-radius: 20px;
-          padding: 28px;
+          padding: 22px 24px;
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -2423,14 +2437,14 @@ export default function ContactUsView() {
         }
 
         .dark-theme .selected-hub-card {
-          background: rgba(13, 21, 39, 0.9);
+          background: rgba(13, 21, 39, 0.92);
           border: 1.5px solid rgba(44, 115, 217, 0.3);
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
         .light-theme .selected-hub-card {
           background: #ffffff;
-          border: 1.5px solid rgba(44, 115, 217, 0.25);
+          border: 1.5px solid rgba(44, 115, 217, 0.22);
           box-shadow: 0 10px 30px rgba(44, 115, 217, 0.08);
         }
 
@@ -2438,12 +2452,13 @@ export default function ContactUsView() {
           display: flex;
           align-items: flex-start;
           justify-content: space-between;
-          margin-bottom: 20px;
-          padding-bottom: 18px;
+          margin-bottom: 14px;
+          padding-bottom: 12px;
           border-bottom: 1px solid;
+          gap: 12px;
         }
 
-        .dark-theme .hub-card-header { border-color: rgba(255, 255, 255, 0.07); }
+        .dark-theme .hub-card-header { border-color: rgba(255, 255, 255, 0.08); }
         .light-theme .hub-card-header { border-color: rgba(0, 0, 0, 0.07); }
 
         .hub-flag-title {
@@ -2452,72 +2467,120 @@ export default function ContactUsView() {
           gap: 12px;
         }
 
-        .hub-flag { font-size: 32px; }
+        .hub-country-badge {
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: all 0.25s ease;
+        }
+
+        .dark-theme .hub-country-badge {
+          background: rgba(44, 115, 217, 0.16);
+          border: 1.5px solid rgba(44, 115, 217, 0.35);
+          color: #60a5fa;
+        }
+
+        .light-theme .hub-country-badge {
+          background: linear-gradient(135deg, #eff6ff, #dbeafe);
+          border: 1.5px solid #bfdbfe;
+          color: #1d4ed8;
+          box-shadow: 0 2px 8px rgba(37, 99, 235, 0.12);
+        }
+
+        .badge-flag-emoji {
+          font-size: 17px;
+          line-height: 1;
+        }
+
+        .badge-code-text {
+          font-size: 9.5px;
+          font-weight: 800;
+          line-height: 1;
+          margin-top: 2px;
+          letter-spacing: 0.5px;
+        }
 
         .hub-country {
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 1px;
+          display: block;
         }
 
-        .dark-theme .hub-country { color: #64748b; }
-        .light-theme .hub-country { color: #94a3b8; }
+        .dark-theme .hub-country { color: #94a3b8; }
+        .light-theme .hub-country { color: #64748b; }
 
         .hub-city-name {
-          font-size: 24px;
+          font-size: 21px;
           font-weight: 800;
           margin: 2px 0 0;
+          line-height: 1.2;
         }
 
         .dark-theme .hub-city-name { color: #f8fafc; }
         .light-theme .hub-city-name { color: #0f172a; }
 
         .hub-type-pill {
-          padding: 4px 12px;
+          padding: 4px 10px;
           border-radius: 100px;
-          font-size: 11px;
+          font-size: 10.5px;
           font-weight: 700;
-          letter-spacing: 0.5px;
+          letter-spacing: 0.4px;
+          white-space: nowrap;
         }
 
         .dark-theme .hub-type-pill {
-          background: rgba(44, 115, 217, 0.12);
-          color: #60a5fa;
+          background: rgba(44, 115, 217, 0.15);
+          color: #93c5fd;
           border: 1px solid rgba(44, 115, 217, 0.3);
         }
 
         .light-theme .hub-type-pill {
-          background: rgba(44, 115, 217, 0.08);
-          color: #2c73d9;
-          border: 1px solid rgba(44, 115, 217, 0.2);
+          background: #eff6ff;
+          color: #1d4ed8;
+          border: 1.5px solid #bfdbfe;
         }
 
         .hq-pill {
-          background: rgba(245, 158, 11, 0.15) !important;
-          color: #f59e0b !important;
-          border-color: rgba(245, 158, 11, 0.3) !important;
+          background: rgba(245, 158, 11, 0.18) !important;
+          color: #fbbf24 !important;
+          border-color: rgba(245, 158, 11, 0.35) !important;
+        }
+
+        .light-theme .hq-pill {
+          background: #fef3c7 !important;
+          color: #92400e !important;
+          border: 1.5px solid #fcd34d !important;
         }
 
         .hub-coord-row {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 14px;
-          border-radius: 10px;
-          margin-bottom: 20px;
-          font-size: 12px;
+          padding: 7px 12px;
+          border-radius: 9px;
+          margin-bottom: 14px;
+          font-size: 11.5px;
           font-weight: 600;
+          border: 1px solid;
         }
 
         .dark-theme .hub-coord-row {
           background: rgba(255, 255, 255, 0.03);
-          color: #94a3b8;
+          border-color: rgba(255, 255, 255, 0.07);
+          color: #cbd5e1;
         }
 
         .light-theme .hub-coord-row {
           background: #f8fafc;
-          color: #475569;
+          border-color: #e2e8f0;
+          color: #334155;
         }
 
         .coord-item {
@@ -2526,114 +2589,262 @@ export default function ContactUsView() {
           gap: 6px;
         }
 
+        .dark-theme .coord-icon { color: #60a5fa; }
+        .light-theme .coord-icon { color: #2563eb; }
+
         .hub-info-block {
-          margin-bottom: 18px;
+          margin-bottom: 12px;
         }
 
         .info-label {
           display: flex;
           align-items: center;
-          gap: 7px;
-          font-size: 12px;
+          gap: 6px;
+          font-size: 11px;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.8px;
-          margin-bottom: 6px;
+          margin-bottom: 4px;
         }
 
         .dark-theme .info-label { color: #64748b; }
-        .light-theme .info-label { color: #94a3b8; }
+        .light-theme .info-label { color: #64748b; }
 
         .info-val {
-          font-size: 14px;
-          line-height: 1.6;
+          font-size: 13.5px;
+          line-height: 1.5;
           margin: 0;
         }
 
-        .dark-theme .info-val { color: #cbd5e1; }
-        .light-theme .info-val { color: #334155; }
+        .dark-theme .info-val { color: #e2e8f0; }
+        .light-theme .info-val { color: #0f172a; }
 
-        .address-text { font-weight: 600; }
+        .address-text { font-weight: 700; }
 
-        .postal-text {
-          font-size: 12px;
-          display: block;
-          margin-top: 3px;
-        }
-
-        .dark-theme .postal-text { color: #64748b; }
-        .light-theme .postal-text { color: #94a3b8; }
-
-        .focus-text { font-size: 13px; }
-
-        .hub-action-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-          margin-top: auto;
-          margin-bottom: 20px;
-        }
-
-        .hub-call-btn, .hub-nav-btn {
+        .hub-address-row {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: space-between;
           gap: 8px;
-          padding: 11px;
-          border-radius: 10px;
-          font-size: 12.5px;
+        }
+
+        .hub-nav-inline-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 4px 10px;
+          border-radius: 7px;
+          font-size: 11.5px;
           font-weight: 700;
           text-decoration: none;
-          transition: all 0.25s ease;
-          text-align: center;
+          flex-shrink: 0;
+          transition: all 0.2s ease;
         }
 
-        .hub-call-btn {
-          background: #2c73d9;
-          color: #ffffff !important;
-        }
-
-        .hub-call-btn:hover { background: #1d4ed8; }
-
-        .dark-theme .hub-nav-btn {
-          background: rgba(255, 255, 255, 0.05);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          color: #e2e8f0;
-        }
-
-        .dark-theme .hub-nav-btn:hover {
-          background: rgba(255, 255, 255, 0.09);
+        .dark-theme .hub-nav-inline-btn {
+          background: rgba(44, 115, 217, 0.16);
+          border: 1px solid rgba(44, 115, 217, 0.35);
           color: #60a5fa;
         }
 
-        .light-theme .hub-nav-btn {
-          background: #f1f5f9;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          color: #1e293b;
+        .dark-theme .hub-nav-inline-btn:hover {
+          background: #2c73d9;
+          color: #ffffff;
+          border-color: #2c73d9;
         }
 
-        .light-theme .hub-nav-btn:hover {
+        .light-theme .hub-nav-inline-btn {
+          background: #eff6ff;
+          border: 1.5px solid #bfdbfe;
+          color: #1d4ed8;
+        }
+
+        .light-theme .hub-nav-inline-btn:hover {
+          background: #2c73d9;
+          color: #ffffff;
+          border-color: #2c73d9;
+          box-shadow: 0 2px 8px rgba(44, 115, 217, 0.25);
+        }
+
+        .focus-text {
+          font-size: 12.5px;
+        }
+
+        .dark-theme .focus-text { color: #94a3b8; }
+        .light-theme .focus-text { color: #475569; }
+
+        .hours-text {
+          font-size: 13px;
+          font-weight: 600;
+        }
+
+        .dark-theme .hours-text { color: #cbd5e1; }
+        .light-theme .hours-text { color: #1e293b; }
+
+        .hub-contact-block {
+          margin-top: 14px;
+          margin-bottom: 14px;
+        }
+
+        .hub-channels-list {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          margin-top: 6px;
+        }
+
+        .hub-channel-btn {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 7px 12px;
+          border-radius: 9px;
+          text-decoration: none;
+          transition: all 0.2s ease;
+          font-size: 12.5px;
+          font-weight: 600;
+        }
+
+        .channel-left {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+        }
+
+        .channel-icon-pill {
+          width: 26px;
+          height: 26px;
+          border-radius: 7px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+
+        .channel-num {
+          font-weight: 700;
+          letter-spacing: 0.2px;
+        }
+
+        .channel-badge {
+          font-size: 10.5px;
+          font-weight: 700;
+          padding: 2px 8px;
+          border-radius: 6px;
+          letter-spacing: 0.2px;
+        }
+
+        /* WhatsApp Button */
+        .dark-theme .hub-channel-wa {
+          background: rgba(34, 197, 94, 0.12);
+          border: 1px solid rgba(34, 197, 94, 0.35);
+          color: #4ade80;
+        }
+
+        .dark-theme .hub-channel-wa:hover {
+          background: rgba(34, 197, 94, 0.22);
+          border-color: #4ade80;
+          color: #86efac;
+        }
+
+        .dark-theme .wa-icon-pill {
+          background: rgba(34, 197, 94, 0.25);
+          color: #4ade80;
+        }
+
+        .dark-theme .wa-badge {
+          background: rgba(34, 197, 94, 0.2);
+          color: #86efac;
+        }
+
+        .light-theme .hub-channel-wa {
+          background: #f0fdf4;
+          border: 1.5px solid #86efac;
+          color: #15803d;
+        }
+
+        .light-theme .hub-channel-wa:hover {
+          background: #dcfce7;
+          border-color: #22c55e;
+          color: #14532d;
+          box-shadow: 0 3px 10px rgba(34, 197, 94, 0.18);
+        }
+
+        .light-theme .wa-icon-pill {
+          background: #22c55e;
+          color: #ffffff;
+        }
+
+        .light-theme .wa-badge {
+          background: #dcfce7;
+          color: #166534;
+        }
+
+        /* Direct Call Button */
+        .dark-theme .hub-channel-call {
+          background: rgba(255, 255, 255, 0.04);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          color: #f8fafc;
+        }
+
+        .dark-theme .hub-channel-call:hover {
+          background: rgba(44, 115, 217, 0.15);
+          border-color: #2c73d9;
+          color: #60a5fa;
+        }
+
+        .dark-theme .call-icon-pill {
+          background: rgba(255, 255, 255, 0.08);
+          color: #60a5fa;
+        }
+
+        .dark-theme .call-badge {
+          background: rgba(255, 255, 255, 0.06);
+          color: #94a3b8;
+        }
+
+        .light-theme .hub-channel-call {
+          background: #f8fafc;
+          border: 1.5px solid #e2e8f0;
+          color: #0f172a;
+        }
+
+        .light-theme .hub-channel-call:hover {
+          background: #eff6ff;
+          border-color: #2c73d9;
+          color: #1d4ed8;
+          box-shadow: 0 3px 10px rgba(44, 115, 217, 0.12);
+        }
+
+        .light-theme .call-icon-pill {
           background: #e2e8f0;
-          color: #2c73d9;
+          color: #2563eb;
+        }
+
+        .light-theme .call-badge {
+          background: #f1f5f9;
+          color: #334155;
+          border: 1px solid #e2e8f0;
         }
 
         .hub-quick-switcher {
           border-top: 1px solid;
-          padding-top: 16px;
+          padding-top: 12px;
+          margin-top: auto;
         }
 
-        .dark-theme .hub-quick-switcher { border-color: rgba(255, 255, 255, 0.07); }
+        .dark-theme .hub-quick-switcher { border-color: rgba(255, 255, 255, 0.08); }
         .light-theme .hub-quick-switcher { border-color: rgba(0, 0, 0, 0.07); }
 
         .switcher-label {
           font-size: 11px;
           font-weight: 700;
           display: block;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
 
         .dark-theme .switcher-label { color: #64748b; }
-        .light-theme .switcher-label { color: #94a3b8; }
+        .light-theme .switcher-label { color: #64748b; }
 
         .switcher-chips {
           display: flex;
@@ -2663,19 +2874,21 @@ export default function ContactUsView() {
         }
 
         .light-theme .chip-btn {
-          border-color: rgba(0, 0, 0, 0.08);
-          color: #64748b;
+          border-color: #cbd5e1;
+          color: #334155;
+          background: #f8fafc;
         }
 
         .light-theme .chip-btn:hover {
           background: #f1f5f9;
-          color: #1e293b;
+          border-color: #94a3b8;
+          color: #0f172a;
         }
 
         .active-chip {
           border-color: #2c73d9 !important;
-          background: rgba(44, 115, 217, 0.15) !important;
-          color: #2c73d9 !important;
+          background: #2c73d9 !important;
+          color: #ffffff !important;
           font-weight: 700 !important;
         }
 
