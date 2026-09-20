@@ -366,6 +366,96 @@ export default function ShopifyIntegrationView() {
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08) !important;
         }
 
+        /* Heading Theme Contrast */
+        [data-theme="dark"] h1,
+        [data-theme="dark"] h2,
+        [data-theme="dark"] h3,
+        [data-theme="dark"] h4,
+        [data-theme="dark"] h5,
+        [data-theme="dark"] h6 {
+          color: #ffffff !important;
+        }
+
+        [data-theme="light"] h1,
+        [data-theme="light"] h2,
+        [data-theme="light"] h3,
+        [data-theme="light"] h4,
+        [data-theme="light"] h5,
+        [data-theme="light"] h6 {
+          color: #0f172a !important;
+        }
+
+        /* CTA Button Enhancements */
+        .btn-brand-1 {
+          background: linear-gradient(135deg, #00AEEF 0%, #0066cc 100%) !important;
+          color: #ffffff !important;
+          border: 1px solid rgba(0, 174, 239, 0.4) !important;
+          border-radius: 12px !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          box-shadow: 0 4px 18px rgba(0, 174, 239, 0.35) !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          cursor: pointer !important;
+        }
+
+        .btn-brand-1:hover,
+        .btn-brand-1:focus {
+          background: linear-gradient(135deg, #0099d8 0%, #0052a3 100%) !important;
+          color: #ffffff !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 8px 25px rgba(0, 174, 239, 0.55) !important;
+        }
+
+        .btn-brand-1:active {
+          transform: translateY(0) !important;
+        }
+
+        .btn-outline {
+          border-radius: 12px !important;
+          font-weight: 600 !important;
+          text-decoration: none !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          cursor: pointer !important;
+        }
+
+        [data-theme="dark"] .btn-outline {
+          background: rgba(0, 174, 239, 0.1) !important;
+          border: 1.5px solid rgba(0, 174, 239, 0.5) !important;
+          color: #ffffff !important;
+          box-shadow: 0 2px 12px rgba(0, 174, 239, 0.15) !important;
+        }
+
+        [data-theme="dark"] .btn-outline:hover,
+        [data-theme="dark"] .btn-outline:focus {
+          background: rgba(0, 174, 239, 0.22) !important;
+          border-color: #00AEEF !important;
+          color: #ffffff !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 6px 20px rgba(0, 174, 239, 0.35) !important;
+        }
+
+        [data-theme="light"] .btn-outline {
+          background: rgba(0, 174, 239, 0.06) !important;
+          border: 1.5px solid rgba(0, 174, 239, 0.55) !important;
+          color: #0077b6 !important;
+          box-shadow: 0 2px 8px rgba(0, 174, 239, 0.1) !important;
+        }
+
+        [data-theme="light"] .btn-outline:hover,
+        [data-theme="light"] .btn-outline:focus {
+          background: rgba(0, 174, 239, 0.15) !important;
+          border-color: #0077b6 !important;
+          color: #005f94 !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 6px 18px rgba(0, 174, 239, 0.25) !important;
+        }
+
         /* General Marquee */
         @keyframes shopifyMarquee {
           0% { transform: translateX(0); }
@@ -436,7 +526,8 @@ export default function ShopifyIntegrationView() {
                         fontWeight: 800,
                         lineHeight: 1.2,
                         marginBottom: 20,
-                        letterSpacing: '-0.02em'
+                        letterSpacing: '-0.02em',
+                        color: 'var(--heading-color)'
                       }}>
                         Shopify Integration{' '}
                         <span style={{
@@ -639,7 +730,8 @@ export default function ShopifyIntegrationView() {
                     <h2 style={{
                       fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
                       fontWeight: 700,
-                      marginBottom: 16
+                      marginBottom: 16,
+                      color: 'var(--heading-color)'
                     }}>
                       Comprehensive Shopify{' '}
                       <span style={{
@@ -695,7 +787,8 @@ export default function ShopifyIntegrationView() {
                               <h3 style={{
                                 fontSize: '1.3rem',
                                 fontWeight: 700,
-                                marginBottom: 12
+                                marginBottom: 12,
+                                color: 'var(--heading-color)'
                               }}>
                                 {sol.title}
                               </h3>
@@ -758,7 +851,7 @@ export default function ShopifyIntegrationView() {
                       <div style={{ maxWidth: 640 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
                           <Sparkles size={20} color="#00AEEF" />
-                          <h3 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0 }}>
+                          <h3 style={{ fontSize: '1.4rem', fontWeight: 700, margin: 0, color: 'var(--heading-color)' }}>
                             Need a Custom Shopify Integration Architecture?
                           </h3>
                         </div>
@@ -816,7 +909,8 @@ export default function ShopifyIntegrationView() {
                     <h2 style={{
                       fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
                       fontWeight: 700,
-                      marginBottom: 16
+                      marginBottom: 16,
+                      color: 'var(--heading-color)'
                     }}>
                       From Concept to{' '}
                       <span style={{
@@ -889,7 +983,7 @@ export default function ShopifyIntegrationView() {
                                     fontSize: '1.05rem',
                                     fontWeight: 700,
                                     margin: 0,
-                                    color: isActive ? '#00AEEF' : 'var(--text-primary)',
+                                    color: isActive ? '#00AEEF' : 'var(--heading-color)',
                                     transition: 'color 0.2s ease'
                                   }}>
                                     {step.title}
@@ -996,7 +1090,8 @@ export default function ShopifyIntegrationView() {
                           <h3 style={{
                             fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)',
                             fontWeight: 800,
-                            marginBottom: 6
+                            marginBottom: 6,
+                            color: 'var(--heading-color)'
                           }}>
                             {activeStep.title}
                           </h3>
@@ -1027,7 +1122,7 @@ export default function ShopifyIntegrationView() {
                               marginBottom: 16,
                               letterSpacing: 0.5,
                               textTransform: 'uppercase',
-                              color: 'var(--text-primary)'
+                              color: 'var(--heading-color)'
                             }}>
                               Key Engineering Activities
                             </h5>
@@ -1213,7 +1308,7 @@ export default function ShopifyIntegrationView() {
                   =================================================================== */}
               <section style={{ padding: '30px 0 60px', overflow: 'hidden' }}>
                 <div style={{ textAlign: 'center', padding: '0 20px', marginBottom: 40 }}>
-                  <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 700, marginBottom: 12 }}>
+                  <h2 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 700, marginBottom: 12, color: 'var(--heading-color)' }}>
                     Trusted by Brands Worldwide
                   </h2>
                   <p style={{ color: 'var(--text-secondary)', fontSize: 16, maxWidth: 620, margin: '0 auto' }}>
@@ -1290,7 +1385,7 @@ export default function ShopifyIntegrationView() {
                         fontSize: 'clamp(2rem, 3.8vw, 3rem)',
                         fontWeight: 800,
                         marginBottom: 16,
-                        color: 'var(--text-primary)'
+                        color: 'var(--heading-color)'
                       }}>
                         Ready to Transform Your Shopify Store?
                       </h2>
