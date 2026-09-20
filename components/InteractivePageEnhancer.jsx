@@ -564,6 +564,43 @@ export default function InteractivePageEnhancer() {
       });
     };
 
+    // =========================================================================
+    // 6. UNIVERSAL SMOOTH SCROLLING FOR ALL HASH / IN-PAGE LINKS
+    // =========================================================================
+    const initSmoothScrolling = () => {
+      const anchorLinks = Array.from(document.querySelectorAll('a[href*="#"]'));
+      anchorLinks.forEach((link) => {
+        const href = link.getAttribute('href');
+        if (!href || href === '#' || href === '#!') return;
+
+        const hashIndex = href.indexOf('#');
+        const hash = href.substring(hashIndex);
+        const pathPart = href.substring(0, hashIndex);
+
+        const currentPath = window.location.pathname;
+        if (pathPart === '' || pathPart === currentPath || pathPart === currentPath.replace(/\/$/, '')) {
+          addListener(link, 'click', (e) => {
+            const targetId = hash.replace('#', '');
+            const targetEl = document.getElementById(targetId) || document.querySelector(`[name="${targetId}"]`);
+            if (targetEl) {
+              e.preventDefault();
+              const headerHeight = document.getElementById('header')?.offsetHeight || 75;
+              const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight - 15;
+
+              window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: 'smooth'
+              });
+
+              if (window.history.pushState) {
+                window.history.pushState(null, null, hash);
+              }
+            }
+          });
+        }
+      });
+    };
+
     // Run all initializers after a short tick for client-side DOM stabilization
     const mountTimer = setTimeout(() => {
       if (isDisposed) return;
@@ -572,6 +609,7 @@ export default function InteractivePageEnhancer() {
       initCustomAppStages();
       initHeroPills();
       initFaqAccordions();
+      initSmoothScrolling();
     }, 150);
 
     return () => {

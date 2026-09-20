@@ -224,6 +224,7 @@ export default function Header({ onToggleMobileMenu }) {
       id="header" 
       className={`header sticky-bar ${isSticky ? 'stick' : ''}`}
       style={{
+        width: '100%',
         margin: 0,
         padding: 0,
         backgroundColor: 'var(--header-bg)',
@@ -238,13 +239,21 @@ export default function Header({ onToggleMobileMenu }) {
       }}
     >
       <TopAnnouncementBar />
-      <div className="container" style={{ position: 'relative' }}>
+      <div 
+        className="container header-container" 
+        style={{ 
+          position: 'relative',
+          width: '100%',
+          maxWidth: '1280px'
+        }}
+      >
         <div 
           className="main-header" 
           style={{ 
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'space-between', 
+            width: '100%',
             padding: '12px 0'
           }}
         >
@@ -545,7 +554,16 @@ export default function Header({ onToggleMobileMenu }) {
           </div>
 
           {/* Right Header Controls: Theme Toggle & Contact Us CTA */}
-          <div className="header-right" style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+          <div 
+            className="header-right" 
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              flexShrink: 0,
+              marginLeft: 'auto'
+            }}
+          >
             {/* Dark / Light Theme Toggle */}
             <ThemeToggle />
 
