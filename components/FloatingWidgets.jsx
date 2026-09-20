@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import ChatbotWidget from './ChatbotWidget';
 
 export default function FloatingWidgets() {
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -56,7 +57,7 @@ export default function FloatingWidgets() {
         </div>
       </a>
 
-      {/* ── 2. Floating Go To Top Button (Bottom Right) ── */}
+      {/* ── 2. Floating Go To Top Button (Bottom Right - Positioned Higher) ── */}
       <button
         type="button"
         onClick={scrollToTop}
@@ -66,6 +67,9 @@ export default function FloatingWidgets() {
       >
         <ArrowUp size={20} strokeWidth={2.4} />
       </button>
+
+      {/* ── 3. Altapete Smart Virtual Assistant Chatbot (Bottom Right) ── */}
+      <ChatbotWidget />
 
       {/* ── Scoped Styles for Floating Widgets ── */}
       <style jsx global>{`
@@ -156,11 +160,11 @@ export default function FloatingWidgets() {
           color: #ffffff;
         }
 
-        /* Go To Top Floating Widget (Bottom Right) */
+        /* Go To Top Floating Widget (Bottom Right - Positioned Above Chatbot) */
         .floating-top-widget {
           position: fixed;
-          bottom: 24px;
-          right: 24px;
+          bottom: 90px;
+          right: 28px;
           z-index: 9999;
           width: 46px;
           height: 46px;
@@ -235,10 +239,10 @@ export default function FloatingWidgets() {
             border-radius: 50%;
           }
           .floating-top-widget {
-            bottom: 18px;
-            right: 18px;
-            width: 42px;
-            height: 42px;
+            bottom: 80px;
+            right: 22px;
+            width: 40px;
+            height: 40px;
           }
         }
       `}</style>
