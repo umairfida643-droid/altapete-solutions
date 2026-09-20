@@ -345,7 +345,7 @@ export default function Footer() {
                 <div className="col-6">
                   <div style={{ padding: '10px', borderRadius: '8px', background: 'var(--bg-card-subtle)', height: '100%' }}>
                     <div style={{ color: 'var(--heading-color)', fontSize: '13px', fontWeight: 700 }}>Pakistan</div>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Karachi, Lahore</div>
+                    <div style={{ color: 'var(--text-muted)', fontSize: '11.5px', marginTop: '2px' }}>Lahore</div>
                   </div>
                 </div>
               </div>
