@@ -68,7 +68,7 @@ export default function ContactUsView() {
     phone: '',
     company: '',
     service: 'Enterprise ERP Implementation',
-    budget: '$15k - $50k',
+    budget: '',
     subject: '',
     message: ''
   });
@@ -1323,7 +1323,7 @@ export default function ContactUsView() {
                     <div className="success-details-card">
                       <div><strong>Subject:</strong> {formData.subject || 'Enterprise Consultation'}</div>
                       <div><strong>Service Focus:</strong> {formData.service}</div>
-                      <div><strong>Estimated Budget:</strong> {formData.budget}</div>
+                      <div><strong>Estimated Budget:</strong> {formData.budget || 'Flexible / Custom'}</div>
                     </div>
                     <button
                       onClick={() => {
@@ -1334,7 +1334,7 @@ export default function ContactUsView() {
                           phone: '',
                           company: '',
                           service: 'Enterprise ERP Implementation',
-                          budget: '$15k - $50k',
+                          budget: '',
                           subject: '',
                           message: ''
                         });
@@ -1415,18 +1415,14 @@ export default function ContactUsView() {
                         </select>
                       </div>
                       <div className="col-md-6">
-                        <label className="form-field-label">Project Scope / Budget Range</label>
-                        <select
+                        <label className="form-field-label">Estimated Budget</label>
+                        <input
+                          type="text"
+                          placeholder="e.g. $25,000 or SAR 100,000"
                           value={formData.budget}
                           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                          className="custom-form-select"
-                        >
-                          <option value="<$15,000">Under $15,000 (Scoping / Audit)</option>
-                          <option value="$15k - $50k">$15,000 - $50,000 (Standard Rollout)</option>
-                          <option value="$50k - $150k">$50,000 - $150,000 (Mid-Market ERP)</option>
-                          <option value=">$150,000">$150,000+ (Enterprise Multi-Country)</option>
-                          <option value="Retainer">Monthly Dedicated Retainer</option>
-                        </select>
+                          className="custom-form-input"
+                        />
                       </div>
                     </div>
 
