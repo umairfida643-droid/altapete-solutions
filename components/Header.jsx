@@ -352,7 +352,7 @@ export default function Header({ onToggleMobileMenu }) {
                     aria-haspopup="true"
                     className={`nav-link-btn ${activeMenu === 'solutions' ? 'is-active' : ''}`}
                   >
-                    <span>Solutions</span>
+                    <span>Services</span>
                     <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'solutions' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </button>
 
