@@ -97,7 +97,7 @@ export default function Footer() {
 
   const footerSolutions = [
     { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
-    { text: "Technology Management", href: "/technology-management", icon: Server },
+    { text: "Managed IT Services", href: "/technology-management", icon: Server },
     { text: "Custom App Development", href: "/custom-app-development", icon: Code2 },
     { text: "ZATCA Phase 2 Integration", href: "/zatca-integration", icon: ShieldCheck },
     { text: "Odoo to Odoo Sync", href: "/odoo-to-odoo-data-integration", icon: RefreshCw },

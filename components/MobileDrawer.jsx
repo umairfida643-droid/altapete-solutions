@@ -151,7 +151,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                         </div>
                         {[
                           { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
-                          { text: "Technology Management Services", href: "/technology-management", icon: Server },
+                          { text: "Managed IT Services", href: "/technology-management", icon: Server },
                           { text: "Custom Application Development", href: "/custom-app-development", icon: Code2 }
                         ].map((item, i) => {
                           const Icon = item.icon;

@@ -37,7 +37,7 @@ const allServices = [
   },
   {
     id: 'technology-management',
-    title: 'Technology Management Services',
+    title: 'Managed IT Services',
     category: 'Digital & Cloud Transformation',
     tag: 'INFRASTRUCTURE',
     icon: Server,

@@ -8,7 +8,7 @@ export default function TechnologyManagementPage() {
 
   return (
     <Layout
-      title={data?.title || "Technology Management & IT Services | Altapete"}
+      title="Managed IT Services | Altapete Solutions"
       description={data?.description || "Accelerate your business with DevOps, Cloud, and Infrastructure solutions."}
     >
       <TechnologyManagementView />

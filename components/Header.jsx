@@ -112,7 +112,7 @@ export default function Header({ onToggleMobileMenu }) {
       desc: "Scalable ERP, SAP & unified multi-company architectures" 
     },
     { 
-      text: "Technology Management Services", 
+      text: "Managed IT Services", 
       href: "/technology-management", 
       icon: Server, 
       desc: "Cloud infrastructure, DevOps, 24/7 DBA & cyber security" 

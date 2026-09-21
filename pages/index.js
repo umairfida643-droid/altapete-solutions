@@ -116,7 +116,7 @@ export default function HomePage() {
       points: ["Full ERP Life Cycle", "Custom Workflow Automation", "Legacy Migration"]
     },
     {
-      title: "Technology Management",
+      title: "Managed IT Services",
       category: "Cloud & Infrastructure",
       desc: "End-to-end IT strategy, cloud hosting management, database optimization, and high-availability architecture.",
       icon: Server,

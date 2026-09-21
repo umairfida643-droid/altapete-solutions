@@ -37,11 +37,11 @@ We specialize in Odoo V14–V17 implementations, SAP migrations, and multi-compa
 **Core Services:**
 • **Odoo-to-Odoo Data Integration**: Sub-second real-time bi-directional database synchronization with zero data loss.
 • **Enterprise Solutions**: Full ERP lifecycle implementation, custom workflow automation, and multi-company ledger consolidation.
-• **Technology Management**: 24/7 DBA support, cloud infrastructure, and DevOps.`,
+• **Managed IT Services**: 24/7 DBA support, cloud infrastructure, and DevOps.`,
     links: [
       { text: 'Odoo-to-Odoo Integration', href: '/odoo-to-odoo-data-integration' },
       { text: 'Enterprise Solutions', href: '/enterprise-solutions' },
-      { text: 'Technology Management', href: '/technology-management' }
+      { text: 'Managed IT Services', href: '/technology-management' }
     ],
     quickOptions: ['Book Consultation', 'ZATCA Phase 2', 'Company Profile']
   },
