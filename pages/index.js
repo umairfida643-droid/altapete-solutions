@@ -249,7 +249,7 @@ export default function HomePage() {
                 <span style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase' }}>Cloud & AI Ready</span>
               </div>
 
-              {/* Headline with Live Typewriter */}
+              {/* Headline with Live Typewriter — fixed height prevents layout shift */}
               <h1 
                 className="font-heading mb-20 hero-headline"
                 style={{
@@ -259,8 +259,14 @@ export default function HomePage() {
                   letterSpacing: '-0.5px'
                 }}
               >
-                Delivering{' '}
-                <span style={{ display: 'inline-block' }}>
+                Delivering
+                <span
+                  style={{
+                    display: 'block',
+                    minHeight: 'calc(clamp(2.4rem, 4.2vw, 3.8rem) * 1.15)',
+                    overflow: 'hidden'
+                  }}
+                >
                   <Typewriter
                     options={{
                       wrapperClassName: "color-linear font-heading",
@@ -279,7 +285,7 @@ export default function HomePage() {
                       deleteSpeed: 30
                     }}
                   />
-                </span>{' '}
+                </span>
                 Solutions
               </h1>
 
