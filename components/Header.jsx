@@ -24,12 +24,8 @@ import {
   Hospital,
   GraduationCap,
   HardHat,
-  ArrowRight,
   Layers,
-  Sparkles,
   Menu,
-  CheckCircle2,
-  ExternalLink,
   Flame,
   Zap,
   Landmark,
@@ -359,7 +355,7 @@ export default function Header({ onToggleMobileMenu }) {
                     <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'solutions' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
                   </button>
 
-                  {/* Mega Menu Flyout */}
+                  {/* Mega Menu Flyout — 3 columns: Digital Transformation | Strategic Business & Financial | Integration Ecosystem */}
                   <div
                     className={`megamenu-panel ${activeMenu === 'solutions' ? 'is-open' : ''}`}
                     onMouseEnter={() => handleMenuEnter('solutions')}
@@ -368,50 +364,8 @@ export default function Header({ onToggleMobileMenu }) {
                     aria-label="Solutions Navigation"
                   >
                     <div className="row g-4">
-                      
-                      {/* Column 1: Featured Overview & Architecture Support */}
-                      <div className="col-lg-4">
-                        <div className="megamenu-overview-card h-100 d-flex flex-column justify-content-between">
-                          <div>
-                            <div className="megamenu-chip mb-3">
-                              <Sparkles size={13} /> ENTERPRISE SOLUTIONS HUB
-                            </div>
-                            <h3 className="megamenu-heading mb-2">
-                              Next-Gen Technology Architecture
-                            </h3>
-                            <p className="megamenu-lead mb-4">
-                              Empowering businesses across Saudi Arabia, UAE, and Pakistan with robust ERP implementations, seamless API integrations, and cloud architectures designed for operational resilience.
-                            </p>
 
-                            <div className="megamenu-key-points">
-                              <div className="d-flex align-items-center gap-2 mb-2">
-                                <CheckCircle2 size={15} color="var(--brand-accent)" />
-                                <span>ZATCA Phase 2 E-Invoicing Compliant</span>
-                              </div>
-                              <div className="d-flex align-items-center gap-2 mb-2">
-                                <CheckCircle2 size={15} color="var(--brand-accent)" />
-                                <span>Certified Odoo & SAP Functional Experts</span>
-                              </div>
-                              <div className="d-flex align-items-center gap-2">
-                                <CheckCircle2 size={15} color="var(--brand-accent)" />
-                                <span>Sub-second Multi-Database Synchronization</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="pt-4 border-top" style={{ borderColor: 'var(--border-color)' }}>
-                            <Link 
-                              href="/contact-us"
-                              className="btn-primary-brand w-100 text-center"
-                              style={{ padding: '10px 18px', fontSize: '13.5px' }}
-                            >
-                              Consult an Enterprise Architect <ArrowRight size={14} />
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Column 2: Digital Transformation */}
+                      {/* Column 1: Digital Transformation */}
                       <div className="col-lg-4">
                         <div className="megamenu-column-header mb-3">
                           <div className="megamenu-header-icon">
@@ -440,14 +394,36 @@ export default function Header({ onToggleMobileMenu }) {
                             );
                           })}
                         </div>
+                      </div>
 
-                        <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
-                          <Link 
-                            href="/services" 
-                            className="megamenu-viewall-link"
-                          >
-                            Explore All Services & Advisory <ArrowRight size={13} />
-                          </Link>
+                      {/* Column 2: Strategic Business & Financial Solutions */}
+                      <div className="col-lg-4">
+                        <div className="megamenu-column-header mb-3">
+                          <div className="megamenu-header-icon">
+                            <Briefcase size={16} />
+                          </div>
+                          <h4>Strategic Business &amp; Financial Solutions</h4>
+                        </div>
+
+                        <div className="d-flex flex-column gap-2">
+                          {servicesList.map((item, idx) => {
+                            const ItemIcon = item.icon;
+                            return (
+                              <Link
+                                key={idx}
+                                href={item.href}
+                                className="megamenu-item-card"
+                              >
+                                <div className="megamenu-item-icon">
+                                  <ItemIcon size={18} strokeWidth={1.8} />
+                                </div>
+                                <div className="megamenu-item-content">
+                                  <div className="megamenu-item-title">{item.text}</div>
+                                  <div className="megamenu-item-desc">{item.desc}</div>
+                                </div>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
 
@@ -485,52 +461,6 @@ export default function Header({ onToggleMobileMenu }) {
                         </div>
                       </div>
 
-                    </div>
-                  </div>
-                </li>
-
-                {/* 2. Services Dropdown */}
-                <li
-                  className="nav-item-dropdown"
-                  onMouseEnter={() => handleMenuEnter('services')}
-                  onMouseLeave={handleMenuLeave}
-                >
-                  <button 
-                    type="button"
-                    onClick={() => setActiveMenu(activeMenu === 'services' ? null : 'services')}
-                    onKeyDown={(e) => handleKeyDown(e, 'services')}
-                    aria-expanded={activeMenu === 'services'}
-                    aria-haspopup="true"
-                    className={`nav-link-btn ${activeMenu === 'services' ? 'is-active' : ''}`}
-                  >
-                    <span>Services</span>
-                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'services' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
-                  </button>
-
-                  <div 
-                    className={`dropdown-panel ${activeMenu === 'services' ? 'is-open' : ''}`}
-                    onMouseEnter={() => handleMenuEnter('services')}
-                    onMouseLeave={handleMenuLeave}
-                  >
-                    <div className="dropdown-panel-inner">
-                      {servicesList.map((item, idx) => {
-                        const ItemIcon = item.icon;
-                        return (
-                          <Link
-                            key={idx}
-                            href={item.href}
-                            className="dropdown-item-row"
-                          >
-                            <div className="dropdown-icon-box">
-                              <ItemIcon size={18} strokeWidth={1.9} />
-                            </div>
-                            <div className="dropdown-text-box">
-                              <span className="dropdown-item-heading">{item.text}</span>
-                              <span className="dropdown-item-sub">{item.desc}</span>
-                            </div>
-                          </Link>
-                        );
-                      })}
                     </div>
                   </div>
                 </li>
