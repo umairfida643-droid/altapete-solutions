@@ -372,7 +372,7 @@ export default function Header({ onToggleMobileMenu }) {
                           <div className="megamenu-header-icon">
                             <Layers size={16} />
                           </div>
-                          <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>ERP &amp; Enterprise Solutions</h4>
+                          <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>ERP &amp; Digital Transformation</h4>
                         </div>
 
                         <div className="d-flex flex-column gap-2">
