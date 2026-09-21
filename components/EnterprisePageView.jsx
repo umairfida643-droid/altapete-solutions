@@ -149,21 +149,23 @@ export default function EnterprisePageView({
       {benefits.length > 0 && (
         <section className="ep-benefits-section">
           <div className="container">
+            <div className="section-head text-center mb-5">
+              <div className="section-tag">{benefitsTag}</div>
+              <h2 className="section-title">
+                {benefitsTitle || (
+                  <>Measurable Efficiency Across Your <span className="text-gradient">Operations</span></>
+                )}
+              </h2>
+              {benefitsDesc && (
+                <p className="section-desc">
+                  {benefitsDesc}
+                </p>
+              )}
+            </div>
+
             <div className="row g-4 g-lg-5 align-items-center">
               
               <div className="col-lg-6">
-                <div className="section-tag">{benefitsTag}</div>
-                <h2 className="section-title text-start mb-2">
-                  {benefitsTitle || (
-                    <>Measurable Efficiency Across Your <span className="text-gradient">Operations</span></>
-                  )}
-                </h2>
-                {benefitsDesc && (
-                  <p className="section-desc text-start mb-3">
-                    {benefitsDesc}
-                  </p>
-                )}
-
                 <div className="benefits-stack">
                   {benefits.map((ben, idx) => (
                     <div key={idx} className="benefit-item">

@@ -258,17 +258,19 @@ export default function ShippingSolutionsView() {
       {/* 3. BUSINESS BENEFITS & IMPACT */}
       <section className="shipping-benefits-section">
         <div className="container">
+          <div className="section-head text-center mb-5">
+            <div className="section-tag">OPERATIONAL IMPACT</div>
+            <h2 className="section-title">
+              Measurable Efficiency Across Your <span className="text-gradient">Supply Chain</span>
+            </h2>
+            <p className="section-desc">
+              Manual dispatch slips and siloed spreadsheets cause costly shipment delays. Our integrated freight ERP automates repetitive workflows so your team handles higher volume with zero friction.
+            </p>
+          </div>
+
           <div className="row g-4 g-lg-5 align-items-center">
             
             <div className="col-lg-6">
-              <div className="section-tag">OPERATIONAL IMPACT</div>
-              <h2 className="section-title text-start mb-3">
-                Measurable Efficiency Across Your <span className="text-gradient">Supply Chain</span>
-              </h2>
-              <p className="section-desc text-start mb-4">
-                Manual dispatch slips and siloed spreadsheets cause costly shipment delays. Our integrated freight ERP automates repetitive workflows so your team handles higher volume with zero friction.
-              </p>
-
               <div className="benefits-stack">
                 {BENEFITS.map((ben, idx) => (
                   <div key={idx} className="benefit-item">
