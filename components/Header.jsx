@@ -12,7 +12,8 @@ import {
   RefreshCw, 
   ShoppingBag, 
   ShoppingCart, 
-  Users, 
+  Users,
+  ArrowRight, 
   CreditCard,
   ChevronDown,
   Calculator,
@@ -394,6 +395,16 @@ export default function Header({ onToggleMobileMenu }) {
                             );
                           })}
                         </div>
+
+                        <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                          <Link
+                            href="/contact-us"
+                            className="btn-primary-brand w-100 text-center"
+                            style={{ padding: '10px 18px', fontSize: '13px' }}
+                          >
+                            Consult an Enterprise Architect <ArrowRight size={14} />
+                          </Link>
+                        </div>
                       </div>
 
                       {/* Column 2: Strategic Business & Financial Solutions */}
@@ -424,6 +435,15 @@ export default function Header({ onToggleMobileMenu }) {
                               </Link>
                             );
                           })}
+                        </div>
+
+                        <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                          <Link
+                            href="/services"
+                            className="megamenu-viewall-link"
+                          >
+                            View All Services &amp; Advisory <ArrowRight size={13} />
+                          </Link>
                         </div>
                       </div>
 
