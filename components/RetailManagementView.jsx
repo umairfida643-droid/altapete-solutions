@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
-import { useTheme } from '@/context/ThemeContext';
+import EnterprisePageView from '@/components/EnterprisePageView';
 import {
   ShoppingBag,
   Package,
@@ -10,761 +9,127 @@ import {
   Tag,
   Repeat,
   Smartphone,
-  Globe2,
-  CheckCircle2,
-  ArrowRight,
-  Zap,
-  Check,
+  Globe2
 } from 'lucide-react';
-
-const STATS = [
-  { value: '100+', label: 'Enterprise Solutions', desc: 'Deployed globally' },
-  { value: '50+', label: 'Other Solutions', desc: 'Industry verticals' },
-  { value: '2-4 Weeks', label: 'Implementation', desc: 'Fast deployment' },
-  { value: '24/7', label: 'Customer Support', desc: 'Always available' },
-];
 
 const FEATURES = [
   {
     icon: ShoppingBag,
     title: 'POS & Sales Management',
     desc: 'Streamlined point-of-sale operations for single and multi-branch retail environments.',
-    points: ['Multi-branch POS terminals', 'Barcode scanning & product lookup', 'Receipt printing & digital receipts'],
+    points: ['Multi-branch POS terminals', 'Barcode scanning & product lookup', 'Receipt printing & digital receipts']
   },
   {
     icon: Package,
     title: 'Inventory & Stock Control',
     desc: 'Real-time inventory visibility across all your warehouses and store locations.',
-    points: ['Real-time stock level monitoring', 'Multi-warehouse management', 'Auto reorder & low-stock alerts'],
+    points: ['Real-time stock level monitoring', 'Multi-warehouse management', 'Auto reorder & low-stock alerts']
   },
   {
     icon: Users,
     title: 'Customer & Loyalty Programs',
     desc: 'Build lasting customer relationships with integrated loyalty and CRM tools.',
-    points: ['Loyalty points & rewards engine', 'Full CRM & customer profiles', 'Customer segmentation & targeting'],
+    points: ['Loyalty points & rewards engine', 'Full CRM & customer profiles', 'Customer segmentation & targeting']
   },
   {
     icon: CreditCard,
     title: 'Payments & Multi-Currency',
     desc: 'Accept all major payment methods with full VAT compliance built in.',
-    points: ['Mada / Visa / cash support', 'Multi-currency transactions', 'VAT 15% calculation & reporting'],
+    points: ['Mada / Visa / cash support', 'Multi-currency transactions', 'VAT 15% calculation & reporting']
   },
   {
     icon: BarChart3,
     title: 'Sales Analytics & Reporting',
     desc: 'Actionable insights from daily performance to long-term trend analysis.',
-    points: ['Daily / weekly / monthly reports', 'Top products & category analysis', 'Profit margin & cost analysis'],
+    points: ['Daily / weekly / monthly reports', 'Top products & category analysis', 'Profit margin & cost analysis']
   },
   {
     icon: Tag,
     title: 'Promotions & Pricing Engine',
     desc: 'Flexible promotion management to drive sales and increase basket size.',
-    points: ['Seasonal & flash discounts', 'Bundle & combo offers', 'Dynamic price rules & overrides'],
+    points: ['Seasonal & flash discounts', 'Bundle & combo offers', 'Dynamic price rules & overrides']
   },
   {
     icon: Repeat,
     title: 'Returns & Exchanges',
     desc: 'Hassle-free return processing that keeps customers satisfied and stock accurate.',
-    points: ['Return management workflow', 'Refund processing & reconciliation', 'Credit notes & store credit'],
+    points: ['Return management workflow', 'Refund processing & reconciliation', 'Credit notes & store credit']
   },
   {
     icon: Smartphone,
     title: 'Mobile & E-Commerce',
     desc: 'Unify your online and offline channels for a seamless omnichannel experience.',
-    points: ['Mobile POS for staff on the floor', 'Online store integration', 'Omnichannel inventory sync'],
+    points: ['Mobile POS for staff on the floor', 'Online store integration', 'Omnichannel inventory sync']
   },
   {
     icon: Globe2,
     title: 'ZATCA Compliance',
     desc: "Stay fully compliant with Saudi Arabia's e-invoicing and tax regulations.",
-    points: ['Phase 2 e-invoicing ready', 'QR code generation per invoice', 'Automated VAT & tax reports'],
-  },
+    points: ['Phase 2 e-invoicing ready', 'QR code generation per invoice', 'Automated VAT & tax reports']
+  }
 ];
 
 const BENEFITS = [
   {
     title: 'Reduce Operational Costs',
-    desc: 'Automate workflows and smart reordering to cut manual overhead and eliminate stock discrepancies.',
+    desc: 'Automated inventory workflows and smart reordering eliminate waste and costly stockouts.'
   },
   {
-    title: 'Increase Customer Retention',
-    desc: 'Drive repeat business through personalised loyalty programmes and targeted promotions.',
+    title: 'Increase Customer Lifetime Value',
+    desc: 'Personalized loyalty points and omnichannel CRM profiles keep customers coming back.'
   },
   {
-    title: 'Real-Time Sales Visibility',
-    desc: 'Gain instant insight into sales performance, stock levels, and profitability across every location.',
+    title: 'Real-Time Multi-Branch Control',
+    desc: 'Monitor daily sales, inventory levels, and cash registers across all stores from one screen.'
   },
   {
-    title: 'Seamless Scalability',
-    desc: 'Scale effortlessly from a single store to a national retail chain without changing your platform.',
+    title: 'Scalable for National Chains',
+    desc: 'Effortlessly scale from a boutique retail store to a nationwide multi-warehouse chain.'
   },
   {
-    title: 'Full ZATCA & VAT Compliance',
-    desc: 'Ensure full Saudi e-invoicing and VAT compliance without any manual effort or risk of penalties.',
+    title: '100% ZATCA & VAT Compliance',
+    desc: 'Instant cryptographic invoice clearance and automated 15% VAT filing support.'
   },
   {
-    title: 'Intuitive Staff Interfaces',
-    desc: 'Empower your team with mobile and desktop interfaces designed for speed and ease of use.',
-  },
+    title: 'Intuitive Staff Usability',
+    desc: 'Minimal training required with ergonomic POS interfaces designed for high checkout speed.'
+  }
 ];
 
 export default function RetailManagementView() {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-
   return (
-    <div className={`retail-view-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}>
-
-      {/* 1. HERO SECTION */}
-      <section className="retail-hero">
-        <div className="container">
-          <div className="row align-items-center justify-content-center text-center">
-            <div className="col-xl-9 col-lg-10">
-
-              <div className="hero-badge">
-                <ShoppingBag size={14} color="#00AEEF" />
-                <span>RETAIL ERP MANAGEMENT PLATFORM</span>
-              </div>
-
-              <h1 className="hero-title">
-                Unified Retail Operations. <br />
-                <span className="text-gradient">One Intelligent Platform.</span>
-              </h1>
-
-              <p className="hero-desc">
-                Altapete Solutions connects every corner of your retail business — from point-of-sale and inventory management to customer loyalty, ZATCA compliance, and seamless multi-branch analytics in one powerful platform.
-              </p>
-
-              <div className="hero-actions">
-                <Link href="/contact-us" className="btn-hero-primary">
-                  <span>Schedule a Demo</span>
-                  <ArrowRight size={16} />
-                </Link>
-                <Link href="/what-we-do" className="btn-hero-secondary">
-                  <span>Explore Our Capabilities</span>
-                </Link>
-              </div>
-
-              {/* Stats Bar */}
-              <div className="hero-stats-row">
-                {STATS.map((s, idx) => (
-                  <div key={idx} className="stat-card">
-                    <div className="stat-number">{s.value}</div>
-                    <div className="stat-label">{s.label}</div>
-                    <div className="stat-desc">{s.desc}</div>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2. CORE FEATURES */}
-      <section className="retail-features-section">
-        <div className="container">
-          <div className="section-head text-center">
-            <div className="section-tag">COMPREHENSIVE CAPABILITIES</div>
-            <h2 className="section-title">Everything You Need to Run a Modern Retail Business</h2>
-            <p className="section-desc">
-              Nine purpose-built modules that work together seamlessly — from POS and inventory to loyalty programmes and ZATCA e-invoicing.
-            </p>
-          </div>
-
-          <div className="row g-3 g-lg-4 mt-2">
-            {FEATURES.map((feat, idx) => {
-              const Icon = feat.icon;
-              return (
-                <div key={idx} className="col-lg-4 col-md-6">
-                  <div className="feature-card">
-                    <div className="feat-icon-box">
-                      <Icon size={20} color="#00AEEF" />
-                    </div>
-                    <h3 className="feat-title">{feat.title}</h3>
-                    <p className="feat-desc">{feat.desc}</p>
-                    <ul className="feat-points">
-                      {feat.points.map((p, pIdx) => (
-                        <li key={pIdx}>
-                          <Check size={13} className="check-icon" />
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. BUSINESS BENEFITS */}
-      <section className="retail-benefits-section">
-        <div className="container">
-          <div className="row g-4 g-lg-5 align-items-center">
-
-            <div className="col-lg-6">
-              <div className="section-tag">OPERATIONAL IMPACT</div>
-              <h2 className="section-title text-start mb-3">
-                Measurable Results Across Your <span className="text-gradient">Retail Network</span>
-              </h2>
-              <p className="section-desc text-start mb-4">
-                Manual processes and disconnected systems cost retailers time and revenue. Our integrated retail ERP automates repetitive workflows so your team can focus on customers and growth.
-              </p>
-
-              <div className="benefits-stack">
-                {BENEFITS.map((ben, idx) => (
-                  <div key={idx} className="benefit-item">
-                    <div className="benefit-icon-dot">
-                      <CheckCircle2 size={16} color="#00AEEF" />
-                    </div>
-                    <div>
-                      <h4 className="benefit-title">{ben.title}</h4>
-                      <p className="benefit-text">{ben.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="col-lg-6">
-              <div className="benefit-visual-frame">
-                <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200"
-                  alt="Modern retail store operations"
-                  className="benefit-img"
-                />
-                <div className="visual-stat-overlay">
-                  <div className="overlay-badge">
-                    <Zap size={14} color="#00AEEF" />
-                    <span>Real-Time Retail Engine</span>
-                  </div>
-                  <div className="overlay-metric">Up to 40% Reduction in Stock Discrepancies</div>
-                  <div className="overlay-note">Backed by automated inventory sync & multi-branch POS</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* 4. CTA BANNER */}
-      <section className="retail-cta-section">
-        <div className="container">
-          <div className="cp-cta-banner">
-            <div className="cp-cta-glow" />
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 className="cp-cta-heading">
-                Ready to Transform Your Retail Operations?
-              </h2>
-              <p className="cp-cta-sub">
-                Connect with our retail ERP specialists to explore custom workflows, ZATCA Phase 2 e-invoicing compliance, and seamless multi-branch integration.
-              </p>
-              <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Link href="/contact-us" className="cp-cta-btn-primary">
-                  <span>Schedule Consultation</span>
-                  <ArrowRight size={16} />
-                </Link>
-                <Link href="/what-we-do" className="cp-cta-btn-secondary">
-                  <span>Explore What We Do</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* COMPONENT SCOPED & THEME-AWARE STYLES */}
-      <style jsx>{`
-        .retail-view-wrapper {
-          width: 100%;
-          position: relative;
-          background: var(--bg-body, #080d1a);
-          color: var(--text-color, #e2e8f0);
-          overflow: hidden;
-        }
-
-        /* ── 1. HERO SECTION ── */
-        .retail-hero {
-          padding: 100px 0 70px;
-          position: relative;
-          background: linear-gradient(rgba(8,13,26,0.85), rgba(10,22,40,0.9)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920') center/cover no-repeat;
-          border-bottom: 1px solid rgba(0,174,239,0.12);
-        }
-        .hero-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 18px;
-          border-radius: 50px;
-          background: rgba(0, 174, 239, 0.1);
-          border: 1px solid rgba(0, 174, 239, 0.25);
-          color: #00AEEF;
-          font-size: 11.5px;
-          font-weight: 700;
-          letter-spacing: 1.2px;
-          text-transform: uppercase;
-          margin-bottom: 20px;
-        }
-        .hero-title {
-          font-size: clamp(30px, 4.5vw, 50px);
-          font-weight: 800;
-          letter-spacing: -0.8px;
-          margin-bottom: 18px;
-          line-height: 1.18;
-          color: var(--heading-color, #ffffff);
-        }
-        .text-gradient {
-          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-        .hero-desc {
-          max-width: 740px;
-          margin: 0 auto 34px;
-          font-size: 16px;
-          line-height: 1.7;
-          color: var(--text-muted, #94a3b8);
-        }
-        .hero-actions {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 14px;
-          flex-wrap: wrap;
-          margin-bottom: 50px;
-        }
-        .btn-hero-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
-          color: #ffffff !important;
-          padding: 13px 32px;
-          border-radius: 50px;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.35);
-          transition: all 0.3s ease;
-        }
-        .btn-hero-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.5);
-          color: #ffffff !important;
-        }
-        .btn-hero-secondary {
-          display: inline-flex;
-          align-items: center;
-          padding: 13px 30px;
-          border-radius: 50px;
-          border: 1.5px solid rgba(0, 174, 239, 0.3);
-          color: var(--text-color, #e2e8f0) !important;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        .btn-hero-secondary:hover {
-          background: rgba(0, 174, 239, 0.08);
-          border-color: #00AEEF;
-        }
-
-        /* Stats strip */
-        .hero-stats-row {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
-          max-width: 1060px;
-          margin: 0 auto;
-        }
-        .stat-card {
-          background: rgba(13, 22, 40, 0.65);
-          border: 1px solid rgba(0, 174, 239, 0.15);
-          border-radius: 14px;
-          padding: 18px 16px;
-          text-align: center;
-          backdrop-filter: blur(8px);
-          transition: all 0.3s ease;
-        }
-        .stat-card:hover {
-          border-color: rgba(0, 174, 239, 0.35);
-          transform: translateY(-2px);
-        }
-        .stat-number {
-          font-size: 26px;
-          font-weight: 800;
-          color: #00AEEF;
-          line-height: 1;
-          margin-bottom: 6px;
-        }
-        .stat-label {
-          font-size: 12.5px;
-          font-weight: 700;
-          color: var(--heading-color, #ffffff);
-          margin-bottom: 2px;
-        }
-        .stat-desc {
-          font-size: 11px;
-          color: var(--text-muted, #94a3b8);
-        }
-
-        /* ── SECTION HEADINGS ── */
-        .section-tag {
-          display: inline-block;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 1.5px;
-          color: #00AEEF;
-          padding: 4px 14px;
-          border-radius: 50px;
-          background: rgba(0, 174, 239, 0.1);
-          border: 1px solid rgba(0, 174, 239, 0.25);
-          margin-bottom: 12px;
-        }
-        .section-title {
-          font-size: clamp(22px, 3vw, 30px);
-          font-weight: 800;
-          letter-spacing: -0.4px;
-          margin-bottom: 12px;
-          line-height: 1.25;
-          color: var(--heading-color, #ffffff);
-        }
-        .section-desc {
-          max-width: 660px;
-          margin: 0 auto;
-          font-size: 14.5px;
-          line-height: 1.65;
-          color: var(--text-muted, #94a3b8);
-        }
-
-        /* ── 2. FEATURES GRID ── */
-        .retail-features-section {
-          padding: 70px 0 60px;
-        }
-        .feature-card {
-          background: var(--card-bg, rgba(13,22,40,0.6));
-          border: 1px solid var(--card-border, rgba(0,174,239,0.14));
-          border-radius: 16px;
-          padding: 24px 22px;
-          height: 100%;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .feature-card:hover {
-          transform: translateY(-3px);
-          border-color: rgba(0, 174, 239, 0.35);
-          box-shadow: 0 12px 28px rgba(0, 174, 239, 0.1);
-        }
-        .feat-icon-box {
-          width: 44px;
-          height: 44px;
-          border-radius: 10px;
-          background: rgba(0, 174, 239, 0.1);
-          border: 1px solid rgba(0, 174, 239, 0.22);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 16px;
-        }
-        .feat-title {
-          font-size: 16px;
-          font-weight: 700;
-          color: var(--heading-color, #ffffff);
-          margin-bottom: 8px;
-        }
-        .feat-desc {
-          font-size: 13.5px;
-          line-height: 1.6;
-          color: var(--text-muted, #94a3b8);
-          margin-bottom: 14px;
-        }
-        .feat-points {
-          list-style: none;
-          padding-left: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-          border-top: 1px solid rgba(0, 174, 239, 0.1);
-          padding-top: 12px;
-        }
-        .feat-points li {
-          display: flex;
-          align-items: center;
-          gap: 7px;
-          font-size: 12.5px;
-          color: var(--text-muted, #cbd5e1);
-        }
-        .feat-points .check-icon {
-          color: #00AEEF;
-          flex-shrink: 0;
-        }
-
-        /* ── 3. BENEFITS SECTION ── */
-        .retail-benefits-section {
-          padding: 70px 0;
-          background: rgba(0, 174, 239, 0.02);
-          border-top: 1px solid rgba(0, 174, 239, 0.08);
-          border-bottom: 1px solid rgba(0, 174, 239, 0.08);
-        }
-        .benefits-stack {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-        .benefit-item {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-        }
-        .benefit-icon-dot {
-          flex-shrink: 0;
-          margin-top: 3px;
-        }
-        .benefit-title {
-          font-size: 15px;
-          font-weight: 700;
-          color: var(--heading-color, #ffffff);
-          margin-bottom: 3px;
-        }
-        .benefit-text {
-          font-size: 13.5px;
-          line-height: 1.6;
-          color: var(--text-muted, #94a3b8);
-          margin-bottom: 0;
-        }
-        .benefit-visual-frame {
-          position: relative;
-          border-radius: 18px;
-          overflow: hidden;
-          border: 1px solid rgba(0, 174, 239, 0.25);
-          box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-        }
-        .benefit-img {
-          width: 100%;
-          height: 480px;
-          object-fit: cover;
-          display: block;
-        }
-        .visual-stat-overlay {
-          position: absolute;
-          bottom: 16px;
-          left: 16px;
-          right: 16px;
-          background: rgba(10, 22, 40, 0.9);
-          backdrop-filter: blur(10px);
-          border: 1px solid rgba(0, 174, 239, 0.3);
-          border-radius: 12px;
-          padding: 16px 20px;
-        }
-        .overlay-badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 11px;
-          font-weight: 700;
-          color: #00AEEF;
-          text-transform: uppercase;
-          margin-bottom: 4px;
-        }
-        .overlay-metric {
-          font-size: 15px;
-          font-weight: 700;
-          color: #ffffff;
-          margin-bottom: 2px;
-        }
-        .overlay-note {
-          font-size: 12px;
-          color: #94a3b8;
-        }
-
-        /* ── 4. BOTTOM CTA BANNER ── */
-        .retail-cta-section {
-          padding: 40px 0 80px;
-        }
-        .cp-cta-banner {
-          background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-          border-radius: 24px;
-          padding: clamp(36px, 5vw, 64px);
-          text-align: center;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 20px 50px rgba(30, 58, 95, 0.35);
-        }
-        .cp-cta-glow {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 600px;
-          height: 600px;
-          border-radius: 50%;
-          background: rgba(0, 174, 239, 0.08);
-          pointer-events: none;
-        }
-        .cp-cta-heading {
-          font-size: clamp(22px, 3.5vw, 34px);
-          font-weight: 800;
-          color: #ffffff !important;
-          margin-bottom: 12px;
-        }
-        .cp-cta-sub {
-          font-size: 15px;
-          color: rgba(255, 255, 255, 0.9) !important;
-          max-width: 580px;
-          margin: 0 auto 30px;
-          line-height: 1.65;
-        }
-        .cp-cta-btn-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #00AEEF;
-          color: #ffffff !important;
-          padding: 13px 32px;
-          border-radius: 50px;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
-        }
-        .cp-cta-btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 24px rgba(0, 174, 239, 0.4);
-          color: #ffffff !important;
-        }
-        .cp-cta-btn-secondary {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.12);
-          color: #ffffff !important;
-          padding: 13px 32px;
-          border-radius: 50px;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          border: 1.5px solid rgba(255, 255, 255, 0.28);
-          transition: all 0.3s ease;
-        }
-        .cp-cta-btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.2);
-          transform: translateY(-2px);
-          color: #ffffff !important;
-        }
-
-        /* ── LIGHT THEME ADAPTATION ── */
-        :global([data-theme="light"]) .retail-view-wrapper,
-        .light-theme.retail-view-wrapper {
-          background: #f8fafc;
-          color: #0f172a;
-        }
-        :global([data-theme="light"]) .retail-hero,
-        .light-theme .retail-hero {
-          background: linear-gradient(rgba(240,247,255,0.92), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920') center/cover no-repeat;
-          border-bottom-color: rgba(44, 115, 217, 0.15);
-        }
-        :global([data-theme="light"]) .hero-title,
-        .light-theme .hero-title {
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .hero-desc,
-        .light-theme .hero-desc {
-          color: #475569 !important;
-        }
-        :global([data-theme="light"]) .btn-hero-secondary,
-        .light-theme .btn-hero-secondary {
-          border-color: rgba(44, 115, 217, 0.3);
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .stat-card,
-        .light-theme .stat-card {
-          background: #ffffff;
-          border-color: rgba(44, 115, 217, 0.16);
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-        :global([data-theme="light"]) .stat-label,
-        .light-theme .stat-label {
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .stat-desc,
-        .light-theme .stat-desc {
-          color: #64748b !important;
-        }
-        :global([data-theme="light"]) .section-title,
-        .light-theme .section-title {
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .section-desc,
-        .light-theme .section-desc {
-          color: #475569 !important;
-        }
-        :global([data-theme="light"]) .feature-card,
-        .light-theme .feature-card {
-          background: #ffffff;
-          border-color: rgba(44, 115, 217, 0.16);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-        }
-        :global([data-theme="light"]) .feat-title,
-        .light-theme .feat-title {
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .feat-desc,
-        .light-theme .feat-desc {
-          color: #475569 !important;
-        }
-        :global([data-theme="light"]) .feat-points,
-        .light-theme .feat-points {
-          border-top-color: rgba(0, 0, 0, 0.06);
-        }
-        :global([data-theme="light"]) .feat-points li,
-        .light-theme .feat-points li {
-          color: #334155 !important;
-        }
-        :global([data-theme="light"]) .retail-benefits-section,
-        .light-theme .retail-benefits-section {
-          background: #f1f5f9;
-          border-color: rgba(0, 0, 0, 0.06);
-        }
-        :global([data-theme="light"]) .benefit-title,
-        .light-theme .benefit-title {
-          color: #0f172a !important;
-        }
-        :global([data-theme="light"]) .benefit-text,
-        .light-theme .benefit-text {
-          color: #475569 !important;
-        }
-        :global([data-theme="light"]) .visual-stat-overlay,
-        .light-theme .visual-stat-overlay {
-          background: rgba(255, 255, 255, 0.95);
-          border-color: rgba(44, 115, 217, 0.3);
-        }
-        :global([data-theme="light"]) .overlay-metric,
-        .light-theme .overlay-metric {
-          color: #0f172a;
-        }
-        :global([data-theme="light"]) .overlay-note,
-        .light-theme .overlay-note {
-          color: #64748b;
-        }
-
-        /* Responsive */
-        @media (max-width: 991px) {
-          .hero-stats-row {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .benefit-img {
-            height: 360px;
-          }
-        }
-        @media (max-width: 576px) {
-          .hero-stats-row {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-    </div>
+    <EnterprisePageView
+      badge="RETAIL ERP PLATFORM"
+      badgeIcon={ShoppingBag}
+      title={
+        <>
+          Unified Retail <br />
+          <span className="text-gradient">Management Platform.</span>
+        </>
+      }
+      description="From point-of-sale to supply chain, our end-to-end retail ERP connects every corner of your business — so you can sell smarter, serve better, and grow faster."
+      bgImage="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920"
+      featuresTag="RETAIL CAPABILITIES"
+      featuresTitle="A Complete Toolkit for Modern Retailers"
+      featuresDesc="Nine integrated modules designed to streamline sales, protect margins, and power omnichannel retail."
+      features={FEATURES}
+      benefitsTag="STRATEGIC ADVANTAGE"
+      benefitsTitle={
+        <>Why Leading Retailers Choose <span className="text-gradient">Altapete</span></>
+      }
+      benefitsDesc="Measurable business improvements backed by reliable enterprise technology and local support."
+      benefits={BENEFITS}
+      benefitStat={{
+        badge: 'Retail Performance',
+        metric: 'Sub-Second POS Speed',
+        note: 'High-throughput point of sale with offline sync resilience'
+      }}
+      ctaTitle="Ready to Transform Your Retail Operations?"
+      ctaDesc="Talk to our retail ERP specialists today and get a personalized architecture walkthrough tailored to your stores."
+      ctaPrimaryText="Schedule Retail Demo"
+      ctaPrimaryLink="/contact-us"
+      ctaSecondaryText="Explore What We Do"
+      ctaSecondaryLink="/what-we-do"
+    />
   );
 }
