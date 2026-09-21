@@ -249,45 +249,52 @@ export default function HomePage() {
                 <span style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 800, textTransform: 'uppercase' }}>Cloud & AI Ready</span>
               </div>
 
-              {/* Headline with Live Typewriter — fixed height prevents layout shift */}
-              <h1 
-                className="font-heading mb-20 hero-headline"
+              {/* Hero Heading: 2 fixed lines — zero layout shift */}
+              <div
                 style={{
                   fontSize: 'clamp(2.4rem, 4.2vw, 3.8rem)',
                   fontWeight: 800,
-                  lineHeight: 1.15,
-                  letterSpacing: '-0.5px'
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.5px',
+                  marginBottom: '20px'
                 }}
+                className="font-heading hero-headline"
               >
-                Delivering
-                <span
+                {/* LINE 1 — always "Delivering", exact fixed height */}
+                <div style={{ height: '1.2em', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+                  <span>Delivering</span>
+                </div>
+
+                {/* LINE 2 — rotating typewriter text, same fixed height */}
+                <div
                   style={{
-                    display: 'block',
-                    minHeight: 'calc(clamp(2.4rem, 4.2vw, 3.8rem) * 1.15)',
-                    overflow: 'hidden'
+                    height: '1.2em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    overflow: 'hidden',
+                    whiteSpace: 'nowrap'
                   }}
                 >
                   <Typewriter
                     options={{
                       wrapperClassName: "color-linear font-heading",
+                      cursorClassName: "color-linear font-heading",
                       strings: [
-                        "Business Consultancy",
-                        "Custom App Development",
-                        "ERP Implementations",
-                        "ZATCA E-Invoicing",
-                        "Financial Advisory",
-                        "Odoo & SAP Systems",
-                        "Cloud Transformation"
+                        "Business Solutions",
+                        "ERP Solutions",
+                        "IT Solutions",
+                        "Cloud Solutions",
+                        "ZATCA Solutions",
+                        "Digital Solutions"
                       ],
                       autoStart: true,
                       loop: true,
-                      delay: 50,
-                      deleteSpeed: 30
+                      delay: 60,
+                      deleteSpeed: 35
                     }}
                   />
-                </span>
-                Solutions
-              </h1>
+                </div>
+              </div>
 
               {/* Subtitle */}
               <p 
