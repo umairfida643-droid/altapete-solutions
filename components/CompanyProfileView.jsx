@@ -524,16 +524,13 @@ export default function CompanyProfileView() {
               <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
                 <Link
                   href="/contact-us"
-                  className="cp-cta-btn-primary"
+                  className="btn btn-linear hover-up cp-cta-btn-primary"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 8,
-                    background: '#00AEEF',
-                    color: '#ffffff',
-                    padding: '14px 36px',
-                    borderRadius: 50,
-                    fontSize: 15, fontWeight: 700,
+                    padding: '13px 30px',
+                    borderRadius: 12,
+                    fontSize: 14.5, fontWeight: 700,
                     textDecoration: 'none',
-                    transition: 'all 0.3s',
                   }}
                 >
                   Get in Touch
@@ -541,17 +538,16 @@ export default function CompanyProfileView() {
                 </Link>
                 <Link
                   href="/what-we-do"
-                  className="cp-cta-btn-secondary"
+                  className="btn btn-outline-brand hover-up cp-cta-btn-secondary"
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: 8,
                     background: 'rgba(255,255,255,0.12)',
                     color: '#ffffff',
-                    padding: '14px 36px',
-                    borderRadius: 50,
-                    fontSize: 15, fontWeight: 700,
+                    padding: '13px 28px',
+                    borderRadius: 12,
+                    fontSize: 14, fontWeight: 600,
                     textDecoration: 'none',
                     border: '1.5px solid rgba(255,255,255,0.25)',
-                    transition: 'all 0.3s',
                   }}
                 >
                   Our Services

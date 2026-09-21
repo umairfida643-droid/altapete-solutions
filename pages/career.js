@@ -166,11 +166,11 @@ export default function CareerPage() {
             </p>
 
             <div className="hero-actions">
-              <a href="#open-positions" className="btn-hero-primary">
+              <a href="#open-positions" className="btn btn-linear hover-up btn-hero-primary">
                 <span>View Open Positions</span>
                 <ArrowRight size={16} />
               </a>
-              <Link href="/company-profile" className="btn-hero-secondary">
+              <Link href="/company-profile" className="btn btn-outline-brand hover-up btn-hero-secondary">
                 <span>Explore Company Profile</span>
               </Link>
             </div>
@@ -350,11 +350,11 @@ export default function CareerPage() {
                   Connect directly with our leadership team for executive confidential discussions or explore how Altapete works.
                 </p>
                 <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <Link href="/contact-us" className="cp-cta-btn-primary">
+                  <Link href="/contact-us" className="btn btn-linear hover-up cp-cta-btn-primary">
                     <span>Contact Leadership</span>
                     <ArrowRight size={16} />
                   </Link>
-                  <Link href="/what-we-do" className="cp-cta-btn-secondary">
+                  <Link href="/what-we-do" className="btn btn-outline-brand hover-up cp-cta-btn-secondary">
                     <span>Explore Our Work</span>
                   </Link>
                 </div>
@@ -428,36 +428,46 @@ export default function CareerPage() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%) !important;
           color: #ffffff !important;
-          padding: 14px 34px;
-          border-radius: 50px;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.35);
-          transition: all 0.3s ease;
+          border: 1px solid rgba(0, 174, 239, 0.4) !important;
+          padding: 13px 28px !important;
+          border-radius: 12px !important;
+          font-size: 14.5px !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.35) !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          cursor: pointer;
         }
         .btn-hero-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.5);
+          background: linear-gradient(135deg, #0099d8 0%, #1e5cb8 100%) !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.5) !important;
           color: #ffffff !important;
         }
         .btn-hero-secondary {
           display: inline-flex;
           align-items: center;
-          padding: 14px 32px;
-          border-radius: 50px;
-          border: 1.5px solid rgba(0, 174, 239, 0.3);
-          color: var(--text-color, #e2e8f0) !important;
-          font-size: 15px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          gap: 8px;
+          padding: 13px 26px !important;
+          border-radius: 12px !important;
+          background: rgba(44, 115, 217, 0.12) !important;
+          border: 1.5px solid rgba(0, 174, 239, 0.5) !important;
+          color: #00C6FF !important;
+          font-size: 14px !important;
+          font-weight: 600 !important;
+          text-decoration: none !important;
+          box-shadow: 0 2px 12px rgba(0, 174, 239, 0.15) !important;
+          transition: all 0.25s ease !important;
+          cursor: pointer;
         }
         .btn-hero-secondary:hover {
-          background: rgba(0, 174, 239, 0.08);
-          border-color: #00AEEF;
+          background: #00AEEF !important;
+          border-color: #00AEEF !important;
+          color: #ffffff !important;
+          box-shadow: 0 4px 18px rgba(0, 174, 239, 0.45) !important;
+          transform: translateY(-2px) !important;
         }
 
         .hero-stats-strip {
@@ -788,37 +798,43 @@ export default function CareerPage() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: #00AEEF;
+          background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%) !important;
           color: #ffffff !important;
-          padding: 14px 34px;
-          border-radius: 50px;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          transition: all 0.3s ease;
+          border: 1px solid rgba(0, 174, 239, 0.4) !important;
+          padding: 13px 28px !important;
+          border-radius: 12px !important;
+          font-size: 14.5px !important;
+          font-weight: 700 !important;
+          text-decoration: none !important;
+          box-shadow: 0 8px 24px rgba(0, 174, 239, 0.35) !important;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          cursor: pointer;
         }
         .cp-cta-btn-primary:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 24px rgba(0, 174, 239, 0.4);
+          background: linear-gradient(135deg, #0099d8 0%, #1e5cb8 100%) !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0 12px 30px rgba(0, 174, 239, 0.5) !important;
           color: #ffffff !important;
         }
         .cp-cta-btn-secondary {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.12) !important;
           color: #ffffff !important;
-          padding: 14px 34px;
-          border-radius: 50px;
-          font-size: 14.5px;
-          font-weight: 700;
-          text-decoration: none;
-          border: 1.5px solid rgba(255, 255, 255, 0.28);
-          transition: all 0.3s ease;
+          padding: 13px 26px !important;
+          border-radius: 12px !important;
+          font-size: 14px !important;
+          font-weight: 600 !important;
+          text-decoration: none !important;
+          border: 1.5px solid rgba(255, 255, 255, 0.28) !important;
+          transition: all 0.25s ease !important;
+          cursor: pointer;
         }
         .cp-cta-btn-secondary:hover {
-          background: rgba(255, 255, 255, 0.2);
-          transform: translateY(-2px);
+          background: rgba(255, 255, 255, 0.25) !important;
+          border-color: rgba(255, 255, 255, 0.5) !important;
+          transform: translateY(-2px) !important;
           color: #ffffff !important;
         }
 
@@ -849,8 +865,18 @@ export default function CareerPage() {
         }
         :global([data-theme="light"]) .btn-hero-secondary,
         .light-theme .btn-hero-secondary {
-          border-color: rgba(44, 115, 217, 0.35);
-          color: #0f172a !important;
+          background: rgba(44, 115, 217, 0.08) !important;
+          border: 1.5px solid rgba(44, 115, 217, 0.4) !important;
+          color: #1e40af !important;
+          box-shadow: 0 2px 8px rgba(44, 115, 217, 0.1) !important;
+        }
+        :global([data-theme="light"]) .btn-hero-secondary:hover,
+        .light-theme .btn-hero-secondary:hover {
+          background: #2c73d9 !important;
+          border-color: #2c73d9 !important;
+          color: #ffffff !important;
+          box-shadow: 0 4px 16px rgba(44, 115, 217, 0.3) !important;
+          transform: translateY(-2px) !important;
         }
         :global([data-theme="light"]) .section-title,
         .light-theme .section-title {
