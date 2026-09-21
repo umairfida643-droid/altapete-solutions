@@ -485,21 +485,38 @@ export default function Footer() {
               </div>
             </div>
 
-            <Link 
-              href="/company-profile" 
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '6px',
-                color: 'var(--brand-accent)',
-                fontSize: '12.5px',
-                fontWeight: 600,
-                textDecoration: 'none'
-              }}
-            >
-              <span>Explore Corporate Credentials</span>
-              <ArrowRight size={13} />
-            </Link>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <Link 
+                href="/company-profile" 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: 'var(--brand-accent)',
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  textDecoration: 'none'
+                }}
+              >
+                <span>Explore Corporate Credentials</span>
+                <ArrowRight size={13} />
+              </Link>
+              <Link 
+                href="/blog" 
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  color: 'var(--brand-accent)',
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  textDecoration: 'none'
+                }}
+              >
+                <span>Latest Industry Insights & Blog</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
           </div>
 
           {/* Column 2: Solutions (WITH HYPERLINKS) */}
@@ -809,6 +826,7 @@ export default function Footer() {
             <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Company Profile</Link>
             <Link href="/what-we-do" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>What We Do</Link>
             <Link href="/career" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Careers</Link>
+            <Link href="/blog" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Blog</Link>
             <Link href="/contact-us" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Contact Us</Link>
           </div>
         </div>

@@ -29,7 +29,24 @@ import {
   Sparkles,
   Menu,
   CheckCircle2,
-  ExternalLink
+  ExternalLink,
+  Flame,
+  Zap,
+  Landmark,
+  Radio,
+  Pill,
+  Shirt,
+  Printer,
+  HeartPulse,
+  Wrench,
+  Car,
+  UtensilsCrossed,
+  Sprout,
+  FlaskConical,
+  Pickaxe,
+  Film,
+  Plane,
+  HeartHandshake
 } from 'lucide-react';
 
 export default function Header({ onToggleMobileMenu }) {
@@ -229,6 +246,39 @@ export default function Header({ onToggleMobileMenu }) {
       icon: ShieldCheck, 
       desc: "Incident tracking, compliance, PPE & workplace safety" 
     }
+  ];
+
+  const industriesColumns = [
+    [
+      { name: "Oil & Gas", icon: Flame },
+      { name: "Energy & Utilities", icon: Zap },
+      { name: "Banking & Financial Services", icon: Landmark },
+      { name: "Telecommunications", icon: Radio },
+      { name: "Pharmaceuticals", icon: Pill },
+      { name: "Textiles & Apparel", icon: Shirt },
+      { name: "Printing & Publishing", icon: Printer }
+    ],
+    [
+      { name: "Healthcare", icon: HeartPulse },
+      { name: "Real Estate", icon: Building2 },
+      { name: "Engineering", icon: Wrench },
+      { name: "Automotive", icon: Car },
+      { name: "Transportation", icon: Truck }
+    ],
+    [
+      { name: "Hospitality", icon: UtensilsCrossed },
+      { name: "Government & Public Sector", icon: Building },
+      { name: "Professional Services", icon: Briefcase },
+      { name: "Insurance", icon: ShieldCheck },
+      { name: "Agriculture & Agribusiness", icon: Sprout }
+    ],
+    [
+      { name: "Chemicals & Petrochemicals", icon: FlaskConical },
+      { name: "Mining & Metals", icon: Pickaxe },
+      { name: "Media & Entertainment", icon: Film },
+      { name: "Travel & Tourism", icon: Plane },
+      { name: "Non-Profit Organizations", icon: HeartHandshake }
+    ]
   ];
 
   return (
@@ -531,23 +581,148 @@ export default function Header({ onToggleMobileMenu }) {
                   </div>
                 </li>
 
-                {/* 4. What We Do */}
+                {/* 4. Industries Mega Menu (Non-clickable items with SVG icons) */}
+                <li
+                  className="nav-item-dropdown"
+                  onMouseEnter={() => handleMenuEnter('industries')}
+                  onMouseLeave={handleMenuLeave}
+                >
+                  <button 
+                    type="button"
+                    onClick={() => setActiveMenu(activeMenu === 'industries' ? null : 'industries')}
+                    onKeyDown={(e) => handleKeyDown(e, 'industries')}
+                    aria-expanded={activeMenu === 'industries'}
+                    aria-haspopup="true"
+                    className={`nav-link-btn ${activeMenu === 'industries' ? 'is-active' : ''}`}
+                  >
+                    <span>Industries</span>
+                    <ChevronDown size={14} className="nav-arrow-icon" style={{ transform: activeMenu === 'industries' ? 'rotate(180deg)' : 'rotate(0deg)' }} />
+                  </button>
+
+                  <div
+                    className={`megamenu-panel ${activeMenu === 'industries' ? 'is-open' : ''}`}
+                    onMouseEnter={() => handleMenuEnter('industries')}
+                    onMouseLeave={handleMenuLeave}
+                    role="region"
+                    aria-label="Industries Navigation"
+                    style={{
+                      maxWidth: '1120px',
+                      width: 'min(1120px, 95vw)'
+                    }}
+                  >
+                    {/* Top Header Bar */}
+                    <div className="d-flex align-items-center justify-content-between pb-3 mb-3 border-bottom" style={{ borderColor: 'var(--border-color)' }}>
+                      <div className="d-flex align-items-center gap-3">
+                        <div style={{
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '10px',
+                          background: 'rgba(44, 115, 217, 0.12)',
+                          border: '1px solid rgba(44, 115, 217, 0.25)',
+                          color: 'var(--brand-accent)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
+                        }}>
+                          <Building2 size={18} />
+                        </div>
+                        <div>
+                          <h3 style={{ fontSize: '15px', fontWeight: 700, margin: 0, color: 'var(--heading-color)', letterSpacing: '0.2px' }}>
+                            Industries We Empower
+                          </h3>
+                          <p style={{ fontSize: '12px', margin: 0, color: 'var(--text-muted)' }}>
+                            Purpose-built ERP architectures and regulatory workflows tailored for specialized enterprise verticals.
+                          </p>
+                        </div>
+                      </div>
+                      <div className="d-none d-md-flex align-items-center gap-2">
+                        <span style={{
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          padding: '4px 12px',
+                          borderRadius: '20px',
+                          background: 'rgba(44, 115, 217, 0.1)',
+                          border: '1px solid rgba(44, 115, 217, 0.25)',
+                          color: 'var(--brand-accent)',
+                          letterSpacing: '0.5px',
+                          textTransform: 'uppercase'
+                        }}>
+                          22 Core Verticals
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* 4-Column Grid: Exact match to user specification */}
+                    <div className="row g-3">
+                      {industriesColumns.map((col, colIdx) => (
+                        <div key={colIdx} className="col-lg-3 col-md-6 col-12">
+                          <div className="d-flex flex-column gap-2">
+                            {col.map((item, itemIdx) => {
+                              const ItemIcon = item.icon;
+                              return (
+                                <div
+                                  key={itemIdx}
+                                  className="industry-menu-item"
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '11px',
+                                    padding: '8px 10px',
+                                    borderRadius: '10px',
+                                    background: 'var(--bg-card-subtle)',
+                                    border: '1px solid var(--border-color)',
+                                    cursor: 'default',
+                                    userSelect: 'none',
+                                    transition: 'all 0.2s ease'
+                                  }}
+                                >
+                                  <div 
+                                    className="industry-menu-icon-box"
+                                    style={{
+                                      width: '32px',
+                                      height: '32px',
+                                      borderRadius: '8px',
+                                      background: 'rgba(44, 115, 217, 0.12)',
+                                      border: '1px solid rgba(44, 115, 217, 0.25)',
+                                      color: 'var(--brand-accent)',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      flexShrink: 0,
+                                      transition: 'all 0.2s ease'
+                                    }}
+                                  >
+                                    <ItemIcon size={16} strokeWidth={1.9} />
+                                  </div>
+                                  <span 
+                                    className="industry-menu-title"
+                                    style={{
+                                      fontSize: '12.5px',
+                                      fontWeight: 600,
+                                      color: 'var(--heading-color)',
+                                      lineHeight: '1.3'
+                                    }}
+                                  >
+                                    {item.name}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </li>
+
+                {/* 5. What We Do */}
                 <li>
                   <Link 
                     href="/what-we-do"
                     className={`nav-link-btn ${router.pathname === '/what-we-do' ? 'is-active' : ''}`}
                   >
                     What We Do
-                  </Link>
-                </li>
-
-                {/* 5. Blog */}
-                <li>
-                  <Link 
-                    href="/blog"
-                    className={`nav-link-btn ${router.pathname.startsWith('/blog') ? 'is-active' : ''}`}
-                  >
-                    Blog
                   </Link>
                 </li>
 
@@ -617,6 +792,22 @@ export default function Header({ onToggleMobileMenu }) {
 
         </div>
       </div>
+
+      <style jsx>{`
+        .industry-menu-item:hover {
+          background: var(--bg-card) !important;
+          border-color: rgba(44, 115, 217, 0.4) !important;
+          transform: translateY(-1px);
+        }
+        .industry-menu-item:hover .industry-menu-icon-box {
+          background: rgba(44, 115, 217, 0.22) !important;
+          border-color: rgba(44, 115, 217, 0.45) !important;
+          color: var(--brand-accent) !important;
+        }
+        .industry-menu-item:hover .industry-menu-title {
+          color: var(--brand-accent) !important;
+        }
+      `}</style>
     </header>
   );
 }

@@ -22,7 +22,24 @@ import {
   Hotel,
   Hospital,
   GraduationCap,
-  HardHat
+  HardHat,
+  Flame,
+  Zap,
+  Landmark,
+  Radio,
+  Pill,
+  Shirt,
+  Printer,
+  HeartPulse,
+  Wrench,
+  Car,
+  UtensilsCrossed,
+  Sprout,
+  FlaskConical,
+  Pickaxe,
+  Film,
+  Plane,
+  HeartHandshake
 } from 'lucide-react';
 
 export default function MobileDrawer({ isOpen, onClose }) {
@@ -34,6 +51,31 @@ export default function MobileDrawer({ isOpen, onClose }) {
   };
 
   const logoSrc = theme === 'light' ? '/assets/imgs/logo-dark.png' : '/assets/imgs/logo.png';
+
+  const allIndustries = [
+    { name: "Oil & Gas", icon: Flame },
+    { name: "Energy & Utilities", icon: Zap },
+    { name: "Banking & Financial Services", icon: Landmark },
+    { name: "Telecommunications", icon: Radio },
+    { name: "Pharmaceuticals", icon: Pill },
+    { name: "Textiles & Apparel", icon: Shirt },
+    { name: "Printing & Publishing", icon: Printer },
+    { name: "Healthcare", icon: HeartPulse },
+    { name: "Real Estate", icon: Building2 },
+    { name: "Engineering", icon: Wrench },
+    { name: "Automotive", icon: Car },
+    { name: "Transportation", icon: Truck },
+    { name: "Hospitality", icon: UtensilsCrossed },
+    { name: "Government & Public Sector", icon: Building },
+    { name: "Professional Services", icon: Briefcase },
+    { name: "Insurance", icon: ShieldCheck },
+    { name: "Agriculture & Agribusiness", icon: Sprout },
+    { name: "Chemicals & Petrochemicals", icon: FlaskConical },
+    { name: "Mining & Metals", icon: Pickaxe },
+    { name: "Media & Entertainment", icon: Film },
+    { name: "Travel & Tourism", icon: Plane },
+    { name: "Non-Profit Organizations", icon: HeartHandshake }
+  ];
 
   return (
     <>
@@ -226,6 +268,65 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     )}
                   </li>
 
+                  {/* Industries Accordion */}
+                  <li style={{ borderBottom: '1px solid var(--border-color)' }}>
+                    <div 
+                      onClick={() => toggleAccordion(4)}
+                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', cursor: 'pointer', color: 'var(--text-primary)', fontWeight: 600, fontSize: '15px' }}
+                    >
+                      <span>Industries</span>
+                      <ChevronDown size={16} color="var(--brand-accent)" style={{ transform: activeAccordion === 4 ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s ease' }} />
+                    </div>
+
+                    {activeAccordion === 4 && (
+                      <div style={{ background: 'var(--bg-card-subtle)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
+                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '10px', letterSpacing: '0.8px' }}>
+                          Core Industry Verticals
+                        </div>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', maxHeight: '280px', overflowY: 'auto' }}>
+                          {allIndustries.map((item, i) => {
+                            const Icon = item.icon;
+                            return (
+                              <div 
+                                key={i} 
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '10px',
+                                  padding: '7px 8px',
+                                  borderRadius: '8px',
+                                  background: 'var(--bg-surface)',
+                                  border: '1px solid var(--border-color)',
+                                  color: 'var(--heading-color)',
+                                  fontSize: '12px',
+                                  fontWeight: 600,
+                                  cursor: 'default',
+                                  userSelect: 'none'
+                                }}
+                              >
+                                <div style={{
+                                  width: '26px',
+                                  height: '26px',
+                                  borderRadius: '6px',
+                                  background: 'rgba(44, 115, 217, 0.12)',
+                                  border: '1px solid rgba(44, 115, 217, 0.25)',
+                                  color: 'var(--brand-accent)',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                                  flexShrink: 0
+                                }}>
+                                  <Icon size={14} />
+                                </div>
+                                <span>{item.name}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </li>
+
                   {/* Direct Pages */}
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <Link href="/what-we-do" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
@@ -240,11 +341,6 @@ export default function MobileDrawer({ isOpen, onClose }) {
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <Link href="/career" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
                       Careers
-                    </Link>
-                  </li>
-                  <li style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <Link href="/blog" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
-                      Blog
                     </Link>
                   </li>
                 </ul>
