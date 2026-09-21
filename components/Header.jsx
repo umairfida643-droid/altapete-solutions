@@ -366,13 +366,13 @@ export default function Header({ onToggleMobileMenu }) {
                   >
                     <div className="row g-4">
 
-                      {/* Column 1: Digital Transformation */}
+                      {/* Column 1: ERP & Enterprise Solutions */}
                       <div className="col-lg-4">
                         <div className="megamenu-column-header mb-3">
                           <div className="megamenu-header-icon">
                             <Layers size={16} />
                           </div>
-                          <h4>Digital Transformation</h4>
+                          <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>ERP &amp; Enterprise Solutions</h4>
                         </div>
 
                         <div className="d-flex flex-column gap-2">
@@ -397,6 +397,9 @@ export default function Header({ onToggleMobileMenu }) {
                         </div>
 
                         <div className="mt-3 pt-3 border-top" style={{ borderColor: 'var(--border-color)' }}>
+                          <p style={{ fontSize: '12px', color: 'var(--text-muted)', marginBottom: '10px', lineHeight: '1.5' }}>
+                            Need a custom enterprise architecture audit for your organization?
+                          </p>
                           <Link
                             href="/contact-us"
                             className="btn-primary-brand w-100 text-center"
@@ -407,13 +410,13 @@ export default function Header({ onToggleMobileMenu }) {
                         </div>
                       </div>
 
-                      {/* Column 2: Strategic Business & Financial Solutions */}
+                      {/* Column 2: Business Advisory & Professional Services */}
                       <div className="col-lg-4">
                         <div className="megamenu-column-header mb-3">
                           <div className="megamenu-header-icon">
                             <Briefcase size={16} />
                           </div>
-                          <h4>Strategic Business &amp; Financial Solutions</h4>
+                          <h4 style={{ textTransform: 'uppercase', letterSpacing: '0.5px' }}>Business Advisory &amp; Professional Services</h4>
                         </div>
 
                         <div className="d-flex flex-column gap-2">
