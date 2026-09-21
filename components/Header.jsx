@@ -106,13 +106,13 @@ export default function Header({ onToggleMobileMenu }) {
       text: "Enterprise Solutions", 
       href: "/enterprise-solutions", 
       icon: Building2, 
-      desc: "Scalable ERP, SAP & unified multi-company architectures" 
+      desc: "Oracle Fusion, Odoo & SAP-Powered Unified Multi-Company Architectures" 
     },
     { 
       text: "Managed IT Services", 
       href: "/technology-management", 
       icon: Server, 
-      desc: "Cloud infrastructure, DevOps, 24/7 DBA & cyber security" 
+      desc: "Scalable Software, AI Automation, Cloud DevOps & Product Leadership" 
     },
     { 
       text: "Custom Application Development", 
