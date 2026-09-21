@@ -242,12 +242,15 @@ export default function ChatbotWidget() {
     }
   ]);
 
-  const messagesEndRef = useRef(null);
+  const chatBodyRef = useRef(null);
 
-  // Auto-scroll to bottom of chat
+  // Auto-scroll to bottom of chat body directly without scrolling the page window
   useEffect(() => {
-    if (isOpen) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (isOpen && chatBodyRef.current) {
+      chatBodyRef.current.scrollTo({
+        top: chatBodyRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
     }
   }, [messages, isOpen, isTyping]);
 
@@ -667,7 +670,10 @@ export default function ChatbotWidget() {
 
       {/* ── 3. Chatbot Window Modal ── */}
       {isOpen && (
-        <div className="chatbot-window">
+        <div 
+          className="chatbot-window"
+          onWheel={(e) => e.stopPropagation()}
+        >
           {/* Header */}
           <div className="chatbot-header">
             <div className="chat-header-info">
@@ -701,7 +707,11 @@ export default function ChatbotWidget() {
           </div>
 
           {/* Messages Body */}
-          <div className="chatbot-body">
+          <div 
+            ref={chatBodyRef}
+            className="chatbot-body"
+            onWheel={(e) => e.stopPropagation()}
+          >
             {messages.map((msg) => {
               const isBot = msg.sender === 'bot';
               return (
@@ -791,8 +801,6 @@ export default function ChatbotWidget() {
                 </div>
               </div>
             )}
-
-            <div ref={messagesEndRef} />
           </div>
 
           {/* Quick Help Chips (When idle) */}
@@ -1045,6 +1053,7 @@ export default function ChatbotWidget() {
           display: flex;
           flex-direction: column;
           overflow: hidden;
+          overscroll-behavior: contain;
           animation: chatWindowPop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
@@ -1134,12 +1143,32 @@ export default function ChatbotWidget() {
 
         /* Body */
         .chatbot-body {
-          flex: 1;
+          flex: 1 1 0%;
+          min-height: 0;
+          max-height: 100%;
           overflow-y: auto;
+          overflow-x: hidden;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+          touch-action: pan-y;
           padding: 16px 14px;
           display: flex;
           flex-direction: column;
           gap: 14px;
+        }
+
+        .chatbot-body::-webkit-scrollbar {
+          width: 5px;
+        }
+        .chatbot-body::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .chatbot-body::-webkit-scrollbar-thumb {
+          background: rgba(0, 174, 239, 0.35);
+          border-radius: 10px;
+        }
+        .chatbot-body::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 174, 239, 0.65);
         }
 
         .chat-message-row {
@@ -1421,6 +1450,15 @@ export default function ChatbotWidget() {
           background: #f1f5f9;
           border-color: #e2e8f0;
           color: #1e293b;
+        }
+
+        [data-theme="light"] .chatbot-body::-webkit-scrollbar-thumb,
+        html[data-theme="light"] .chatbot-body::-webkit-scrollbar-thumb {
+          background: rgba(44, 115, 217, 0.35);
+        }
+        [data-theme="light"] .chatbot-body::-webkit-scrollbar-thumb:hover,
+        html[data-theme="light"] .chatbot-body::-webkit-scrollbar-thumb:hover {
+          background: rgba(44, 115, 217, 0.65);
         }
 
         [data-theme="light"] .chat-action-link,
