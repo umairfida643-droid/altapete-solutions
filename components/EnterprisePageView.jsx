@@ -2,152 +2,88 @@ import React from 'react';
 import Link from 'next/link';
 import { useTheme } from '@/context/ThemeContext';
 import {
-  ShoppingBag,
-  Package,
-  Users,
-  CreditCard,
-  BarChart3,
-  Tag,
-  Repeat,
-  Smartphone,
-  Globe2,
-  CheckCircle2,
   ArrowRight,
-  Zap,
+  CheckCircle2,
   Check,
+  Zap,
+  ShieldCheck,
 } from 'lucide-react';
 
-const STATS = [
+const DEFAULT_STATS = [
   { value: '100+', label: 'Enterprise Solutions', desc: 'Deployed globally' },
   { value: '50+', label: 'Other Solutions', desc: 'Industry verticals' },
-  { value: '2-4 Weeks', label: 'Implementation', desc: 'Fast deployment' },
-  { value: '24/7', label: 'Customer Support', desc: 'Always available' },
+  { value: '2-4 Weeks', label: 'Timeline', desc: 'Fast implementation' },
+  { value: '24/7', label: 'Customer Support', desc: 'Dedicated technical SLA' },
 ];
 
-const FEATURES = [
-  {
-    icon: ShoppingBag,
-    title: 'POS & Sales Management',
-    desc: 'Streamlined point-of-sale operations for single and multi-branch retail environments.',
-    points: ['Multi-branch POS terminals', 'Barcode scanning & product lookup', 'Receipt printing & digital receipts'],
+export default function EnterprisePageView({
+  badge = 'ENTERPRISE SOLUTION',
+  badgeIcon: BadgeIcon = Zap,
+  title,
+  description,
+  bgImage = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920',
+  stats = DEFAULT_STATS,
+  featuresTag = 'COMPREHENSIVE CAPABILITIES',
+  featuresTitle = 'Key Features & Capabilities',
+  featuresDesc = 'Tailored architecture, compliant workflows, and seamless integrations built for modern enterprises.',
+  features = [],
+  benefitsTag = 'OPERATIONAL IMPACT',
+  benefitsTitle,
+  benefitsDesc,
+  benefits = [],
+  benefitImage = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1200',
+  benefitStat = {
+    badge: 'Enterprise Performance',
+    metric: 'Guaranteed 99.9% Uptime SLA',
+    note: 'Backed by certified technical and functional consultants'
   },
-  {
-    icon: Package,
-    title: 'Inventory & Stock Control',
-    desc: 'Real-time inventory visibility across all your warehouses and store locations.',
-    points: ['Real-time stock level monitoring', 'Multi-warehouse management', 'Auto reorder & low-stock alerts'],
-  },
-  {
-    icon: Users,
-    title: 'Customer & Loyalty Programs',
-    desc: 'Build lasting customer relationships with integrated loyalty and CRM tools.',
-    points: ['Loyalty points & rewards engine', 'Full CRM & customer profiles', 'Customer segmentation & targeting'],
-  },
-  {
-    icon: CreditCard,
-    title: 'Payments & Multi-Currency',
-    desc: 'Accept all major payment methods with full VAT compliance built in.',
-    points: ['Mada / Visa / cash support', 'Multi-currency transactions', 'VAT 15% calculation & reporting'],
-  },
-  {
-    icon: BarChart3,
-    title: 'Sales Analytics & Reporting',
-    desc: 'Actionable insights from daily performance to long-term trend analysis.',
-    points: ['Daily / weekly / monthly reports', 'Top products & category analysis', 'Profit margin & cost analysis'],
-  },
-  {
-    icon: Tag,
-    title: 'Promotions & Pricing Engine',
-    desc: 'Flexible promotion management to drive sales and increase basket size.',
-    points: ['Seasonal & flash discounts', 'Bundle & combo offers', 'Dynamic price rules & overrides'],
-  },
-  {
-    icon: Repeat,
-    title: 'Returns & Exchanges',
-    desc: 'Hassle-free return processing that keeps customers satisfied and stock accurate.',
-    points: ['Return management workflow', 'Refund processing & reconciliation', 'Credit notes & store credit'],
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile & E-Commerce',
-    desc: 'Unify your online and offline channels for a seamless omnichannel experience.',
-    points: ['Mobile POS for staff on the floor', 'Online store integration', 'Omnichannel inventory sync'],
-  },
-  {
-    icon: Globe2,
-    title: 'ZATCA Compliance',
-    desc: "Stay fully compliant with Saudi Arabia's e-invoicing and tax regulations.",
-    points: ['Phase 2 e-invoicing ready', 'QR code generation per invoice', 'Automated VAT & tax reports'],
-  },
-];
-
-const BENEFITS = [
-  {
-    title: 'Reduce Operational Costs',
-    desc: 'Automate workflows and smart reordering to cut manual overhead and eliminate stock discrepancies.',
-  },
-  {
-    title: 'Increase Customer Retention',
-    desc: 'Drive repeat business through personalised loyalty programmes and targeted promotions.',
-  },
-  {
-    title: 'Real-Time Sales Visibility',
-    desc: 'Gain instant insight into sales performance, stock levels, and profitability across every location.',
-  },
-  {
-    title: 'Seamless Scalability',
-    desc: 'Scale effortlessly from a single store to a national retail chain without changing your platform.',
-  },
-  {
-    title: 'Full ZATCA & VAT Compliance',
-    desc: 'Ensure full Saudi e-invoicing and VAT compliance without any manual effort or risk of penalties.',
-  },
-  {
-    title: 'Intuitive Staff Interfaces',
-    desc: 'Empower your team with mobile and desktop interfaces designed for speed and ease of use.',
-  },
-];
-
-export default function RetailManagementView() {
+  ctaTitle = 'Ready to Transform Your Business Operations?',
+  ctaDesc = 'Connect with our senior enterprise consultants to explore tailored architecture, custom integrations, and full compliance.',
+  ctaPrimaryText = 'Schedule Consultation',
+  ctaPrimaryLink = '/contact-us',
+  ctaSecondaryText = 'Explore Capabilities',
+  ctaSecondaryLink = '/what-we-do'
+}) {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
   return (
-    <div className={`retail-view-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}>
-
+    <div className={`ep-view-wrapper ${isDark ? 'dark-theme' : 'light-theme'}`}>
+      
       {/* 1. HERO SECTION */}
-      <section className="retail-hero">
+      <section className="ep-hero">
         <div className="container">
           <div className="row align-items-center justify-content-center text-center">
             <div className="col-xl-9 col-lg-10">
-
+              
               <div className="hero-badge">
-                <ShoppingBag size={14} color="#00AEEF" />
-                <span>RETAIL ERP MANAGEMENT PLATFORM</span>
+                <BadgeIcon size={14} color="#00AEEF" />
+                <span>{badge}</span>
               </div>
 
               <h1 className="hero-title">
-                Unified Retail Operations. <br />
-                <span className="text-gradient">One Intelligent Platform.</span>
+                {title}
               </h1>
 
-              <p className="hero-desc">
-                Altapete Solutions connects every corner of your retail business — from point-of-sale and inventory management to customer loyalty, ZATCA compliance, and seamless multi-branch analytics in one powerful platform.
-              </p>
+              {description && (
+                <p className="hero-desc">
+                  {description}
+                </p>
+              )}
 
               <div className="hero-actions">
-                <Link href="/contact-us" className="btn-hero-primary">
-                  <span>Schedule a Demo</span>
+                <Link href={ctaPrimaryLink} className="btn-hero-primary">
+                  <span>{ctaPrimaryText}</span>
                   <ArrowRight size={16} />
                 </Link>
-                <Link href="/what-we-do" className="btn-hero-secondary">
-                  <span>Explore Our Capabilities</span>
+                <Link href={ctaSecondaryLink} className="btn-hero-secondary">
+                  <span>{ctaSecondaryText}</span>
                 </Link>
               </div>
 
               {/* Stats Bar */}
               <div className="hero-stats-row">
-                {STATS.map((s, idx) => (
+                {stats.map((s, idx) => (
                   <div key={idx} className="stat-card">
                     <div className="stat-number">{s.value}</div>
                     <div className="stat-label">{s.label}</div>
@@ -162,113 +98,131 @@ export default function RetailManagementView() {
       </section>
 
       {/* 2. CORE FEATURES */}
-      <section className="retail-features-section">
-        <div className="container">
-          <div className="section-head text-center">
-            <div className="section-tag">COMPREHENSIVE CAPABILITIES</div>
-            <h2 className="section-title">Everything You Need to Run a Modern Retail Business</h2>
-            <p className="section-desc">
-              Nine purpose-built modules that work together seamlessly — from POS and inventory to loyalty programmes and ZATCA e-invoicing.
-            </p>
-          </div>
-
-          <div className="row g-3 g-lg-4 mt-2">
-            {FEATURES.map((feat, idx) => {
-              const Icon = feat.icon;
-              return (
-                <div key={idx} className="col-lg-4 col-md-6">
-                  <div className="feature-card">
-                    <div className="feat-icon-box">
-                      <Icon size={20} color="#00AEEF" />
-                    </div>
-                    <h3 className="feat-title">{feat.title}</h3>
-                    <p className="feat-desc">{feat.desc}</p>
-                    <ul className="feat-points">
-                      {feat.points.map((p, pIdx) => (
-                        <li key={pIdx}>
-                          <Check size={13} className="check-icon" />
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. BUSINESS BENEFITS */}
-      <section className="retail-benefits-section">
-        <div className="container">
-          <div className="row g-4 g-lg-5 align-items-center">
-
-            <div className="col-lg-6">
-              <div className="section-tag">OPERATIONAL IMPACT</div>
-              <h2 className="section-title text-start mb-3">
-                Measurable Results Across Your <span className="text-gradient">Retail Network</span>
-              </h2>
-              <p className="section-desc text-start mb-4">
-                Manual processes and disconnected systems cost retailers time and revenue. Our integrated retail ERP automates repetitive workflows so your team can focus on customers and growth.
-              </p>
-
-              <div className="benefits-stack">
-                {BENEFITS.map((ben, idx) => (
-                  <div key={idx} className="benefit-item">
-                    <div className="benefit-icon-dot">
-                      <CheckCircle2 size={16} color="#00AEEF" />
-                    </div>
-                    <div>
-                      <h4 className="benefit-title">{ben.title}</h4>
-                      <p className="benefit-text">{ben.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      {features.length > 0 && (
+        <section className="ep-features-section">
+          <div className="container">
+            <div className="section-head text-center">
+              <div className="section-tag">{featuresTag}</div>
+              <h2 className="section-title">{featuresTitle}</h2>
+              {featuresDesc && <p className="section-desc">{featuresDesc}</p>}
             </div>
 
-            <div className="col-lg-6">
-              <div className="benefit-visual-frame">
-                <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200"
-                  alt="Modern retail store operations"
-                  className="benefit-img"
-                />
-                <div className="visual-stat-overlay">
-                  <div className="overlay-badge">
-                    <Zap size={14} color="#00AEEF" />
-                    <span>Real-Time Retail Engine</span>
+            <div className="row g-3 g-lg-4 mt-2">
+              {features.map((feat, idx) => {
+                const Icon = feat.icon || Zap;
+                return (
+                  <div key={idx} className="col-lg-4 col-md-6">
+                    <div className="feature-card">
+                      <div className="feat-icon-box">
+                        <Icon size={20} color="#00AEEF" />
+                      </div>
+                      <h3 className="feat-title">{feat.title}</h3>
+                      <p className="feat-desc">{feat.desc}</p>
+                      {feat.points && feat.points.length > 0 && (
+                        <ul className="feat-points">
+                          {feat.points.map((p, pIdx) => (
+                            <li key={pIdx}>
+                              <Check size={13} className="check-icon" />
+                              <span>{p}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {feat.link && (
+                        <div style={{ marginTop: '14px' }}>
+                          <Link href={feat.link} className="feat-link">
+                            <span>Explore Details</span>
+                            <ArrowRight size={13} />
+                          </Link>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="overlay-metric">Up to 40% Reduction in Stock Discrepancies</div>
-                  <div className="overlay-note">Backed by automated inventory sync & multi-branch POS</div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3. BUSINESS BENEFITS & IMPACT */}
+      {benefits.length > 0 && (
+        <section className="ep-benefits-section">
+          <div className="container">
+            <div className="row g-4 g-lg-5 align-items-center">
+              
+              <div className="col-lg-6">
+                <div className="section-tag">{benefitsTag}</div>
+                <h2 className="section-title text-start mb-3">
+                  {benefitsTitle || (
+                    <>Measurable Efficiency Across Your <span className="text-gradient">Operations</span></>
+                  )}
+                </h2>
+                {benefitsDesc && (
+                  <p className="section-desc text-start mb-4">
+                    {benefitsDesc}
+                  </p>
+                )}
+
+                <div className="benefits-stack">
+                  {benefits.map((ben, idx) => (
+                    <div key={idx} className="benefit-item">
+                      <div className="benefit-icon-dot">
+                        <CheckCircle2 size={16} color="#00AEEF" />
+                      </div>
+                      <div>
+                        <h4 className="benefit-title">{ben.title}</h4>
+                        <p className="benefit-text">{ben.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              <div className="col-lg-6">
+                <div className="benefit-visual-frame">
+                  <img
+                    src={benefitImage}
+                    alt="Altapete Enterprise Solutions"
+                    className="benefit-img"
+                  />
+                  {benefitStat && (
+                    <div className="visual-stat-overlay">
+                      <div className="overlay-badge">
+                        <Zap size={14} color="#00AEEF" />
+                        <span>{benefitStat.badge}</span>
+                      </div>
+                      <div className="overlay-metric">{benefitStat.metric}</div>
+                      <div className="overlay-note">{benefitStat.note}</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
             </div>
-
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* 4. CTA BANNER */}
-      <section className="retail-cta-section">
+      {/* 4. STANDARD ALTAPETE CTA BANNER */}
+      <section className="ep-cta-section">
         <div className="container">
           <div className="cp-cta-banner">
             <div className="cp-cta-glow" />
             <div style={{ position: 'relative', zIndex: 1 }}>
               <h2 className="cp-cta-heading">
-                Ready to Transform Your Retail Operations?
+                {ctaTitle}
               </h2>
               <p className="cp-cta-sub">
-                Connect with our retail ERP specialists to explore custom workflows, ZATCA Phase 2 e-invoicing compliance, and seamless multi-branch integration.
+                {ctaDesc}
               </p>
               <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-                <Link href="/contact-us" className="cp-cta-btn-primary">
-                  <span>Schedule Consultation</span>
+                <Link href={ctaPrimaryLink} className="cp-cta-btn-primary">
+                  <span>{ctaPrimaryText}</span>
                   <ArrowRight size={16} />
                 </Link>
-                <Link href="/what-we-do" className="cp-cta-btn-secondary">
-                  <span>Explore What We Do</span>
+                <Link href={ctaSecondaryLink} className="cp-cta-btn-secondary">
+                  <span>{ctaSecondaryText}</span>
                 </Link>
               </div>
             </div>
@@ -276,9 +230,9 @@ export default function RetailManagementView() {
         </div>
       </section>
 
-      {/* COMPONENT SCOPED & THEME-AWARE STYLES */}
+      {/* STYLES MATCHING SHIPPINGSOLUTIONSVIEW EXACTLY */}
       <style jsx>{`
-        .retail-view-wrapper {
+        .ep-view-wrapper {
           width: 100%;
           position: relative;
           background: var(--bg-body, #080d1a);
@@ -287,11 +241,11 @@ export default function RetailManagementView() {
         }
 
         /* ── 1. HERO SECTION ── */
-        .retail-hero {
-          padding: 100px 0 70px;
+        .ep-hero {
+          padding: 95px 0 65px;
           position: relative;
-          background: linear-gradient(rgba(8,13,26,0.85), rgba(10,22,40,0.9)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920') center/cover no-repeat;
-          border-bottom: 1px solid rgba(0,174,239,0.12);
+          background: linear-gradient(rgba(8, 13, 26, 0.86), rgba(10, 22, 40, 0.93)), url('${bgImage}') center/cover no-repeat;
+          border-bottom: 1px solid rgba(0, 174, 239, 0.12);
         }
         .hero-badge {
           display: inline-flex;
@@ -309,12 +263,12 @@ export default function RetailManagementView() {
           margin-bottom: 20px;
         }
         .hero-title {
-          font-size: clamp(30px, 4.5vw, 50px);
+          font-size: clamp(30px, 4.5vw, 48px);
           font-weight: 800;
           letter-spacing: -0.8px;
           margin-bottom: 18px;
           line-height: 1.18;
-          color: var(--heading-color, #ffffff);
+          color: #ffffff;
         }
         .text-gradient {
           background: linear-gradient(135deg, #00AEEF 0%, #2c73d9 100%);
@@ -324,7 +278,7 @@ export default function RetailManagementView() {
         .hero-desc {
           max-width: 740px;
           margin: 0 auto 34px;
-          font-size: 16px;
+          font-size: 15.5px;
           line-height: 1.7;
           color: var(--text-muted, #94a3b8);
         }
@@ -441,15 +395,17 @@ export default function RetailManagementView() {
         }
 
         /* ── 2. FEATURES GRID ── */
-        .retail-features-section {
+        .ep-features-section {
           padding: 70px 0 60px;
         }
         .feature-card {
-          background: var(--card-bg, rgba(13,22,40,0.6));
-          border: 1px solid var(--card-border, rgba(0,174,239,0.14));
+          background: rgba(13, 22, 40, 0.6);
+          border: 1px solid rgba(0, 174, 239, 0.14);
           border-radius: 16px;
           padding: 24px 22px;
           height: 100%;
+          display: flex;
+          flex-direction: column;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .feature-card:hover {
@@ -479,6 +435,7 @@ export default function RetailManagementView() {
           line-height: 1.6;
           color: var(--text-muted, #94a3b8);
           margin-bottom: 14px;
+          flex: 1;
         }
         .feat-points {
           list-style: none;
@@ -501,9 +458,23 @@ export default function RetailManagementView() {
           color: #00AEEF;
           flex-shrink: 0;
         }
+        .feat-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 12.5px;
+          font-weight: 700;
+          color: #00AEEF;
+          text-decoration: none;
+          transition: gap 0.2s ease;
+        }
+        .feat-link:hover {
+          gap: 9px;
+          color: #38bdf8;
+        }
 
         /* ── 3. BENEFITS SECTION ── */
-        .retail-benefits-section {
+        .ep-benefits-section {
           padding: 70px 0;
           background: rgba(0, 174, 239, 0.02);
           border-top: 1px solid rgba(0, 174, 239, 0.08);
@@ -544,7 +515,7 @@ export default function RetailManagementView() {
         }
         .benefit-img {
           width: 100%;
-          height: 480px;
+          height: 440px;
           object-fit: cover;
           display: block;
         }
@@ -581,7 +552,7 @@ export default function RetailManagementView() {
         }
 
         /* ── 4. BOTTOM CTA BANNER ── */
-        .retail-cta-section {
+        .ep-cta-section {
           padding: 40px 0 80px;
         }
         .cp-cta-banner {
@@ -655,15 +626,15 @@ export default function RetailManagementView() {
           color: #ffffff !important;
         }
 
-        /* ── LIGHT THEME ADAPTATION ── */
-        :global([data-theme="light"]) .retail-view-wrapper,
-        .light-theme.retail-view-wrapper {
+        /* ── LIGHT THEME ADAPTATION (DUAL SELECTORS: [data-theme="light"] + .light-theme) ── */
+        :global([data-theme="light"]) .ep-view-wrapper,
+        .light-theme.ep-view-wrapper {
           background: #f8fafc;
           color: #0f172a;
         }
-        :global([data-theme="light"]) .retail-hero,
-        .light-theme .retail-hero {
-          background: linear-gradient(rgba(240,247,255,0.92), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920') center/cover no-repeat;
+        :global([data-theme="light"]) .ep-hero,
+        .light-theme .ep-hero {
+          background: linear-gradient(rgba(240, 247, 255, 0.92), rgba(255, 255, 255, 0.96)), url('${bgImage}') center/cover no-repeat;
           border-bottom-color: rgba(44, 115, 217, 0.15);
         }
         :global([data-theme="light"]) .hero-title,
@@ -723,8 +694,8 @@ export default function RetailManagementView() {
         .light-theme .feat-points li {
           color: #334155 !important;
         }
-        :global([data-theme="light"]) .retail-benefits-section,
-        .light-theme .retail-benefits-section {
+        :global([data-theme="light"]) .ep-benefits-section,
+        .light-theme .ep-benefits-section {
           background: #f1f5f9;
           border-color: rgba(0, 0, 0, 0.06);
         }

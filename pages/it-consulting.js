@@ -1,83 +1,115 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import Link from 'next/link';
-import { Lightbulb, Map, Layers, BarChart2, RefreshCw, CheckCircle, Users, Shield, Zap, ArrowRight } from 'lucide-react';
+import EnterprisePageView from '@/components/EnterprisePageView';
+import {
+  Briefcase,
+  TrendingUp,
+  Layers,
+  ShieldCheck,
+  Target,
+  FileCheck2,
+  CheckCircle2,
+  Zap
+} from 'lucide-react';
 
-const stats = [
-  { value: '100+', label: 'Enterprise Solutions' },
-  { value: '50+', label: 'Other Solutions' },
-  { value: '2-4 Weeks', label: 'Avg. Timeline' },
-  { value: '24/7', label: 'Customer Support' },
+const FEATURES = [
+  {
+    icon: Briefcase,
+    title: 'Digital Transformation Strategy',
+    desc: 'Comprehensive multi-year technology roadmaps aligned with business growth targets, operational KPIs, and Vision 2030 initiatives.',
+    points: ['Technology maturity assessments', 'Executive digital roadmap formulation', 'Business-IT alignment frameworks']
+  },
+  {
+    icon: Layers,
+    title: 'Enterprise Architecture & Tech Audits',
+    desc: 'In-depth review of existing software stacks, technical debt, security gaps, and integration bottlenecks with actionable remedies.',
+    points: ['Application portfolio rationalization', 'Technical debt identification', 'Target state architecture blueprints']
+  },
+  {
+    icon: Target,
+    title: 'ERP & Software Vendor Evaluation',
+    desc: 'Unbiased RFP preparation, vendor scoring, demonstration facilitation, and contract negotiation to select the right software.',
+    points: ['RFP specification drafting', 'Objective vendor capability scoring', 'Licensing & SLA contract advisory']
+  },
+  {
+    icon: ShieldCheck,
+    title: 'IT Governance, Risk & Compliance (GRC)',
+    desc: 'Establishing enterprise IT policies, disaster recovery governance, and alignment with ISO 27001 and Saudi NCA standards.',
+    points: ['IT governance charter drafting', 'Risk management & mitigation plans', 'SOP documentation & compliance audits']
+  },
+  {
+    icon: TrendingUp,
+    title: 'IT Budgeting & Cost Optimization',
+    desc: 'Rationalizing annual IT expenditure, evaluating ROI on capital tech investments, and renegotiating vendor contracts.',
+    points: ['IT OPEX & CAPEX optimization', 'Software license consolidation', 'Clear business ROI modeling']
+  },
+  {
+    icon: FileCheck2,
+    title: 'Project Assurance & PMO Advisory',
+    desc: 'Independent oversight of critical technology implementations ensuring vendors deliver on scope, budget, and promised milestones.',
+    points: ['Independent milestone verification', 'Vendor deliverable quality audits', 'Executive progress dashboards']
+  }
 ];
 
-const features = [
-  { icon: <RefreshCw size={28} color="#00AEEF" />, title: 'Digital Transformation', desc: 'End-to-end digital transformation strategies aligning technology investments with business goals.' },
-  { icon: <Map size={28} color="#00AEEF" />, title: 'IT Strategy & Roadmap', desc: 'Multi-year IT roadmaps that prioritize initiatives, budget, and technology evolution.' },
-  { icon: <Layers size={28} color="#00AEEF" />, title: 'Architecture Consulting', desc: 'Enterprise architecture design — from systems integration to microservices and cloud-native patterns.' },
-  { icon: <BarChart2 size={28} color="#00AEEF" />, title: 'Technology Assessment', desc: 'Current-state technology audits identifying gaps, risks, and modernization opportunities.' },
-  { icon: <Users size={28} color="#00AEEF" />, title: 'Vendor Selection', desc: 'Objective technology vendor evaluation, RFP management, and contract negotiation support.' },
-  { icon: <CheckCircle size={28} color="#00AEEF" />, title: 'IT Governance', desc: 'ITIL-aligned governance frameworks, KPI definition, and IT policy development.' },
-  { icon: <Shield size={28} color="#00AEEF" />, title: 'Risk Management', desc: 'IT risk assessment, business continuity planning, and disaster recovery strategy.' },
-  { icon: <Lightbulb size={28} color="#00AEEF" />, title: 'Innovation Consulting', desc: 'Emerging technology advisory on AI, IoT, blockchain, and cloud-native innovation paths.' },
-  { icon: <Zap size={28} color="#00AEEF" />, title: 'PMO & Delivery', desc: 'Program management office setup and technology project delivery governance.' },
+const BENEFITS = [
+  {
+    title: 'Unbiased, Vendor-Agnostic Advice',
+    desc: 'Our recommendations are driven strictly by your business needs, not vendor sales commissions.'
+  },
+  {
+    title: 'Maximize Return on Technology Spend',
+    desc: 'Eliminate shelfware and redundant subscriptions with strategic IT asset rationalization.'
+  },
+  {
+    title: 'Seasoned C-Level Technology Advisors',
+    desc: 'Direct consultation with former enterprise CIOs and senior architects with decades of regional leadership.'
+  },
+  {
+    title: 'Mitigate Implementation Risks',
+    desc: 'Protect major digital investments from costly scope creep, vendor delays, and architectural dead-ends.'
+  }
 ];
 
-export default function ITConsulting() {
+export default function ItConsultingPage() {
   return (
-    <Layout>
-      <style jsx global>{`
-        body { background: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; }
-      `}</style>
-
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #080d1a 0%, #0a1628 60%, #00AEEF22 100%)', padding: '100px 20px 80px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <span style={{ background: '#00AEEF22', color: '#00AEEF', padding: '6px 18px', borderRadius: 20, fontSize: 13, fontWeight: 600, letterSpacing: 1 }}>STRATEGIC ADVISORY</span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800, margin: '20px 0 16px' }}>IT Consulting</h1>
-          <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.7, marginBottom: 36 }}>Strategic IT advisory, digital transformation planning, architecture consulting, and technology roadmaps — helping enterprises make smart technology decisions that drive competitive advantage.</p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/contact-us" style={{ background: '#00AEEF', color: '#fff', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>Get IT Advice</Link>
-            <Link href="/it-services" style={{ border: '2px solid #00AEEF', color: '#00AEEF', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>All IT Services</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ background: '#fff', padding: '50px 20px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 24 }}>
-          {stats.map((s) => (
-            <div key={s.label} style={{ textAlign: 'center', padding: '30px 20px', borderRadius: 12, background: '#f1f5f9', border: '1px solid #e2e8f0' }}>
-              <div style={{ fontSize: 36, fontWeight: 800, color: '#00AEEF' }}>{s.value}</div>
-              <div style={{ color: '#64748b', fontWeight: 500, marginTop: 6 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>IT Consulting Services</h2>
-          <p style={{ textAlign: 'center', color: '#64748b', maxWidth: 600, margin: '0 auto 50px', fontSize: 16 }}>Expert guidance to align your technology strategy with your business vision and long-term goals.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 28 }}>
-            {features.map((f) => (
-              <div key={f.title} style={{ background: '#fff', borderRadius: 14, padding: '32px 28px', border: '1px solid #e2e8f0', boxShadow: '0 2px 12px #0001' }}>
-                <div style={{ marginBottom: 16 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: 15 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #1e3a5f, #2563eb)', padding: '80px 20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, marginBottom: 16 }}>Unlock Your Technology Potential</h2>
-        <p style={{ color: '#bfdbfe', fontSize: 18, marginBottom: 36 }}>Partner with our IT consultants to build a smarter, more agile technology foundation.</p>
-        <Link href="/contact-us" style={{ background: '#fff', color: '#2563eb', padding: '16px 40px', borderRadius: 8, fontWeight: 800, textDecoration: 'none', fontSize: 17, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          Contact Us Today <ArrowRight size={20} />
-        </Link>
-      </section>
+    <Layout
+      title="Enterprise IT Consulting & Digital Strategy | Altapete Solutions"
+      description="Strategic IT consulting, enterprise architecture audits, digital transformation roadmaps, and vendor selection across Saudi Arabia and the GCC."
+    >
+      <EnterprisePageView
+        badge="STRATEGIC IT ADVISORY"
+        badgeIcon={Briefcase}
+        title={
+          <>
+            IT Consulting &amp; Strategy.<br />
+            <span className="text-gradient">Transforming Technology into Competitive Advantage.</span>
+          </>
+        }
+        description="Make technology investments with complete clarity and confidence. Altapete provides strategic IT consulting, enterprise architecture reviews, vendor evaluations, and digital transformation roadmaps tailored for the GCC market."
+        bgImage="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1920"
+        featuresTag="ADVISORY PRACTICE"
+        featuresTitle="Strategic Technology Advisory Services"
+        featuresDesc="Bridge the gap between executive business strategy and complex technology execution."
+        features={FEATURES}
+        benefitsTag="EXECUTIVE IMPACT"
+        benefitsTitle={
+          <>Strategic Clarity with <span className="text-gradient">Altapete Advisory</span></>
+        }
+        benefitsDesc="We help enterprise leaders navigate technology disruption with actionable, milestone-driven blueprints."
+        benefits={BENEFITS}
+        benefitImage="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1200"
+        benefitStat={{
+          badge: 'Advisory Experience',
+          metric: '13+ Years Enterprise Advisory',
+          note: 'Guiding top GCC enterprises through digital transformation'
+        }}
+        ctaTitle="Ready to Align Your Technology with Business Goals?"
+        ctaDesc="Schedule a confidential discovery session with our senior IT consulting partners to assess your digital roadmap."
+        ctaPrimaryText="Book Strategy Consultation"
+        ctaPrimaryLink="/contact-us"
+        ctaSecondaryText="Explore IT Services"
+        ctaSecondaryLink="/it-services"
+      />
     </Layout>
   );
 }

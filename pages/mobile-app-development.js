@@ -1,83 +1,115 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import Link from 'next/link';
-import { Smartphone, Tablet, Code2, Zap, Shield, RefreshCw, Bell, BarChart2, Settings, ArrowRight } from 'lucide-react';
+import EnterprisePageView from '@/components/EnterprisePageView';
+import {
+  Smartphone,
+  Layers,
+  ShieldCheck,
+  Zap,
+  Globe2,
+  Cpu,
+  CheckCircle2,
+  Users
+} from 'lucide-react';
 
-const stats = [
-  { value: '100+', label: 'Enterprise Solutions' },
-  { value: '50+', label: 'Other Solutions' },
-  { value: '2-4 Weeks', label: 'Avg. Timeline' },
-  { value: '24/7', label: 'Customer Support' },
+const FEATURES = [
+  {
+    icon: Smartphone,
+    title: 'Native iOS & Android Engineering',
+    desc: 'High-performance native mobile apps written in Swift (iOS) and Kotlin (Android) delivering uncompromising platform performance.',
+    points: ['Native UI components & gestures', 'Optimal battery & memory efficiency', 'App Store & Google Play submission']
+  },
+  {
+    icon: Layers,
+    title: 'Cross-Platform Flutter & React Native',
+    desc: 'Cost-effective single-codebase mobile applications running seamlessly on both iOS and Android with native look and feel.',
+    points: ['Up to 40% faster development time', 'Unified codebase maintenance', 'Pixel-perfect multi-screen design']
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Enterprise Mobile Security',
+    desc: 'Biometric authentication (FaceID/Fingerprint), end-to-end data encryption, and Mobile Device Management (MDM) compatibility.',
+    points: ['Biometric login & 2FA security', 'Encrypted local SQLite/Realm storage', 'Jailbreak & root detection safeguards']
+  },
+  {
+    icon: Zap,
+    title: 'Offline-First Architecture',
+    desc: 'Local database caching and background synchronization enabling field workers to operate without active internet access.',
+    points: ['Seamless offline data entry', 'Automated conflict resolution', 'Instant background cloud sync']
+  },
+  {
+    icon: Globe2,
+    title: 'Bilingual Arabic & English UI/UX',
+    desc: 'Tailored RTL interfaces designed specifically for Saudi and GCC consumer preferences and enterprise usability standards.',
+    points: ['Native Arabic RTL design patterns', 'Intuitive micro-interactions', 'Accessibility & high-contrast support']
+  },
+  {
+    icon: Cpu,
+    title: 'Backend & IoT Hardware Integration',
+    desc: 'Direct connectivity with Bluetooth barcode scanners, mobile POS payment terminals, RFID chips, and GPS telematics.',
+    points: ['Bluetooth BLE hardware pairing', 'GPS live tracking & geofencing', 'Push notifications via Firebase Cloud']
+  }
 ];
 
-const features = [
-  { icon: <Smartphone size={28} color="#00AEEF" />, title: 'iOS App Development', desc: 'Native Swift and SwiftUI applications optimized for iPhone and iPad with App Store publishing.' },
-  { icon: <Tablet size={28} color="#00AEEF" />, title: 'Android App Development', desc: 'Kotlin and Java native Android apps published to Google Play Store with full optimization.' },
-  { icon: <Code2 size={28} color="#00AEEF" />, title: 'React Native', desc: 'Cross-platform React Native apps sharing a single codebase across iOS and Android.' },
-  { icon: <Zap size={28} color="#00AEEF" />, title: 'Flutter Development', desc: 'Beautiful, performant Flutter apps with native-quality UI across all mobile platforms.' },
-  { icon: <Settings size={28} color="#00AEEF" />, title: 'Enterprise Mobile Apps', desc: 'Field service, workforce management, and internal enterprise mobile app development.' },
-  { icon: <Shield size={28} color="#00AEEF" />, title: 'App Security', desc: 'Mobile app security hardening, secure API communication, and data encryption.' },
-  { icon: <RefreshCw size={28} color="#00AEEF" />, title: 'App Maintenance', desc: 'Ongoing OS compatibility updates, bug fixes, and feature enhancements post-launch.' },
-  { icon: <Bell size={28} color="#00AEEF" />, title: 'Push Notifications', desc: 'Firebase and APNs push notification integration for real-time user engagement.' },
-  { icon: <BarChart2 size={28} color="#00AEEF" />, title: 'Analytics Integration', desc: 'Firebase Analytics, Mixpanel, and custom analytics for deep user behavior insights.' },
+const BENEFITS = [
+  {
+    title: 'Empower Your Mobile Workforce',
+    desc: 'Equip sales reps, delivery drivers, and field technicians with real-time operational mobile tools.'
+  },
+  {
+    title: 'Direct Client Engagement Channel',
+    desc: 'Boost customer loyalty and retention with branded mobile ordering, real-time push alerts, and direct self-service.'
+  },
+  {
+    title: 'Full ERP & Database Synchronization',
+    desc: 'Mobile transactions reflect instantly inside your core ERP system with zero manual reconciliation.'
+  },
+  {
+    title: 'Turnkey App Store Launch & Maintenance',
+    desc: 'We manage the entire publishing process on Apple App Store and Google Play including ongoing OS updates.'
+  }
 ];
 
-export default function MobileAppDevelopment() {
+export default function MobileAppDevelopmentPage() {
   return (
-    <Layout>
-      <style jsx global>{`
-        body { background: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; }
-      `}</style>
-
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #080d1a 0%, #0a1628 60%, #00AEEF22 100%)', padding: '100px 20px 80px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <span style={{ background: '#00AEEF22', color: '#00AEEF', padding: '6px 18px', borderRadius: 20, fontSize: 13, fontWeight: 600, letterSpacing: 1 }}>MOBILE SOLUTIONS</span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800, margin: '20px 0 16px' }}>Mobile App Development</h1>
-          <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.7, marginBottom: 36 }}>Native iOS & Android apps, cross-platform React Native and Flutter solutions, and enterprise mobile applications — crafted for performance, usability, and business impact.</p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/contact-us" style={{ background: '#00AEEF', color: '#fff', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>Build Your App</Link>
-            <Link href="/it-services" style={{ border: '2px solid #00AEEF', color: '#00AEEF', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>All IT Services</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ background: '#fff', padding: '50px 20px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 24 }}>
-          {stats.map((s) => (
-            <div key={s.label} style={{ textAlign: 'center', padding: '30px 20px', borderRadius: 12, background: '#f1f5f9', border: '1px solid #e2e8f0' }}>
-              <div style={{ fontSize: 36, fontWeight: 800, color: '#00AEEF' }}>{s.value}</div>
-              <div style={{ color: '#64748b', fontWeight: 500, marginTop: 6 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Mobile App Development Services</h2>
-          <p style={{ textAlign: 'center', color: '#64748b', maxWidth: 600, margin: '0 auto 50px', fontSize: 16 }}>We build mobile experiences that users love and businesses rely on — across all major platforms.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 28 }}>
-            {features.map((f) => (
-              <div key={f.title} style={{ background: '#fff', borderRadius: 14, padding: '32px 28px', border: '1px solid #e2e8f0', boxShadow: '0 2px 12px #0001' }}>
-                <div style={{ marginBottom: 16 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: 15 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #1e3a5f, #2563eb)', padding: '80px 20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, marginBottom: 16 }}>Turn Your App Idea Into Reality</h2>
-        <p style={{ color: '#bfdbfe', fontSize: 18, marginBottom: 36 }}>Our mobile development experts will build, test, and launch your app across iOS and Android.</p>
-        <Link href="/contact-us" style={{ background: '#fff', color: '#2563eb', padding: '16px 40px', borderRadius: 8, fontWeight: 800, textDecoration: 'none', fontSize: 17, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          Contact Us Today <ArrowRight size={20} />
-        </Link>
-      </section>
+    <Layout
+      title="Enterprise Mobile App Development | Altapete Solutions"
+      description="Native iOS, Android, and Flutter cross-platform mobile app development across Saudi Arabia and the GCC. Enterprise security, offline sync, and ERP integration."
+    >
+      <EnterprisePageView
+        badge="MOBILE APPLICATION ENGINEERING"
+        badgeIcon={Smartphone}
+        title={
+          <>
+            Mobile App Development.<br />
+            <span className="text-gradient">Native Performance. Enterprise Scalability.</span>
+          </>
+        }
+        description="Connect with your customers and mobilize your workforce with high-performance mobile apps. Altapete delivers native iOS, Android, and Flutter applications engineered for seamless ERP integration and rock-solid security."
+        bgImage="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1920"
+        featuresTag="MOBILE CAPABILITIES"
+        featuresTitle="Full-Lifecycle Mobile Engineering"
+        featuresDesc="From UI/UX wireframing to store deployment and continuous updates, we build apps users love."
+        features={FEATURES}
+        benefitsTag="OPERATIONAL VALUE"
+        benefitsTitle={
+          <>Why Build Your Mobile App with <span className="text-gradient">Altapete</span></>
+        }
+        benefitsDesc="We bridge mobile engineering with enterprise backend systems for unified digital operations."
+        benefits={BENEFITS}
+        benefitImage="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1200"
+        benefitStat={{
+          badge: 'Mobile Quality',
+          metric: '99.9% Crash-Free Sessions',
+          note: 'Tested across 50+ real physical device types'
+        }}
+        ctaTitle="Ready to Build an Exceptional Mobile App?"
+        ctaDesc="Schedule a scoping consultation with our mobile solutions architects to discuss your feature roadmap and timeline."
+        ctaPrimaryText="Start Mobile App Project"
+        ctaPrimaryLink="/contact-us"
+        ctaSecondaryText="Explore IT Services"
+        ctaSecondaryLink="/it-services"
+      />
     </Layout>
   );
 }

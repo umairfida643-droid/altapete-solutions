@@ -1,119 +1,119 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import Link from 'next/link';
-import { Building2, Briefcase, ShoppingCart, FileText, Globe, Shield, CheckCircle, Clock, ArrowRight } from 'lucide-react';
+import EnterprisePageView from '@/components/EnterprisePageView';
+import {
+  Building2,
+  Briefcase,
+  Globe2,
+  ShieldCheck,
+  FileCheck2,
+  Scale,
+  Users,
+  CheckCircle2,
+  ArrowRight,
+  Zap
+} from 'lucide-react';
 
-const stats = [
-  { value: '100+', label: 'Enterprise Solutions' },
-  { value: '50+', label: 'Other Solutions' },
-  { value: '2-4 Weeks', label: 'Avg. Timeline' },
-  { value: '24/7', label: 'Customer Support' },
-];
-
-const features = [
-  { icon: <FileText size={28} color="#00AEEF" />, title: 'Commercial Registration (CR)', desc: 'Full CR application and issuance process managed with the Ministry of Commerce.' },
-  { icon: <Globe size={28} color="#00AEEF" />, title: 'MISA Licensing', desc: 'Foreign Investment License from the Ministry of Investment of Saudi Arabia (MISA).' },
-  { icon: <Shield size={28} color="#00AEEF" />, title: 'Articles of Association', desc: 'Drafting and notarization of Articles of Association per Saudi legal requirements.' },
-  { icon: <CheckCircle size={28} color="#00AEEF" />, title: 'Corporate Bank Account', desc: 'Assistance opening a Saudi corporate bank account for your newly formed entity.' },
-  { icon: <Clock size={28} color="#00AEEF" />, title: 'Fast-Track Formation', desc: 'Streamlined process designed to complete company formation in 2–4 weeks.' },
-  { icon: <Building2 size={28} color="#00AEEF" />, title: 'Legal Address & PRO', desc: 'Registered address services and government relations (PRO) support in KSA.' },
-];
-
-const companyTypes = [
+const FEATURES = [
   {
-    href: '/services-company',
-    icon: <Briefcase size={40} color="#00AEEF" />,
-    title: 'Services Company',
-    desc: 'Set up a professional services, consulting, or IT company in Saudi Arabia. Ideal for knowledge-based businesses and foreign professionals entering the KSA market.',
-    tags: ['Professional Services', 'IT & Consulting', 'Saudization Guidance'],
+    icon: Briefcase,
+    title: 'Services Company Formation',
+    desc: 'Turnkey setup for IT, engineering, consulting, management, and technical services companies with 100% foreign ownership under MISA.',
+    points: ['100% foreign ownership available', 'MISA service investment license', 'CR & Chamber of Commerce registration'],
+    link: '/services-company'
   },
   {
-    href: '/trading-company',
-    icon: <ShoppingCart size={40} color="#00AEEF" />,
-    title: 'Trading Company',
-    desc: 'Establish an import/export, wholesale, or distribution company in Saudi Arabia. Full MISA foreign investment licensing and commercial registration.',
-    tags: ['Import & Export', 'Wholesale Distribution', 'MISA Foreign License'],
+    icon: Globe2,
+    title: 'Trading Company Formation',
+    desc: 'Complete incorporation for wholesale, retail, import, export, and distribution entities with SABER and customs registration.',
+    points: ['MISA trading license issuance', 'Customs & FASAH code registration', 'SABER product certification setup'],
+    link: '/trading-company'
   },
+  {
+    icon: ShieldCheck,
+    title: 'MISA Foreign Investment Licensing',
+    desc: 'End-to-end guidance through the Ministry of Investment (MISA) licensing requirements, business plans, and capital approvals.',
+    points: ['MISA application dossier preparation', 'Expedited government approvals', 'License renewals & amendments']
+  },
+  {
+    icon: FileCheck2,
+    title: 'Commercial Registration (CR) & MoC',
+    desc: 'Drafting Articles of Association (AoA), electronic notarization, and issuance of Commercial Registration from Ministry of Commerce.',
+    points: ['Articles of Association drafting', 'Commercial name reservation', 'Ministry of Commerce notarization']
+  },
+  {
+    icon: Scale,
+    title: 'Corporate Bank Account Opening',
+    desc: 'Assistance in opening multi-currency corporate bank accounts with leading Saudi financial institutions (SNB, Al Rajhi, Riyad Bank).',
+    points: ['Bank KYC dossier preparation', 'Direct relationship manager introductions', 'Multi-currency account activation']
+  },
+  {
+    icon: Users,
+    title: 'Post-Incorporation Compliance (Qiwa, Muqeem, GOSI)',
+    desc: 'Complete setup on Saudi government portals including Qiwa, Muqeem, GOSI, ZATCA, and national address registration.',
+    points: ['Qiwa & Saudization setup', 'Muqeem visa & Iqama portal', 'ZATCA tax registration']
+  }
 ];
 
-export default function CompanyFormation() {
+const BENEFITS = [
+  {
+    title: '100% Foreign Ownership in Saudi Arabia',
+    desc: 'Establish your business under Saudi Vision 2030 reforms without requiring a local Saudi partner in most sectors.'
+  },
+  {
+    title: 'Fast-Track Government Approvals',
+    desc: 'Our direct liaison with MISA, Ministry of Commerce, and ZATCA reduces incorporation time from months to weeks.'
+  },
+  {
+    title: 'End-to-End Turnkey Support',
+    desc: 'From initial business plan drafting to visa issuance and office lease agreements, we handle every detail.'
+  },
+  {
+    title: 'Integrated Post-Launch Services',
+    desc: 'Seamless transition into our accounting, VAT filing, ERP implementation, and payroll services.'
+  }
+];
+
+export default function CompanyFormationPage() {
   return (
-    <Layout>
-      <style jsx global>{`
-        body { background: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; }
-      `}</style>
-
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #080d1a 0%, #0a1628 60%, #00AEEF22 100%)', padding: '100px 20px 80px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <span style={{ background: '#00AEEF22', color: '#00AEEF', padding: '6px 18px', borderRadius: 20, fontSize: 13, fontWeight: 600, letterSpacing: 1 }}>SAUDI ARABIA BUSINESS SETUP</span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800, margin: '20px 0 16px' }}>Company Formation Services</h1>
-          <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.7, marginBottom: 36 }}>Launch your business in Saudi Arabia with confidence. We handle MISA licensing, Commercial Registration, Articles of Association, and every legal step of your company formation journey.</p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/contact-us" style={{ background: '#00AEEF', color: '#fff', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>Start Your Business</Link>
-            <Link href="/services-company" style={{ border: '2px solid #00AEEF', color: '#00AEEF', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>Services Company</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ background: '#fff', padding: '50px 20px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 24 }}>
-          {stats.map((s) => (
-            <div key={s.label} style={{ textAlign: 'center', padding: '30px 20px', borderRadius: 12, background: '#f1f5f9', border: '1px solid #e2e8f0' }}>
-              <div style={{ fontSize: 36, fontWeight: 800, color: '#00AEEF' }}>{s.value}</div>
-              <div style={{ color: '#64748b', fontWeight: 500, marginTop: 6 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Company Types */}
-      <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Choose Your Company Type</h2>
-          <p style={{ textAlign: 'center', color: '#64748b', maxWidth: 600, margin: '0 auto 50px', fontSize: 16 }}>We offer specialized formation packages for two primary business structures in Saudi Arabia.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(340px,1fr))', gap: 36 }}>
-            {companyTypes.map((c) => (
-              <div key={c.title} style={{ background: '#fff', borderRadius: 16, padding: '44px 36px', border: '2px solid #e2e8f0', boxShadow: '0 4px 20px #0002', textAlign: 'center' }}>
-                <div style={{ marginBottom: 20 }}>{c.icon}</div>
-                <h3 style={{ fontSize: 24, fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>{c.title}</h3>
-                <p style={{ color: '#64748b', lineHeight: 1.7, marginBottom: 24, fontSize: 15 }}>{c.desc}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginBottom: 28 }}>
-                  {c.tags.map((t) => <span key={t} style={{ background: '#e0f2fe', color: '#0369a1', padding: '4px 12px', borderRadius: 20, fontSize: 13, fontWeight: 600 }}>{t}</span>)}
-                </div>
-                <Link href={c.href} style={{ background: '#00AEEF', color: '#fff', padding: '12px 28px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                  Learn More <ArrowRight size={18} />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Formation Steps */}
-      <section style={{ padding: '80px 20px', background: '#fff' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, color: '#0f172a', marginBottom: 50 }}>What We Handle For You</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 24 }}>
-            {features.map((f) => (
-              <div key={f.title} style={{ background: '#f8fafc', borderRadius: 14, padding: '28px 24px', border: '1px solid #e2e8f0' }}>
-                <div style={{ marginBottom: 14 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: 14 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #1e3a5f, #2563eb)', padding: '80px 20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, marginBottom: 16 }}>Ready to Establish Your Business in Saudi Arabia?</h2>
-        <p style={{ color: '#bfdbfe', fontSize: 18, marginBottom: 36 }}>Our business setup experts are ready to guide you from idea to incorporated company.</p>
-        <Link href="/contact-us" style={{ background: '#fff', color: '#2563eb', padding: '16px 40px', borderRadius: 8, fontWeight: 800, textDecoration: 'none', fontSize: 17, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          Contact Us Today <ArrowRight size={20} />
-        </Link>
-      </section>
+    <Layout
+      title="Company Formation & Business Setup in Saudi Arabia | Altapete Solutions"
+      description="Start your business in Saudi Arabia with 100% foreign ownership. MISA licensing, Commercial Registration (CR), corporate bank accounts, and complete post-incorporation compliance."
+    >
+      <EnterprisePageView
+        badge="SAUDI BUSINESS SETUP"
+        badgeIcon={Building2}
+        title={
+          <>
+            Company Formation in Saudi Arabia.<br />
+            <span className="text-gradient">Establish, Scale, and Thrive Under Vision 2030.</span>
+          </>
+        }
+        description="Launch your enterprise in the Middle East's largest economy. Altapete provides turnkey company incorporation, MISA foreign investment licensing, Commercial Registration, and post-incorporation government compliance."
+        bgImage="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1920"
+        featuresTag="FORMATION OPTIONS"
+        featuresTitle="Turnkey Business Incorporation Services"
+        featuresDesc="Everything you need to legally establish and operate your business in the Kingdom of Saudi Arabia."
+        features={FEATURES}
+        benefitsTag="STRATEGIC VALUE"
+        benefitsTitle={
+          <>Why Form Your Company with <span className="text-gradient">Altapete</span></>
+        }
+        benefitsDesc="We remove legal and regulatory complexity so you can focus on winning market share in Saudi Arabia."
+        benefits={BENEFITS}
+        benefitImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200"
+        benefitStat={{
+          badge: 'Setup Track Record',
+          metric: '100% Incorporation Success',
+          note: 'Trusted by regional and multinational enterprises'
+        }}
+        ctaTitle="Ready to Establish Your Company in Saudi Arabia?"
+        ctaDesc="Schedule a discovery call with our corporate setup advisors to determine the ideal legal structure, capital requirements, and timeline."
+        ctaPrimaryText="Start Your Company Setup"
+        ctaPrimaryLink="/contact-us"
+        ctaSecondaryText="Explore Corporate Advisory"
+        ctaSecondaryLink="/corporate-advisory"
+      />
     </Layout>
   );
 }

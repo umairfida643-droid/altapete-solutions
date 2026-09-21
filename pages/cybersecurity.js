@@ -1,83 +1,115 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import Link from 'next/link';
-import { Shield, AlertTriangle, Eye, Lock, FileText, Server, RefreshCw, Users, CheckCircle, ArrowRight } from 'lucide-react';
+import EnterprisePageView from '@/components/EnterprisePageView';
+import {
+  ShieldCheck,
+  Lock,
+  Eye,
+  AlertTriangle,
+  Server,
+  FileCheck2,
+  CheckCircle2,
+  Zap
+} from 'lucide-react';
 
-const stats = [
-  { value: '100+', label: 'Enterprise Solutions' },
-  { value: '50+', label: 'Other Solutions' },
-  { value: '2-4 Weeks', label: 'Avg. Timeline' },
-  { value: '24/7', label: 'Customer Support' },
+const FEATURES = [
+  {
+    icon: ShieldCheck,
+    title: 'Vulnerability Assessment & Pentesting (VAPT)',
+    desc: 'Thorough black-box, grey-box, and white-box penetration testing of web apps, mobile apps, network infrastructure, and APIs.',
+    points: ['OWASP Top 10 web & mobile testing', 'External & internal network pentesting', 'Actionable remediation advisory']
+  },
+  {
+    icon: FileCheck2,
+    title: 'Saudi NCA Compliance (ECC, CSCC, DCC)',
+    desc: 'Audit, gap assessment, and remediation frameworks to meet mandatory National Cybersecurity Authority (NCA) compliance mandates.',
+    points: ['Essential Cybersecurity Controls (ECC)', 'Critical Systems Cybersecurity (CSCC)', 'Data Cybersecurity Controls (DCC)']
+  },
+  {
+    icon: Eye,
+    title: '24/7 Security Operations Center (SOC)',
+    desc: 'Continuous real-time threat monitoring, SIEM log analysis, and incident response to detect and neutralize intrusions early.',
+    points: ['24/7/365 active threat hunting', 'Automated SIEM event correlation', 'Rapid incident containment & recovery']
+  },
+  {
+    icon: Lock,
+    title: 'Zero-Trust Architecture & IAM',
+    desc: 'Implementation of least-privilege access, Multi-Factor Authentication (MFA), Single Sign-On (SSO), and role-based permissions.',
+    points: ['Multi-Factor Authentication (MFA) rollouts', 'Privileged Access Management (PAM)', 'Single Sign-On (SSO) enterprise integration']
+  },
+  {
+    icon: AlertTriangle,
+    title: 'Security Awareness & Phishing Simulations',
+    desc: 'Educating corporate employees through simulated spear-phishing campaigns, interactive training modules, and risk assessments.',
+    points: ['Automated phishing campaign simulations', 'Employee risk scoring & analytics', 'Bilingual Arabic/English training content']
+  },
+  {
+    icon: Server,
+    title: 'Cloud & Endpoint Security Hardening',
+    desc: 'Deploying Endpoint Detection and Response (EDR), next-generation firewalls, and cloud security posture management (CSPM).',
+    points: ['Next-Gen Antivirus (NGAV) & EDR', 'Cloud Security Posture Management (CSPM)', 'Automated patch & vulnerability management']
+  }
 ];
 
-const features = [
-  { icon: <AlertTriangle size={28} color="#00AEEF" />, title: 'Penetration Testing', desc: 'Ethical hacking and penetration testing of networks, applications, and infrastructure.' },
-  { icon: <Eye size={28} color="#00AEEF" />, title: 'Vulnerability Assessment', desc: 'Systematic identification and risk rating of security vulnerabilities across your IT estate.' },
-  { icon: <Shield size={28} color="#00AEEF" />, title: 'Security Audits', desc: 'Comprehensive security audits against ISO 27001, NIST, and CIS benchmark standards.' },
-  { icon: <Server size={28} color="#00AEEF" />, title: 'SOC Services', desc: '24/7 Security Operations Center monitoring with real-time threat detection and response.' },
-  { icon: <FileText size={28} color="#00AEEF" />, title: 'Compliance Management', desc: 'GDPR, PCI-DSS, ISO 27001, and NCA ECC compliance assessment and remediation.' },
-  { icon: <Lock size={28} color="#00AEEF" />, title: 'Data Protection', desc: 'Data classification, DLP implementation, and encryption solutions for sensitive assets.' },
-  { icon: <RefreshCw size={28} color="#00AEEF" />, title: 'Incident Response', desc: 'Rapid cyber incident response planning, forensic investigation, and breach containment.' },
-  { icon: <Users size={28} color="#00AEEF" />, title: 'Security Awareness', desc: 'Employee security training and phishing simulation programs to reduce human risk.' },
-  { icon: <CheckCircle size={28} color="#00AEEF" />, title: 'SIEM Implementation', desc: 'Splunk, Microsoft Sentinel, and IBM QRadar SIEM deployment and tuning services.' },
+const BENEFITS = [
+  {
+    title: 'Protect Corporate Reputation & Data',
+    desc: 'Safeguard intellectual property, customer financial records, and commercial contracts from ransomware and data leaks.'
+  },
+  {
+    title: '100% Alignment with Saudi Regulators',
+    desc: 'Avoid costly legal liabilities by maintaining continuous compliance with NCA, SAMA, and CITC standards.'
+  },
+  {
+    title: 'Certified Security Specialists',
+    desc: 'Our cybersecurity team holds globally recognized certifications: CISSP, CEH, CISA, and OSCP.'
+  },
+  {
+    title: 'Rapid Incident Response SLA',
+    desc: 'Guaranteed emergency response times to contain breaches, recover data, and restore business operations.'
+  }
 ];
 
-export default function Cybersecurity() {
+export default function CybersecurityPage() {
   return (
-    <Layout>
-      <style jsx global>{`
-        body { background: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; }
-      `}</style>
-
-      {/* Hero */}
-      <section style={{ background: 'linear-gradient(135deg, #080d1a 0%, #0a1628 60%, #00AEEF22 100%)', padding: '100px 20px 80px', textAlign: 'center' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <span style={{ background: '#00AEEF22', color: '#00AEEF', padding: '6px 18px', borderRadius: 20, fontSize: 13, fontWeight: 600, letterSpacing: 1 }}>SECURITY SERVICES</span>
-          <h1 style={{ color: '#fff', fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800, margin: '20px 0 16px' }}>Cybersecurity</h1>
-          <p style={{ color: '#94a3b8', fontSize: 18, lineHeight: 1.7, marginBottom: 36 }}>Penetration testing, vulnerability assessments, security audits, SOC services, and compliance management — protecting your enterprise from evolving cyber threats around the clock.</p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/contact-us" style={{ background: '#00AEEF', color: '#fff', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>Secure Your Business</Link>
-            <Link href="/it-services" style={{ border: '2px solid #00AEEF', color: '#00AEEF', padding: '14px 32px', borderRadius: 8, fontWeight: 700, textDecoration: 'none', fontSize: 16 }}>All IT Services</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section style={{ background: '#fff', padding: '50px 20px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', gap: 24 }}>
-          {stats.map((s) => (
-            <div key={s.label} style={{ textAlign: 'center', padding: '30px 20px', borderRadius: 12, background: '#f1f5f9', border: '1px solid #e2e8f0' }}>
-              <div style={{ fontSize: 36, fontWeight: 800, color: '#00AEEF' }}>{s.value}</div>
-              <div style={{ color: '#64748b', fontWeight: 500, marginTop: 6 }}>{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Features */}
-      <section style={{ padding: '80px 20px', background: '#f8fafc' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ textAlign: 'center', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, color: '#0f172a', marginBottom: 12 }}>Cybersecurity Services</h2>
-          <p style={{ textAlign: 'center', color: '#64748b', maxWidth: 600, margin: '0 auto 50px', fontSize: 16 }}>Proactive security solutions to identify vulnerabilities, monitor threats, and ensure regulatory compliance.</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))', gap: 28 }}>
-            {features.map((f) => (
-              <div key={f.title} style={{ background: '#fff', borderRadius: 14, padding: '32px 28px', border: '1px solid #e2e8f0', boxShadow: '0 2px 12px #0001' }}>
-                <div style={{ marginBottom: 16 }}>{f.icon}</div>
-                <h3 style={{ fontSize: 18, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>{f.title}</h3>
-                <p style={{ color: '#64748b', lineHeight: 1.6, fontSize: 15 }}>{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ background: 'linear-gradient(135deg, #1e3a5f, #2563eb)', padding: '80px 20px', textAlign: 'center' }}>
-        <h2 style={{ color: '#fff', fontSize: 'clamp(1.6rem,3vw,2.4rem)', fontWeight: 800, marginBottom: 16 }}>Defend Your Business from Cyber Threats</h2>
-        <p style={{ color: '#bfdbfe', fontSize: 18, marginBottom: 36 }}>Our cybersecurity experts will assess your vulnerabilities and build a comprehensive security posture.</p>
-        <Link href="/contact-us" style={{ background: '#fff', color: '#2563eb', padding: '16px 40px', borderRadius: 8, fontWeight: 800, textDecoration: 'none', fontSize: 17, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-          Contact Us Today <ArrowRight size={20} />
-        </Link>
-      </section>
+    <Layout
+      title="Enterprise Cybersecurity & NCA Compliance | Altapete Solutions"
+      description="Penetration testing (VAPT), Saudi NCA ECC compliance, 24/7 SOC monitoring, and zero-trust security across Saudi Arabia and the GCC."
+    >
+      <EnterprisePageView
+        badge="CYBERSECURITY & DEFENSE"
+        badgeIcon={ShieldCheck}
+        title={
+          <>
+            Enterprise Cybersecurity.<br />
+            <span className="text-gradient">Bank-Grade Protection. 100% NCA Compliant.</span>
+          </>
+        }
+        description="Defend your digital assets against advanced cyber threats. Altapete delivers enterprise penetration testing (VAPT), 24/7 SOC threat monitoring, zero-trust architectures, and mandatory Saudi NCA compliance audits."
+        bgImage="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1920"
+        featuresTag="SECURITY CAPABILITIES"
+        featuresTitle="Comprehensive Cybersecurity Services"
+        featuresDesc="Protect every endpoint, network layer, and cloud workload with proactive defense."
+        features={FEATURES}
+        benefitsTag="SECURITY VALUE"
+        benefitsTitle={
+          <>Why Trust Your Security to <span className="text-gradient">Altapete</span></>
+        }
+        benefitsDesc="We combine ethical hacking excellence with deep knowledge of Saudi regulatory cybersecurity mandates."
+        benefits={BENEFITS}
+        benefitImage="https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200"
+        benefitStat={{
+          badge: 'Security Standard',
+          metric: '100% NCA Aligned',
+          note: 'Full compliance with ECC and CSCC frameworks'
+        }}
+        ctaTitle="Ready to Assess Your Cybersecurity Posture?"
+        ctaDesc="Schedule a confidential vulnerability assessment and compliance audit with our certified ethical hackers."
+        ctaPrimaryText="Book Security Audit"
+        ctaPrimaryLink="/contact-us"
+        ctaSecondaryText="Explore IT Services"
+        ctaSecondaryLink="/it-services"
+      />
     </Layout>
   );
 }

@@ -1,356 +1,115 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import Link from 'next/link';
+import EnterprisePageView from '@/components/EnterprisePageView';
 import {
   BarChart2,
-  Settings,
-  Headphones,
+  ShieldCheck,
+  Server,
+  Layers,
   Sliders,
   GitMerge,
-  ArrowRight,
-  CheckCircle,
-  Globe,
-  TrendingUp,
-  ShieldCheck,
-  Cpu,
-  Building2,
+  Headphones,
+  Zap
 } from 'lucide-react';
 
-const CYAN = '#00AEEF';
-const BLUE = '#2c73d9';
-const DARK = '#080d1a';
-
-const stats = [
-  { value: '100+', label: 'Enterprise Solutions' },
-  { value: '50+', label: 'Other Solutions' },
-  { value: '2–4 Weeks', label: 'Avg. Timeline' },
-  { value: '24/7', label: 'Customer Support' },
+const FEATURES = [
+  {
+    icon: BarChart2,
+    title: 'SAP Business One (B1) Implementation',
+    desc: 'Complete ERP implementation for growing enterprises spanning finance, sales, inventory, and production with Saudi localization.',
+    points: ['Financial & banking management', 'Advanced inventory & warehousing', 'Production scheduling & MRP']
+  },
+  {
+    icon: Server,
+    title: 'SAP S/4HANA Migration & Rollout',
+    desc: 'Strategic migration roadmaps from legacy SAP ECC to S/4HANA with in-memory database acceleration and streamlined architecture.',
+    points: ['Brownfield & greenfield migration', 'SAP Fiori modern UX deployment', 'Real-time financial analytics']
+  },
+  {
+    icon: Sliders,
+    title: 'ABAP & B1 Usability Customization',
+    desc: 'Custom ABAP development, user-defined fields (UDFs), B1 usability package enhancements, and role-tailored dashboards.',
+    points: ['Custom ABAP / B1 SDK logic', 'Automated approval procedures', 'Crystal Reports & SAP Analytics Cloud']
+  },
+  {
+    icon: GitMerge,
+    title: 'SAP Integration & API Connectors',
+    desc: 'Connecting SAP with third-party logistics, POS billing systems, local e-commerce, and ZATCA Phase 2 clearance.',
+    points: ['SAP Integration Framework (B1iF)', 'ZATCA Phase 2 FATOORA API', 'Automated bank file integration']
+  },
+  {
+    icon: Headphones,
+    title: '24/7 SAP Basis & Functional Support',
+    desc: 'Round-the-clock technical administration, transport management, patch deployment, and functional troubleshooting.',
+    points: ['SAP Basis health monitoring', 'Disaster recovery & backup audits', 'SLA-backed ticket resolution']
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Saudi Tax & Audit Readiness',
+    desc: 'Full alignment with ZATCA Phase 2 cryptographic e-invoicing, 15% VAT calculation, and SOCPA compliant financial reporting.',
+    points: ['Cryptographic invoice generation', 'Electronic tax return reconciliation', 'Bilingual invoice printing']
+  }
 ];
 
-const features = [
+const BENEFITS = [
   {
-    icon: <Settings size={30} color={CYAN} />,
-    title: 'Implementation',
-    points: [
-      'SAP Business One and SAP S/4HANA full deployment services',
-      'SAP Activate methodology for structured, on-budget rollouts',
-      'Saudi Arabia localization: ZATCA, Zakat, VAT, and GOSI compliance',
-      'Industry-specific templates for manufacturing, retail, and distribution',
-      'Data migration, cutover planning, and post go-live hypercare',
-    ],
+    title: 'World-Standard Enterprise Core',
+    desc: 'Leverage SAP’s battle-tested digital core trusted by the world’s largest and most regulated corporations.'
   },
   {
-    icon: <Headphones size={30} color={CYAN} />,
-    title: 'Support',
-    points: [
-      '24/7 SAP Basis, ABAP, and functional application support',
-      'SAP Business One Service Layer and DI API troubleshooting',
-      'SAP Support Package and enhancement pack upgrade services',
-      'Performance tuning for HANA database queries and reports',
-      'Dedicated SAP consultant with escalation to SAP Global Support',
-    ],
+    title: 'Real-Time In-Memory Decision Making',
+    desc: 'Run complex queries and instant period-end closings in seconds using high-performance SAP HANA architecture.'
   },
   {
-    icon: <Sliders size={30} color={CYAN} />,
-    title: 'Customization',
-    points: [
-      'ABAP development for reports, enhancements, and BAdIs',
-      'SAP Crystal Reports and SAP Analytics Cloud custom dashboards',
-      'User-defined fields, tables, and formatted search queries in SAP B1',
-      'ZATCA e-invoicing Phase 1 & Phase 2 configuration and certification',
-      'Arabic print layouts and localized document templates',
-    ],
+    title: 'Regional Compliance Guarantee',
+    desc: 'Built-in support for Saudi Arabia ZATCA Phase 2 requirements, withholding tax, and local commercial regulations.'
   },
   {
-    icon: <GitMerge size={30} color={CYAN} />,
-    title: 'Integration',
-    points: [
-      'SAP Integration Suite (Cloud Integration) and CPI middleware',
-      'REST/SOAP API integration with SAP Business One Service Layer',
-      'Integration with payment gateways, banks, and government portals',
-      'SAP–Salesforce, SAP–WMS, and SAP–e-commerce connectors',
-      'EDI and B2B integration for suppliers and logistics partners',
-    ],
-  },
+    title: 'Experienced Regional Consultants',
+    desc: 'Direct execution by accredited SAP functional and technical consultants with extensive GCC deployment track records.'
+  }
 ];
 
-const benefits = [
-  { icon: <Building2 size={22} color={CYAN} />, text: 'Industry-leading ERP trusted by 440,000+ companies across 180 countries' },
-  { icon: <Globe size={22} color={CYAN} />, text: 'Full Saudi Arabia compliance: ZATCA e-invoicing, GOSI, Zakat, and VAT 15%' },
-  { icon: <TrendingUp size={22} color={CYAN} />, text: 'Real-time business intelligence with SAP HANA in-memory database technology' },
-  { icon: <Cpu size={22} color={CYAN} />, text: 'AI-powered process automation and predictive analytics in SAP S/4HANA' },
-  { icon: <ShieldCheck size={22} color={CYAN} />, text: 'Robust role-based access control, audit logs, and SOX-ready compliance framework' },
-  { icon: <BarChart2 size={22} color={CYAN} />, text: 'Scalable from SAP Business One for SMEs to S/4HANA for large enterprises' },
-];
-
-export default function SapImplementation() {
+export default function SapImplementationPage() {
   return (
-    <Layout>
-      <style>{`
-        .sap-hero {
-          background: linear-gradient(135deg, ${DARK} 0%, #0d1b3e 60%, #0a2a5e 100%);
-          padding: 96px 24px 80px;
-          text-align: center;
+    <Layout
+      title="SAP Business One & S/4HANA Implementation | Altapete Solutions"
+      description="Certified SAP Business One and SAP S/4HANA implementation, ABAP customization, and 24/7 support across Saudi Arabia and the GCC."
+    >
+      <EnterprisePageView
+        badge="SAP ENTERPRISE PRACTICE"
+        badgeIcon={BarChart2}
+        title={
+          <>
+            SAP Implementation &amp; Advisory.<br />
+            <span className="text-gradient">The Gold Standard in Enterprise ERP.</span>
+          </>
         }
-        .sap-hero h1 {
-          font-size: clamp(2rem, 5vw, 3.2rem);
-          font-weight: 800;
-          color: #fff;
-          margin: 0 0 20px;
-          line-height: 1.15;
+        description="Accelerate your digital transformation with certified SAP Business One and S/4HANA implementation. Altapete combines global SAP best practices with deep Saudi localization and ZATCA compliance."
+        bgImage="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1920"
+        featuresTag="SAP SOLUTIONS"
+        featuresTitle="End-to-End SAP Lifecycle Services"
+        featuresDesc="Empower your enterprise with reliable, compliant, and scalable SAP solutions tailored for regional growth."
+        features={FEATURES}
+        benefitsTag="STRATEGIC VALUE"
+        benefitsTitle={
+          <>Drive Enterprise Value with <span className="text-gradient">Altapete &amp; SAP</span></>
         }
-        .sap-hero h1 span { color: ${CYAN}; }
-        .sap-hero p {
-          font-size: 1.1rem;
-          color: #a8b8d8;
-          max-width: 680px;
-          margin: 0 auto 36px;
-          line-height: 1.75;
-        }
-        .section-tag {
-          display: inline-block;
-          background: rgba(0,174,239,0.12);
-          color: ${CYAN};
-          font-size: 0.78rem;
-          font-weight: 700;
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          padding: 6px 16px;
-          border-radius: 20px;
-          margin-bottom: 14px;
-        }
-        .hero-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: linear-gradient(90deg, ${CYAN}, ${BLUE});
-          color: #fff;
-          font-weight: 700;
-          font-size: 1rem;
-          padding: 14px 32px;
-          border-radius: 50px;
-          text-decoration: none;
-          transition: opacity 0.2s;
-        }
-        .hero-btn:hover { opacity: 0.88; }
-
-        .stats-row {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          background: linear-gradient(90deg, ${BLUE}, ${CYAN});
-        }
-        .stat-item {
-          flex: 1 1 180px;
-          text-align: center;
-          padding: 28px 16px;
-          border-right: 1px solid rgba(255,255,255,0.18);
-        }
-        .stat-item:last-child { border-right: none; }
-        .stat-value { font-size: 2rem; font-weight: 800; color: #fff; display: block; }
-        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.82); margin-top: 4px; display: block; }
-
-        .section { padding: 80px 24px; max-width: 1160px; margin: 0 auto; }
-        .section-title {
-          font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-          font-weight: 800;
-          color: #fff;
-          margin: 0 0 12px;
-        }
-        .section-sub {
-          font-size: 1rem;
-          color: #a8b8d8;
-          max-width: 620px;
-          line-height: 1.7;
-          margin: 0 0 48px;
-        }
-
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 28px;
-        }
-        .feature-card {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(0,174,239,0.18);
-          border-radius: 16px;
-          padding: 32px 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-          transition: transform 0.22s, box-shadow 0.22s;
-        }
-        .feature-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 12px 40px rgba(0,174,239,0.15);
-          border-color: ${CYAN};
-        }
-        .feature-card h3 { font-size: 1.15rem; font-weight: 700; color: #e8f0fe; margin: 0; }
-        .feature-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
-        .feature-card ul li {
-          display: flex; align-items: flex-start; gap: 8px;
-          font-size: 0.88rem; color: #8a9ab8; line-height: 1.55;
-        }
-        .feature-card ul li svg { flex-shrink: 0; margin-top: 2px; }
-
-        .benefits-section { background: rgba(255,255,255,0.02); padding: 80px 24px; }
-        .benefits-inner { max-width: 1160px; margin: 0 auto; }
-        .benefits-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 20px;
-        }
-        .benefit-item {
-          display: flex; align-items: flex-start; gap: 14px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(44,115,217,0.18);
-          border-radius: 12px;
-          padding: 22px 20px;
-        }
-        .benefit-item svg { flex-shrink: 0; margin-top: 2px; }
-        .benefit-item p { font-size: 0.9rem; color: #a8b8d8; line-height: 1.6; margin: 0; }
-
-        .cta-section { padding: 80px 24px; text-align: center; }
-        .cta-inner {
-          background: linear-gradient(135deg, #0d1b3e, #0a2a5e);
-          border: 1px solid rgba(0,174,239,0.25);
-          border-radius: 24px;
-          padding: 64px 32px;
-          max-width: 820px;
-          margin: 0 auto;
-        }
-        .cta-inner h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; color: #fff; margin: 0 0 16px; }
-        .cta-inner h2 span { color: ${CYAN}; }
-        .cta-inner p { font-size: 1rem; color: #a8b8d8; margin: 0 0 36px; line-height: 1.7; }
-        .cta-buttons { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-        .btn-primary {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: linear-gradient(90deg, ${CYAN}, ${BLUE});
-          color: #fff; font-weight: 700; font-size: 1rem;
-          padding: 14px 32px; border-radius: 50px; text-decoration: none;
-          transition: opacity 0.2s;
-        }
-        .btn-primary:hover { opacity: 0.88; }
-        .btn-outline {
-          display: inline-flex; align-items: center; gap: 8px;
-          background: transparent; color: #fff; font-weight: 700; font-size: 1rem;
-          padding: 13px 32px; border-radius: 50px;
-          border: 2px solid rgba(255,255,255,0.3); text-decoration: none;
-          transition: border-color 0.2s, color 0.2s;
-        }
-        .btn-outline:hover { border-color: ${CYAN}; color: ${CYAN}; }
-
-        [data-theme='light'] .sap-hero { background: linear-gradient(135deg, #e8f4fc, #dbeafe); }
-        [data-theme='light'] .sap-hero h1 { color: #0a1628; }
-        [data-theme='light'] .sap-hero p { color: #475569; }
-        [data-theme='light'] .section-title { color: #0a1628; }
-        [data-theme='light'] .section-sub { color: #475569; }
-        [data-theme='light'] .feature-card { background: #fff; border-color: rgba(0,174,239,0.2); }
-        [data-theme='light'] .feature-card h3 { color: #0a1628; }
-        [data-theme='light'] .feature-card ul li { color: #475569; }
-        [data-theme='light'] .benefits-section { background: #f1f5f9; }
-        [data-theme='light'] .benefit-item { background: #fff; border-color: rgba(44,115,217,0.15); }
-        [data-theme='light'] .benefit-item p { color: #475569; }
-        [data-theme='light'] .cta-inner { background: linear-gradient(135deg, #dbeafe, #e0f2fe); border-color: rgba(0,174,239,0.3); }
-        [data-theme='light'] .cta-inner h2 { color: #0a1628; }
-        [data-theme='light'] .cta-inner p { color: #475569; }
-        [data-theme='light'] .btn-outline { color: #0a1628; border-color: rgba(10,22,40,0.3); }
-        [data-theme='light'] .btn-outline:hover { color: ${BLUE}; border-color: ${BLUE}; }
-      `}</style>
-
-      {/* Hero */}
-      <section className="sap-hero">
-        <div className="section-tag">SAP ERP</div>
-        <h1>
-          SAP Business One & <span>S/4HANA Implementation</span>
-        </h1>
-        <p>
-          Altapete Solutions is your trusted SAP partner in Saudi Arabia, delivering SAP Business One
-          for SMEs and SAP S/4HANA for large enterprises — with full ZATCA compliance and regional
-          expertise built in.
-        </p>
-        <Link href="/contact" className="hero-btn">
-          Request a Consultation <ArrowRight size={18} />
-        </Link>
-      </section>
-
-      {/* Stats */}
-      <div className="stats-row">
-        {stats.map((s) => (
-          <div key={s.label} className="stat-item">
-            <span className="stat-value">{s.value}</span>
-            <span className="stat-label">{s.label}</span>
-          </div>
-        ))}
-      </div>
-
-      {/* Features */}
-      <div style={{ background: DARK }}>
-        <div className="section">
-          <div className="section-tag">Our Services</div>
-          <h2 className="section-title">SAP ERP Service Areas</h2>
-          <p className="section-sub">
-            Our SAP-certified consultants bring deep functional and technical expertise across
-            SAP Business One, SAP S/4HANA, and the broader SAP ecosystem.
-          </p>
-          <div className="features-grid">
-            {features.map((f) => (
-              <div key={f.title} className="feature-card">
-                {f.icon}
-                <h3>{f.title}</h3>
-                <ul>
-                  {f.points.map((pt) => (
-                    <li key={pt}>
-                      <CheckCircle size={14} color={CYAN} />
-                      {pt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Benefits */}
-      <section className="benefits-section">
-        <div className="benefits-inner">
-          <div className="section-tag">Why SAP</div>
-          <h2 className="section-title" style={{ marginBottom: 10 }}>Key Business Benefits</h2>
-          <p className="section-sub">
-            SAP delivers unmatched process depth and global best practices, making it the gold standard
-            for enterprises that demand reliability, compliance, and scale.
-          </p>
-          <div className="benefits-grid">
-            {benefits.map((b) => (
-              <div key={b.text} className="benefit-item">
-                {b.icon}
-                <p>{b.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="cta-section" style={{ background: DARK }}>
-        <div className="cta-inner">
-          <h2>
-            Start Your <span>SAP Journey</span> with Confidence
-          </h2>
-          <p>
-            Whether you need SAP Business One for your growing SME or S/4HANA for enterprise-scale
-            operations, Altapete Solutions delivers with precision and regional expertise.
-          </p>
-          <div className="cta-buttons">
-            <Link href="/contact" className="btn-primary">
-              Get Started <ArrowRight size={16} />
-            </Link>
-            <Link href="/erp-services" className="btn-outline">
-              All ERP Services
-            </Link>
-          </div>
-        </div>
-      </section>
+        benefitsDesc="From initial blueprinting to post-launch hypercare, we ensure your SAP investment delivers measurable efficiency."
+        benefits={BENEFITS}
+        benefitImage="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200"
+        benefitStat={{
+          badge: 'SAP Delivery',
+          metric: '99.9% System Reliability',
+          note: 'Backed by certified SAP technical & functional architects'
+        }}
+        ctaTitle="Ready to Elevate Your Enterprise with SAP?"
+        ctaDesc="Schedule a consultation with our senior SAP consultants to review licensing, migration options, and deployment timelines."
+        ctaPrimaryText="Schedule SAP Discovery Call"
+        ctaPrimaryLink="/contact-us"
+        ctaSecondaryText="Explore All ERP Services"
+        ctaSecondaryLink="/erp-services"
+      />
     </Layout>
   );
 }
