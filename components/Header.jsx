@@ -182,10 +182,10 @@ export default function Header({ onToggleMobileMenu }) {
 
   const productsList = [
     { 
-      text: "Hotel Management", 
-      href: "/hotel-management-solutions", 
-      icon: Hotel, 
-      desc: "PMS, room booking engine, housekeeping & guest folio" 
+      text: "Hospital Management", 
+      href: "/hospital-management-solutions", 
+      icon: Hospital, 
+      desc: "EMR, clinic scheduling, pharmacy & bed management" 
     },
     { 
       text: "Construction Management", 
@@ -194,19 +194,13 @@ export default function Header({ onToggleMobileMenu }) {
       desc: "Job costing, project billing, subcontractor & BOQ tracking" 
     },
     { 
-      text: "Hospital Management", 
-      href: "/hospital-management-solutions", 
-      icon: Hospital, 
-      desc: "EMR, clinic scheduling, pharmacy & bed management" 
+      text: "Retail Management", 
+      href: "/retail-management", 
+      icon: ShoppingBag, 
+      desc: "POS, inventory, loyalty programs & retail analytics" 
     },
     { 
-      text: "School Management", 
-      href: "/school-management-solutions", 
-      icon: GraduationCap, 
-      desc: "LMS, admissions, fee management & academic gradebook" 
-    },
-    { 
-      text: "Shipment Solutions", 
+      text: "Shipping Management", 
       href: "/shipping-solutions", 
       icon: Truck, 
       desc: "Freight forwarding, dispatch tracking & logistics billing" 
@@ -216,6 +210,24 @@ export default function Header({ onToggleMobileMenu }) {
       href: "/rental-solutions", 
       icon: Building, 
       desc: "Fleet, machinery & equipment rental lifecycle management" 
+    },
+    { 
+      text: "Hotel Management", 
+      href: "/hotel-management-solutions", 
+      icon: Hotel, 
+      desc: "PMS, room booking engine, housekeeping & guest folio" 
+    },
+    { 
+      text: "School Management Solutions", 
+      href: "/school-management-solutions", 
+      icon: GraduationCap, 
+      desc: "LMS, admissions, fee management & academic gradebook" 
+    },
+    { 
+      text: "Safety Management", 
+      href: "/safety-management", 
+      icon: ShieldCheck, 
+      desc: "Incident tracking, compliance, PPE & workplace safety" 
     }
   ];
 

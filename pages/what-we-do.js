@@ -137,10 +137,10 @@ const values = [
 ];
 
 const stats = [
-  { number: '150+', label: 'Enterprise Projects Delivered' },
-  { number: '100+', label: 'Satisfied Corporate Clients' },
-  { number: '13+', label: 'Years Innovation Heritage' },
-  { number: '50+', label: 'Senior Technical Specialists' }
+  { number: '100+', label: 'Enterprise Solutions' },
+  { number: '50+', label: 'Other Solutions' },
+  { number: '2-4 Weeks', label: 'Implementation Timeline' },
+  { number: '24/7', label: 'Customer Support' },
 ];
 
 const teamMembers = [

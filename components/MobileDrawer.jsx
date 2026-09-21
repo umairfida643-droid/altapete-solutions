@@ -201,12 +201,14 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     {activeAccordion === 3 && (
                       <div style={{ background: 'var(--bg-card-subtle)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
                         {[
-                          { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel },
-                          { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat },
                           { text: "Hospital Management", href: "/hospital-management-solutions", icon: Hospital },
-                          { text: "School Management", href: "/school-management-solutions", icon: GraduationCap },
-                          { text: "Shipment Solutions", href: "/shipping-solutions", icon: Truck },
-                          { text: "Rental Management", href: "/rental-solutions", icon: Building }
+                          { text: "Construction Management", href: "/construction-management-solutions", icon: HardHat },
+                          { text: "Retail Management", href: "/retail-management", icon: ShoppingBag },
+                          { text: "Shipping Management", href: "/shipping-solutions", icon: Truck },
+                          { text: "Rental Management", href: "/rental-solutions", icon: Building },
+                          { text: "Hotel Management", href: "/hotel-management-solutions", icon: Hotel },
+                          { text: "School Management Solutions", href: "/school-management-solutions", icon: GraduationCap },
+                          { text: "Safety Management", href: "/safety-management", icon: ShieldCheck }
                         ].map((item, i) => {
                           const Icon = item.icon;
                           return (

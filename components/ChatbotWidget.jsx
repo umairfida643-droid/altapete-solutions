@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   MessageSquare, X, Send, Bot, User, ArrowRight,
   RefreshCw, CheckCircle2, Phone, Mail, MapPin,
@@ -198,10 +199,12 @@ Would you like to book a free discovery call or submit your requirements?`,
 ];
 
 export default function ChatbotWidget() {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showTeaser, setShowTeaser] = useState(false);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [menuLevel, setMenuLevel] = useState('main'); // 'main' | 'erp' | 'zatca' | 'formation' | 'it' | 'integrations'
 
   // Booking Flow State
   const [bookingState, setBookingState] = useState({
@@ -217,20 +220,23 @@ export default function ChatbotWidget() {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Welcome to **Altapete Solutions**! I am your Altapete Virtual Assistant.",
+      text: '👋 Welcome to **Altapete Solutions**! How can we help you today?',
       timestamp: 'Just now'
     },
     {
       id: 2,
       sender: 'bot',
-      text: "How can I help your business today? Choose a topic below or type any question:",
+      text: 'Select a service category below:',
       options: [
-        '⚡ ZATCA Phase 2 E-Invoicing',
-        '🏢 ERP & Odoo Solutions',
-        '📑 Tax & Zakat Advisory',
-        '📍 Office Locations & Contacts',
-        '📥 Company Profile (PDF)',
-        '📅 Book Free Consultation'
+        '1️⃣ ERP Services',
+        '2️⃣ ZATCA Services',
+        '3️⃣ Company Formation',
+        '4️⃣ IT Services',
+        '5️⃣ Integrations',
+        '6️⃣ Tax & Zakat Advisory',
+        '7️⃣ Office Locations & Contacts',
+        '8️⃣ Company Profile (PDF)',
+        '9️⃣ Book Free Consultation'
       ],
       timestamp: 'Just now'
     }
@@ -458,44 +464,150 @@ export default function ChatbotWidget() {
   };
 
   const handleOptionClick = (option) => {
-    // Add user message with option text
-    setMessages(prev => [
-      ...prev,
-      {
-        id: Date.now(),
-        sender: 'user',
-        text: option,
-        timestamp: 'Just now'
-      }
-    ]);
+    // Add user message
+    setMessages(prev => [...prev, { id: Date.now(), sender: 'user', text: option, timestamp: 'Just now' }]);
 
-    if (bookingState.active) {
-      handleBookingStep(option);
-    } else {
-      resolveQuery(option);
+    if (bookingState.active) { handleBookingStep(option); return; }
+
+    // Main menu items
+    if (option.includes('ERP Services')) {
+      setMenuLevel('erp');
+      sendBotReply('Select your ERP platform:', [
+        'Oracle Fusion', 'NetSuite', 'Odoo', 'SAP', 'Microsoft D365', '⬅ Back to Main Menu'
+      ]);
+      return;
     }
+    if (option.includes('ZATCA Services')) {
+      setMenuLevel('zatca');
+      sendBotReply('Select ZATCA service:', [
+        'E-Invoicing Phase 1 & Phase 2', 'VAT Filing Support', '⬅ Back to Main Menu'
+      ]);
+      return;
+    }
+    if (option.includes('Company Formation')) {
+      setMenuLevel('formation');
+      sendBotReply('Select company type:', [
+        'Services Company', 'Trading Company', '⬅ Back to Main Menu'
+      ]);
+      return;
+    }
+    if (option.includes('IT Services')) {
+      setMenuLevel('it');
+      sendBotReply('Select IT service:', [
+        'Software Development', 'Web Development', 'Mobile App Development',
+        'Cloud Services', 'IT Consulting', 'Cybersecurity',
+        'IT Infrastructure & Networking', 'Technical Support & Maintenance',
+        'Data & Analytics', 'AI & Automation', 'Customized IT Solutions',
+        '⬅ Back to Main Menu'
+      ]);
+      return;
+    }
+    if (option.includes('Integrations')) {
+      setMenuLevel('integrations');
+      sendBotReply('Select integration:', [
+        'Shopify', 'Salla', 'Muqeem', 'Odoo to Odoo', 'Jisr', 'Mada', 'Gedia',
+        '⬅ Back to Main Menu'
+      ]);
+      return;
+    }
+    if (option.includes('Tax & Zakat Advisory')) {
+      setIsOpen(false); router.push('/taxation-zakat-advisory'); return;
+    }
+    if (option.includes('Office Locations')) {
+      setIsOpen(false); router.push('/contact-us'); return;
+    }
+    if (option.includes('Company Profile')) {
+      setIsOpen(false); router.push('/company-profile'); return;
+    }
+    if (option.includes('Book Free Consultation') || option.includes('Book Consultation')) {
+      startBookingFlow(); return;
+    }
+
+    // Back to main
+    if (option.includes('Back to Main Menu')) {
+      setMenuLevel('main');
+      sendBotReply('Select a service category:', [
+        '1️⃣ ERP Services', '2️⃣ ZATCA Services', '3️⃣ Company Formation',
+        '4️⃣ IT Services', '5️⃣ Integrations', '6️⃣ Tax & Zakat Advisory',
+        '7️⃣ Office Locations & Contacts', '8️⃣ Company Profile (PDF)', '9️⃣ Book Free Consultation'
+      ]);
+      return;
+    }
+
+    // ERP sub-items
+    const erpRoutes = {
+      'Oracle Fusion': '/oracle-fusion',
+      'NetSuite': '/netsuite',
+      'Odoo': '/odoo-erp',
+      'SAP': '/sap-implementation',
+      'Microsoft D365': '/microsoft-d365'
+    };
+    if (erpRoutes[option]) { setIsOpen(false); router.push(erpRoutes[option]); return; }
+
+    // ZATCA sub-items
+    if (option.includes('E-Invoicing Phase')) { setIsOpen(false); router.push('/zatca-integration'); return; }
+    if (option.includes('VAT Filing')) { setIsOpen(false); router.push('/vat-filing-support'); return; }
+
+    // Company Formation sub-items
+    if (option.includes('Services Company')) { setIsOpen(false); router.push('/services-company'); return; }
+    if (option.includes('Trading Company')) { setIsOpen(false); router.push('/trading-company'); return; }
+
+    // IT Services sub-items
+    const itRoutes = {
+      'Software Development': '/software-development',
+      'Web Development': '/web-development',
+      'Mobile App Development': '/mobile-app-development',
+      'Cloud Services': '/cloud-services',
+      'IT Consulting': '/it-consulting',
+      'Cybersecurity': '/cybersecurity',
+      'IT Infrastructure & Networking': '/it-infrastructure',
+      'Technical Support & Maintenance': '/technical-support',
+      'Data & Analytics': '/data-analytics',
+      'AI & Automation': '/ai-automation',
+      'Customized IT Solutions': '/customized-it-solutions'
+    };
+    if (itRoutes[option]) { setIsOpen(false); router.push(itRoutes[option]); return; }
+
+    // Integration sub-items
+    const integrationRoutes = {
+      'Shopify': '/shopify-integration',
+      'Salla': '/salla-integration',
+      'Muqeem': '/hr-muqeem',
+      'Odoo to Odoo': '/odoo-to-odoo-data-integration',
+      'Jisr': '/mada-jedia-hr-jisr-integration',
+      'Mada': '/mada-jedia-hr-jisr-integration',
+      'Gedia': '/mada-jedia-hr-jisr-integration'
+    };
+    if (integrationRoutes[option]) { setIsOpen(false); router.push(integrationRoutes[option]); return; }
+
+    // Fallback: use old resolveQuery
+    resolveQuery(option);
   };
 
   const handleResetChat = () => {
     setBookingState({ active: false, step: 0, name: '', contact: '', service: '', message: '' });
+    setMenuLevel('main');
     setMessages([
       {
         id: 1,
         sender: 'bot',
-        text: "👋 Welcome to **Altapete Solutions**! I am your Altapete Virtual Assistant.",
+        text: '👋 Welcome to **Altapete Solutions**! How can we help you today?',
         timestamp: 'Just now'
       },
       {
         id: 2,
         sender: 'bot',
-        text: "How can I help your business today? Choose a topic below or type any question:",
+        text: 'Select a service category below:',
         options: [
-          '⚡ ZATCA Phase 2 E-Invoicing',
-          '🏢 ERP & Odoo Solutions',
-          '📑 Tax & Zakat Advisory',
-          '📍 Office Locations & Contacts',
-          '📥 Company Profile (PDF)',
-          '📅 Book Free Consultation'
+          '1️⃣ ERP Services',
+          '2️⃣ ZATCA Services',
+          '3️⃣ Company Formation',
+          '4️⃣ IT Services',
+          '5️⃣ Integrations',
+          '6️⃣ Tax & Zakat Advisory',
+          '7️⃣ Office Locations & Contacts',
+          '8️⃣ Company Profile (PDF)',
+          '9️⃣ Book Free Consultation'
         ],
         timestamp: 'Just now'
       }
