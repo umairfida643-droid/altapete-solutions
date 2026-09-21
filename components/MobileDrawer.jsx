@@ -136,7 +136,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                           { text: "Salla Integration", href: "/salla-integration", icon: ShoppingBag },
                           { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
                           { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users },
-                          { text: "Other Integration (Mada-Jedia-Jisr)", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
+                          { text: "Mada - Geidea - Jisr Integration", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
                         ].map((item, i) => {
                           const Icon = item.icon;
                           return (

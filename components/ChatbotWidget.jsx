@@ -96,15 +96,15 @@ We provide end-to-end advisory for businesses entering or expanding in the Saudi
     quickOptions: ['Book Consultation', 'Tax & Zakat', 'Office Locations']
   },
   {
-    keywords: ['muqeem', 'iqama', 'visa', 'hr', 'payroll', 'jisr', 'mada', 'jedia', 'fintech', 'pos'],
+    keywords: ['muqeem', 'iqama', 'visa', 'hr', 'payroll', 'jisr', 'mada', 'jedia', 'geidea', 'fintech', 'pos'],
     title: 'HR Muqeem & Fintech Integrations',
     response: `👥 **HR Muqeem, Fintech & Payroll Integrations**
 
 • **HR Muqeem Integration**: Direct connection with the Saudi Muqeem portal for Iqama issuance/renewals, exit-re-entry visas, and labor records.
-• **Mada, Jedia & Jisr Integration**: Automated POS payment terminal reconciliation and seamless payroll synchronization with Jisr.`,
+• **Mada - Geidea - Jisr Integration**: Automated POS payment terminal reconciliation and seamless payroll synchronization with Jisr.`,
     links: [
       { text: 'HR Muqeem Integration', href: '/hr-muqeem' },
-      { text: 'Mada, Jedia & Jisr Integration', href: '/mada-jedia-hr-jisr-integration' }
+      { text: 'Mada - Geidea - Jisr Integration', href: '/mada-jedia-hr-jisr-integration' }
     ],
     quickOptions: ['Book Consultation', 'Enterprise ERP', 'Other Services']
   },
@@ -505,7 +505,7 @@ export default function ChatbotWidget() {
     if (option.includes('Integrations')) {
       setMenuLevel('integrations');
       sendBotReply('Select integration:', [
-        'Shopify', 'Salla', 'Muqeem', 'Odoo to Odoo', 'Jisr', 'Mada', 'Gedia',
+        'Shopify', 'Salla', 'Muqeem', 'Odoo to Odoo', 'Jisr', 'Mada', 'Geidea',
         '⬅ Back to Main Menu'
       ]);
       return;
@@ -576,7 +576,9 @@ export default function ChatbotWidget() {
       'Odoo to Odoo': '/odoo-to-odoo-data-integration',
       'Jisr': '/mada-jedia-hr-jisr-integration',
       'Mada': '/mada-jedia-hr-jisr-integration',
-      'Gedia': '/mada-jedia-hr-jisr-integration'
+      'Gedia': '/mada-jedia-hr-jisr-integration',
+      'Geidea': '/mada-jedia-hr-jisr-integration',
+      'Mada - Geidea - Jisr Integration': '/mada-jedia-hr-jisr-integration'
     };
     if (integrationRoutes[option]) { setIsOpen(false); router.push(integrationRoutes[option]); return; }
 

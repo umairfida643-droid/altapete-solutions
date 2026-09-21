@@ -104,7 +104,7 @@ export default function Footer() {
     { text: "Salla E-Commerce", href: "/salla-integration", icon: ShoppingBag },
     { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
     { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users },
-    { text: "Mada, Jedia & Jisr Sync", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
+    { text: "Mada - Geidea - Jisr Integration", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
   ];
 
   const footerServices = [

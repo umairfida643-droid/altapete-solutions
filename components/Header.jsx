@@ -145,7 +145,7 @@ export default function Header({ onToggleMobileMenu }) {
       desc: "Automated residency, visa & Saudi labor workflows" 
     },
     { 
-      text: "Mada, Jedia & Jisr Integration", 
+      text: "Mada - Geidea - Jisr Integration", 
       href: "/mada-jedia-hr-jisr-integration", 
       icon: CreditCard, 
       tag: "Fintech/HR", 
