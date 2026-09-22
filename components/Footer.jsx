@@ -122,8 +122,7 @@ export default function Footer() {
     { text: "Hospital Management (EMR)", href: "/hospital-management-solutions", icon: Hospital },
     { text: "School Management (SIS)", href: "/school-management-solutions", icon: GraduationCap },
     { text: "Shipment & Logistics", href: "/shipping-solutions", icon: Truck },
-    { text: "Rental Management ERP", href: "/rental-solutions", icon: Building },
-    { text: "All Industry Solutions", href: "/products", icon: ArrowRight }
+    { text: "Rental Management ERP", href: "/rental-solutions", icon: Building }
   ];
 
   return (
