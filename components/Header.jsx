@@ -679,15 +679,15 @@ export default function Header({ onToggleMobileMenu }) {
                   </Link>
                 </li>
 
-                {/* 6. Company Profile */}
-                <li>
+                {/* 6. Company Profile — HIDDEN (uncomment to show) */}
+                {/* <li>
                   <Link 
                     href="/company-profile"
                     className={`nav-link-btn ${router.pathname === '/company-profile' ? 'is-active' : ''}`}
                   >
                     Company Profile
                   </Link>
-                </li>
+                </li> */}
 
               </ul>
             </nav>
