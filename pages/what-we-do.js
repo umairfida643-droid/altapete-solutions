@@ -145,27 +145,27 @@ const stats = [
 
 const teamMembers = [
   {
-    name: 'Ahad Maaz',
-    role: 'Head of Business Solutions',
-    position: 'Executive Leadership',
-    bio: 'Odoo Certified V16/V17 Expert | DevOps, SaaS & Cloud Architect | Oracle eAM Certified & SCM Consultant.',
-    image: '/assets/imgs/team/ahad-maaz.jpg',
-    linkedin: 'https://www.linkedin.com/in/ahad-maaz-a8578533/'
-  },
-  {
     name: 'Shahzad Qamar',
     role: 'Director Middle East',
     position: 'Regional Strategy',
     bio: 'Associate Member of SOCPA, FCA (ICAP), FPFA (PIPFA) | 20+ Years in Corporate Financial Governance.',
-    image: '/assets/imgs/team/shahzad-qamar.jpg',
+    image: '/assets/imgs/team/shahzad-qamar.png',
     linkedin: 'https://www.linkedin.com/in/shahzad-qamar-8a647379/'
+  },
+  {
+    name: 'Ahad Maaz',
+    role: 'Head of Business Solutions',
+    position: 'Executive Leadership',
+    bio: 'Odoo Certified V16/V17 Expert | DevOps, SaaS & Cloud Architect | Oracle eAM Certified & SCM Consultant.',
+    image: '/assets/imgs/team/ahad-maaz.png',
+    linkedin: 'https://www.linkedin.com/in/ahad-maaz-a8578533/'
   },
   {
     name: 'Muhammad Kamal',
     role: 'Chief Technology Officer',
     position: 'CTO & Tech Lead',
     bio: 'Enterprise ERP Specialist | ZATCA Integration Pioneer | Cloud Native & Oracle/Odoo Architecture.',
-    image: '/assets/imgs/team/muhammad-kamal.jpg',
+    image: '/assets/imgs/team/muhammad-kamal.png',
     linkedin: 'https://www.linkedin.com/in/muhammad-kamal-990525190/'
   },
   {
@@ -173,7 +173,7 @@ const teamMembers = [
     role: 'Chief Operating Officer',
     position: 'COO & Operations',
     bio: 'Senior Business Analyst | Odoo Functional Lead | CA Finalist | MBA & MS Accounting & Finance.',
-    image: '/assets/imgs/team/hasnat-shahid-bukhari.jpg',
+    image: '/assets/imgs/team/hasnat-shahid-bukhari.png',
     linkedin: 'https://www.linkedin.com/in/hasnat-shahid-bukhari-%F0%9F%87%B5%F0%9F%87%B0-bb9b1b251/'
   },
   {
@@ -181,7 +181,7 @@ const teamMembers = [
     role: 'Senior Database Administrator',
     position: 'DBA & Infrastructure',
     bio: 'Mission-Critical Database Architect | IT Security Administrator | High-Availability Replication Expert.',
-    image: '/assets/imgs/team/waqar-afridi.jpg',
+    image: '/assets/imgs/team/waqar-afridi.png',
     linkedin: 'https://www.linkedin.com/in/waqar-afridi-49409815/'
   }
 ];
