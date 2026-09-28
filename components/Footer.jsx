@@ -822,10 +822,10 @@ export default function Footer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
             <Link href="/privacy-policy" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Privacy Policy</Link>
             <Link href="/terms" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Terms of Service</Link>
-            <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Company Profile</Link>
+            {/* <Link href="/company-profile" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Company Profile</Link> */}
             {/* <Link href="/what-we-do" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>What We Do</Link> */}
             {/* <Link href="/career" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Careers</Link> */}
-            <Link href="/blog" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Blog</Link>
+            {/* <Link href="/blog" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Blog</Link> */}
             <Link href="/contact-us" style={{ color: 'var(--text-muted)', fontSize: '12.5px', textDecoration: 'none' }}>Contact Us</Link>
           </div>
         </div>
