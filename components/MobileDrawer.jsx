@@ -134,69 +134,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
             <div className="perfect-scroll mt-20">
               <nav>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {/* Solutions Accordion */}
-                  <li style={{ borderBottom: '1px solid var(--border-color)' }}>
-                    <div 
-                      onClick={() => toggleAccordion(1)}
-                      style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', cursor: 'pointer', color: 'var(--text-primary)', fontWeight: 600, fontSize: '15px' }}
-                    >
-                      <span>Solutions</span>
-                      <ChevronDown size={16} color="var(--brand-accent)" style={{ transform: activeAccordion === 1 ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform 0.2s ease' }} />
-                    </div>
-
-                    {activeAccordion === 1 && (
-                      <div style={{ background: 'var(--bg-card-subtle)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.8px' }}>
-                          Digital Transformation
-                        </div>
-                        {[
-                          { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
-                          { text: "Managed IT Services", href: "/technology-management", icon: Server },
-                          { text: "Custom Application Development", href: "/custom-app-development", icon: Code2 }
-                        ].map((item, i) => {
-                          const Icon = item.icon;
-                          return (
-                            <Link 
-                              key={i} 
-                              href={item.href} 
-                              onClick={onClose}
-                              style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
-                            >
-                              <Icon size={15} color="var(--brand-accent)" /> {item.text}
-                            </Link>
-                          );
-                        })}
-
-                        <hr style={{ margin: '10px 0', borderColor: 'var(--border-color)' }} />
-
-                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.8px' }}>
-                          Integration Ecosystem
-                        </div>
-                        {[
-                          { text: "Zatca Integration", href: "/zatca-integration", icon: ShieldCheck },
-                          { text: "Odoo to Odoo", href: "/odoo-to-odoo-data-integration", icon: RefreshCw },
-                          { text: "Salla Integration", href: "/salla-integration", icon: ShoppingBag },
-                          { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
-                          { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users },
-                          { text: "Mada - Geidea - Jisr Integration", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
-                        ].map((item, i) => {
-                          const Icon = item.icon;
-                          return (
-                            <Link 
-                              key={i} 
-                              href={item.href} 
-                              onClick={onClose}
-                              style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
-                            >
-                              <Icon size={15} color="var(--brand-accent)" /> {item.text}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </li>
-
-                  {/* Services Accordion */}
+                  {/* 1. Services Accordion (merged: ERP+Digital Transformation + Business Advisory + Integration Ecosystem) */}
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <div 
                       onClick={() => toggleAccordion(2)}
@@ -208,6 +146,32 @@ export default function MobileDrawer({ isOpen, onClose }) {
 
                     {activeAccordion === 2 && (
                       <div style={{ background: 'var(--bg-card-subtle)', borderRadius: '10px', padding: '12px', marginBottom: '14px' }}>
+                        
+                        {/* Section: ERP & Digital Transformation */}
+                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.8px' }}>
+                          ERP &amp; Digital Transformation
+                        </div>
+                        {[
+                          { text: "Enterprise Solutions", href: "/enterprise-solutions", icon: Building2 },
+                          { text: "Managed IT Services", href: "/technology-management", icon: Server },
+                          { text: "Custom Application Development", href: "/custom-app-development", icon: Code2 }
+                        ].map((item, i) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link key={i} href={item.href} onClick={onClose}
+                              style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
+                            >
+                              <Icon size={15} color="var(--brand-accent)" /> {item.text}
+                            </Link>
+                          );
+                        })}
+
+                        <hr style={{ margin: '10px 0', borderColor: 'var(--border-color)' }} />
+
+                        {/* Section: Business Advisory & Professional Services */}
+                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.8px' }}>
+                          Business Advisory &amp; Professional Services
+                        </div>
                         {[
                           { text: "Accounting & Financial Advisory", href: "/accounting-financial-advisory", icon: Calculator },
                           { text: "Corporate Advisory", href: "/corporate-advisory", icon: Briefcase },
@@ -216,10 +180,31 @@ export default function MobileDrawer({ isOpen, onClose }) {
                         ].map((item, i) => {
                           const Icon = item.icon;
                           return (
-                            <Link 
-                              key={i} 
-                              href={item.href} 
-                              onClick={onClose}
+                            <Link key={i} href={item.href} onClick={onClose}
+                              style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
+                            >
+                              <Icon size={15} color="var(--brand-accent)" /> {item.text}
+                            </Link>
+                          );
+                        })}
+
+                        <hr style={{ margin: '10px 0', borderColor: 'var(--border-color)' }} />
+
+                        {/* Section: Integration Ecosystem */}
+                        <div style={{ color: 'var(--brand-accent)', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px', letterSpacing: '0.8px' }}>
+                          Integration Ecosystem
+                        </div>
+                        {[
+                          { text: "ZATCA Integration", href: "/zatca-integration", icon: ShieldCheck },
+                          { text: "Odoo to Odoo", href: "/odoo-to-odoo-data-integration", icon: RefreshCw },
+                          { text: "Salla Integration", href: "/salla-integration", icon: ShoppingBag },
+                          { text: "Shopify Integration", href: "/shopify-integration", icon: ShoppingCart },
+                          { text: "HR Muqeem Integration", href: "/hr-muqeem", icon: Users },
+                          { text: "Mada - Geidea - Jisr Integration", href: "/mada-jedia-hr-jisr-integration", icon: CreditCard }
+                        ].map((item, i) => {
+                          const Icon = item.icon;
+                          return (
+                            <Link key={i} href={item.href} onClick={onClose}
                               style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
                             >
                               <Icon size={15} color="var(--brand-accent)" /> {item.text}
@@ -230,7 +215,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     )}
                   </li>
 
-                  {/* Products Accordion */}
+                  {/* 2. Products Accordion */}
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <div 
                       onClick={() => toggleAccordion(3)}
@@ -254,10 +239,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                         ].map((item, i) => {
                           const Icon = item.icon;
                           return (
-                            <Link 
-                              key={i} 
-                              href={item.href} 
-                              onClick={onClose}
+                            <Link key={i} href={item.href} onClick={onClose}
                               style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '7px 0', color: 'var(--text-secondary)', fontSize: '13px', textDecoration: 'none' }}
                             >
                               <Icon size={15} color="var(--brand-accent)" /> {item.text}
@@ -268,7 +250,7 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     )}
                   </li>
 
-                  {/* Industries Accordion */}
+                  {/* 3. Industries Accordion */}
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <div 
                       onClick={() => toggleAccordion(4)}
@@ -327,13 +309,15 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     )}
                   </li>
 
-                  {/* Direct Pages */}
+                  {/* 4. What We Do */}
                   <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <Link href="/what-we-do" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
                       What We Do
                     </Link>
                   </li>
-                  <li style={{ borderBottom: '1px solid var(--border-color)' }}>
+
+                  {/* HIDDEN — uncomment to restore */}
+                  {/* <li style={{ borderBottom: '1px solid var(--border-color)' }}>
                     <Link href="/company-profile" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
                       Company Profile
                     </Link>
@@ -342,7 +326,8 @@ export default function MobileDrawer({ isOpen, onClose }) {
                     <Link href="/career" onClick={onClose} style={{ display: 'block', padding: '14px 0', color: 'var(--text-primary)', fontWeight: 600, textDecoration: 'none', fontSize: '15px' }}>
                       Careers
                     </Link>
-                  </li>
+                  </li> */}
+
                 </ul>
               </nav>
 
