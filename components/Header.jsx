@@ -311,7 +311,7 @@ export default function Header({ onToggleMobileMenu }) {
           style={{ 
             display: 'flex', 
             alignItems: 'center', 
-            justifyContent: 'space-between', 
+            justifyContent: 'flex-start', 
             width: '100%',
             padding: '12px 0'
           }}

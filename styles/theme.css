@@ -5048,7 +5048,7 @@ header.stick {
   .main-header {
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-start !important;
+    justify-content: space-between !important;
     width: 100% !important;
     padding: 10px 0 !important;
   }
